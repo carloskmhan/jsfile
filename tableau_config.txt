@@ -1,0 +1,28 @@
+{
+  "mode": "sample",
+  "tableauUrl": "https://YOUR_TABLEAU_SERVER/views/YOUR_WORKBOOK/YOUR_DASHBOARD",
+  "apiUrl": null,
+  "worksheetName": "RWA_DATA",
+  "filterField": "client_group_id",
+  "filterBy": "id",
+  "fields": {
+    "id": "client_group_id",
+    "name": "client_group_name",
+    "location": "group_location",
+    "json": "json_data"
+  },
+  "catalogUrl": "./rwa_sample_data.txt",
+  "sampleCsvUrl": "./tableau_sample.csv",
+  "additionalAllowedOrigins": [],
+  "timeoutMs": 60000,
+  "allowPortfolioQueries": false,
+  "maxPortfolioGroups": 500,
+  "maxDataRows": 100000,
+  "unit": "USDm",
+  "reconciliationTolerance": 0.01,
+  "maxJsonBytes": 5000000,
+  "rulesUrl": "./rules_config.txt",
+  "commandPatternsUrl": "./command_patterns.txt",
+  "requireConfirmation": true,
+  "liveReviewAcknowledged": false
+}

@@ -1,0 +1,95 @@
+{
+  "version": "3.0.0-review",
+  "status": "Review build; governance classification and real bank integration require approval/validation.",
+  "registeredTemplates": 423,
+  "enabledTemplates": 423,
+  "literalPhraseAliases": 31,
+  "applicationJsFiles": 11,
+  "applicationJsBytes": 95101,
+  "deployableModelFiles": 0,
+  "containsLearnedRuntime": false,
+  "containsOptionalPythonTraining": false,
+  "browserSourceDependencies": "No third-party NLP/ML dependency. Live deployment loads approved Tableau SDK separately.",
+  "developmentProvenance": "ChatGPT-assisted code and template development; no runtime AI service call.",
+  "localImportChecks": [
+    {
+      "source": "commands_editor.js",
+      "localImport": "./rule_parser.js",
+      "exists": true
+    },
+    {
+      "source": "commands_editor.js",
+      "localImport": "./network.js",
+      "exists": true
+    },
+    {
+      "source": "tableau_adapter.js",
+      "localImport": "./csv_adapter.js",
+      "exists": true
+    },
+    {
+      "source": "tableau_adapter.js",
+      "localImport": "./network.js",
+      "exists": true
+    },
+    {
+      "source": "rule_parser.js",
+      "localImport": "./command_fields.js",
+      "exists": true
+    },
+    {
+      "source": "app.js",
+      "localImport": "./rule_client.js",
+      "exists": true
+    },
+    {
+      "source": "app.js",
+      "localImport": "./tableau_adapter.js",
+      "exists": true
+    },
+    {
+      "source": "app.js",
+      "localImport": "./group_catalog.js",
+      "exists": true
+    },
+    {
+      "source": "app.js",
+      "localImport": "./rule_parser.js",
+      "exists": true
+    },
+    {
+      "source": "app.js",
+      "localImport": "./network.js",
+      "exists": true
+    },
+    {
+      "source": "bootstrap.js",
+      "localImport": "./network.js",
+      "exists": true
+    },
+    {
+      "source": "bootstrap.js",
+      "localImport": "./app.js",
+      "exists": true
+    },
+    {
+      "source": "rwa_engine.js",
+      "localImport": "./rule_parser.js",
+      "exists": true
+    },
+    {
+      "source": "rule_client.js",
+      "localImport": "./rwa_engine.js",
+      "exists": true
+    },
+    {
+      "source": "rule_client.js",
+      "localImport": "./csv_adapter.js",
+      "exists": true
+    }
+  ],
+  "note": "Byte counts exclude Tableau SDK, data/catalogue/config files, HTML/CSS and optional lab validation folder. No performance or security certification.",
+  "phraseAliases": 71,
+  "dialogueApplicationRegression": "61/61 developer-authored cases",
+  "originalMiniLMAppSameCases": "23/61 developer-authored end-to-end command match"
+}

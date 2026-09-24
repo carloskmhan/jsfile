@@ -1,0 +1,2840 @@
+{
+  "schemaVersion": 1,
+  "version": "3.0.0-review",
+  "description": "Manually specified command and dialogue templates; no training, scoring, embeddings, automatic induction or arbitrary code execution. Follow-up state transitions are explicit and reviewable.",
+  "phraseAliases": [
+    {
+      "from": "walk me through",
+      "to": "explain"
+    },
+    {
+      "from": "break down",
+      "to": "explain"
+    },
+    {
+      "from": "give me a breakdown of",
+      "to": "explain"
+    },
+    {
+      "from": "talk me through",
+      "to": "explain"
+    },
+    {
+      "from": "uptick",
+      "to": "increase"
+    },
+    {
+      "from": "upswing",
+      "to": "increase"
+    },
+    {
+      "from": "surge",
+      "to": "increase"
+    },
+    {
+      "from": "soared",
+      "to": "increase"
+    },
+    {
+      "from": "subsidiaries",
+      "to": "entities"
+    },
+    {
+      "from": "subsidiary",
+      "to": "entity"
+    },
+    {
+      "from": "affiliates",
+      "to": "entities"
+    },
+    {
+      "from": "affiliate",
+      "to": "entity"
+    },
+    {
+      "from": "legal entity",
+      "to": "entity"
+    },
+    {
+      "from": "legal entities",
+      "to": "entities"
+    },
+    {
+      "from": "leaving out",
+      "to": "excluding"
+    },
+    {
+      "from": "leave out",
+      "to": "exclude"
+    },
+    {
+      "from": "net of the fx contribution",
+      "to": "excluding fx"
+    },
+    {
+      "from": "ignoring",
+      "to": "excluding"
+    },
+    {
+      "from": "disregarding",
+      "to": "excluding"
+    },
+    {
+      "from": "set aside",
+      "to": "exclude"
+    },
+    {
+      "from": "originate",
+      "to": "come from"
+    },
+    {
+      "from": "currency movements",
+      "to": "fx"
+    },
+    {
+      "from": "currency movement",
+      "to": "fx"
+    },
+    {
+      "from": "borrower grade",
+      "to": "cg"
+    },
+    {
+      "from": "credit grade deterioration",
+      "to": "cg"
+    },
+    {
+      "from": "credit quality deterioration",
+      "to": "cg"
+    },
+    {
+      "from": "same basis",
+      "to": "same conditions"
+    },
+    {
+      "from": "biggest",
+      "to": "largest"
+    },
+    {
+      "from": "largest share",
+      "to": "most"
+    },
+    {
+      "from": "in one line",
+      "to": "in one sentence"
+    },
+    {
+      "from": "group-level",
+      "to": "group level"
+    },
+    {
+      "from": "what led to",
+      "to": "what caused"
+    },
+    {
+      "from": "what lies behind",
+      "to": "what caused"
+    },
+    {
+      "from": "what was behind",
+      "to": "what caused"
+    },
+    {
+      "from": "what is behind",
+      "to": "what caused"
+    },
+    {
+      "from": "driven by",
+      "to": "caused by"
+    },
+    {
+      "from": "accounted for",
+      "to": "contributed"
+    },
+    {
+      "from": "account for",
+      "to": "contribute"
+    },
+    {
+      "from": "made up",
+      "to": "contributed"
+    },
+    {
+      "from": "go deeper on",
+      "to": "explain"
+    },
+    {
+      "from": "drill into",
+      "to": "explain"
+    },
+    {
+      "from": "dig into",
+      "to": "explain"
+    },
+    {
+      "from": "drill down on",
+      "to": "explain"
+    },
+    {
+      "from": "what about the next one",
+      "to": "explain the next one"
+    },
+    {
+      "from": "and the next one",
+      "to": "explain the next one"
+    },
+    {
+      "from": "put back",
+      "to": "include"
+    },
+    {
+      "from": "add back",
+      "to": "include"
+    },
+    {
+      "from": "bring back",
+      "to": "include"
+    },
+    {
+      "from": "same question",
+      "to": "same"
+    },
+    {
+      "from": "same analysis",
+      "to": "same"
+    },
+    {
+      "from": "same report",
+      "to": "same"
+    },
+    {
+      "from": "on the same basis",
+      "to": "same conditions"
+    },
+    {
+      "from": "now show",
+      "to": "show"
+    },
+    {
+      "from": "now explain",
+      "to": "explain"
+    },
+    {
+      "from": "now compare",
+      "to": "compare"
+    },
+    {
+      "from": "versus",
+      "to": "vs"
+    },
+    {
+      "from": "compared to",
+      "to": "compared with"
+    },
+    {
+      "from": "up move",
+      "to": "increase"
+    },
+    {
+      "from": "down move",
+      "to": "decrease"
+    },
+    {
+      "from": "step-up",
+      "to": "increase"
+    },
+    {
+      "from": "step down",
+      "to": "decrease"
+    },
+    {
+      "from": "pullback",
+      "to": "decrease"
+    },
+    {
+      "from": "main contributor",
+      "to": "main driver"
+    },
+    {
+      "from": "largest contributor",
+      "to": "main driver"
+    },
+    {
+      "from": "biggest contributor",
+      "to": "main driver"
+    },
+    {
+      "from": "unexplained amount",
+      "to": "residual"
+    },
+    {
+      "from": "unexplained piece",
+      "to": "residual"
+    },
+    {
+      "from": "unexplained portion",
+      "to": "residual"
+    },
+    {
+      "from": "do the numbers tie",
+      "to": "do the drivers reconcile"
+    },
+    {
+      "from": "does it tie",
+      "to": "do the drivers reconcile"
+    },
+    {
+      "from": "does that tie",
+      "to": "do the drivers reconcile"
+    }
+  ],
+  "prefixes": [
+    "could you please",
+    "can you please",
+    "would you please",
+    "please",
+    "could you",
+    "can you",
+    "would you"
+  ],
+  "patterns": [
+    {
+      "id": "CMD_001",
+      "enabled": true,
+      "questionPattern": "explain {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_002",
+      "enabled": true,
+      "questionPattern": "explain {scope} rwa",
+      "canonicalPattern": "explain {scope} rwa"
+    },
+    {
+      "id": "CMD_003",
+      "enabled": true,
+      "questionPattern": "explain {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_004",
+      "enabled": true,
+      "questionPattern": "explain the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_005",
+      "enabled": true,
+      "questionPattern": "explain the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_006",
+      "enabled": true,
+      "questionPattern": "explain {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_007",
+      "enabled": true,
+      "questionPattern": "analyse {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_008",
+      "enabled": true,
+      "questionPattern": "analyse {scope} rwa",
+      "canonicalPattern": "explain {scope} rwa"
+    },
+    {
+      "id": "CMD_009",
+      "enabled": true,
+      "questionPattern": "analyse {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_010",
+      "enabled": true,
+      "questionPattern": "analyse the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_011",
+      "enabled": true,
+      "questionPattern": "analyse the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_012",
+      "enabled": true,
+      "questionPattern": "analyse {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_013",
+      "enabled": true,
+      "questionPattern": "analyze {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_014",
+      "enabled": true,
+      "questionPattern": "analyze {scope} rwa",
+      "canonicalPattern": "explain {scope} rwa"
+    },
+    {
+      "id": "CMD_015",
+      "enabled": true,
+      "questionPattern": "analyze {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_016",
+      "enabled": true,
+      "questionPattern": "analyze the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_017",
+      "enabled": true,
+      "questionPattern": "analyze the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_018",
+      "enabled": true,
+      "questionPattern": "analyze {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_019",
+      "enabled": true,
+      "questionPattern": "summarise {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_020",
+      "enabled": true,
+      "questionPattern": "summarise {scope} rwa",
+      "canonicalPattern": "explain {scope} rwa"
+    },
+    {
+      "id": "CMD_021",
+      "enabled": true,
+      "questionPattern": "summarise {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_022",
+      "enabled": true,
+      "questionPattern": "summarise the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_023",
+      "enabled": true,
+      "questionPattern": "summarise the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_024",
+      "enabled": true,
+      "questionPattern": "summarise {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_025",
+      "enabled": true,
+      "questionPattern": "summarize {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_026",
+      "enabled": true,
+      "questionPattern": "summarize {scope} rwa",
+      "canonicalPattern": "explain {scope} rwa"
+    },
+    {
+      "id": "CMD_027",
+      "enabled": true,
+      "questionPattern": "summarize {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_028",
+      "enabled": true,
+      "questionPattern": "summarize the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_029",
+      "enabled": true,
+      "questionPattern": "summarize the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_030",
+      "enabled": true,
+      "questionPattern": "summarize {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_031",
+      "enabled": true,
+      "questionPattern": "describe {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_032",
+      "enabled": true,
+      "questionPattern": "describe {scope} rwa",
+      "canonicalPattern": "explain {scope} rwa"
+    },
+    {
+      "id": "CMD_033",
+      "enabled": true,
+      "questionPattern": "describe {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_034",
+      "enabled": true,
+      "questionPattern": "describe the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_035",
+      "enabled": true,
+      "questionPattern": "describe the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_036",
+      "enabled": true,
+      "questionPattern": "describe {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_037",
+      "enabled": true,
+      "questionPattern": "give me a summary of {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_038",
+      "enabled": true,
+      "questionPattern": "give me a summary of {scope} rwa",
+      "canonicalPattern": "explain {scope} rwa"
+    },
+    {
+      "id": "CMD_039",
+      "enabled": true,
+      "questionPattern": "give me a summary of {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_040",
+      "enabled": true,
+      "questionPattern": "give me a summary of the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_041",
+      "enabled": true,
+      "questionPattern": "give me a summary of the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_042",
+      "enabled": true,
+      "questionPattern": "give me a summary of {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_043",
+      "enabled": true,
+      "questionPattern": "give me an overview of {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_044",
+      "enabled": true,
+      "questionPattern": "give me an overview of {scope} rwa",
+      "canonicalPattern": "explain {scope} rwa"
+    },
+    {
+      "id": "CMD_045",
+      "enabled": true,
+      "questionPattern": "give me an overview of {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_046",
+      "enabled": true,
+      "questionPattern": "give me an overview of the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_047",
+      "enabled": true,
+      "questionPattern": "give me an overview of the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_048",
+      "enabled": true,
+      "questionPattern": "give me an overview of {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_049",
+      "enabled": true,
+      "questionPattern": "give me a quick analysis of {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_050",
+      "enabled": true,
+      "questionPattern": "give me a quick analysis of {scope} rwa",
+      "canonicalPattern": "explain {scope} rwa"
+    },
+    {
+      "id": "CMD_051",
+      "enabled": true,
+      "questionPattern": "give me a quick analysis of {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_052",
+      "enabled": true,
+      "questionPattern": "give me a quick analysis of the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_053",
+      "enabled": true,
+      "questionPattern": "give me a quick analysis of the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_054",
+      "enabled": true,
+      "questionPattern": "give me a quick analysis of {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_055",
+      "enabled": true,
+      "questionPattern": "tell me about {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_056",
+      "enabled": true,
+      "questionPattern": "tell me about {scope} rwa",
+      "canonicalPattern": "explain {scope} rwa"
+    },
+    {
+      "id": "CMD_057",
+      "enabled": true,
+      "questionPattern": "tell me about {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_058",
+      "enabled": true,
+      "questionPattern": "tell me about the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_059",
+      "enabled": true,
+      "questionPattern": "tell me about the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_060",
+      "enabled": true,
+      "questionPattern": "tell me about {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_061",
+      "enabled": true,
+      "questionPattern": "what drove {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_062",
+      "enabled": true,
+      "questionPattern": "what drove {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_063",
+      "enabled": true,
+      "questionPattern": "what drove {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_064",
+      "enabled": true,
+      "questionPattern": "what drove the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_065",
+      "enabled": true,
+      "questionPattern": "what drove the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_066",
+      "enabled": true,
+      "questionPattern": "what caused {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_067",
+      "enabled": true,
+      "questionPattern": "what caused {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_068",
+      "enabled": true,
+      "questionPattern": "what caused {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_069",
+      "enabled": true,
+      "questionPattern": "what caused the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_070",
+      "enabled": true,
+      "questionPattern": "what caused the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_071",
+      "enabled": true,
+      "questionPattern": "what explains {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_072",
+      "enabled": true,
+      "questionPattern": "what explains {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_073",
+      "enabled": true,
+      "questionPattern": "what explains {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_074",
+      "enabled": true,
+      "questionPattern": "what explains the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_075",
+      "enabled": true,
+      "questionPattern": "what explains the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_076",
+      "enabled": true,
+      "questionPattern": "what is behind {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_077",
+      "enabled": true,
+      "questionPattern": "what is behind {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_078",
+      "enabled": true,
+      "questionPattern": "what is behind {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_079",
+      "enabled": true,
+      "questionPattern": "what is behind the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_080",
+      "enabled": true,
+      "questionPattern": "what is behind the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_081",
+      "enabled": true,
+      "questionPattern": "what was behind {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_082",
+      "enabled": true,
+      "questionPattern": "what was behind {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_083",
+      "enabled": true,
+      "questionPattern": "what was behind {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_084",
+      "enabled": true,
+      "questionPattern": "what was behind the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_085",
+      "enabled": true,
+      "questionPattern": "what was behind the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_086",
+      "enabled": true,
+      "questionPattern": "what contributed to {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_087",
+      "enabled": true,
+      "questionPattern": "what contributed to {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_088",
+      "enabled": true,
+      "questionPattern": "what contributed to {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_089",
+      "enabled": true,
+      "questionPattern": "what contributed to the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_090",
+      "enabled": true,
+      "questionPattern": "what contributed to the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_091",
+      "enabled": true,
+      "questionPattern": "what led to {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_092",
+      "enabled": true,
+      "questionPattern": "what led to {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_093",
+      "enabled": true,
+      "questionPattern": "what led to {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_094",
+      "enabled": true,
+      "questionPattern": "what led to the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_095",
+      "enabled": true,
+      "questionPattern": "what led to the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_096",
+      "enabled": true,
+      "questionPattern": "drivers behind {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_097",
+      "enabled": true,
+      "questionPattern": "drivers behind {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_098",
+      "enabled": true,
+      "questionPattern": "drivers behind {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_099",
+      "enabled": true,
+      "questionPattern": "drivers behind the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_100",
+      "enabled": true,
+      "questionPattern": "drivers behind the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_101",
+      "enabled": true,
+      "questionPattern": "reasons behind {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_102",
+      "enabled": true,
+      "questionPattern": "reasons behind {scope} {movement}",
+      "canonicalPattern": "explain {scope} {movement}"
+    },
+    {
+      "id": "CMD_103",
+      "enabled": true,
+      "questionPattern": "reasons behind {scope} rwa {movement}",
+      "canonicalPattern": "explain {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_104",
+      "enabled": true,
+      "questionPattern": "reasons behind the {movement}",
+      "canonicalPattern": "explain the {movement}"
+    },
+    {
+      "id": "CMD_105",
+      "enabled": true,
+      "questionPattern": "reasons behind the rwa {movement}",
+      "canonicalPattern": "explain the rwa {movement}"
+    },
+    {
+      "id": "CMD_106",
+      "enabled": true,
+      "questionPattern": "why did {scope} {movement}",
+      "canonicalPattern": "why did {scope} {movement}"
+    },
+    {
+      "id": "CMD_107",
+      "enabled": true,
+      "questionPattern": "why did {scope} rwa {movement}",
+      "canonicalPattern": "why did {scope} rwa {movement}"
+    },
+    {
+      "id": "CMD_108",
+      "enabled": true,
+      "questionPattern": "why did rwa {movement}",
+      "canonicalPattern": "why did rwa {movement}"
+    },
+    {
+      "id": "CMD_109",
+      "enabled": true,
+      "questionPattern": "why did the group {movement}",
+      "canonicalPattern": "why did the group {movement}"
+    },
+    {
+      "id": "CMD_110",
+      "enabled": true,
+      "questionPattern": "why did the rwa {movement}",
+      "canonicalPattern": "why did the rwa {movement}"
+    },
+    {
+      "id": "CMD_111",
+      "enabled": true,
+      "questionPattern": "why is rwa higher",
+      "canonicalPattern": "explain the rwa increase"
+    },
+    {
+      "id": "CMD_112",
+      "enabled": true,
+      "questionPattern": "why is group rwa higher",
+      "canonicalPattern": "explain the group rwa increase"
+    },
+    {
+      "id": "CMD_113",
+      "enabled": true,
+      "questionPattern": "what happened to {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_114",
+      "enabled": true,
+      "questionPattern": "how is {scope} doing",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_115",
+      "enabled": true,
+      "questionPattern": "what changed",
+      "canonicalPattern": "explain the rwa movement"
+    },
+    {
+      "id": "CMD_116",
+      "enabled": true,
+      "questionPattern": "what happened",
+      "canonicalPattern": "explain the rwa movement"
+    },
+    {
+      "id": "CMD_117",
+      "enabled": true,
+      "questionPattern": "give me the root cause",
+      "canonicalPattern": "explain the rwa movement"
+    },
+    {
+      "id": "CMD_118",
+      "enabled": true,
+      "questionPattern": "give me the root cause for {scope}",
+      "canonicalPattern": "explain {scope}"
+    },
+    {
+      "id": "CMD_119",
+      "enabled": true,
+      "questionPattern": "what is the root cause",
+      "canonicalPattern": "explain the rwa movement"
+    },
+    {
+      "id": "CMD_120",
+      "enabled": true,
+      "questionPattern": "what are the drivers",
+      "canonicalPattern": "explain the rwa movement"
+    },
+    {
+      "id": "CMD_121",
+      "enabled": true,
+      "questionPattern": "what is the main driver",
+      "canonicalPattern": "what was the main driver"
+    },
+    {
+      "id": "CMD_122",
+      "enabled": true,
+      "questionPattern": "what was the main driver",
+      "canonicalPattern": "what was the main driver"
+    },
+    {
+      "id": "CMD_123",
+      "enabled": true,
+      "questionPattern": "main driver",
+      "canonicalPattern": "what was the main driver"
+    },
+    {
+      "id": "CMD_124",
+      "enabled": true,
+      "questionPattern": "main driver for {scope}",
+      "canonicalPattern": "what was the main driver for {scope}"
+    },
+    {
+      "id": "CMD_125",
+      "enabled": true,
+      "questionPattern": "what is the largest driver",
+      "canonicalPattern": "what was the main driver"
+    },
+    {
+      "id": "CMD_126",
+      "enabled": true,
+      "questionPattern": "what was the largest driver",
+      "canonicalPattern": "what was the main driver"
+    },
+    {
+      "id": "CMD_127",
+      "enabled": true,
+      "questionPattern": "what drove most of the change",
+      "canonicalPattern": "what was the main driver"
+    },
+    {
+      "id": "CMD_128",
+      "enabled": true,
+      "questionPattern": "main reason for the increase",
+      "canonicalPattern": "what was the main driver"
+    },
+    {
+      "id": "CMD_129",
+      "enabled": true,
+      "questionPattern": "which factor contributed most",
+      "canonicalPattern": "what was the main driver"
+    },
+    {
+      "id": "CMD_130",
+      "enabled": true,
+      "questionPattern": "which risk factor contributed most",
+      "canonicalPattern": "what was the main driver"
+    },
+    {
+      "id": "CMD_131",
+      "enabled": true,
+      "questionPattern": "top driver of the spike",
+      "canonicalPattern": "what was the main driver"
+    },
+    {
+      "id": "CMD_132",
+      "enabled": true,
+      "questionPattern": "largest contributor by driver",
+      "canonicalPattern": "what was the main driver"
+    },
+    {
+      "id": "CMD_133",
+      "enabled": true,
+      "questionPattern": "top {n} {dimension}",
+      "canonicalPattern": "top {n} {dimension}"
+    },
+    {
+      "id": "CMD_134",
+      "enabled": true,
+      "questionPattern": "top {dimension}",
+      "canonicalPattern": "top {dimension}"
+    },
+    {
+      "id": "CMD_135",
+      "enabled": true,
+      "questionPattern": "which {dimension}",
+      "canonicalPattern": "which {dimension}"
+    },
+    {
+      "id": "CMD_136",
+      "enabled": true,
+      "questionPattern": "list {dimension}",
+      "canonicalPattern": "list {dimension}"
+    },
+    {
+      "id": "CMD_137",
+      "enabled": true,
+      "questionPattern": "show {dimension}",
+      "canonicalPattern": "show {dimension}"
+    },
+    {
+      "id": "CMD_138",
+      "enabled": true,
+      "questionPattern": "rank {dimension}",
+      "canonicalPattern": "rank {dimension}"
+    },
+    {
+      "id": "CMD_139",
+      "enabled": true,
+      "questionPattern": "largest {dimension}",
+      "canonicalPattern": "top {dimension}"
+    },
+    {
+      "id": "CMD_140",
+      "enabled": true,
+      "questionPattern": "which {dimension} contributed most",
+      "canonicalPattern": "top {dimension}"
+    },
+    {
+      "id": "CMD_141",
+      "enabled": true,
+      "questionPattern": "which {dimension} drove the {movement}",
+      "canonicalPattern": "top {dimension} by {movement}"
+    },
+    {
+      "id": "CMD_142",
+      "enabled": true,
+      "questionPattern": "which {dimension} were behind the {movement}",
+      "canonicalPattern": "top {dimension} by {movement}"
+    },
+    {
+      "id": "CMD_143",
+      "enabled": true,
+      "questionPattern": "top {n} {dimension} driving the group",
+      "canonicalPattern": "top {n} {dimension}"
+    },
+    {
+      "id": "CMD_144",
+      "enabled": true,
+      "questionPattern": "which {dimension} had the largest {movement}",
+      "canonicalPattern": "top {dimension} by {movement}"
+    },
+    {
+      "id": "CMD_145",
+      "enabled": true,
+      "questionPattern": "which {dimension} increased the most",
+      "canonicalPattern": "top {dimension} by increase"
+    },
+    {
+      "id": "CMD_146",
+      "enabled": true,
+      "questionPattern": "which {dimension} had the largest {driver} impact",
+      "canonicalPattern": "top {dimension} by {driver}"
+    },
+    {
+      "id": "CMD_147",
+      "enabled": true,
+      "questionPattern": "which entity drove {scope}",
+      "canonicalPattern": "top entities for {scope}"
+    },
+    {
+      "id": "CMD_148",
+      "enabled": true,
+      "questionPattern": "where did most of the increase come from",
+      "canonicalPattern": "top entities by increase"
+    },
+    {
+      "id": "CMD_149",
+      "enabled": true,
+      "questionPattern": "where did most of the group increase come from",
+      "canonicalPattern": "top entities by increase"
+    },
+    {
+      "id": "CMD_150",
+      "enabled": true,
+      "questionPattern": "top entity contributor",
+      "canonicalPattern": "top entities"
+    },
+    {
+      "id": "CMD_151",
+      "enabled": true,
+      "questionPattern": "largest entity contributor",
+      "canonicalPattern": "top entities"
+    },
+    {
+      "id": "CMD_152",
+      "enabled": true,
+      "questionPattern": "which company in the group caused the spike",
+      "canonicalPattern": "top entities by increase"
+    },
+    {
+      "id": "CMD_153",
+      "enabled": true,
+      "questionPattern": "top client group contributors",
+      "canonicalPattern": "top groups"
+    },
+    {
+      "id": "CMD_154",
+      "enabled": true,
+      "questionPattern": "largest client group contributors",
+      "canonicalPattern": "top groups"
+    },
+    {
+      "id": "CMD_155",
+      "enabled": true,
+      "questionPattern": "how much did {entity} contribute",
+      "canonicalPattern": "how much did {entity} contribute"
+    },
+    {
+      "id": "CMD_156",
+      "enabled": true,
+      "questionPattern": "what was the contribution from {entity}",
+      "canonicalPattern": "how much did {entity} contribute"
+    },
+    {
+      "id": "CMD_157",
+      "enabled": true,
+      "questionPattern": "contribution of {entity}",
+      "canonicalPattern": "how much did {entity} contribute"
+    },
+    {
+      "id": "CMD_158",
+      "enabled": true,
+      "questionPattern": "what proportion came from {entity}",
+      "canonicalPattern": "how much did {entity} contribute"
+    },
+    {
+      "id": "CMD_159",
+      "enabled": true,
+      "questionPattern": "how much did this entity add",
+      "canonicalPattern": "how much did this entity contribute"
+    },
+    {
+      "id": "CMD_160",
+      "enabled": true,
+      "questionPattern": "how much did the legal entity contribute",
+      "canonicalPattern": "how much did this entity contribute"
+    },
+    {
+      "id": "CMD_161",
+      "enabled": true,
+      "questionPattern": "how much came from {driver}",
+      "canonicalPattern": "how much came from {driver}"
+    },
+    {
+      "id": "CMD_162",
+      "enabled": true,
+      "questionPattern": "how much of the increase came from {driver}",
+      "canonicalPattern": "how much came from {driver}"
+    },
+    {
+      "id": "CMD_163",
+      "enabled": true,
+      "questionPattern": "what was the {driver} contribution",
+      "canonicalPattern": "how much came from {driver}"
+    },
+    {
+      "id": "CMD_164",
+      "enabled": true,
+      "questionPattern": "contribution from {driver}",
+      "canonicalPattern": "how much came from {driver}"
+    },
+    {
+      "id": "CMD_165",
+      "enabled": true,
+      "questionPattern": "how much did {driver} add",
+      "canonicalPattern": "how much came from {driver}"
+    },
+    {
+      "id": "CMD_166",
+      "enabled": true,
+      "questionPattern": "how much was driven by {driver}",
+      "canonicalPattern": "how much came from {driver}"
+    },
+    {
+      "id": "CMD_167",
+      "enabled": true,
+      "questionPattern": "what proportion came from {driver}",
+      "canonicalPattern": "how much came from {driver}"
+    },
+    {
+      "id": "CMD_168",
+      "enabled": true,
+      "questionPattern": "what percentage came from {driver}",
+      "canonicalPattern": "how much came from {driver}"
+    },
+    {
+      "id": "CMD_169",
+      "enabled": true,
+      "questionPattern": "how much of {scope} increase came from {driver}",
+      "canonicalPattern": "how much came from {driver} for {scope}"
+    },
+    {
+      "id": "CMD_170",
+      "enabled": true,
+      "questionPattern": "how much did {driver} contribute to {scope}",
+      "canonicalPattern": "how much came from {driver} for {scope}"
+    },
+    {
+      "id": "CMD_171",
+      "enabled": true,
+      "questionPattern": "was {driver} the main driver",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_172",
+      "enabled": true,
+      "questionPattern": "was {scope} mainly driven by {driver}",
+      "canonicalPattern": "was {driver} the main driver for {scope}"
+    },
+    {
+      "id": "CMD_173",
+      "enabled": true,
+      "questionPattern": "was the group mainly driven by {driver}",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_174",
+      "enabled": true,
+      "questionPattern": "was the increase mainly driven by {driver}",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_175",
+      "enabled": true,
+      "questionPattern": "was this caused by {driver}",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_176",
+      "enabled": true,
+      "questionPattern": "was {driver} the reason",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_177",
+      "enabled": true,
+      "questionPattern": "was {driver} drive the increase",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_178",
+      "enabled": true,
+      "questionPattern": "was {driver} contribute to the increase",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_179",
+      "enabled": true,
+      "questionPattern": "was {driver} contribute to {scope} increase",
+      "canonicalPattern": "did {driver} contribute for {scope}"
+    },
+    {
+      "id": "CMD_180",
+      "enabled": true,
+      "questionPattern": "was {driver} explain the rise",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_181",
+      "enabled": true,
+      "questionPattern": "was {driver} the only driver",
+      "canonicalPattern": "was {driver} the only driver"
+    },
+    {
+      "id": "CMD_182",
+      "enabled": true,
+      "questionPattern": "was the spike mainly due to {driver}",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_183",
+      "enabled": true,
+      "questionPattern": "was {driver} responsible",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_184",
+      "enabled": true,
+      "questionPattern": "is {driver} the main driver",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_185",
+      "enabled": true,
+      "questionPattern": "is {scope} mainly driven by {driver}",
+      "canonicalPattern": "was {driver} the main driver for {scope}"
+    },
+    {
+      "id": "CMD_186",
+      "enabled": true,
+      "questionPattern": "is the group mainly driven by {driver}",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_187",
+      "enabled": true,
+      "questionPattern": "is the increase mainly driven by {driver}",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_188",
+      "enabled": true,
+      "questionPattern": "is this caused by {driver}",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_189",
+      "enabled": true,
+      "questionPattern": "is {driver} the reason",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_190",
+      "enabled": true,
+      "questionPattern": "is {driver} drive the increase",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_191",
+      "enabled": true,
+      "questionPattern": "is {driver} contribute to the increase",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_192",
+      "enabled": true,
+      "questionPattern": "is {driver} contribute to {scope} increase",
+      "canonicalPattern": "did {driver} contribute for {scope}"
+    },
+    {
+      "id": "CMD_193",
+      "enabled": true,
+      "questionPattern": "is {driver} explain the rise",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_194",
+      "enabled": true,
+      "questionPattern": "is {driver} the only driver",
+      "canonicalPattern": "was {driver} the only driver"
+    },
+    {
+      "id": "CMD_195",
+      "enabled": true,
+      "questionPattern": "is the spike mainly due to {driver}",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_196",
+      "enabled": true,
+      "questionPattern": "is {driver} responsible",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_197",
+      "enabled": true,
+      "questionPattern": "did {driver} the main driver",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_198",
+      "enabled": true,
+      "questionPattern": "did {scope} mainly driven by {driver}",
+      "canonicalPattern": "was {driver} the main driver for {scope}"
+    },
+    {
+      "id": "CMD_199",
+      "enabled": true,
+      "questionPattern": "did the group mainly driven by {driver}",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_200",
+      "enabled": true,
+      "questionPattern": "did the increase mainly driven by {driver}",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_201",
+      "enabled": true,
+      "questionPattern": "did this caused by {driver}",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_202",
+      "enabled": true,
+      "questionPattern": "did {driver} the reason",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_203",
+      "enabled": true,
+      "questionPattern": "did {driver} drive the increase",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_204",
+      "enabled": true,
+      "questionPattern": "did {driver} contribute to the increase",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_205",
+      "enabled": true,
+      "questionPattern": "did {driver} contribute to {scope} increase",
+      "canonicalPattern": "did {driver} contribute for {scope}"
+    },
+    {
+      "id": "CMD_206",
+      "enabled": true,
+      "questionPattern": "did {driver} explain the rise",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_207",
+      "enabled": true,
+      "questionPattern": "did {driver} the only driver",
+      "canonicalPattern": "was {driver} the only driver"
+    },
+    {
+      "id": "CMD_208",
+      "enabled": true,
+      "questionPattern": "did the spike mainly due to {driver}",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_209",
+      "enabled": true,
+      "questionPattern": "did {driver} responsible",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_210",
+      "enabled": true,
+      "questionPattern": "were {driver} the main driver",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_211",
+      "enabled": true,
+      "questionPattern": "were {scope} mainly driven by {driver}",
+      "canonicalPattern": "was {driver} the main driver for {scope}"
+    },
+    {
+      "id": "CMD_212",
+      "enabled": true,
+      "questionPattern": "were the group mainly driven by {driver}",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_213",
+      "enabled": true,
+      "questionPattern": "were the increase mainly driven by {driver}",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_214",
+      "enabled": true,
+      "questionPattern": "were this caused by {driver}",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_215",
+      "enabled": true,
+      "questionPattern": "were {driver} the reason",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_216",
+      "enabled": true,
+      "questionPattern": "were {driver} drive the increase",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_217",
+      "enabled": true,
+      "questionPattern": "were {driver} contribute to the increase",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_218",
+      "enabled": true,
+      "questionPattern": "were {driver} contribute to {scope} increase",
+      "canonicalPattern": "did {driver} contribute for {scope}"
+    },
+    {
+      "id": "CMD_219",
+      "enabled": true,
+      "questionPattern": "were {driver} explain the rise",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_220",
+      "enabled": true,
+      "questionPattern": "were {driver} the only driver",
+      "canonicalPattern": "was {driver} the only driver"
+    },
+    {
+      "id": "CMD_221",
+      "enabled": true,
+      "questionPattern": "were the spike mainly due to {driver}",
+      "canonicalPattern": "was {driver} the main driver"
+    },
+    {
+      "id": "CMD_222",
+      "enabled": true,
+      "questionPattern": "were {driver} responsible",
+      "canonicalPattern": "did {driver} contribute"
+    },
+    {
+      "id": "CMD_223",
+      "enabled": true,
+      "questionPattern": "was not {driver} the main driver",
+      "canonicalPattern": "was not {driver} the main driver"
+    },
+    {
+      "id": "CMD_224",
+      "enabled": true,
+      "questionPattern": "when was the largest spike",
+      "canonicalPattern": "when was the largest spike"
+    },
+    {
+      "id": "CMD_225",
+      "enabled": true,
+      "questionPattern": "which month had the biggest increase",
+      "canonicalPattern": "which month had the biggest increase"
+    },
+    {
+      "id": "CMD_226",
+      "enabled": true,
+      "questionPattern": "when did rwa peak",
+      "canonicalPattern": "when did rwa peak"
+    },
+    {
+      "id": "CMD_227",
+      "enabled": true,
+      "questionPattern": "when did {scope} rwa peak",
+      "canonicalPattern": "when did {scope} rwa peak"
+    },
+    {
+      "id": "CMD_228",
+      "enabled": true,
+      "questionPattern": "when was {scope} largest rwa spike",
+      "canonicalPattern": "when was {scope} largest rwa spike"
+    },
+    {
+      "id": "CMD_229",
+      "enabled": true,
+      "questionPattern": "what was the peak month",
+      "canonicalPattern": "when did rwa peak"
+    },
+    {
+      "id": "CMD_230",
+      "enabled": true,
+      "questionPattern": "which month had the highest rwa",
+      "canonicalPattern": "which month had the highest rwa"
+    },
+    {
+      "id": "CMD_231",
+      "enabled": true,
+      "questionPattern": "which month had the largest rwa increase",
+      "canonicalPattern": "which month had the largest rwa increase"
+    },
+    {
+      "id": "CMD_232",
+      "enabled": true,
+      "questionPattern": "which month had the largest percentage increase",
+      "canonicalPattern": "which month had the largest percentage increase"
+    },
+    {
+      "id": "CMD_233",
+      "enabled": true,
+      "questionPattern": "which month saw the largest rwa jump",
+      "canonicalPattern": "which month had the largest rwa increase"
+    },
+    {
+      "id": "CMD_234",
+      "enabled": true,
+      "questionPattern": "largest monthly movement",
+      "canonicalPattern": "which month had the largest rwa increase"
+    },
+    {
+      "id": "CMD_235",
+      "enabled": true,
+      "questionPattern": "show the trend",
+      "canonicalPattern": "show the trend"
+    },
+    {
+      "id": "CMD_236",
+      "enabled": true,
+      "questionPattern": "what is the rwa trend",
+      "canonicalPattern": "show the trend"
+    },
+    {
+      "id": "CMD_237",
+      "enabled": true,
+      "questionPattern": "what is the recent trend",
+      "canonicalPattern": "show the trend"
+    },
+    {
+      "id": "CMD_238",
+      "enabled": true,
+      "questionPattern": "show {scope} trend",
+      "canonicalPattern": "show {scope} trend"
+    },
+    {
+      "id": "CMD_239",
+      "enabled": true,
+      "questionPattern": "show the {period} trend",
+      "canonicalPattern": "show the trend over {period}"
+    },
+    {
+      "id": "CMD_240",
+      "enabled": true,
+      "questionPattern": "show {period} trend",
+      "canonicalPattern": "show the trend over {period}"
+    },
+    {
+      "id": "CMD_241",
+      "enabled": true,
+      "questionPattern": "how has rwa moved recently",
+      "canonicalPattern": "show the trend"
+    },
+    {
+      "id": "CMD_242",
+      "enabled": true,
+      "questionPattern": "is the increase persistent",
+      "canonicalPattern": "show the trend"
+    },
+    {
+      "id": "CMD_243",
+      "enabled": true,
+      "questionPattern": "has rwa been increasing",
+      "canonicalPattern": "show the trend"
+    },
+    {
+      "id": "CMD_244",
+      "enabled": true,
+      "questionPattern": "is rwa going up or down",
+      "canonicalPattern": "show the trend"
+    },
+    {
+      "id": "CMD_245",
+      "enabled": true,
+      "questionPattern": "what happened over {period}",
+      "canonicalPattern": "show the trend over {period}"
+    },
+    {
+      "id": "CMD_246",
+      "enabled": true,
+      "questionPattern": "is the spike concentrated",
+      "canonicalPattern": "is the spike concentrated"
+    },
+    {
+      "id": "CMD_247",
+      "enabled": true,
+      "questionPattern": "was the increase concentrated in one entity",
+      "canonicalPattern": "is the spike concentrated"
+    },
+    {
+      "id": "CMD_248",
+      "enabled": true,
+      "questionPattern": "was one entity responsible for most of the increase",
+      "canonicalPattern": "is the spike concentrated"
+    },
+    {
+      "id": "CMD_249",
+      "enabled": true,
+      "questionPattern": "is the movement broad based",
+      "canonicalPattern": "is the spike concentrated"
+    },
+    {
+      "id": "CMD_250",
+      "enabled": true,
+      "questionPattern": "how concentrated was the rwa spike",
+      "canonicalPattern": "is the spike concentrated"
+    },
+    {
+      "id": "CMD_251",
+      "enabled": true,
+      "questionPattern": "was the group increase driven by a single entity",
+      "canonicalPattern": "is the spike concentrated"
+    },
+    {
+      "id": "CMD_252",
+      "enabled": true,
+      "questionPattern": "concentration of the increase",
+      "canonicalPattern": "is the spike concentrated"
+    },
+    {
+      "id": "CMD_253",
+      "enabled": true,
+      "questionPattern": "what offset the increase",
+      "canonicalPattern": "what offset the increase"
+    },
+    {
+      "id": "CMD_254",
+      "enabled": true,
+      "questionPattern": "which drivers offset the increase",
+      "canonicalPattern": "what offset the increase"
+    },
+    {
+      "id": "CMD_255",
+      "enabled": true,
+      "questionPattern": "what offset the decrease",
+      "canonicalPattern": "what offset the decrease"
+    },
+    {
+      "id": "CMD_256",
+      "enabled": true,
+      "questionPattern": "what mitigated the increase",
+      "canonicalPattern": "what offset the increase"
+    },
+    {
+      "id": "CMD_257",
+      "enabled": true,
+      "questionPattern": "do the drivers reconcile",
+      "canonicalPattern": "do the drivers reconcile"
+    },
+    {
+      "id": "CMD_258",
+      "enabled": true,
+      "questionPattern": "does the driver total match the movement",
+      "canonicalPattern": "do the drivers reconcile"
+    },
+    {
+      "id": "CMD_259",
+      "enabled": true,
+      "questionPattern": "show the residual",
+      "canonicalPattern": "show the residual"
+    },
+    {
+      "id": "CMD_260",
+      "enabled": true,
+      "questionPattern": "check the data quality",
+      "canonicalPattern": "check the data quality"
+    },
+    {
+      "id": "CMD_261",
+      "enabled": true,
+      "questionPattern": "compare {scope} with peers",
+      "canonicalPattern": "compare {scope} with peers"
+    },
+    {
+      "id": "CMD_262",
+      "enabled": true,
+      "questionPattern": "compare with peers",
+      "canonicalPattern": "compare with peers"
+    },
+    {
+      "id": "CMD_263",
+      "enabled": true,
+      "questionPattern": "compare {scope} to the portfolio",
+      "canonicalPattern": "compare {scope} with peers"
+    },
+    {
+      "id": "CMD_264",
+      "enabled": true,
+      "questionPattern": "benchmark {scope}",
+      "canonicalPattern": "compare {scope} with peers"
+    },
+    {
+      "id": "CMD_265",
+      "enabled": true,
+      "questionPattern": "compare {scope} with {other_scope}",
+      "canonicalPattern": "compare {scope} with {other_scope}"
+    },
+    {
+      "id": "CMD_266",
+      "enabled": true,
+      "questionPattern": "compare {period} with {other_period}",
+      "canonicalPattern": "compare {period} with {other_period}"
+    },
+    {
+      "id": "CMD_267",
+      "enabled": true,
+      "questionPattern": "compare {scope} {period} with {other_period}",
+      "canonicalPattern": "compare {scope} {period} with {other_period}"
+    },
+    {
+      "id": "CMD_268",
+      "enabled": true,
+      "questionPattern": "compare the two",
+      "canonicalPattern": "compare the two"
+    },
+    {
+      "id": "CMD_269",
+      "enabled": true,
+      "questionPattern": "compare them",
+      "canonicalPattern": "compare the two"
+    },
+    {
+      "id": "CMD_270",
+      "enabled": true,
+      "questionPattern": "compare it with the others",
+      "canonicalPattern": "compare it"
+    },
+    {
+      "id": "CMD_271",
+      "enabled": true,
+      "questionPattern": "and {entity}",
+      "canonicalPattern": "and {entity}"
+    },
+    {
+      "id": "CMD_272",
+      "enabled": true,
+      "questionPattern": "what about {entity}",
+      "canonicalPattern": "and {entity}"
+    },
+    {
+      "id": "CMD_273",
+      "enabled": true,
+      "questionPattern": "how about {entity}",
+      "canonicalPattern": "and {entity}"
+    },
+    {
+      "id": "CMD_274",
+      "enabled": true,
+      "questionPattern": "same for {period}",
+      "canonicalPattern": "same for {period}"
+    },
+    {
+      "id": "CMD_275",
+      "enabled": true,
+      "questionPattern": "same for {scope}",
+      "canonicalPattern": "same for {scope}"
+    },
+    {
+      "id": "CMD_276",
+      "enabled": true,
+      "questionPattern": "back to group level",
+      "canonicalPattern": "back to group level"
+    },
+    {
+      "id": "CMD_277",
+      "enabled": true,
+      "questionPattern": "at group level instead",
+      "canonicalPattern": "back to group level"
+    },
+    {
+      "id": "CMD_278",
+      "enabled": true,
+      "questionPattern": "exclude {driver}",
+      "canonicalPattern": "exclude {driver}"
+    },
+    {
+      "id": "CMD_279",
+      "enabled": true,
+      "questionPattern": "exclude {entity}",
+      "canonicalPattern": "exclude {entity}"
+    },
+    {
+      "id": "CMD_280",
+      "enabled": true,
+      "questionPattern": "include {driver}",
+      "canonicalPattern": "include {driver}"
+    },
+    {
+      "id": "CMD_281",
+      "enabled": true,
+      "questionPattern": "include {entity}",
+      "canonicalPattern": "include {entity}"
+    },
+    {
+      "id": "CMD_282",
+      "enabled": true,
+      "questionPattern": "shorter",
+      "canonicalPattern": "shorter"
+    },
+    {
+      "id": "CMD_283",
+      "enabled": true,
+      "questionPattern": "in one sentence",
+      "canonicalPattern": "in one sentence"
+    },
+    {
+      "id": "CMD_284",
+      "enabled": true,
+      "questionPattern": "briefly",
+      "canonicalPattern": "briefly"
+    },
+    {
+      "id": "CMD_285",
+      "enabled": true,
+      "questionPattern": "more detail",
+      "canonicalPattern": "more detail"
+    },
+    {
+      "id": "CMD_286",
+      "enabled": true,
+      "questionPattern": "help",
+      "canonicalPattern": "help"
+    },
+    {
+      "id": "CMD_287",
+      "enabled": true,
+      "questionPattern": "hello",
+      "canonicalPattern": "hello"
+    },
+    {
+      "id": "CMD_288",
+      "enabled": true,
+      "questionPattern": "hi",
+      "canonicalPattern": "hi"
+    },
+    {
+      "id": "CMD_289",
+      "enabled": true,
+      "questionPattern": "thanks",
+      "canonicalPattern": "thanks"
+    },
+    {
+      "id": "CMD_290",
+      "enabled": true,
+      "questionPattern": "show the top {n} {dimension}",
+      "canonicalPattern": "top {n} {dimension}"
+    },
+    {
+      "id": "CMD_291",
+      "enabled": true,
+      "questionPattern": "show top {n} {dimension}",
+      "canonicalPattern": "top {n} {dimension}"
+    },
+    {
+      "id": "CMD_292",
+      "enabled": true,
+      "questionPattern": "list the top {n} {dimension}",
+      "canonicalPattern": "top {n} {dimension}"
+    },
+    {
+      "id": "CMD_293",
+      "enabled": true,
+      "questionPattern": "show me the top {n} {dimension}",
+      "canonicalPattern": "top {n} {dimension}"
+    },
+    {
+      "id": "CMD_294",
+      "enabled": true,
+      "questionPattern": "show the top {dimension}",
+      "canonicalPattern": "top {dimension}"
+    },
+    {
+      "id": "CMD_295",
+      "enabled": true,
+      "questionPattern": "explain the reasons behind this client movement",
+      "canonicalPattern": "explain the group movement"
+    },
+    {
+      "id": "CMD_296",
+      "enabled": true,
+      "questionPattern": "summarize why the total rwa changed",
+      "canonicalPattern": "explain the rwa movement"
+    },
+    {
+      "id": "CMD_297",
+      "enabled": true,
+      "questionPattern": "what explains the sudden rise in group rwa",
+      "canonicalPattern": "explain the group increase"
+    },
+    {
+      "id": "CMD_298",
+      "enabled": true,
+      "questionPattern": "which risk factor had the greatest impact",
+      "canonicalPattern": "what was the main driver"
+    },
+    {
+      "id": "CMD_299",
+      "enabled": true,
+      "questionPattern": "tell me the primary driver behind the movement",
+      "canonicalPattern": "what was the main driver"
+    },
+    {
+      "id": "CMD_300",
+      "enabled": true,
+      "questionPattern": "what is the dominant cause of the change",
+      "canonicalPattern": "what was the main driver"
+    },
+    {
+      "id": "CMD_301",
+      "enabled": true,
+      "questionPattern": "how much of the net change is attributable to {driver}",
+      "canonicalPattern": "how much came from {driver}"
+    },
+    {
+      "id": "CMD_302",
+      "enabled": true,
+      "questionPattern": "give me the amount contributed by {driver}",
+      "canonicalPattern": "how much came from {driver}"
+    },
+    {
+      "id": "CMD_303",
+      "enabled": true,
+      "questionPattern": "what percentage of the increase came from {driver}",
+      "canonicalPattern": "how much came from {driver}"
+    },
+    {
+      "id": "CMD_304",
+      "enabled": true,
+      "questionPattern": "was {driver} responsible for the {movement}",
+      "canonicalPattern": "did {driver} contribute to the {movement}"
+    },
+    {
+      "id": "CMD_305",
+      "enabled": true,
+      "questionPattern": "did {driver} cause the {movement}",
+      "canonicalPattern": "did {driver} contribute to the {movement}"
+    },
+    {
+      "id": "CMD_306",
+      "enabled": true,
+      "questionPattern": "was {driver} the main reason for the {movement}",
+      "canonicalPattern": "was {driver} the main driver for the {movement}"
+    },
+    {
+      "id": "CMD_307",
+      "enabled": true,
+      "questionPattern": "which {dimension} contributed the largest {movement}",
+      "canonicalPattern": "top {dimension} by {movement}"
+    },
+    {
+      "id": "CMD_308",
+      "enabled": true,
+      "questionPattern": "list the leading entity contributors",
+      "canonicalPattern": "top entities"
+    },
+    {
+      "id": "CMD_309",
+      "enabled": true,
+      "questionPattern": "which {dimension} accounts for the largest rwa {movement}",
+      "canonicalPattern": "top {dimension} by {movement}"
+    },
+    {
+      "id": "CMD_310",
+      "enabled": true,
+      "questionPattern": "what share did {entity} contribute",
+      "canonicalPattern": "how much did {entity} contribute"
+    },
+    {
+      "id": "CMD_311",
+      "enabled": true,
+      "questionPattern": "how much of the movement came from {entity}",
+      "canonicalPattern": "how much did {entity} contribute"
+    },
+    {
+      "id": "CMD_312",
+      "enabled": true,
+      "questionPattern": "give the contribution of this entity",
+      "canonicalPattern": "how much did this entity contribute"
+    },
+    {
+      "id": "CMD_313",
+      "enabled": true,
+      "questionPattern": "explain the drivers within {entity}",
+      "canonicalPattern": "explain {entity}"
+    },
+    {
+      "id": "CMD_314",
+      "enabled": true,
+      "questionPattern": "what caused the rwa {movement} at {entity}",
+      "canonicalPattern": "explain {entity} rwa {movement}"
+    },
+    {
+      "id": "CMD_315",
+      "enabled": true,
+      "questionPattern": "why did this entity have a {movement}",
+      "canonicalPattern": "explain this entity {movement}"
+    },
+    {
+      "id": "CMD_316",
+      "enabled": true,
+      "questionPattern": "was most of the jump concentrated in a single entity",
+      "canonicalPattern": "is the spike concentrated"
+    },
+    {
+      "id": "CMD_317",
+      "enabled": true,
+      "questionPattern": "did many entities contribute or just one",
+      "canonicalPattern": "is the spike concentrated"
+    },
+    {
+      "id": "CMD_318",
+      "enabled": true,
+      "questionPattern": "is this movement spread across entities",
+      "canonicalPattern": "is the spike concentrated"
+    },
+    {
+      "id": "CMD_319",
+      "enabled": true,
+      "questionPattern": "identify the month with the largest positive change",
+      "canonicalPattern": "which month had the largest rwa increase"
+    },
+    {
+      "id": "CMD_320",
+      "enabled": true,
+      "questionPattern": "in which month did the sharpest jump occur",
+      "canonicalPattern": "which month had the largest rwa increase"
+    },
+    {
+      "id": "CMD_321",
+      "enabled": true,
+      "questionPattern": "when was the largest monthly rwa increase",
+      "canonicalPattern": "which month had the largest rwa increase"
+    },
+    {
+      "id": "CMD_322",
+      "enabled": true,
+      "questionPattern": "describe the pattern",
+      "canonicalPattern": "show the trend"
+    },
+    {
+      "id": "CMD_323",
+      "enabled": true,
+      "questionPattern": "is the rwa rise continuing month after month",
+      "canonicalPattern": "show the trend"
+    },
+    {
+      "id": "CMD_324",
+      "enabled": true,
+      "questionPattern": "show the direction of rwa over time",
+      "canonicalPattern": "show the trend"
+    },
+    {
+      "id": "CMD_325",
+      "enabled": true,
+      "questionPattern": "rank the client groups by their rwa increase",
+      "canonicalPattern": "top groups by increase"
+    },
+    {
+      "id": "CMD_326",
+      "enabled": true,
+      "questionPattern": "list the groups responsible for the largest jumps",
+      "canonicalPattern": "top groups by increase"
+    },
+    {
+      "id": "CMD_327",
+      "enabled": true,
+      "questionPattern": "which clients were the largest contributors",
+      "canonicalPattern": "top groups"
+    },
+    {
+      "id": "CMD_328",
+      "enabled": true,
+      "questionPattern": "how unusual is the change compared with peers",
+      "canonicalPattern": "compare with peers"
+    },
+    {
+      "id": "CMD_329",
+      "enabled": true,
+      "questionPattern": "benchmark this client against other groups",
+      "canonicalPattern": "compare with peers"
+    },
+    {
+      "id": "CMD_330",
+      "enabled": true,
+      "questionPattern": "is the client an outlier relative to its peers",
+      "canonicalPattern": "compare with peers"
+    },
+    {
+      "id": "CMD_331",
+      "enabled": true,
+      "questionPattern": "does the sum of drivers match the net change",
+      "canonicalPattern": "do the drivers reconcile"
+    },
+    {
+      "id": "CMD_332",
+      "enabled": true,
+      "questionPattern": "how large is the unexplained part of the increase",
+      "canonicalPattern": "show the residual"
+    },
+    {
+      "id": "CMD_333",
+      "enabled": true,
+      "questionPattern": "check whether the attribution reconciles",
+      "canonicalPattern": "do the drivers reconcile"
+    },
+    {
+      "id": "CMD_334",
+      "enabled": true,
+      "questionPattern": "show {scope} trend over {period}",
+      "canonicalPattern": "show {scope} trend over {period}"
+    },
+    {
+      "id": "CMD_335",
+      "enabled": true,
+      "questionPattern": "top {n} {dimension} by {driver}",
+      "canonicalPattern": "top {n} {dimension} by {driver}"
+    },
+    {
+      "id": "CMD_336",
+      "enabled": true,
+      "questionPattern": "top {n} {dimension} by {movement}",
+      "canonicalPattern": "top {n} {dimension} by {movement}"
+    },
+    {
+      "id": "CMD_337",
+      "enabled": true,
+      "questionPattern": "which {dimension} had the largest percentage increase",
+      "canonicalPattern": "top {dimension} by percentage increase"
+    },
+    {
+      "id": "CMD_338",
+      "enabled": true,
+      "questionPattern": "what was the root cause for {entity}",
+      "canonicalPattern": "explain {entity}"
+    },
+    {
+      "id": "CMD_339",
+      "enabled": true,
+      "questionPattern": "was the increase concentrated in one subsidiary",
+      "canonicalPattern": "is the spike concentrated"
+    },
+    {
+      "id": "CMD_340",
+      "enabled": true,
+      "questionPattern": "which {n} {dimension} contributed most to {scope} {movement}",
+      "canonicalPattern": "top {n} {dimension} for {scope} by {movement}"
+    },
+    {
+      "id": "CMD_341",
+      "enabled": true,
+      "questionPattern": "what is {scope} current rwa",
+      "canonicalPattern": "show {scope} rwa balance"
+    },
+    {
+      "id": "CMD_342",
+      "enabled": true,
+      "questionPattern": "show {scope} rwa balance",
+      "canonicalPattern": "show {scope} rwa balance"
+    },
+    {
+      "id": "CMD_343",
+      "enabled": true,
+      "questionPattern": "what is the current rwa",
+      "canonicalPattern": "show the rwa balance"
+    },
+    {
+      "id": "CMD_344",
+      "enabled": true,
+      "questionPattern": "what are the offsets",
+      "canonicalPattern": "what offset the increase"
+    },
+    {
+      "id": "CMD_345",
+      "enabled": true,
+      "questionPattern": "was {scope} concentrated",
+      "canonicalPattern": "is the spike concentrated for {scope}"
+    },
+    {
+      "id": "CMD_346",
+      "enabled": true,
+      "questionPattern": "do drivers reconcile",
+      "canonicalPattern": "do the drivers reconcile"
+    },
+    {
+      "id": "CMD_347",
+      "enabled": true,
+      "questionPattern": "same",
+      "canonicalPattern": "same"
+    },
+    {
+      "id": "CMD_348",
+      "enabled": true,
+      "questionPattern": "same conditions",
+      "canonicalPattern": "same"
+    },
+    {
+      "id": "CMD_349",
+      "enabled": true,
+      "questionPattern": "same for {scope} in {period}",
+      "canonicalPattern": "same for {scope} in {period}"
+    },
+    {
+      "id": "CMD_350",
+      "enabled": true,
+      "questionPattern": "same in {period}",
+      "canonicalPattern": "same for {period}"
+    },
+    {
+      "id": "CMD_351",
+      "enabled": true,
+      "questionPattern": "do the same for {period}",
+      "canonicalPattern": "same for {period}"
+    },
+    {
+      "id": "CMD_352",
+      "enabled": true,
+      "questionPattern": "do the same for {scope}",
+      "canonicalPattern": "same for {scope}"
+    },
+    {
+      "id": "CMD_353",
+      "enabled": true,
+      "questionPattern": "do the same for {scope} in {period}",
+      "canonicalPattern": "same for {scope} in {period}"
+    },
+    {
+      "id": "CMD_354",
+      "enabled": true,
+      "questionPattern": "repeat for {period}",
+      "canonicalPattern": "same for {period}"
+    },
+    {
+      "id": "CMD_355",
+      "enabled": true,
+      "questionPattern": "repeat for {scope}",
+      "canonicalPattern": "same for {scope}"
+    },
+    {
+      "id": "CMD_356",
+      "enabled": true,
+      "questionPattern": "why",
+      "canonicalPattern": "why"
+    },
+    {
+      "id": "CMD_357",
+      "enabled": true,
+      "questionPattern": "why is that",
+      "canonicalPattern": "why"
+    },
+    {
+      "id": "CMD_358",
+      "enabled": true,
+      "questionPattern": "why did that happen",
+      "canonicalPattern": "why"
+    },
+    {
+      "id": "CMD_359",
+      "enabled": true,
+      "questionPattern": "what caused that",
+      "canonicalPattern": "why"
+    },
+    {
+      "id": "CMD_360",
+      "enabled": true,
+      "questionPattern": "what drove that",
+      "canonicalPattern": "why"
+    },
+    {
+      "id": "CMD_361",
+      "enabled": true,
+      "questionPattern": "what drove it",
+      "canonicalPattern": "why"
+    },
+    {
+      "id": "CMD_362",
+      "enabled": true,
+      "questionPattern": "what caused it",
+      "canonicalPattern": "why"
+    },
+    {
+      "id": "CMD_365",
+      "enabled": true,
+      "questionPattern": "which one",
+      "canonicalPattern": "top 1 entities"
+    },
+    {
+      "id": "CMD_366",
+      "enabled": true,
+      "questionPattern": "explain the first one",
+      "canonicalPattern": "explain the first one"
+    },
+    {
+      "id": "CMD_367",
+      "enabled": true,
+      "questionPattern": "explain the second one",
+      "canonicalPattern": "explain the second one"
+    },
+    {
+      "id": "CMD_368",
+      "enabled": true,
+      "questionPattern": "explain the third one",
+      "canonicalPattern": "explain the third one"
+    },
+    {
+      "id": "CMD_369",
+      "enabled": true,
+      "questionPattern": "explain the fourth one",
+      "canonicalPattern": "explain the fourth one"
+    },
+    {
+      "id": "CMD_370",
+      "enabled": true,
+      "questionPattern": "explain the fifth one",
+      "canonicalPattern": "explain the fifth one"
+    },
+    {
+      "id": "CMD_371",
+      "enabled": true,
+      "questionPattern": "explain the next one",
+      "canonicalPattern": "explain the next one"
+    },
+    {
+      "id": "CMD_372",
+      "enabled": true,
+      "questionPattern": "what drove the first one",
+      "canonicalPattern": "explain the first one"
+    },
+    {
+      "id": "CMD_373",
+      "enabled": true,
+      "questionPattern": "what drove the second one",
+      "canonicalPattern": "explain the second one"
+    },
+    {
+      "id": "CMD_374",
+      "enabled": true,
+      "questionPattern": "what drove the third one",
+      "canonicalPattern": "explain the third one"
+    },
+    {
+      "id": "CMD_375",
+      "enabled": true,
+      "questionPattern": "what drove the fourth one",
+      "canonicalPattern": "explain the fourth one"
+    },
+    {
+      "id": "CMD_376",
+      "enabled": true,
+      "questionPattern": "what drove the fifth one",
+      "canonicalPattern": "explain the fifth one"
+    },
+    {
+      "id": "CMD_382",
+      "enabled": true,
+      "questionPattern": "what offset that",
+      "canonicalPattern": "what are the offsets"
+    },
+    {
+      "id": "CMD_383",
+      "enabled": true,
+      "questionPattern": "what offset it",
+      "canonicalPattern": "what are the offsets"
+    },
+    {
+      "id": "CMD_384",
+      "enabled": true,
+      "questionPattern": "and the offsets",
+      "canonicalPattern": "what are the offsets"
+    },
+    {
+      "id": "CMD_385",
+      "enabled": true,
+      "questionPattern": "does it reconcile",
+      "canonicalPattern": "do the drivers reconcile"
+    },
+    {
+      "id": "CMD_386",
+      "enabled": true,
+      "questionPattern": "does that reconcile",
+      "canonicalPattern": "do the drivers reconcile"
+    },
+    {
+      "id": "CMD_387",
+      "enabled": true,
+      "questionPattern": "how much is unexplained",
+      "canonicalPattern": "show the residual"
+    },
+    {
+      "id": "CMD_388",
+      "enabled": true,
+      "questionPattern": "how much was unexplained",
+      "canonicalPattern": "show the residual"
+    },
+    {
+      "id": "CMD_389",
+      "enabled": true,
+      "questionPattern": "what is the residual",
+      "canonicalPattern": "show the residual"
+    },
+    {
+      "id": "CMD_390",
+      "enabled": true,
+      "questionPattern": "compare that with {period}",
+      "canonicalPattern": "compare this month with {period}"
+    },
+    {
+      "id": "CMD_391",
+      "enabled": true,
+      "questionPattern": "compare it with {period}",
+      "canonicalPattern": "compare this month with {period}"
+    },
+    {
+      "id": "CMD_392",
+      "enabled": true,
+      "questionPattern": "compare this with {period}",
+      "canonicalPattern": "compare this month with {period}"
+    },
+    {
+      "id": "CMD_393",
+      "enabled": true,
+      "questionPattern": "how different was {period}",
+      "canonicalPattern": "compare this month with {period}"
+    },
+    {
+      "id": "CMD_394",
+      "enabled": true,
+      "questionPattern": "what changed between {period} and {other_period}",
+      "canonicalPattern": "compare {period} with {other_period}"
+    },
+    {
+      "id": "CMD_395",
+      "enabled": true,
+      "questionPattern": "how did {period} differ from {other_period}",
+      "canonicalPattern": "compare {period} with {other_period}"
+    },
+    {
+      "id": "CMD_396",
+      "enabled": true,
+      "questionPattern": "compare {period} vs {other_period}",
+      "canonicalPattern": "compare {period} with {other_period}"
+    },
+    {
+      "id": "CMD_397",
+      "enabled": true,
+      "questionPattern": "rank them by {driver}",
+      "canonicalPattern": "top entities by {driver}"
+    },
+    {
+      "id": "CMD_398",
+      "enabled": true,
+      "questionPattern": "rank those by {driver}",
+      "canonicalPattern": "top entities by {driver}"
+    },
+    {
+      "id": "CMD_399",
+      "enabled": true,
+      "questionPattern": "which of those had the largest {driver} impact",
+      "canonicalPattern": "top entities by {driver}"
+    },
+    {
+      "id": "CMD_400",
+      "enabled": true,
+      "questionPattern": "which of those had the largest percentage increase",
+      "canonicalPattern": "top entities by percentage increase"
+    },
+    {
+      "id": "CMD_401",
+      "enabled": true,
+      "questionPattern": "which of those increased the most",
+      "canonicalPattern": "top entities by increase"
+    },
+    {
+      "id": "CMD_402",
+      "enabled": true,
+      "questionPattern": "which of those decreased the most",
+      "canonicalPattern": "top entities by decrease"
+    },
+    {
+      "id": "CMD_403",
+      "enabled": true,
+      "questionPattern": "show me only the top {n}",
+      "canonicalPattern": "top {n} entities"
+    },
+    {
+      "id": "CMD_404",
+      "enabled": true,
+      "questionPattern": "top {n} of those by {driver}",
+      "canonicalPattern": "top {n} entities by {driver}"
+    },
+    {
+      "id": "CMD_405",
+      "enabled": true,
+      "questionPattern": "back to the group",
+      "canonicalPattern": "back to group level"
+    },
+    {
+      "id": "CMD_406",
+      "enabled": true,
+      "questionPattern": "back to group",
+      "canonicalPattern": "back to group level"
+    },
+    {
+      "id": "CMD_407",
+      "enabled": true,
+      "questionPattern": "show the group instead",
+      "canonicalPattern": "back to group level"
+    },
+    {
+      "id": "CMD_408",
+      "enabled": true,
+      "questionPattern": "clear exclusions",
+      "canonicalPattern": "clear exclusions"
+    },
+    {
+      "id": "CMD_409",
+      "enabled": true,
+      "questionPattern": "remove all exclusions",
+      "canonicalPattern": "clear exclusions"
+    },
+    {
+      "id": "CMD_410",
+      "enabled": true,
+      "questionPattern": "reset exclusions",
+      "canonicalPattern": "clear exclusions"
+    },
+    {
+      "id": "CMD_411",
+      "enabled": true,
+      "questionPattern": "original basis",
+      "canonicalPattern": "clear exclusions"
+    },
+    {
+      "id": "CMD_412",
+      "enabled": true,
+      "questionPattern": "include {driver} back",
+      "canonicalPattern": "include {driver}"
+    },
+    {
+      "id": "CMD_413",
+      "enabled": true,
+      "questionPattern": "include {entity} back",
+      "canonicalPattern": "include {entity}"
+    },
+    {
+      "id": "CMD_414",
+      "enabled": true,
+      "questionPattern": "restore {driver}",
+      "canonicalPattern": "include {driver}"
+    },
+    {
+      "id": "CMD_415",
+      "enabled": true,
+      "questionPattern": "restore {entity}",
+      "canonicalPattern": "include {entity}"
+    },
+    {
+      "id": "CMD_416",
+      "enabled": true,
+      "questionPattern": "what about {period}",
+      "canonicalPattern": "same for {period}"
+    },
+    {
+      "id": "CMD_417",
+      "enabled": true,
+      "questionPattern": "and {period}",
+      "canonicalPattern": "same for {period}"
+    },
+    {
+      "id": "CMD_418",
+      "enabled": true,
+      "questionPattern": "and what about {period}",
+      "canonicalPattern": "same for {period}"
+    },
+    {
+      "id": "CMD_421",
+      "enabled": true,
+      "questionPattern": "same but by percentage increase",
+      "canonicalPattern": "same by percentage increase"
+    },
+    {
+      "id": "CMD_422",
+      "enabled": true,
+      "questionPattern": "same but by rwa balance",
+      "canonicalPattern": "same by rwa balance"
+    },
+    {
+      "id": "CMD_423",
+      "enabled": true,
+      "questionPattern": "same but by {driver}",
+      "canonicalPattern": "same by {driver}"
+    },
+    {
+      "id": "CMD_424",
+      "enabled": true,
+      "questionPattern": "what about {driver}",
+      "canonicalPattern": "how much came from {driver}"
+    },
+    {
+      "id": "CMD_425",
+      "enabled": true,
+      "questionPattern": "and {driver}",
+      "canonicalPattern": "how much came from {driver}"
+    },
+    {
+      "id": "CMD_426",
+      "enabled": true,
+      "questionPattern": "which month had the largest increase",
+      "canonicalPattern": "which month had the largest rwa increase"
+    },
+    {
+      "id": "CMD_427",
+      "enabled": true,
+      "questionPattern": "which month had the largest decrease",
+      "canonicalPattern": "which month had the largest rwa decrease"
+    },
+    {
+      "id": "CMD_428",
+      "enabled": true,
+      "questionPattern": "which month had the largest rwa decrease",
+      "canonicalPattern": "which month had the largest rwa decrease"
+    },
+    {
+      "id": "CMD_429",
+      "enabled": true,
+      "questionPattern": "which {dimension} decreased the most",
+      "canonicalPattern": "top {dimension} by decrease"
+    },
+    {
+      "id": "CMD_430",
+      "enabled": true,
+      "questionPattern": "which {dimension} had the largest decrease",
+      "canonicalPattern": "top {dimension} by decrease"
+    },
+    {
+      "id": "CMD_431",
+      "enabled": true,
+      "questionPattern": "show {scope} current rwa",
+      "canonicalPattern": "show {scope} rwa balance"
+    },
+    {
+      "id": "CMD_432",
+      "enabled": true,
+      "questionPattern": "show current rwa",
+      "canonicalPattern": "show the rwa balance"
+    }
+  ]
+}

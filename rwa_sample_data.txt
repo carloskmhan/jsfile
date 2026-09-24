@@ -1,0 +1,3189 @@
+{
+  "groups": [
+    {
+      "client_group_id": "CG0001",
+      "client_group_name": "SAMSUNG GROUP",
+      "aliases": [
+        "samsung",
+        "samsung group"
+      ]
+    },
+    {
+      "client_group_id": "CG0002",
+      "client_group_name": "HYUNDAI MOTOR GROUP",
+      "aliases": [
+        "hyundai",
+        "hyundai motor group",
+        "hyundai group"
+      ]
+    },
+    {
+      "client_group_id": "CG0003",
+      "client_group_name": "APPLE GROUP",
+      "aliases": [
+        "apple",
+        "apple group"
+      ]
+    },
+    {
+      "client_group_id": "CG0004",
+      "client_group_name": "TOYOTA GROUP",
+      "aliases": [
+        "toyota",
+        "toyota group"
+      ]
+    },
+    {
+      "client_group_id": "CG0005",
+      "client_group_name": "ASTER 005 GROUP",
+      "aliases": [
+        "Aster 005",
+        "demo 5"
+      ]
+    },
+    {
+      "client_group_id": "CG0006",
+      "client_group_name": "BIRCH 006 GROUP",
+      "aliases": [
+        "Birch 006",
+        "demo 6"
+      ]
+    },
+    {
+      "client_group_id": "CG0007",
+      "client_group_name": "COBALT 007 GROUP",
+      "aliases": [
+        "Cobalt 007",
+        "demo 7"
+      ]
+    },
+    {
+      "client_group_id": "CG0008",
+      "client_group_name": "DUNE 008 GROUP",
+      "aliases": [
+        "Dune 008",
+        "demo 8"
+      ]
+    },
+    {
+      "client_group_id": "CG0009",
+      "client_group_name": "ELM 009 GROUP",
+      "aliases": [
+        "Elm 009",
+        "demo 9"
+      ]
+    },
+    {
+      "client_group_id": "CG0010",
+      "client_group_name": "FLINT 010 GROUP",
+      "aliases": [
+        "Flint 010",
+        "demo 10"
+      ]
+    },
+    {
+      "client_group_id": "CG0011",
+      "client_group_name": "GARNET 011 GROUP",
+      "aliases": [
+        "Garnet 011",
+        "demo 11"
+      ]
+    },
+    {
+      "client_group_id": "CG0012",
+      "client_group_name": "HARBOR 012 GROUP",
+      "aliases": [
+        "Harbor 012",
+        "demo 12"
+      ]
+    },
+    {
+      "client_group_id": "CG0013",
+      "client_group_name": "INDIGO 013 GROUP",
+      "aliases": [
+        "Indigo 013",
+        "demo 13"
+      ]
+    },
+    {
+      "client_group_id": "CG0014",
+      "client_group_name": "JUNIPER 014 GROUP",
+      "aliases": [
+        "Juniper 014",
+        "demo 14"
+      ]
+    },
+    {
+      "client_group_id": "CG0015",
+      "client_group_name": "KESTREL 015 GROUP",
+      "aliases": [
+        "Kestrel 015",
+        "demo 15"
+      ]
+    },
+    {
+      "client_group_id": "CG0016",
+      "client_group_name": "LINDEN 016 GROUP",
+      "aliases": [
+        "Linden 016",
+        "demo 16"
+      ]
+    },
+    {
+      "client_group_id": "CG0017",
+      "client_group_name": "ASTER 017 GROUP",
+      "aliases": [
+        "Aster 017",
+        "demo 17"
+      ]
+    },
+    {
+      "client_group_id": "CG0018",
+      "client_group_name": "BIRCH 018 GROUP",
+      "aliases": [
+        "Birch 018",
+        "demo 18"
+      ]
+    },
+    {
+      "client_group_id": "CG0019",
+      "client_group_name": "COBALT 019 GROUP",
+      "aliases": [
+        "Cobalt 019",
+        "demo 19"
+      ]
+    },
+    {
+      "client_group_id": "CG0020",
+      "client_group_name": "DUNE 020 GROUP",
+      "aliases": [
+        "Dune 020",
+        "demo 20"
+      ]
+    },
+    {
+      "client_group_id": "CG0021",
+      "client_group_name": "ELM 021 GROUP",
+      "aliases": [
+        "Elm 021",
+        "demo 21"
+      ]
+    },
+    {
+      "client_group_id": "CG0022",
+      "client_group_name": "FLINT 022 GROUP",
+      "aliases": [
+        "Flint 022",
+        "demo 22"
+      ]
+    },
+    {
+      "client_group_id": "CG0023",
+      "client_group_name": "GARNET 023 GROUP",
+      "aliases": [
+        "Garnet 023",
+        "demo 23"
+      ]
+    },
+    {
+      "client_group_id": "CG0024",
+      "client_group_name": "HARBOR 024 GROUP",
+      "aliases": [
+        "Harbor 024",
+        "demo 24"
+      ]
+    },
+    {
+      "client_group_id": "CG0025",
+      "client_group_name": "INDIGO 025 GROUP",
+      "aliases": [
+        "Indigo 025",
+        "demo 25"
+      ]
+    },
+    {
+      "client_group_id": "CG0026",
+      "client_group_name": "JUNIPER 026 GROUP",
+      "aliases": [
+        "Juniper 026",
+        "demo 26"
+      ]
+    },
+    {
+      "client_group_id": "CG0027",
+      "client_group_name": "KESTREL 027 GROUP",
+      "aliases": [
+        "Kestrel 027",
+        "demo 27"
+      ]
+    },
+    {
+      "client_group_id": "CG0028",
+      "client_group_name": "LINDEN 028 GROUP",
+      "aliases": [
+        "Linden 028",
+        "demo 28"
+      ]
+    },
+    {
+      "client_group_id": "CG0029",
+      "client_group_name": "ASTER 029 GROUP",
+      "aliases": [
+        "Aster 029",
+        "demo 29"
+      ]
+    },
+    {
+      "client_group_id": "CG0030",
+      "client_group_name": "BIRCH 030 GROUP",
+      "aliases": [
+        "Birch 030",
+        "demo 30"
+      ]
+    },
+    {
+      "client_group_id": "CG0031",
+      "client_group_name": "COBALT 031 GROUP",
+      "aliases": [
+        "Cobalt 031",
+        "demo 31"
+      ]
+    },
+    {
+      "client_group_id": "CG0032",
+      "client_group_name": "DUNE 032 GROUP",
+      "aliases": [
+        "Dune 032",
+        "demo 32"
+      ]
+    },
+    {
+      "client_group_id": "CG0033",
+      "client_group_name": "ELM 033 GROUP",
+      "aliases": [
+        "Elm 033",
+        "demo 33"
+      ]
+    },
+    {
+      "client_group_id": "CG0034",
+      "client_group_name": "FLINT 034 GROUP",
+      "aliases": [
+        "Flint 034",
+        "demo 34"
+      ]
+    },
+    {
+      "client_group_id": "CG0035",
+      "client_group_name": "GARNET 035 GROUP",
+      "aliases": [
+        "Garnet 035",
+        "demo 35"
+      ]
+    },
+    {
+      "client_group_id": "CG0036",
+      "client_group_name": "HARBOR 036 GROUP",
+      "aliases": [
+        "Harbor 036",
+        "demo 36"
+      ]
+    },
+    {
+      "client_group_id": "CG0037",
+      "client_group_name": "INDIGO 037 GROUP",
+      "aliases": [
+        "Indigo 037",
+        "demo 37"
+      ]
+    },
+    {
+      "client_group_id": "CG0038",
+      "client_group_name": "JUNIPER 038 GROUP",
+      "aliases": [
+        "Juniper 038",
+        "demo 38"
+      ]
+    },
+    {
+      "client_group_id": "CG0039",
+      "client_group_name": "KESTREL 039 GROUP",
+      "aliases": [
+        "Kestrel 039",
+        "demo 39"
+      ]
+    },
+    {
+      "client_group_id": "CG0040",
+      "client_group_name": "LINDEN 040 GROUP",
+      "aliases": [
+        "Linden 040",
+        "demo 40"
+      ]
+    },
+    {
+      "client_group_id": "CG0041",
+      "client_group_name": "ASTER 041 GROUP",
+      "aliases": [
+        "Aster 041",
+        "demo 41"
+      ]
+    },
+    {
+      "client_group_id": "CG0042",
+      "client_group_name": "BIRCH 042 GROUP",
+      "aliases": [
+        "Birch 042",
+        "demo 42"
+      ]
+    },
+    {
+      "client_group_id": "CG0043",
+      "client_group_name": "COBALT 043 GROUP",
+      "aliases": [
+        "Cobalt 043",
+        "demo 43"
+      ]
+    },
+    {
+      "client_group_id": "CG0044",
+      "client_group_name": "DUNE 044 GROUP",
+      "aliases": [
+        "Dune 044",
+        "demo 44"
+      ]
+    },
+    {
+      "client_group_id": "CG0045",
+      "client_group_name": "ELM 045 GROUP",
+      "aliases": [
+        "Elm 045",
+        "demo 45"
+      ]
+    },
+    {
+      "client_group_id": "CG0046",
+      "client_group_name": "FLINT 046 GROUP",
+      "aliases": [
+        "Flint 046",
+        "demo 46"
+      ]
+    },
+    {
+      "client_group_id": "CG0047",
+      "client_group_name": "GARNET 047 GROUP",
+      "aliases": [
+        "Garnet 047",
+        "demo 47"
+      ]
+    },
+    {
+      "client_group_id": "CG0048",
+      "client_group_name": "HARBOR 048 GROUP",
+      "aliases": [
+        "Harbor 048",
+        "demo 48"
+      ]
+    },
+    {
+      "client_group_id": "CG0049",
+      "client_group_name": "INDIGO 049 GROUP",
+      "aliases": [
+        "Indigo 049",
+        "demo 49"
+      ]
+    },
+    {
+      "client_group_id": "CG0050",
+      "client_group_name": "JUNIPER 050 GROUP",
+      "aliases": [
+        "Juniper 050",
+        "demo 50"
+      ]
+    },
+    {
+      "client_group_id": "CG0051",
+      "client_group_name": "KESTREL 051 GROUP",
+      "aliases": [
+        "Kestrel 051",
+        "demo 51"
+      ]
+    },
+    {
+      "client_group_id": "CG0052",
+      "client_group_name": "LINDEN 052 GROUP",
+      "aliases": [
+        "Linden 052",
+        "demo 52"
+      ]
+    },
+    {
+      "client_group_id": "CG0053",
+      "client_group_name": "ASTER 053 GROUP",
+      "aliases": [
+        "Aster 053",
+        "demo 53"
+      ]
+    },
+    {
+      "client_group_id": "CG0054",
+      "client_group_name": "BIRCH 054 GROUP",
+      "aliases": [
+        "Birch 054",
+        "demo 54"
+      ]
+    },
+    {
+      "client_group_id": "CG0055",
+      "client_group_name": "COBALT 055 GROUP",
+      "aliases": [
+        "Cobalt 055",
+        "demo 55"
+      ]
+    },
+    {
+      "client_group_id": "CG0056",
+      "client_group_name": "DUNE 056 GROUP",
+      "aliases": [
+        "Dune 056",
+        "demo 56"
+      ]
+    },
+    {
+      "client_group_id": "CG0057",
+      "client_group_name": "ELM 057 GROUP",
+      "aliases": [
+        "Elm 057",
+        "demo 57"
+      ]
+    },
+    {
+      "client_group_id": "CG0058",
+      "client_group_name": "FLINT 058 GROUP",
+      "aliases": [
+        "Flint 058",
+        "demo 58"
+      ]
+    },
+    {
+      "client_group_id": "CG0059",
+      "client_group_name": "GARNET 059 GROUP",
+      "aliases": [
+        "Garnet 059",
+        "demo 59"
+      ]
+    },
+    {
+      "client_group_id": "CG0060",
+      "client_group_name": "HARBOR 060 GROUP",
+      "aliases": [
+        "Harbor 060",
+        "demo 60"
+      ]
+    },
+    {
+      "client_group_id": "CG0061",
+      "client_group_name": "INDIGO 061 GROUP",
+      "aliases": [
+        "Indigo 061",
+        "demo 61"
+      ]
+    },
+    {
+      "client_group_id": "CG0062",
+      "client_group_name": "JUNIPER 062 GROUP",
+      "aliases": [
+        "Juniper 062",
+        "demo 62"
+      ]
+    },
+    {
+      "client_group_id": "CG0063",
+      "client_group_name": "KESTREL 063 GROUP",
+      "aliases": [
+        "Kestrel 063",
+        "demo 63"
+      ]
+    },
+    {
+      "client_group_id": "CG0064",
+      "client_group_name": "LINDEN 064 GROUP",
+      "aliases": [
+        "Linden 064",
+        "demo 64"
+      ]
+    },
+    {
+      "client_group_id": "CG0065",
+      "client_group_name": "ASTER 065 GROUP",
+      "aliases": [
+        "Aster 065",
+        "demo 65"
+      ]
+    },
+    {
+      "client_group_id": "CG0066",
+      "client_group_name": "BIRCH 066 GROUP",
+      "aliases": [
+        "Birch 066",
+        "demo 66"
+      ]
+    },
+    {
+      "client_group_id": "CG0067",
+      "client_group_name": "COBALT 067 GROUP",
+      "aliases": [
+        "Cobalt 067",
+        "demo 67"
+      ]
+    },
+    {
+      "client_group_id": "CG0068",
+      "client_group_name": "DUNE 068 GROUP",
+      "aliases": [
+        "Dune 068",
+        "demo 68"
+      ]
+    },
+    {
+      "client_group_id": "CG0069",
+      "client_group_name": "ELM 069 GROUP",
+      "aliases": [
+        "Elm 069",
+        "demo 69"
+      ]
+    },
+    {
+      "client_group_id": "CG0070",
+      "client_group_name": "FLINT 070 GROUP",
+      "aliases": [
+        "Flint 070",
+        "demo 70"
+      ]
+    },
+    {
+      "client_group_id": "CG0071",
+      "client_group_name": "GARNET 071 GROUP",
+      "aliases": [
+        "Garnet 071",
+        "demo 71"
+      ]
+    },
+    {
+      "client_group_id": "CG0072",
+      "client_group_name": "HARBOR 072 GROUP",
+      "aliases": [
+        "Harbor 072",
+        "demo 72"
+      ]
+    },
+    {
+      "client_group_id": "CG0073",
+      "client_group_name": "INDIGO 073 GROUP",
+      "aliases": [
+        "Indigo 073",
+        "demo 73"
+      ]
+    },
+    {
+      "client_group_id": "CG0074",
+      "client_group_name": "JUNIPER 074 GROUP",
+      "aliases": [
+        "Juniper 074",
+        "demo 74"
+      ]
+    },
+    {
+      "client_group_id": "CG0075",
+      "client_group_name": "KESTREL 075 GROUP",
+      "aliases": [
+        "Kestrel 075",
+        "demo 75"
+      ]
+    },
+    {
+      "client_group_id": "CG0076",
+      "client_group_name": "LINDEN 076 GROUP",
+      "aliases": [
+        "Linden 076",
+        "demo 76"
+      ]
+    },
+    {
+      "client_group_id": "CG0077",
+      "client_group_name": "ASTER 077 GROUP",
+      "aliases": [
+        "Aster 077",
+        "demo 77"
+      ]
+    },
+    {
+      "client_group_id": "CG0078",
+      "client_group_name": "BIRCH 078 GROUP",
+      "aliases": [
+        "Birch 078",
+        "demo 78"
+      ]
+    },
+    {
+      "client_group_id": "CG0079",
+      "client_group_name": "COBALT 079 GROUP",
+      "aliases": [
+        "Cobalt 079",
+        "demo 79"
+      ]
+    },
+    {
+      "client_group_id": "CG0080",
+      "client_group_name": "DUNE 080 GROUP",
+      "aliases": [
+        "Dune 080",
+        "demo 80"
+      ]
+    },
+    {
+      "client_group_id": "CG0081",
+      "client_group_name": "ELM 081 GROUP",
+      "aliases": [
+        "Elm 081",
+        "demo 81"
+      ]
+    },
+    {
+      "client_group_id": "CG0082",
+      "client_group_name": "FLINT 082 GROUP",
+      "aliases": [
+        "Flint 082",
+        "demo 82"
+      ]
+    },
+    {
+      "client_group_id": "CG0083",
+      "client_group_name": "GARNET 083 GROUP",
+      "aliases": [
+        "Garnet 083",
+        "demo 83"
+      ]
+    },
+    {
+      "client_group_id": "CG0084",
+      "client_group_name": "HARBOR 084 GROUP",
+      "aliases": [
+        "Harbor 084",
+        "demo 84"
+      ]
+    },
+    {
+      "client_group_id": "CG0085",
+      "client_group_name": "INDIGO 085 GROUP",
+      "aliases": [
+        "Indigo 085",
+        "demo 85"
+      ]
+    },
+    {
+      "client_group_id": "CG0086",
+      "client_group_name": "JUNIPER 086 GROUP",
+      "aliases": [
+        "Juniper 086",
+        "demo 86"
+      ]
+    },
+    {
+      "client_group_id": "CG0087",
+      "client_group_name": "KESTREL 087 GROUP",
+      "aliases": [
+        "Kestrel 087",
+        "demo 87"
+      ]
+    },
+    {
+      "client_group_id": "CG0088",
+      "client_group_name": "LINDEN 088 GROUP",
+      "aliases": [
+        "Linden 088",
+        "demo 88"
+      ]
+    },
+    {
+      "client_group_id": "CG0089",
+      "client_group_name": "ASTER 089 GROUP",
+      "aliases": [
+        "Aster 089",
+        "demo 89"
+      ]
+    },
+    {
+      "client_group_id": "CG0090",
+      "client_group_name": "BIRCH 090 GROUP",
+      "aliases": [
+        "Birch 090",
+        "demo 90"
+      ]
+    },
+    {
+      "client_group_id": "CG0091",
+      "client_group_name": "COBALT 091 GROUP",
+      "aliases": [
+        "Cobalt 091",
+        "demo 91"
+      ]
+    },
+    {
+      "client_group_id": "CG0092",
+      "client_group_name": "DUNE 092 GROUP",
+      "aliases": [
+        "Dune 092",
+        "demo 92"
+      ]
+    },
+    {
+      "client_group_id": "CG0093",
+      "client_group_name": "ELM 093 GROUP",
+      "aliases": [
+        "Elm 093",
+        "demo 93"
+      ]
+    },
+    {
+      "client_group_id": "CG0094",
+      "client_group_name": "FLINT 094 GROUP",
+      "aliases": [
+        "Flint 094",
+        "demo 94"
+      ]
+    },
+    {
+      "client_group_id": "CG0095",
+      "client_group_name": "GARNET 095 GROUP",
+      "aliases": [
+        "Garnet 095",
+        "demo 95"
+      ]
+    },
+    {
+      "client_group_id": "CG0096",
+      "client_group_name": "HARBOR 096 GROUP",
+      "aliases": [
+        "Harbor 096",
+        "demo 96"
+      ]
+    },
+    {
+      "client_group_id": "CG0097",
+      "client_group_name": "INDIGO 097 GROUP",
+      "aliases": [
+        "Indigo 097",
+        "demo 97"
+      ]
+    },
+    {
+      "client_group_id": "CG0098",
+      "client_group_name": "JUNIPER 098 GROUP",
+      "aliases": [
+        "Juniper 098",
+        "demo 98"
+      ]
+    },
+    {
+      "client_group_id": "CG0099",
+      "client_group_name": "KESTREL 099 GROUP",
+      "aliases": [
+        "Kestrel 099",
+        "demo 99"
+      ]
+    },
+    {
+      "client_group_id": "CG0100",
+      "client_group_name": "LINDEN 100 GROUP",
+      "aliases": [
+        "Linden 100",
+        "demo 100"
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "client_group_id": "CG0001",
+      "entity_id": "CG0001-E001",
+      "entity": "Samsung Electronics",
+      "aliases": [
+        "sec",
+        "electronics"
+      ]
+    },
+    {
+      "client_group_id": "CG0001",
+      "entity_id": "CG0001-E002",
+      "entity": "Samsung SDI",
+      "aliases": [
+        "sdi"
+      ]
+    },
+    {
+      "client_group_id": "CG0001",
+      "entity_id": "CG0001-E003",
+      "entity": "Samsung C&T",
+      "aliases": [
+        "samsung ct"
+      ]
+    },
+    {
+      "client_group_id": "CG0002",
+      "entity_id": "CG0002-E001",
+      "entity": "Hyundai Motor",
+      "aliases": [
+        "hmc"
+      ]
+    },
+    {
+      "client_group_id": "CG0002",
+      "entity_id": "CG0002-E002",
+      "entity": "Kia Corporation",
+      "aliases": [
+        "kia",
+        "kia corp"
+      ]
+    },
+    {
+      "client_group_id": "CG0002",
+      "entity_id": "CG0002-E003",
+      "entity": "Hyundai Mobis",
+      "aliases": [
+        "mobis"
+      ]
+    },
+    {
+      "client_group_id": "CG0003",
+      "entity_id": "CG0003-E001",
+      "entity": "Apple Inc",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0003",
+      "entity_id": "CG0003-E002",
+      "entity": "Apple Operations",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0004",
+      "entity_id": "CG0004-E001",
+      "entity": "Toyota Motor",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0004",
+      "entity_id": "CG0004-E002",
+      "entity": "Toyota Financial Services",
+      "aliases": [
+        "tfs",
+        "toyota financial"
+      ]
+    },
+    {
+      "client_group_id": "CG0005",
+      "entity_id": "CG0005E01",
+      "entity": "Aster 005 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0005",
+      "entity_id": "CG0005E02",
+      "entity": "Aster 005 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0005",
+      "entity_id": "CG0005E03",
+      "entity": "Aster 005 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0006",
+      "entity_id": "CG0006E01",
+      "entity": "Birch 006 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0006",
+      "entity_id": "CG0006E02",
+      "entity": "Birch 006 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0006",
+      "entity_id": "CG0006E03",
+      "entity": "Birch 006 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0006",
+      "entity_id": "CG0006E04",
+      "entity": "Birch 006 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0007",
+      "entity_id": "CG0007E01",
+      "entity": "Cobalt 007 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0007",
+      "entity_id": "CG0007E02",
+      "entity": "Cobalt 007 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0007",
+      "entity_id": "CG0007E03",
+      "entity": "Cobalt 007 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0007",
+      "entity_id": "CG0007E04",
+      "entity": "Cobalt 007 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0007",
+      "entity_id": "CG0007E05",
+      "entity": "Cobalt 007 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0008",
+      "entity_id": "CG0008E01",
+      "entity": "Dune 008 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0008",
+      "entity_id": "CG0008E02",
+      "entity": "Dune 008 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0008",
+      "entity_id": "CG0008E03",
+      "entity": "Dune 008 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0009",
+      "entity_id": "CG0009E01",
+      "entity": "Elm 009 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0009",
+      "entity_id": "CG0009E02",
+      "entity": "Elm 009 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0009",
+      "entity_id": "CG0009E03",
+      "entity": "Elm 009 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0009",
+      "entity_id": "CG0009E04",
+      "entity": "Elm 009 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0010",
+      "entity_id": "CG0010E01",
+      "entity": "Flint 010 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0010",
+      "entity_id": "CG0010E02",
+      "entity": "Flint 010 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0010",
+      "entity_id": "CG0010E03",
+      "entity": "Flint 010 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0010",
+      "entity_id": "CG0010E04",
+      "entity": "Flint 010 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0010",
+      "entity_id": "CG0010E05",
+      "entity": "Flint 010 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0011",
+      "entity_id": "CG0011E01",
+      "entity": "Garnet 011 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0011",
+      "entity_id": "CG0011E02",
+      "entity": "Garnet 011 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0011",
+      "entity_id": "CG0011E03",
+      "entity": "Garnet 011 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0012",
+      "entity_id": "CG0012E01",
+      "entity": "Harbor 012 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0012",
+      "entity_id": "CG0012E02",
+      "entity": "Harbor 012 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0012",
+      "entity_id": "CG0012E03",
+      "entity": "Harbor 012 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0012",
+      "entity_id": "CG0012E04",
+      "entity": "Harbor 012 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0013",
+      "entity_id": "CG0013E01",
+      "entity": "Indigo 013 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0013",
+      "entity_id": "CG0013E02",
+      "entity": "Indigo 013 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0013",
+      "entity_id": "CG0013E03",
+      "entity": "Indigo 013 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0013",
+      "entity_id": "CG0013E04",
+      "entity": "Indigo 013 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0013",
+      "entity_id": "CG0013E05",
+      "entity": "Indigo 013 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0014",
+      "entity_id": "CG0014E01",
+      "entity": "Juniper 014 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0014",
+      "entity_id": "CG0014E02",
+      "entity": "Juniper 014 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0014",
+      "entity_id": "CG0014E03",
+      "entity": "Juniper 014 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0015",
+      "entity_id": "CG0015E01",
+      "entity": "Kestrel 015 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0015",
+      "entity_id": "CG0015E02",
+      "entity": "Kestrel 015 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0015",
+      "entity_id": "CG0015E03",
+      "entity": "Kestrel 015 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0015",
+      "entity_id": "CG0015E04",
+      "entity": "Kestrel 015 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0016",
+      "entity_id": "CG0016E01",
+      "entity": "Linden 016 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0016",
+      "entity_id": "CG0016E02",
+      "entity": "Linden 016 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0016",
+      "entity_id": "CG0016E03",
+      "entity": "Linden 016 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0016",
+      "entity_id": "CG0016E04",
+      "entity": "Linden 016 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0016",
+      "entity_id": "CG0016E05",
+      "entity": "Linden 016 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0017",
+      "entity_id": "CG0017E01",
+      "entity": "Aster 017 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0017",
+      "entity_id": "CG0017E02",
+      "entity": "Aster 017 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0017",
+      "entity_id": "CG0017E03",
+      "entity": "Aster 017 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0018",
+      "entity_id": "CG0018E01",
+      "entity": "Birch 018 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0018",
+      "entity_id": "CG0018E02",
+      "entity": "Birch 018 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0018",
+      "entity_id": "CG0018E03",
+      "entity": "Birch 018 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0018",
+      "entity_id": "CG0018E04",
+      "entity": "Birch 018 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0019",
+      "entity_id": "CG0019E01",
+      "entity": "Cobalt 019 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0019",
+      "entity_id": "CG0019E02",
+      "entity": "Cobalt 019 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0019",
+      "entity_id": "CG0019E03",
+      "entity": "Cobalt 019 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0019",
+      "entity_id": "CG0019E04",
+      "entity": "Cobalt 019 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0019",
+      "entity_id": "CG0019E05",
+      "entity": "Cobalt 019 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0020",
+      "entity_id": "CG0020E01",
+      "entity": "Dune 020 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0020",
+      "entity_id": "CG0020E02",
+      "entity": "Dune 020 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0020",
+      "entity_id": "CG0020E03",
+      "entity": "Dune 020 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0021",
+      "entity_id": "CG0021E01",
+      "entity": "Elm 021 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0021",
+      "entity_id": "CG0021E02",
+      "entity": "Elm 021 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0021",
+      "entity_id": "CG0021E03",
+      "entity": "Elm 021 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0021",
+      "entity_id": "CG0021E04",
+      "entity": "Elm 021 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0022",
+      "entity_id": "CG0022E01",
+      "entity": "Flint 022 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0022",
+      "entity_id": "CG0022E02",
+      "entity": "Flint 022 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0022",
+      "entity_id": "CG0022E03",
+      "entity": "Flint 022 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0022",
+      "entity_id": "CG0022E04",
+      "entity": "Flint 022 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0022",
+      "entity_id": "CG0022E05",
+      "entity": "Flint 022 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0023",
+      "entity_id": "CG0023E01",
+      "entity": "Garnet 023 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0023",
+      "entity_id": "CG0023E02",
+      "entity": "Garnet 023 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0023",
+      "entity_id": "CG0023E03",
+      "entity": "Garnet 023 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0024",
+      "entity_id": "CG0024E01",
+      "entity": "Harbor 024 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0024",
+      "entity_id": "CG0024E02",
+      "entity": "Harbor 024 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0024",
+      "entity_id": "CG0024E03",
+      "entity": "Harbor 024 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0024",
+      "entity_id": "CG0024E04",
+      "entity": "Harbor 024 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0025",
+      "entity_id": "CG0025E01",
+      "entity": "Indigo 025 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0025",
+      "entity_id": "CG0025E02",
+      "entity": "Indigo 025 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0025",
+      "entity_id": "CG0025E03",
+      "entity": "Indigo 025 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0025",
+      "entity_id": "CG0025E04",
+      "entity": "Indigo 025 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0025",
+      "entity_id": "CG0025E05",
+      "entity": "Indigo 025 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0026",
+      "entity_id": "CG0026E01",
+      "entity": "Juniper 026 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0026",
+      "entity_id": "CG0026E02",
+      "entity": "Juniper 026 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0026",
+      "entity_id": "CG0026E03",
+      "entity": "Juniper 026 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0027",
+      "entity_id": "CG0027E01",
+      "entity": "Kestrel 027 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0027",
+      "entity_id": "CG0027E02",
+      "entity": "Kestrel 027 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0027",
+      "entity_id": "CG0027E03",
+      "entity": "Kestrel 027 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0027",
+      "entity_id": "CG0027E04",
+      "entity": "Kestrel 027 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0028",
+      "entity_id": "CG0028E01",
+      "entity": "Linden 028 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0028",
+      "entity_id": "CG0028E02",
+      "entity": "Linden 028 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0028",
+      "entity_id": "CG0028E03",
+      "entity": "Linden 028 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0028",
+      "entity_id": "CG0028E04",
+      "entity": "Linden 028 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0028",
+      "entity_id": "CG0028E05",
+      "entity": "Linden 028 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0029",
+      "entity_id": "CG0029E01",
+      "entity": "Aster 029 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0029",
+      "entity_id": "CG0029E02",
+      "entity": "Aster 029 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0029",
+      "entity_id": "CG0029E03",
+      "entity": "Aster 029 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0030",
+      "entity_id": "CG0030E01",
+      "entity": "Birch 030 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0030",
+      "entity_id": "CG0030E02",
+      "entity": "Birch 030 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0030",
+      "entity_id": "CG0030E03",
+      "entity": "Birch 030 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0030",
+      "entity_id": "CG0030E04",
+      "entity": "Birch 030 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0031",
+      "entity_id": "CG0031E01",
+      "entity": "Cobalt 031 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0031",
+      "entity_id": "CG0031E02",
+      "entity": "Cobalt 031 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0031",
+      "entity_id": "CG0031E03",
+      "entity": "Cobalt 031 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0031",
+      "entity_id": "CG0031E04",
+      "entity": "Cobalt 031 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0031",
+      "entity_id": "CG0031E05",
+      "entity": "Cobalt 031 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0032",
+      "entity_id": "CG0032E01",
+      "entity": "Dune 032 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0032",
+      "entity_id": "CG0032E02",
+      "entity": "Dune 032 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0032",
+      "entity_id": "CG0032E03",
+      "entity": "Dune 032 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0033",
+      "entity_id": "CG0033E01",
+      "entity": "Elm 033 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0033",
+      "entity_id": "CG0033E02",
+      "entity": "Elm 033 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0033",
+      "entity_id": "CG0033E03",
+      "entity": "Elm 033 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0033",
+      "entity_id": "CG0033E04",
+      "entity": "Elm 033 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0034",
+      "entity_id": "CG0034E01",
+      "entity": "Flint 034 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0034",
+      "entity_id": "CG0034E02",
+      "entity": "Flint 034 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0034",
+      "entity_id": "CG0034E03",
+      "entity": "Flint 034 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0034",
+      "entity_id": "CG0034E04",
+      "entity": "Flint 034 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0034",
+      "entity_id": "CG0034E05",
+      "entity": "Flint 034 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0035",
+      "entity_id": "CG0035E01",
+      "entity": "Garnet 035 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0035",
+      "entity_id": "CG0035E02",
+      "entity": "Garnet 035 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0035",
+      "entity_id": "CG0035E03",
+      "entity": "Garnet 035 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0036",
+      "entity_id": "CG0036E01",
+      "entity": "Harbor 036 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0036",
+      "entity_id": "CG0036E02",
+      "entity": "Harbor 036 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0036",
+      "entity_id": "CG0036E03",
+      "entity": "Harbor 036 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0036",
+      "entity_id": "CG0036E04",
+      "entity": "Harbor 036 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0037",
+      "entity_id": "CG0037E01",
+      "entity": "Indigo 037 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0037",
+      "entity_id": "CG0037E02",
+      "entity": "Indigo 037 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0037",
+      "entity_id": "CG0037E03",
+      "entity": "Indigo 037 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0037",
+      "entity_id": "CG0037E04",
+      "entity": "Indigo 037 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0037",
+      "entity_id": "CG0037E05",
+      "entity": "Indigo 037 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0038",
+      "entity_id": "CG0038E01",
+      "entity": "Juniper 038 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0038",
+      "entity_id": "CG0038E02",
+      "entity": "Juniper 038 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0038",
+      "entity_id": "CG0038E03",
+      "entity": "Juniper 038 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0039",
+      "entity_id": "CG0039E01",
+      "entity": "Kestrel 039 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0039",
+      "entity_id": "CG0039E02",
+      "entity": "Kestrel 039 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0039",
+      "entity_id": "CG0039E03",
+      "entity": "Kestrel 039 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0039",
+      "entity_id": "CG0039E04",
+      "entity": "Kestrel 039 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0040",
+      "entity_id": "CG0040E01",
+      "entity": "Linden 040 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0040",
+      "entity_id": "CG0040E02",
+      "entity": "Linden 040 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0040",
+      "entity_id": "CG0040E03",
+      "entity": "Linden 040 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0040",
+      "entity_id": "CG0040E04",
+      "entity": "Linden 040 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0040",
+      "entity_id": "CG0040E05",
+      "entity": "Linden 040 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0041",
+      "entity_id": "CG0041E01",
+      "entity": "Aster 041 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0041",
+      "entity_id": "CG0041E02",
+      "entity": "Aster 041 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0041",
+      "entity_id": "CG0041E03",
+      "entity": "Aster 041 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0042",
+      "entity_id": "CG0042E01",
+      "entity": "Birch 042 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0042",
+      "entity_id": "CG0042E02",
+      "entity": "Birch 042 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0042",
+      "entity_id": "CG0042E03",
+      "entity": "Birch 042 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0042",
+      "entity_id": "CG0042E04",
+      "entity": "Birch 042 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0043",
+      "entity_id": "CG0043E01",
+      "entity": "Cobalt 043 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0043",
+      "entity_id": "CG0043E02",
+      "entity": "Cobalt 043 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0043",
+      "entity_id": "CG0043E03",
+      "entity": "Cobalt 043 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0043",
+      "entity_id": "CG0043E04",
+      "entity": "Cobalt 043 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0043",
+      "entity_id": "CG0043E05",
+      "entity": "Cobalt 043 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0044",
+      "entity_id": "CG0044E01",
+      "entity": "Dune 044 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0044",
+      "entity_id": "CG0044E02",
+      "entity": "Dune 044 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0044",
+      "entity_id": "CG0044E03",
+      "entity": "Dune 044 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0045",
+      "entity_id": "CG0045E01",
+      "entity": "Elm 045 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0045",
+      "entity_id": "CG0045E02",
+      "entity": "Elm 045 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0045",
+      "entity_id": "CG0045E03",
+      "entity": "Elm 045 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0045",
+      "entity_id": "CG0045E04",
+      "entity": "Elm 045 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0046",
+      "entity_id": "CG0046E01",
+      "entity": "Flint 046 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0046",
+      "entity_id": "CG0046E02",
+      "entity": "Flint 046 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0046",
+      "entity_id": "CG0046E03",
+      "entity": "Flint 046 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0046",
+      "entity_id": "CG0046E04",
+      "entity": "Flint 046 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0046",
+      "entity_id": "CG0046E05",
+      "entity": "Flint 046 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0047",
+      "entity_id": "CG0047E01",
+      "entity": "Garnet 047 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0047",
+      "entity_id": "CG0047E02",
+      "entity": "Garnet 047 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0047",
+      "entity_id": "CG0047E03",
+      "entity": "Garnet 047 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0048",
+      "entity_id": "CG0048E01",
+      "entity": "Harbor 048 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0048",
+      "entity_id": "CG0048E02",
+      "entity": "Harbor 048 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0048",
+      "entity_id": "CG0048E03",
+      "entity": "Harbor 048 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0048",
+      "entity_id": "CG0048E04",
+      "entity": "Harbor 048 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0049",
+      "entity_id": "CG0049E01",
+      "entity": "Indigo 049 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0049",
+      "entity_id": "CG0049E02",
+      "entity": "Indigo 049 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0049",
+      "entity_id": "CG0049E03",
+      "entity": "Indigo 049 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0049",
+      "entity_id": "CG0049E04",
+      "entity": "Indigo 049 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0049",
+      "entity_id": "CG0049E05",
+      "entity": "Indigo 049 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0050",
+      "entity_id": "CG0050E01",
+      "entity": "Juniper 050 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0050",
+      "entity_id": "CG0050E02",
+      "entity": "Juniper 050 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0050",
+      "entity_id": "CG0050E03",
+      "entity": "Juniper 050 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0051",
+      "entity_id": "CG0051E01",
+      "entity": "Kestrel 051 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0051",
+      "entity_id": "CG0051E02",
+      "entity": "Kestrel 051 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0051",
+      "entity_id": "CG0051E03",
+      "entity": "Kestrel 051 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0051",
+      "entity_id": "CG0051E04",
+      "entity": "Kestrel 051 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0052",
+      "entity_id": "CG0052E01",
+      "entity": "Linden 052 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0052",
+      "entity_id": "CG0052E02",
+      "entity": "Linden 052 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0052",
+      "entity_id": "CG0052E03",
+      "entity": "Linden 052 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0052",
+      "entity_id": "CG0052E04",
+      "entity": "Linden 052 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0052",
+      "entity_id": "CG0052E05",
+      "entity": "Linden 052 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0053",
+      "entity_id": "CG0053E01",
+      "entity": "Aster 053 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0053",
+      "entity_id": "CG0053E02",
+      "entity": "Aster 053 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0053",
+      "entity_id": "CG0053E03",
+      "entity": "Aster 053 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0054",
+      "entity_id": "CG0054E01",
+      "entity": "Birch 054 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0054",
+      "entity_id": "CG0054E02",
+      "entity": "Birch 054 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0054",
+      "entity_id": "CG0054E03",
+      "entity": "Birch 054 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0054",
+      "entity_id": "CG0054E04",
+      "entity": "Birch 054 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0055",
+      "entity_id": "CG0055E01",
+      "entity": "Cobalt 055 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0055",
+      "entity_id": "CG0055E02",
+      "entity": "Cobalt 055 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0055",
+      "entity_id": "CG0055E03",
+      "entity": "Cobalt 055 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0055",
+      "entity_id": "CG0055E04",
+      "entity": "Cobalt 055 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0055",
+      "entity_id": "CG0055E05",
+      "entity": "Cobalt 055 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0056",
+      "entity_id": "CG0056E01",
+      "entity": "Dune 056 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0056",
+      "entity_id": "CG0056E02",
+      "entity": "Dune 056 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0056",
+      "entity_id": "CG0056E03",
+      "entity": "Dune 056 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0057",
+      "entity_id": "CG0057E01",
+      "entity": "Elm 057 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0057",
+      "entity_id": "CG0057E02",
+      "entity": "Elm 057 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0057",
+      "entity_id": "CG0057E03",
+      "entity": "Elm 057 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0057",
+      "entity_id": "CG0057E04",
+      "entity": "Elm 057 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0058",
+      "entity_id": "CG0058E01",
+      "entity": "Flint 058 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0058",
+      "entity_id": "CG0058E02",
+      "entity": "Flint 058 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0058",
+      "entity_id": "CG0058E03",
+      "entity": "Flint 058 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0058",
+      "entity_id": "CG0058E04",
+      "entity": "Flint 058 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0058",
+      "entity_id": "CG0058E05",
+      "entity": "Flint 058 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0059",
+      "entity_id": "CG0059E01",
+      "entity": "Garnet 059 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0059",
+      "entity_id": "CG0059E02",
+      "entity": "Garnet 059 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0059",
+      "entity_id": "CG0059E03",
+      "entity": "Garnet 059 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0060",
+      "entity_id": "CG0060E01",
+      "entity": "Harbor 060 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0060",
+      "entity_id": "CG0060E02",
+      "entity": "Harbor 060 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0060",
+      "entity_id": "CG0060E03",
+      "entity": "Harbor 060 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0060",
+      "entity_id": "CG0060E04",
+      "entity": "Harbor 060 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0061",
+      "entity_id": "CG0061E01",
+      "entity": "Indigo 061 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0061",
+      "entity_id": "CG0061E02",
+      "entity": "Indigo 061 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0061",
+      "entity_id": "CG0061E03",
+      "entity": "Indigo 061 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0061",
+      "entity_id": "CG0061E04",
+      "entity": "Indigo 061 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0061",
+      "entity_id": "CG0061E05",
+      "entity": "Indigo 061 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0062",
+      "entity_id": "CG0062E01",
+      "entity": "Juniper 062 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0062",
+      "entity_id": "CG0062E02",
+      "entity": "Juniper 062 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0062",
+      "entity_id": "CG0062E03",
+      "entity": "Juniper 062 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0063",
+      "entity_id": "CG0063E01",
+      "entity": "Kestrel 063 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0063",
+      "entity_id": "CG0063E02",
+      "entity": "Kestrel 063 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0063",
+      "entity_id": "CG0063E03",
+      "entity": "Kestrel 063 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0063",
+      "entity_id": "CG0063E04",
+      "entity": "Kestrel 063 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0064",
+      "entity_id": "CG0064E01",
+      "entity": "Linden 064 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0064",
+      "entity_id": "CG0064E02",
+      "entity": "Linden 064 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0064",
+      "entity_id": "CG0064E03",
+      "entity": "Linden 064 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0064",
+      "entity_id": "CG0064E04",
+      "entity": "Linden 064 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0064",
+      "entity_id": "CG0064E05",
+      "entity": "Linden 064 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0065",
+      "entity_id": "CG0065E01",
+      "entity": "Aster 065 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0065",
+      "entity_id": "CG0065E02",
+      "entity": "Aster 065 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0065",
+      "entity_id": "CG0065E03",
+      "entity": "Aster 065 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0066",
+      "entity_id": "CG0066E01",
+      "entity": "Birch 066 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0066",
+      "entity_id": "CG0066E02",
+      "entity": "Birch 066 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0066",
+      "entity_id": "CG0066E03",
+      "entity": "Birch 066 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0066",
+      "entity_id": "CG0066E04",
+      "entity": "Birch 066 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0067",
+      "entity_id": "CG0067E01",
+      "entity": "Cobalt 067 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0067",
+      "entity_id": "CG0067E02",
+      "entity": "Cobalt 067 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0067",
+      "entity_id": "CG0067E03",
+      "entity": "Cobalt 067 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0067",
+      "entity_id": "CG0067E04",
+      "entity": "Cobalt 067 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0067",
+      "entity_id": "CG0067E05",
+      "entity": "Cobalt 067 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0068",
+      "entity_id": "CG0068E01",
+      "entity": "Dune 068 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0068",
+      "entity_id": "CG0068E02",
+      "entity": "Dune 068 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0068",
+      "entity_id": "CG0068E03",
+      "entity": "Dune 068 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0069",
+      "entity_id": "CG0069E01",
+      "entity": "Elm 069 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0069",
+      "entity_id": "CG0069E02",
+      "entity": "Elm 069 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0069",
+      "entity_id": "CG0069E03",
+      "entity": "Elm 069 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0069",
+      "entity_id": "CG0069E04",
+      "entity": "Elm 069 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0070",
+      "entity_id": "CG0070E01",
+      "entity": "Flint 070 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0070",
+      "entity_id": "CG0070E02",
+      "entity": "Flint 070 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0070",
+      "entity_id": "CG0070E03",
+      "entity": "Flint 070 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0070",
+      "entity_id": "CG0070E04",
+      "entity": "Flint 070 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0070",
+      "entity_id": "CG0070E05",
+      "entity": "Flint 070 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0071",
+      "entity_id": "CG0071E01",
+      "entity": "Garnet 071 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0071",
+      "entity_id": "CG0071E02",
+      "entity": "Garnet 071 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0071",
+      "entity_id": "CG0071E03",
+      "entity": "Garnet 071 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0072",
+      "entity_id": "CG0072E01",
+      "entity": "Harbor 072 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0072",
+      "entity_id": "CG0072E02",
+      "entity": "Harbor 072 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0072",
+      "entity_id": "CG0072E03",
+      "entity": "Harbor 072 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0072",
+      "entity_id": "CG0072E04",
+      "entity": "Harbor 072 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0073",
+      "entity_id": "CG0073E01",
+      "entity": "Indigo 073 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0073",
+      "entity_id": "CG0073E02",
+      "entity": "Indigo 073 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0073",
+      "entity_id": "CG0073E03",
+      "entity": "Indigo 073 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0073",
+      "entity_id": "CG0073E04",
+      "entity": "Indigo 073 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0073",
+      "entity_id": "CG0073E05",
+      "entity": "Indigo 073 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0074",
+      "entity_id": "CG0074E01",
+      "entity": "Juniper 074 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0074",
+      "entity_id": "CG0074E02",
+      "entity": "Juniper 074 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0074",
+      "entity_id": "CG0074E03",
+      "entity": "Juniper 074 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0075",
+      "entity_id": "CG0075E01",
+      "entity": "Kestrel 075 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0075",
+      "entity_id": "CG0075E02",
+      "entity": "Kestrel 075 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0075",
+      "entity_id": "CG0075E03",
+      "entity": "Kestrel 075 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0075",
+      "entity_id": "CG0075E04",
+      "entity": "Kestrel 075 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0076",
+      "entity_id": "CG0076E01",
+      "entity": "Linden 076 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0076",
+      "entity_id": "CG0076E02",
+      "entity": "Linden 076 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0076",
+      "entity_id": "CG0076E03",
+      "entity": "Linden 076 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0076",
+      "entity_id": "CG0076E04",
+      "entity": "Linden 076 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0076",
+      "entity_id": "CG0076E05",
+      "entity": "Linden 076 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0077",
+      "entity_id": "CG0077E01",
+      "entity": "Aster 077 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0077",
+      "entity_id": "CG0077E02",
+      "entity": "Aster 077 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0077",
+      "entity_id": "CG0077E03",
+      "entity": "Aster 077 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0078",
+      "entity_id": "CG0078E01",
+      "entity": "Birch 078 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0078",
+      "entity_id": "CG0078E02",
+      "entity": "Birch 078 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0078",
+      "entity_id": "CG0078E03",
+      "entity": "Birch 078 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0078",
+      "entity_id": "CG0078E04",
+      "entity": "Birch 078 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0079",
+      "entity_id": "CG0079E01",
+      "entity": "Cobalt 079 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0079",
+      "entity_id": "CG0079E02",
+      "entity": "Cobalt 079 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0079",
+      "entity_id": "CG0079E03",
+      "entity": "Cobalt 079 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0079",
+      "entity_id": "CG0079E04",
+      "entity": "Cobalt 079 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0079",
+      "entity_id": "CG0079E05",
+      "entity": "Cobalt 079 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0080",
+      "entity_id": "CG0080E01",
+      "entity": "Dune 080 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0080",
+      "entity_id": "CG0080E02",
+      "entity": "Dune 080 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0080",
+      "entity_id": "CG0080E03",
+      "entity": "Dune 080 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0081",
+      "entity_id": "CG0081E01",
+      "entity": "Elm 081 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0081",
+      "entity_id": "CG0081E02",
+      "entity": "Elm 081 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0081",
+      "entity_id": "CG0081E03",
+      "entity": "Elm 081 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0081",
+      "entity_id": "CG0081E04",
+      "entity": "Elm 081 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0082",
+      "entity_id": "CG0082E01",
+      "entity": "Flint 082 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0082",
+      "entity_id": "CG0082E02",
+      "entity": "Flint 082 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0082",
+      "entity_id": "CG0082E03",
+      "entity": "Flint 082 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0082",
+      "entity_id": "CG0082E04",
+      "entity": "Flint 082 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0082",
+      "entity_id": "CG0082E05",
+      "entity": "Flint 082 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0083",
+      "entity_id": "CG0083E01",
+      "entity": "Garnet 083 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0083",
+      "entity_id": "CG0083E02",
+      "entity": "Garnet 083 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0083",
+      "entity_id": "CG0083E03",
+      "entity": "Garnet 083 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0084",
+      "entity_id": "CG0084E01",
+      "entity": "Harbor 084 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0084",
+      "entity_id": "CG0084E02",
+      "entity": "Harbor 084 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0084",
+      "entity_id": "CG0084E03",
+      "entity": "Harbor 084 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0084",
+      "entity_id": "CG0084E04",
+      "entity": "Harbor 084 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0085",
+      "entity_id": "CG0085E01",
+      "entity": "Indigo 085 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0085",
+      "entity_id": "CG0085E02",
+      "entity": "Indigo 085 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0085",
+      "entity_id": "CG0085E03",
+      "entity": "Indigo 085 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0085",
+      "entity_id": "CG0085E04",
+      "entity": "Indigo 085 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0085",
+      "entity_id": "CG0085E05",
+      "entity": "Indigo 085 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0086",
+      "entity_id": "CG0086E01",
+      "entity": "Juniper 086 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0086",
+      "entity_id": "CG0086E02",
+      "entity": "Juniper 086 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0086",
+      "entity_id": "CG0086E03",
+      "entity": "Juniper 086 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0087",
+      "entity_id": "CG0087E01",
+      "entity": "Kestrel 087 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0087",
+      "entity_id": "CG0087E02",
+      "entity": "Kestrel 087 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0087",
+      "entity_id": "CG0087E03",
+      "entity": "Kestrel 087 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0087",
+      "entity_id": "CG0087E04",
+      "entity": "Kestrel 087 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0088",
+      "entity_id": "CG0088E01",
+      "entity": "Linden 088 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0088",
+      "entity_id": "CG0088E02",
+      "entity": "Linden 088 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0088",
+      "entity_id": "CG0088E03",
+      "entity": "Linden 088 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0088",
+      "entity_id": "CG0088E04",
+      "entity": "Linden 088 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0088",
+      "entity_id": "CG0088E05",
+      "entity": "Linden 088 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0089",
+      "entity_id": "CG0089E01",
+      "entity": "Aster 089 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0089",
+      "entity_id": "CG0089E02",
+      "entity": "Aster 089 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0089",
+      "entity_id": "CG0089E03",
+      "entity": "Aster 089 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0090",
+      "entity_id": "CG0090E01",
+      "entity": "Birch 090 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0090",
+      "entity_id": "CG0090E02",
+      "entity": "Birch 090 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0090",
+      "entity_id": "CG0090E03",
+      "entity": "Birch 090 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0090",
+      "entity_id": "CG0090E04",
+      "entity": "Birch 090 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0091",
+      "entity_id": "CG0091E01",
+      "entity": "Cobalt 091 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0091",
+      "entity_id": "CG0091E02",
+      "entity": "Cobalt 091 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0091",
+      "entity_id": "CG0091E03",
+      "entity": "Cobalt 091 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0091",
+      "entity_id": "CG0091E04",
+      "entity": "Cobalt 091 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0091",
+      "entity_id": "CG0091E05",
+      "entity": "Cobalt 091 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0092",
+      "entity_id": "CG0092E01",
+      "entity": "Dune 092 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0092",
+      "entity_id": "CG0092E02",
+      "entity": "Dune 092 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0092",
+      "entity_id": "CG0092E03",
+      "entity": "Dune 092 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0093",
+      "entity_id": "CG0093E01",
+      "entity": "Elm 093 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0093",
+      "entity_id": "CG0093E02",
+      "entity": "Elm 093 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0093",
+      "entity_id": "CG0093E03",
+      "entity": "Elm 093 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0093",
+      "entity_id": "CG0093E04",
+      "entity": "Elm 093 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0094",
+      "entity_id": "CG0094E01",
+      "entity": "Flint 094 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0094",
+      "entity_id": "CG0094E02",
+      "entity": "Flint 094 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0094",
+      "entity_id": "CG0094E03",
+      "entity": "Flint 094 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0094",
+      "entity_id": "CG0094E04",
+      "entity": "Flint 094 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0094",
+      "entity_id": "CG0094E05",
+      "entity": "Flint 094 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0095",
+      "entity_id": "CG0095E01",
+      "entity": "Garnet 095 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0095",
+      "entity_id": "CG0095E02",
+      "entity": "Garnet 095 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0095",
+      "entity_id": "CG0095E03",
+      "entity": "Garnet 095 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0096",
+      "entity_id": "CG0096E01",
+      "entity": "Harbor 096 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0096",
+      "entity_id": "CG0096E02",
+      "entity": "Harbor 096 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0096",
+      "entity_id": "CG0096E03",
+      "entity": "Harbor 096 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0096",
+      "entity_id": "CG0096E04",
+      "entity": "Harbor 096 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0097",
+      "entity_id": "CG0097E01",
+      "entity": "Indigo 097 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0097",
+      "entity_id": "CG0097E02",
+      "entity": "Indigo 097 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0097",
+      "entity_id": "CG0097E03",
+      "entity": "Indigo 097 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0097",
+      "entity_id": "CG0097E04",
+      "entity": "Indigo 097 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0097",
+      "entity_id": "CG0097E05",
+      "entity": "Indigo 097 Capital",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0098",
+      "entity_id": "CG0098E01",
+      "entity": "Juniper 098 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0098",
+      "entity_id": "CG0098E02",
+      "entity": "Juniper 098 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0098",
+      "entity_id": "CG0098E03",
+      "entity": "Juniper 098 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0099",
+      "entity_id": "CG0099E01",
+      "entity": "Kestrel 099 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0099",
+      "entity_id": "CG0099E02",
+      "entity": "Kestrel 099 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0099",
+      "entity_id": "CG0099E03",
+      "entity": "Kestrel 099 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0099",
+      "entity_id": "CG0099E04",
+      "entity": "Kestrel 099 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0100",
+      "entity_id": "CG0100E01",
+      "entity": "Linden 100 Holdings",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0100",
+      "entity_id": "CG0100E02",
+      "entity": "Linden 100 Trading",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0100",
+      "entity_id": "CG0100E03",
+      "entity": "Linden 100 Manufacturing",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0100",
+      "entity_id": "CG0100E04",
+      "entity": "Linden 100 Services",
+      "aliases": []
+    },
+    {
+      "client_group_id": "CG0100",
+      "entity_id": "CG0100E05",
+      "entity": "Linden 100 Capital",
+      "aliases": []
+    }
+  ],
+  "note": "Synthetic alias catalog, not financial facts or model parameters. Entity metadata is optional for live deployment."
+}

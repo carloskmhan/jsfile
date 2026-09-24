@@ -1,0 +1,10 @@
+{
+  "name": "rwa-command-tableau",
+  "private": true,
+  "version": "3.0.0-review",
+  "type": "module",
+  "description": "Fixed-command historical RWA reporting review build; no learned model runtime.",
+  "scripts": {
+    "serve": "node serve.mjs"
+  }
+}

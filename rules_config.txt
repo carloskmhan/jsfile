@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "entityAliases": {
+    "Samsung Electronics": [
+      "sec",
+      "electronics"
+    ],
+    "Samsung SDI": [
+      "sdi"
+    ],
+    "Samsung C&T": [
+      "samsung ct"
+    ],
+    "Kia Corporation": [
+      "kia",
+      "kia corp"
+    ],
+    "Hyundai Motor": [
+      "hmc"
+    ],
+    "Hyundai Mobis": [
+      "mobis"
+    ],
+    "Toyota Financial Services": [
+      "tfs",
+      "toyota financial"
+    ]
+  },
+  "description": "Manually reviewed alias strings. Concentration reports display arithmetic shares only; no qualitative concentration classification."
+}
