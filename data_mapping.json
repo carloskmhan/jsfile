@@ -1,0 +1,33 @@
+{
+  "input_amount_unit": null,
+  "currency": null,
+  "balance_grain": "repeated_entity_month",
+  "duplicate_driver_policy": "error",
+  "reconciliation_mode": "error",
+  "reconciliation_tolerance_usdm": "0.000001",
+  "missing_group_location": "NOT_PROVIDED",
+  "max_group_json_bytes": 5000000,
+  "max_entity_months_per_group": 100000,
+  "extra_date_formats": [],
+  "columns": {
+    "group_id": "client group id",
+    "group_name": "client group name",
+    "entity_id": "LEID",
+    "entity_name": "client name",
+    "month": "Reporting Month",
+    "rwa_prev": "prev_rwa",
+    "rwa_curr": "RWA",
+    "driver": "detail_driver",
+    "driver_impact": "RWA Diff by driver",
+    "prev_cg": "prev_cg",
+    "cg": "CG",
+    "ead_prev": "prev_ead",
+    "ead_curr": "EAD",
+    "scorecard_prev": "prev_scorecard",
+    "scorecard_curr": "Scorecard",
+    "group_location": null,
+    "component_id": null,
+    "prev_group": "prev_group",
+    "prev_group_code": "prev_group_code"
+  }
+}
