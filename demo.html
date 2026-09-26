@@ -1,10 +1,35 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>RWA Command & Report</title><link rel="stylesheet" href="styles.css"></head><body><header><h1>RWA Reports <span class="badge">No ML</span></h1><button id="newchat">New chat</button></header>
-<main><div id="status" role="status">Loading registered command templates…</div><progress id="progress"></progress>
-<div id="welcome"><div class="subtle">FIXED COMMANDS · NO MACHINE LEARNING</div><h2>What changed in your portfolio?</h2><p>Choose a report or type a supported command. Review the parameters before execution.</p><p class="subtle">Try “Why did Samsung Group's RWA change in June 2026?”</p></div>
+<title>RWA Command & Report</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="catalog_ui.css">
+<link rel="stylesheet" href="loading_screen.css">
+<script src="loading_screen.js"></script></head><body>
+<div id="rwa-loading-screen" data-minimum-ms="5000" role="status" aria-live="polite" aria-label="Loading application">
+  <div class="rwa-loading-content">
+    <span id="rwa-loading-title">RWA Reports</span>
+    <div class="rwa-loading-dots" aria-hidden="true">
+      <span class="rwa-loading-dot"></span>
+      <span class="rwa-loading-dot"></span>
+      <span class="rwa-loading-dot"></span>
+    </div>
+  </div>
+</div>
+<header><h1>RWA Reports <span class="badge">No ML</span></h1><button id="newchat">New chat</button></header>
+<main><div id="status" role="status">Loading validated CSV rule artifact…</div><progress id="progress"></progress>
+<div id="welcome"><div class="subtle">DETERMINISTIC RWA REPORTS · NO MACHINE LEARNING</div><h2>What changed in your portfolio?</h2><p>Choose a report or type a supported command. Review the parameters before execution.</p><p class="subtle">Use an available group name or its system ID, then ask a follow-up.</p></div>
 <details id="tableau-panel"><summary>Connected Tableau view</summary><div id="tableau-host"></div></details><div id="history" role="log" aria-label="Conversation" aria-live="polite"></div></main>
-<footer><details id="settings"><summary>Optional context & data</summary><p><a href="commands_editor.html" target="_blank" rel="noopener">Maintain command templates</a></p><div class="controls"><label>Client group<select id="group"></select></label><label>Entity<select id="entity"></select></label><label>Month<select id="month"></select></label></div><p class="subtle">Changing context starts a new conversation. USD million.</p></details>
+<footer><details id="settings"><summary>Optional context & data</summary><p><a href="commands_editor.html" target="_blank" rel="noopener">CSV rule maintenance</a></p><label class="catalog-search">Search available groups <input id="group-search" type="search" autocomplete="off" placeholder="Name or system group ID"></label><div class="catalog-toolbar"><span id="catalog-count" class="subtle"></span><button id="refresh-catalog" type="button">Refresh index</button></div><div class="controls"><label>Client group<select id="group"></select></label><label>Entity<select id="entity"></select></label><label>Month<select id="month"></select></label></div><p class="subtle">Changing context starts a new conversation. USD million.</p></details>
 <div class="composer"><div class="shortcuts"><button data-question="What was the main driver?">Main driver</button><button data-question="Top 10 entities">Top entities</button><button data-question="Top 10 groups">Top groups</button><button data-question="Do the drivers reconcile?">Reconciliation</button><button data-question="Show the last 3 months trend">Trend</button></div>
-<form id="form"><div class="inputbox"><textarea maxlength="1000" id="question" rows="1" aria-label="Message" placeholder="e.g. Walk me through Samsung’s RWA increase in June 2026" disabled></textarea><button id="ask" type="submit" aria-label="Send message" title="Send" disabled>↑</button></div></form>
-<div id="context">No client selected · Name a client in your question</div><div class="subtle">Enter to send · Shift+Enter for a new line · Session memory only · No trained model · Governance review required.</div></div></footer><script type="module" src="bootstrap.js"></script></body></html>
+<form id="form"><div class="inputbox"><textarea maxlength="1000" id="question" rows="1" aria-label="Message" placeholder="e.g. Explain the RWA movement for a group ID in July" disabled></textarea><button id="ask" type="submit" aria-label="Send message" title="Send" disabled>↑</button></div></form>
+<div id="context">No client selected · Name a client in your question</div><div class="subtle">Enter to send · Shift+Enter for a new line · Session memory only · No trained model · Governance review required.</div></div></footer>
+<!-- Presentation-only pending-query indicator; used by app.js. -->
+<template id="rwa-query-loading-template">
+  <span class="rwa-query-loading">
+    <span class="rwa-query-loading-label"></span>
+    <span class="rwa-query-loading-dots" aria-hidden="true">
+      <span class="rwa-query-loading-dot"></span>
+      <span class="rwa-query-loading-dot"></span>
+      <span class="rwa-query-loading-dot"></span>
+    </span>
+  </span>
+</template>
+<script type="module" src="bootstrap.js"></script></body></html>

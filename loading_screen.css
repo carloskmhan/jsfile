@@ -1,0 +1,150 @@
+/* Five-second title cover with CSS wave dots from example 01.
+ * Presentation only. Existing startup, timing and slide-up controller are unchanged.
+ */
+#rwa-loading-screen { display: none; }
+#rwa-loading-screen[hidden] { display: none !important; }
+html.rwa-splash-active body { overflow: hidden; }
+html.rwa-splash-active #rwa-loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #fafbf9;
+  color: #23372f;
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  transition: transform 720ms cubic-bezier(.76, 0, .24, 1);
+  will-change: transform;
+}
+/* Keep the title and indicator centred as one group, not two grid rows. */
+#rwa-loading-screen .rwa-loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  min-width: 0;
+}
+#rwa-loading-screen .rwa-loading-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 50px;
+  height: 18px;
+  color: inherit;
+}
+#rwa-loading-screen .rwa-loading-dot {
+  display: block;
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .35;
+}
+html.rwa-splash-active #rwa-loading-screen .rwa-loading-dot {
+  animation: rwa-loading-wave 1.4s ease-in-out infinite;
+}
+html.rwa-splash-active #rwa-loading-screen .rwa-loading-dot:nth-child(2) {
+  animation-delay: .16s;
+}
+html.rwa-splash-active #rwa-loading-screen .rwa-loading-dot:nth-child(3) {
+  animation-delay: .32s;
+}
+@keyframes rwa-loading-wave {
+  0%, 60%, 100% { transform: translateY(0); opacity: .35; }
+  30% { transform: translateY(-5px); opacity: 1; }
+}
+#rwa-loading-title {
+  display: block;
+  max-width: 100%;
+  font-family: inherit;
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 550;
+  line-height: 1.2;
+  letter-spacing: -.035em;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+html.rwa-splash-active body > header,
+html.rwa-splash-active body > main,
+html.rwa-splash-active body > footer {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 480ms ease;
+}
+html.rwa-splash-active.rwa-splash-exiting #rwa-loading-screen {
+  transform: translate3d(0, -100%, 0);
+}
+html.rwa-splash-active.rwa-splash-exiting body > header,
+html.rwa-splash-active.rwa-splash-exiting body > main,
+html.rwa-splash-active.rwa-splash-exiting body > footer {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.rwa-splash-active #rwa-loading-screen .rwa-loading-dot {
+    animation: none;
+    transform: none;
+    opacity: .7;
+  }
+  html.rwa-splash-active #rwa-loading-screen {
+    transition: opacity 120ms linear;
+    will-change: opacity;
+  }
+  html.rwa-splash-active.rwa-splash-exiting #rwa-loading-screen {
+    transform: none;
+    opacity: 0;
+  }
+  html.rwa-splash-active body > header,
+  html.rwa-splash-active body > main,
+  html.rwa-splash-active body > footer { transition: opacity 120ms linear; }
+}
+
+/* Pending query (v6 UI patch). Reuses the exact splash wave keyframes,
+ * timing and stagger; the 5-second startup controller is unchanged.
+ * Nodes exist only while app.js is waiting for the query's data/preview.
+ */
+.message .rwa-query-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  vertical-align: middle;
+}
+.message .rwa-query-loading-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.message .rwa-query-loading-dots {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 50px;
+  gap: 7px;
+  width: 50px;
+  height: 18px;
+  color: inherit;
+}
+.message .rwa-query-loading-dot {
+  display: block;
+  flex: 0 0 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .35;
+  animation: rwa-loading-wave 1.4s ease-in-out infinite;
+}
+.message .rwa-query-loading-dot:nth-child(2) { animation-delay: .16s; }
+.message .rwa-query-loading-dot:nth-child(3) { animation-delay: .32s; }
+@media (prefers-reduced-motion: reduce) {
+  .message .rwa-query-loading-dot {
+    animation: none;
+    transform: none;
+    opacity: .7;
+  }
+}
