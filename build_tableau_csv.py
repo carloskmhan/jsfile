@@ -30,7 +30,7 @@ from datetime import datetime
 from decimal import Decimal, InvalidOperation
 from collections import Counter
 
-VERSION = "1.0.8-review"
+VERSION = "1.0.9-diagnostics"
 FORBIDDEN = {"__proto__", "constructor", "prototype"}
 OUT_FIELDS = ["client_group_id", "client_group_name", "group_location", "json_data"]
 REQUIRED = {"group_id", "group_name", "entity_id", "entity_name", "month", "rwa_curr", "driver", "driver_impact"}
@@ -237,6 +237,94 @@ def resolve_group_displays(groups: dict) -> list[dict]:
     return audit
 
 
+def _diagnostic_literal(value) -> str:
+    """Bounded terminal-safe representation; display truncation never changes data."""
+    rendered = repr(value)
+    if len(rendered) > 400:
+        return rendered[:397] + "... [display truncated]"
+    return rendered
+
+
+def _read_record_for_diagnostics(input_path: Path, end_line: int):
+    """Read ONLY on validation failure; use the same CSV end-line convention.
+
+    No auxiliary file or complete customer table is written. Re-reading lets us
+    show original values without retaining another raw row per entity-month.
+    """
+    try:
+        with input_path.open("r", encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle)
+            for record in reader:
+                if reader.line_num == end_line:
+                    return record
+                if reader.line_num > end_line:
+                    break
+    except (OSError, UnicodeError, csv.Error):
+        pass
+    return None
+
+
+def current_snapshot_conflict_message(
+    input_path: Path, gid: str, eid: str, month: str, bucket: dict,
+    snapshot: dict, columns: dict, current_row: dict, line: int, diffs: list[str]
+) -> str:
+    """Explain a conflict without choosing, summing or dropping any balance.
+
+    Both snapshots have already been matched on (group ID, LEID, parsed month).
+    Attributes are expanded individually so the user can see CG/EAD/Scorecard
+    differences rather than an opaque 'current_attributes' field name.
+    """
+    first_line = bucket["first_line"]
+    first_row = _read_record_for_diagnostics(input_path, first_line)
+    messages = [
+        f"CSV line {line}: inconsistent repeated CURRENT snapshot for "
+        f"group={gid}, LEID={eid}, month={month}; first at line {first_line}; "
+        f"differing field(s): {', '.join(diffs)}.",
+        "Both records resolved to the SAME reporting month. Different reporting "
+        "months are already separate aggregation keys.",
+        f"Comparing CSV record ending at line {first_line} with record ending at line {line}.",
+        "Source amounts below use your RAW input unit, not USD millions unless "
+        "the input unit is already million.",
+    ]
+
+    def show_raw(logical: str, status: str) -> None:
+        column = columns.get(logical)
+        if not column:
+            return
+        first = (_diagnostic_literal(first_row.get(column))
+                 if first_row is not None else "<raw first record unavailable>")
+        current = _diagnostic_literal(current_row.get(column))
+        messages.append(
+            f"  [{status}] {column} (mapped as {logical}): "
+            f"line {first_line}={first}; line {line}={current}"
+        )
+
+    show_raw("month", "REPORTING MONTH")
+    first_attrs = bucket.get("current_attributes", {})
+    current_attrs = snapshot.get("current_attributes", {})
+    for logical in ["rwa_curr", *CURRENT_ATTRS]:
+        if not columns.get(logical):
+            continue
+        old = bucket["rwa_curr"] if logical == "rwa_curr" else first_attrs.get(logical)
+        new = snapshot["rwa_curr"] if logical == "rwa_curr" else current_attrs.get(logical)
+        show_raw(logical, "DIFFERENT" if old != new else "same")
+        if old != new and isinstance(old, Decimal) and isinstance(new, Decimal):
+            messages.append(f"    Parsed USDm: {old} -> {new}; difference={new-old}")
+    show_raw("driver", "DRIVER CONTEXT - MAY DIFFER")
+    show_raw("driver_impact", "DRIVER CONTEXT - MAY DIFFER")
+    messages.extend([
+        "All raw prev_* and prev_group* values remain ignored. They did not "
+        "trigger this check. Different driver labels/impacts are permitted.",
+        "Check the displayed month/column mapping and whether these records "
+        "carry different source revisions or balances for the same client-month. "
+        "This error alone does not establish a product/facility cause.",
+        "No RWA value was selected by first/MAX/SUM, and no row was silently "
+        "discarded to resolve this conflict. Confirm the source balance basis "
+        "before changing this rule.",
+    ])
+    return "\n".join(messages)
+
+
 def prepare(input_path: Path, cfg: dict) -> tuple[list[dict], list[dict], list[dict], dict]:
     """Validate and aggregate before any published output is created."""
     scale = MULTIPLIERS[cfg["input_amount_unit"]]
@@ -309,12 +397,9 @@ def prepare(input_path: Path, cfg: dict) -> tuple[list[dict], list[dict], list[d
                 if b[k] != snap[k]:
                     diffs.append(k)
             if diffs:
-                raise DataError(
-                    f"CSV line {line}: inconsistent repeated CURRENT snapshot for group={gid}, LEID={eid}, month={month}; "
-                    f"first at line {b['first_line']}; differing field(s): {', '.join(diffs)}. "
-                    "Previous-group fields, including prev_rwa, may differ across distinct previous groups. "
-                    "Current RWA/current attributes must remain consistent. If current-side differences are product/facility-level balances, add that grain upstream rather than taking MAX/first or summing blindly."
-                )
+                raise DataError(current_snapshot_conflict_message(
+                    input_path, gid, eid, month, b, snap, cols, row, line, diffs
+                ))
 
             label = get("driver")
             impact = decimal_value(get("driver_impact"), f"CSV line {line}/driver_impact") * scale
