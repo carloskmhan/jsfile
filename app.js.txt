@@ -1,7 +1,7 @@
 import {planDataRequest} from './semantic/routing.js';
 import {RuleClient} from './rule_client.js';
 import {createProvider,formatRuntimeError,runtimeErrorDetails} from './tableau_adapter.js';
-// Error diagnostics patch 6.0.1-diag; wave-dot UI and all queries are retained.
+// Timeout/progress UI 6.0.3-review. Keep query wave dots and all calculations.
 import {validateCatalog,catalogWithClients,catalogLookup} from './group_catalog.js';
 import {driverCatalog} from './driver_catalog.js';
 import {norm} from './rule_parser.js';
@@ -9,6 +9,7 @@ import {norm} from './rule_parser.js';
 export async function main(config){
  const $=id=>document.getElementById(id),client=new RuleClient(config);
  let groups=[],provider,lastGroupId=null,pendingQuestion=null,metadata={rows:[]},busy=true,ready=false,epoch=0;
+ let loadingArticle=null,loadingStarted=0;
  const controls=()=>{for(const e of document.querySelectorAll('#ask,#question,#newchat,#group,#entity,#month,#group-search,#refresh-catalog,[data-question],.choices button,.confirm-report,.cancel-report'))if(!e.dataset.finished)e.disabled=busy||!ready;};
  const options=(id,items)=>$(id).replaceChildren(...items.map(([name,value])=>new Option(name,value)));
  const byId=id=>config.semanticCatalog?catalogLookup(config.semanticCatalog).byId.get(id):null;
@@ -36,6 +37,12 @@ export async function main(config){
    const b=a.querySelector('.message');
    b.removeAttribute('aria-busy');
    if(loading){
+     const existing=b.querySelector('.rwa-query-loading');
+     const existingLabel=existing?.querySelector('.rwa-query-loading-label');
+     if(existingLabel){
+       existingLabel.textContent=String(text??'').replace(/(?:\u2026|\.{3})\s*$/u,'');
+       b.setAttribute('aria-busy','true');return; // Do not restart CSS wave animation.
+     }
      const template=$('rwa-query-loading-template');
      // Mixed/older HTML still shows the original text instead of breaking requests.
      if(template?.content){
@@ -112,6 +119,21 @@ export async function main(config){
    cancel.onclick=()=>{client.cancel();run.dataset.finished=cancel.dataset.finished='true';run.disabled=cancel.disabled=true;a.querySelector('.message').textContent='Cancelled. No report calculation ran.';};
    fields.append(run,cancel);a.insertBefore(fields,a.querySelector('details'));
  }
+ function updateQueryProgress(p){
+   if(!loadingArticle||!busy||!p||p.phase!=='active')return;
+   const elapsed=Math.max(0,Math.floor((Date.now()-loadingStarted)/1000));
+   const time=elapsed>=60?Math.floor(elapsed/60)+'m '+(elapsed%60)+'s':elapsed+'s';
+   let text;
+   if(p.groupCount!==undefined){
+     const step=p.stage==='VERIFY_GROUP_FILTER'?'Checking ID filter':
+       p.stage==='VERIFY_FILTER_EVENTS'?'Checking filter events':
+       p.stage==='APPLY_GROUP_FILTER'?'Applying ID filter':
+       /INDEX/.test(p.stage)?'Checking available group index':'Reading and validating RWA data';
+     text=step+' - '+(p.completedGroups||0).toLocaleString('en-US')+' / '+p.groupCount.toLocaleString('en-US')+' groups completed';
+     if(p.batchNumber!==undefined)text+=' - batch '+p.batchNumber+'/'+p.batchCount;
+   }else text='Reading authorised Tableau index and selected group data';
+   setMessage(loadingArticle,text+' - '+time,{loading:true});
+ }
  function sourceChanged(e){
    epoch++;client.invalidate();client.reset();lastGroupId=null;pendingQuestion=null;metadata={rows:[]};
    groups=[];config.semanticCatalog={identitySource:'runtime_catalog',groups:[],entities:[]};options('group',[['Refresh available groups','']]);groupChanged();context();
@@ -125,6 +147,7 @@ export async function main(config){
  async function send(){
    const q=$('question').value.trim();if(!q||busy||!ready)return;
    busy=true;controls();$('question').value='';message('user',q);const a=message('assistant','Reading authorised Tableau index and selected group data…',{loading:true});const thisEpoch=epoch;
+   loadingArticle=a;loadingStarted=Date.now();
    let failureStage='REFRESH_GROUP_INDEX',requestedGroupCount;
    try{
      await readCatalog();if(epoch!==thisEpoch)throw new Error('Available groups changed. Review the new scope and submit the request again.');
@@ -154,7 +177,7 @@ export async function main(config){
      results(a,{ok:false,status:'error',answer:'No answer produced: '+formatRuntimeError(e,details),
        ...(config.debug===true?{errorDiagnostic:runtimeErrorDetails(e,details)}:{})});
    }
-   finally{busy=false;controls();$('question').focus();a.scrollIntoView({block:'center',behavior:'smooth'});}
+   finally{loadingArticle=null;busy=false;controls();$('question').focus();a.scrollIntoView({block:'center',behavior:'smooth'});}
  }
  $('form').onsubmit=e=>{e.preventDefault();send();};$('question').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();send();}};
  for(const b of document.querySelectorAll('[data-question]'))b.onclick=()=>{$('question').value=b.dataset.question;send();};
@@ -165,6 +188,7 @@ export async function main(config){
  try{
    $('tableau-panel').hidden=config.mode!=='tableau';if(config.mode==='tableau')$('tableau-panel').open=true;
    provider=await createProvider(config,$('tableau-host'));provider.onContextChanged(sourceChanged);
+   provider.onProgress?.(updateQueryProgress);
    config.semanticCatalog=provider.catalog;groups=validateCatalog(provider.catalog);groupOptions();groupChanged();
    ready=true;busy=false;$('progress').hidden=true;$('status').textContent=config.mode==='sample'?'Ready · Synthetic CSV data · Runtime ID catalog · Preview required':`Ready · ${groups.length.toLocaleString()} available groups from ${config.catalogWorksheetName} · Details loaded on demand`;
    controls();window.addEventListener('pagehide',()=>{client.reset();client.invalidate();provider.close();metadata={rows:[]};config.semanticCatalog=null;groups=[];},{once:true});

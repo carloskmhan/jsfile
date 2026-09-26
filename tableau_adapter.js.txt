@@ -1,7 +1,9 @@
 import {parseCsv,expandCsvRows,safeAttributes} from './csv_adapter.js';
 import {localText} from './network.js';
 import {indexRowsToCatalog,catalogLookup,catalogSignature} from './group_catalog.js';
-/** Batch filter patch 6.0.2-review, based on 6.0.1-diag.
+/** Timeout/progress patch 6.0.3-review, based on 6.0.2-review.
+ * Separate API-call, per-batch and total-operation deadlines.
+ * A total portfolio read no longer silently inherits the single-request 60s limit.
  * A logical multi-group read uses bounded sequential ID batches. Every ID must
  * validate; financial rows/bytes remain subject to the original aggregate caps.
  * This is not a repair for mismatched Tableau field types, captions or ID values.
@@ -68,11 +70,11 @@ function describeRejected(value, depth = 0, seen = new Set()) {
 }
 function cleanErrorContext(context = {}) {
   const result = {};
-  for (const key of ['stage', 'worksheet', 'method', 'operation', 'filterField', 'valueType']) {
+  for (const key of ['stage', 'worksheet', 'method', 'operation', 'filterField', 'valueType', 'timeoutKind']) {
     const v = readableText(guardedRead(context, key));
     if (v) result[key] = v.slice(0, 150);
   }
-  for (const key of ['groupCount', 'returnedRows', 'elapsedMs', 'batchNumber', 'batchCount', 'batchGroupCount']) {
+  for (const key of ['groupCount', 'returnedRows', 'elapsedMs', 'batchNumber', 'batchCount', 'batchGroupCount', 'completedGroups', 'completedBatches', 'operationElapsedMs', 'batchElapsedMs', 'stageElapsedMs', 'callElapsedMs', 'timeoutElapsedMs', 'timeoutLimitMs', 'totalTimeoutMs', 'batchTimeoutMs', 'callTimeoutMs']) {
     const v = guardedRead(context, key);
     if (Number.isFinite(v) && v >= 0) result[key] = Math.round(v);
   }
@@ -100,6 +102,11 @@ export function formatRuntimeError(error, context = {}) {
   if (d.filterField) tags.push('filter=' + d.filterField);
   if (d.valueType) tags.push('value type=' + d.valueType);
   if (d.code) tags.push('code=' + d.code);
+  if (d.completedGroups !== undefined) tags.push('completed groups=' + d.completedGroups.toLocaleString('en-US'));
+  if (d.operationElapsedMs !== undefined) tags.push('total elapsed=' + (d.operationElapsedMs / 1000).toFixed(1) + 's');
+  if (d.timeoutKind) tags.push('timeout=' + d.timeoutKind);
+  if (d.timeoutElapsedMs !== undefined && d.timeoutLimitMs !== undefined)
+    tags.push('elapsed/limit=' + (d.timeoutElapsedMs / 1000).toFixed(1) + '/' + (d.timeoutLimitMs / 1000).toFixed(1) + 's');
   return (tags.length ? '[' + tags.join(' | ') + '] ' : '') + d.message;
 }
 export function withErrorContext(error, context = {}) {
@@ -129,10 +136,15 @@ function batchSettings(config){
   const size=config.groupBatchSize??200;
   if(!Number.isSafeInteger(size)||size<1||size>1000)
     throw new Error('groupBatchSize must be an integer from 1 to 1000; default 200. Do not pass the complete large index as one filter.');
-  const timeout=config.portfolioTimeoutMs??config.timeoutMs??60000;
-  if(!Number.isSafeInteger(timeout)||timeout<1||timeout>900000)
-    throw new Error('portfolioTimeoutMs must be an integer from 1 to 900000 milliseconds. It is the total portfolio-operation budget.');
-  return {size,portfolioTimeoutMs:timeout};
+  const callTimeoutMs=config.tableauCallTimeoutMs??config.timeoutMs??60000;
+  const batchTimeoutMs=config.batchTimeoutMs??Math.max(180000,callTimeoutMs);
+  // Explicit independent total budget. An existing explicit portfolioTimeoutMs
+  // is respected; timeoutMs remains a per-call/initialisation setting.
+  const portfolioTimeoutMs=config.portfolioTimeoutMs??900000;
+  for(const [key,value,max] of [['tableauCallTimeoutMs',callTimeoutMs,300000],['batchTimeoutMs',batchTimeoutMs,900000],['portfolioTimeoutMs',portfolioTimeoutMs,900000]])
+    if(!Number.isSafeInteger(value)||value<1||value>max)throw new Error(key+' must be an integer from 1 to '+max+' milliseconds.');
+  if(batchTimeoutMs<callTimeoutMs)throw new Error('batchTimeoutMs must not be smaller than tableauCallTimeoutMs.');
+  return {size,callTimeoutMs,batchTimeoutMs,portfolioTimeoutMs};
 }
 function detailFields(config){return Object.values(config.fields).filter(Boolean);}
 function limits(config){return{maxIndexRows:config.maxIndexRows??100000,maxPortfolioGroups:config.maxPortfolioGroups??500,maxDataRows:config.maxDataRows??100000,maxJsonBytes:config.maxJsonBytes??5000000,maxTotalJsonBytes:config.maxTotalJsonBytes??30000000};}
@@ -234,9 +246,86 @@ export async function createProvider(config,host) {
     let done=false;const timer=setTimeout(()=>{if(done)return;done=true;viz?.dispose();reject(new Error('Tableau initialization timed out. Verify SSO and embedding permissions.'));},config.timeoutMs||60000);
     try{viz=new api.Viz(host,config.tableauUrl,{hideTabs:true,hideToolbar:true,width:'100%',height:'520px',onFirstInteractive(){if(done)return;done=true;clearTimeout(timer);resolve();}});}catch(e){done=true;clearTimeout(timer);reject(e);}
   }).catch(error=>{throw withErrorContext(error,{stage:'INITIALISE_TABLEAU_VIZ',method:'Viz'});});
-  let activeDiagnostic={};
+  // Counts/timings only: no customer IDs, names, JSON, URLs or credentials.
+  const clock=()=>globalThis.performance?.now?.()??Date.now();
+  let activeDiagnostic={},activeOperation=null,lastDiagnostics=null,progressListener=()=>{};
+  const since=start=>start==null?0:Math.max(0,clock()-start);
+  function timing(op=activeOperation){
+    if(!op)return {};
+    return {operationElapsedMs:since(op.started),elapsedMs:since(op.started),
+      batchElapsedMs:since(op.batchStarted),stageElapsedMs:since(op.stageStarted),
+      completedGroups:op.completedGroups,completedBatches:op.completedBatches,
+      totalTimeoutMs:op.totalTimeoutMs,batchTimeoutMs:batches.batchTimeoutMs,callTimeoutMs:batches.callTimeoutMs};
+  }
+  function progress(op=activeOperation,phase=op?.phase){
+    if(!op)return null;
+    return Object.freeze({...cleanErrorContext({...activeDiagnostic,...timing(op)}),operation:op.operation,phase,
+      apiCalls:op.apiCalls,apiWaitMs:Math.round(op.apiWaitMs),adapterVersion:'6.0.3-review'});
+  }
+  function emitProgress(op=activeOperation){
+    if(!op||op!==activeOperation)return;
+    const value=progress(op);lastDiagnostics=value;
+    try{progressListener(value);}catch{/* A presentation callback cannot waive validation or abort a read. */}
+  }
   function stage(name,details={}) {
+    if(!activeOperation||activeOperation.cancelled)return;
     activeDiagnostic={...activeDiagnostic,...details,stage:name};
+    activeOperation.stageStarted=clock();emitProgress();
+  }
+  function timeoutFailure(op,kind,started,limit,details={}){
+    if(op.cancelled)return op.abortError;
+    const code=kind==='TOTAL_OPERATION'?'RWA_TOTAL_TIMEOUT':kind==='BATCH'?'RWA_BATCH_TIMEOUT':'RWA_API_TIMEOUT';
+    const label=kind==='TOTAL_OPERATION'?'The complete multi-step Tableau operation':kind==='BATCH'?'The current group batch':'A Tableau API call';
+    const error=new Error(label+' timed out. Partial results were discarded. Reload the page; no late response will be used.');
+    error.code=code;
+    const wrapped=withErrorContext(error,{...activeDiagnostic,...details,...timing(op),timeoutKind:kind,
+      timeoutElapsedMs:since(started),timeoutLimitMs:limit});
+    op.cancelled=true;op.abortError=wrapped;op.phase='error';
+    op.rejectAbort(wrapped);poisoned=true;
+    notify('Tableau '+kind.toLowerCase().replace(/_/g,' ')+' time budget exceeded; partial/late results discarded');
+    emitProgress(op);return wrapped;
+  }
+  function checkDeadlines(op=activeOperation){
+    if(!op)return;
+    if(op.cancelled)throw op.abortError;
+    // Also check after synchronous work: browser timers cannot preempt JS parsing.
+    if(since(op.started)>=op.totalTimeoutMs)throw timeoutFailure(op,'TOTAL_OPERATION',op.started,op.totalTimeoutMs);
+    if(op.batchStarted!=null&&since(op.batchStarted)>=batches.batchTimeoutMs)
+      throw timeoutFailure(op,'BATCH',op.batchStarted,batches.batchTimeoutMs);
+  }
+  function beginBatch(context){
+    const op=activeOperation;checkDeadlines(op);
+    clearTimeout(op.batchTimer);op.batchStarted=clock();
+    stage('START_GROUP_BATCH',context);
+    op.batchTimer=setTimeout(()=>timeoutFailure(op,'BATCH',op.batchStarted,batches.batchTimeoutMs),batches.batchTimeoutMs);
+  }
+  function finishBatch(groupCount){
+    const op=activeOperation;checkDeadlines(op);clearTimeout(op.batchTimer);
+    op.completedGroups+=groupCount;op.completedBatches++;
+    stage('BATCH_COMPLETE');op.batchStarted=null;
+  }
+  async function apiCall(name,method,fn,details={}){
+    const op=activeOperation;
+    if(!op)throw new Error('No active Tableau operation.');
+    ensure(op.revision);stage(name,{...details,method});
+    const callContext={...activeDiagnostic},started=clock();let timer;
+    op.apiCalls++;
+    timer=setTimeout(()=>timeoutFailure(op,'API_CALL',started,batches.callTimeoutMs,callContext),batches.callTimeoutMs);
+    op.callTimers.add(timer);
+    // Race the *whole wait*, including vendor thenables, against cancellation.
+    // A late SDK response cannot resume a next filter or publish cached rows.
+    const task=Promise.resolve().then(()=>{ensure(op.revision);return fn();});
+    try{
+      const result=await Promise.race([task,op.abortPromise]);
+      ensure(op.revision);
+      if(since(started)>=batches.callTimeoutMs)
+        throw timeoutFailure(op,'API_CALL',started,batches.callTimeoutMs,callContext);
+      return result;
+    }catch(error){
+      throw withErrorContext(error,{...callContext,...timing(op),callElapsedMs:since(started)});
+    }finally{
+      clearTimeout(timer);op.callTimers.delete(timer);op.apiWaitMs+=since(started);
+    }
   }
   function sheet(name){
     const active=viz.getWorkbook().getActiveSheet();
@@ -245,30 +334,50 @@ export async function createProvider(config,host) {
     if(!w)throw new Error('Worksheet is not in the active dashboard: '+name);return w;
   }
   function notify(reason){revision++;listener({reason,version:revision});}
-  function ensure(token=revision){if(closed||poisoned)throw new Error('Tableau provider is closed/stale. Reload this page.');if(token!==revision)throw new Error('Tableau scope changed during the request. Submit again after refreshing the index.');}
-  function queue(work,operation='TABLEAU_REQUEST'){
+  function ensure(token=revision){
+    if(closed||poisoned)throw new Error('Tableau provider is closed/stale. Reload this page.');
+    checkDeadlines();
+    if(token!==revision)throw new Error('Tableau scope changed during the request. Submit again after refreshing the index.');
+  }
+  function queue(work,operation='TABLEAU_REQUEST',multiBatch=false){
     const job=tail.then(async()=>{
-      activeDiagnostic={stage:'START_TABLEAU_REQUEST',operation};
-      const started=Date.now();let timer;
-      const requestTimeout=operation==='loadPortfolio'?batches.portfolioTimeoutMs:(config.timeoutMs||60000);
-      try {
-        ensure();const token=revision;
-        return await Promise.race([work(token),new Promise((_,reject)=>{timer=setTimeout(()=>{poisoned=true;notify('Timed out; late results discarded');reject(new Error('Tableau request timed out. Reload the page; no late response will be used.'));},requestTimeout);})]);
-      } catch(error) {
-        throw withErrorContext(error,{...activeDiagnostic,elapsedMs:Date.now()-started});
-      } finally { clearTimeout(timer);activeDiagnostic={}; }
+      ensure();
+      const isDetail=['load','loadGroups','loadPortfolio'].includes(operation);
+      const totalTimeoutMs=operation==='loadPortfolio'||multiBatch?batches.portfolioTimeoutMs:
+        isDetail?batches.batchTimeoutMs:batches.callTimeoutMs;
+      const op={operation,totalTimeoutMs,revision,started:clock(),stageStarted:clock(),batchStarted:null,
+        completedGroups:0,completedBatches:0,apiCalls:0,apiWaitMs:0,callTimers:new Set(),
+        cancelled:false,abortError:null,phase:'active'};
+      op.abortPromise=new Promise((_,reject)=>{op.rejectAbort=reject;});
+      activeOperation=op;activeDiagnostic={stage:'START_TABLEAU_REQUEST',operation};
+      const totalTimer=setTimeout(()=>timeoutFailure(op,'TOTAL_OPERATION',op.started,op.totalTimeoutMs),op.totalTimeoutMs);
+      const heartbeat=setInterval(()=>emitProgress(op),1000);
+      emitProgress(op);
+      const task=Promise.resolve().then(()=>work(op.revision)).then(value=>{ensure(op.revision);return value;});
+      try{
+        const value=await Promise.race([task,op.abortPromise]);
+        ensure(op.revision);op.phase='complete';emitProgress(op);return value;
+      }catch(error){
+        const wrapped=withErrorContext(error,{...activeDiagnostic,...timing(op)});
+        if(!op.cancelled){op.cancelled=true;op.abortError=wrapped;op.rejectAbort(wrapped);}
+        op.phase='error';emitProgress(op);throw wrapped;
+      }finally{
+        clearTimeout(totalTimer);clearTimeout(op.batchTimer);clearInterval(heartbeat);
+        for(const timer of op.callTimers)clearTimeout(timer);
+        op.callTimers.clear();
+        if(activeOperation===op){activeOperation=null;activeDiagnostic={};}
+      }
     });
     tail=job.catch(()=>{});return job;
   }
   async function getIndex(token){
-    stage('READ_GROUP_INDEX',{worksheet:config.catalogWorksheetName,method:'getSummaryDataAsync'});
-    const rr=await readWorksheetRows(sheet(config.catalogWorksheetName),config,'index');ensure(token);
+    const rr=await apiCall('READ_GROUP_INDEX','getSummaryDataAsync',()=>readWorksheetRows(sheet(config.catalogWorksheetName),config,'index'),{worksheet:config.catalogWorksheetName});ensure(token);
     stage('BUILD_GROUP_INDEX',{returnedRows:rr.length});
     return indexRowsToCatalog(rr,indexFields,{...config,source:'authenticated Tableau '+config.catalogWorksheetName});
   }
   async function refresh(token){
     const next=await getIndex(token),sig=catalogSignature(next);
-    if(signature!==null&&sig!==signature){catalog=next;signature=sig;notify('Authorised index changed; previous context invalidated');return catalog;}
+    if(signature!==null&&sig!==signature){catalog=next;signature=sig;notify('Authorised index changed; previous context invalidated');if(activeOperation?.operation==='refreshCatalog')activeOperation.revision=revision;return catalog;}
     if(catalog&&sig===signature)return catalog;
     catalog=next;signature=sig;return catalog;
   }
@@ -282,7 +391,7 @@ export async function createProvider(config,host) {
     // Do not begin the next filter while a known preceding filter-event check
     // is unresolved. External events still invalidate revision immediately.
     while(pendingFilterChecks.size){
-      await Promise.all([...pendingFilterChecks]);ensure(token);
+      await apiCall('VERIFY_FILTER_EVENTS','getFilterAsync',()=>Promise.all([...pendingFilterChecks]),{worksheet:config.worksheetName});ensure(token);
     }
     ensure(token);
   }
@@ -295,9 +404,10 @@ export async function createProvider(config,host) {
       if(typeof e.getFilterAsync==='function'){
         let check;
         check=Promise.resolve().then(()=>e.getFilterAsync()).then(f=>{
+          if(closed||poisoned)return;
           const values=(f.getAppliedValues?.()||[]).map(x=>String(x.value));
           if(expected!==expectedFilter||f.getIsExcludeMode?.()||!eqSet(values,expected.ids))notify('Unexpected group filter change');
-        }).catch(()=>notify('Could not verify group filter event')).finally(()=>pendingFilterChecks.delete(check));
+        }).catch(()=>{if(!closed&&!poisoned)notify('Could not verify group filter event');}).finally(()=>pendingFilterChecks.delete(check));
         pendingFilterChecks.add(check);
       }else notify('Unverifiable group filter event');
       return;
@@ -323,21 +433,21 @@ export async function createProvider(config,host) {
         const context={worksheet:config.worksheetName,groupCount:ids.length,
           batchNumber:index,batchCount:count,batchGroupCount:batch.length,
           filterField:config.filterField,valueType:'string'};
+        beginBatch(context);
         expectedFilter={ids:[...batch]};
-        stage('APPLY_GROUP_FILTER',{...context,method:'applyFilterAsync'});
         // Exact ID values only. No ALL filter, no RLS changes, no numeric casts,
         // no retry that drops invalid members, and no automatic field-name guess.
-        await w.applyFilterAsync(config.filterField,batch,'replace',{isExcludeMode:false});
+        await apiCall('APPLY_GROUP_FILTER','applyFilterAsync',()=>w.applyFilterAsync(config.filterField,batch,'replace',{isExcludeMode:false}),context);
         ensure(token);await settleFilterChecks(token);
         stage('VERIFY_GROUP_FILTER',{...context,method:'getFiltersAsync'});
         if(typeof w.getFiltersAsync!=='function')throw new Error('Tableau getFiltersAsync is unavailable; the group-ID filter cannot be verified. No data returned.');
-        const filters=await w.getFiltersAsync();ensure(token);
+        const filters=await apiCall('VERIFY_GROUP_FILTER','getFiltersAsync',()=>w.getFiltersAsync(),context);ensure(token);
         const filter=filters.find(f=>f.getFieldName?.()===config.filterField);
         if(!filter||filter.getIsExcludeMode?.()||!eqSet((filter.getAppliedValues?.()||[]).map(v=>String(v.value)),batch))
           throw new Error('ID filter did not resolve to the requested exact values for this batch. No partial ranking returned. Check the field caption, type, aliases and source ID population.');
         await settleFilterChecks(token);
         stage('READ_RWA_DATA',{...context,method:'getSummaryDataAsync'});
-        const rr=await readWorksheetRows(w,config);ensure(token);await settleFilterChecks(token);
+        const rr=await apiCall('READ_RWA_DATA','getSummaryDataAsync',()=>readWorksheetRows(w,config),context);ensure(token);await settleFilterChecks(token);
         stage('VALIDATE_RWA_PAYLOAD',{...context,returnedRows:rr.length});
         const got=new Set();
         for(const r of rr){
@@ -356,6 +466,7 @@ export async function createProvider(config,host) {
         stage('CHECK_DETAIL_COMPLETENESS',{...context,returnedRows:rr.length});
         if(!eqSet([...got],batch))throw new Error('One or more requested groups have no accessible complete RWA_DATA row. No stale/partial data fallback.');
         await assertIndexUnchanged(token);ensure(token);await settleFilterChecks(token);
+        finishBatch(batch.length);
       }
       stage('CHECK_PORTFOLIO_COMPLETENESS',{groupCount:ids.length,worksheet:config.worksheetName,returnedRows:clientsById.size});
       if(clientsById.size!==ids.length||ids.some(id=>!clientsById.has(id)))throw new Error('Complete requested group set was not returned. No partial ranking returned.');
@@ -373,10 +484,18 @@ export async function createProvider(config,host) {
     refreshCatalog:()=>queue(refresh,'refreshCatalog'),
     verifyCatalog:()=>queue(async token=>{await assertIndexUnchanged(token);return signature;},'verifyCatalog'),
     load:group=>queue(async token=>(await readGroups([group.client_group_id],token))[0],'load'),
-    loadGroups:ids=>queue(token=>readGroups(ids,token),'loadGroups'),
+    loadGroups:ids=>queue(token=>readGroups(ids,token),'loadGroups',Array.isArray(ids)&&unique(ids).length>batches.size),
     loadPortfolio:()=>queue(token=>{if(!config.allowPortfolioQueries)throw new Error('Portfolio queries are disabled in live mode. Approve the authorised scope before enabling them.');return readGroups(catalog.groups.map(g=>g.client_group_id),token);},'loadPortfolio'),
     onContextChanged(fn){listener=fn;},
-    close(){if(closed)return;closed=true;revision++;for(const name of eventNames)viz.removeEventListener?.(name,change);viz.dispose();catalog=null;signature=null;expectedFilter=null;}
+    onProgress(fn){progressListener=typeof fn==='function'?fn:()=>{};return ()=>{if(progressListener===fn)progressListener=()=>{};};},
+    getDiagnostics(){return activeOperation?progress():lastDiagnostics;},
+    close(){
+      if(closed)return;closed=true;revision++;
+      const op=activeOperation;
+      if(op&&!op.cancelled){op.cancelled=true;op.abortError=new Error('Tableau provider is closed/stale. Reload this page.');op.rejectAbort(op.abortError);}
+      for(const name of eventNames)viz.removeEventListener?.(name,change);
+      viz.dispose();catalog=null;signature=null;expectedFilter=null;progressListener=()=>{};
+    }
   };
   try{
     sheet(config.catalogWorksheetName);sheet(config.worksheetName);
