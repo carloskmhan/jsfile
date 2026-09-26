@@ -1,6 +1,7 @@
 import {planDataRequest} from './semantic/routing.js';
 import {RuleClient} from './rule_client.js';
-import {createProvider} from './tableau_adapter.js';
+import {createProvider,formatRuntimeError,runtimeErrorDetails} from './tableau_adapter.js';
+// Error diagnostics patch 6.0.1-diag; wave-dot UI and all queries are retained.
 import {validateCatalog,catalogWithClients,catalogLookup} from './group_catalog.js';
 import {driverCatalog} from './driver_catalog.js';
 import {norm} from './rule_parser.js';
@@ -105,7 +106,7 @@ export async function main(config){
        await provider.verifyCatalog(); // Names/IDs still available before confirming this snapshot.
        if(requestEpoch!==epoch||sourceVersion!==provider.version)throw new Error('The authorised catalog changed after preview. Submit again.');
        const out=client.confirm(r.previewToken);a.replaceChildren(a.firstChild,a.querySelector('.message'));results(a,out);accepted(out);
-     }catch(e){client.invalidate();a.querySelector('.message').textContent='No report produced: '+e.message;}
+     }catch(e){client.invalidate();a.querySelector('.message').textContent='No report produced: '+formatRuntimeError(e,{stage:'CONFIRM_REPORT'});}
      finally{run.dataset.finished=cancel.dataset.finished='true';busy=false;controls();}
    };
    cancel.onclick=()=>{client.cancel();run.dataset.finished=cancel.dataset.finished='true';run.disabled=cancel.disabled=true;a.querySelector('.message').textContent='Cancelled. No report calculation ran.';};
@@ -124,24 +125,35 @@ export async function main(config){
  async function send(){
    const q=$('question').value.trim();if(!q||busy||!ready)return;
    busy=true;controls();$('question').value='';message('user',q);const a=message('assistant','Reading authorised Tableau index and selected group data…',{loading:true});const thisEpoch=epoch;
+   let failureStage='REFRESH_GROUP_INDEX',requestedGroupCount;
    try{
      await readCatalog();if(epoch!==thisEpoch)throw new Error('Available groups changed. Review the new scope and submit the request again.');
      if(!groups.length)throw new Error('No groups are available in the index for this session. No static catalog fallback is used.');
+     failureStage='PLAN_DATA_REQUEST';
      const request=planDataRequest(q,config.semanticCatalog,config.commandPatterns,client.state,{selectedClientGroupId:$('group').value});
      if(!request.ok){if(request.code==='MISSING_REQUIRED_SLOT')pendingQuestion=q;results(a,{ok:false,status:'clarify',code:request.code,answer:request.message});return;}
      const chosen=request.groups,bare=chosen.length===1&&[chosen[0].client_group_id,chosen[0].client_group_name,...chosen[0].aliases].some(x=>norm(x)===norm(q));
      const question=pendingQuestion&&bare?pendingQuestion+' for '+chosen[0].client_group_id:q;
      client.invalidate();
+     failureStage=request.portfolio?'LOAD_PORTFOLIO_DATA':'LOAD_GROUP_DATA';
+     requestedGroupCount=request.portfolio?groups.length:request.groupIds.length;
      const rows=request.portfolio?await provider.loadPortfolio():await provider.loadGroups(request.groupIds);
      if(epoch!==thisEpoch)throw new Error('Source changed while fetching data. No stale answer was produced.');
+     failureStage='NORMALIZE_LOADED_DATA';
      config.semanticCatalog=catalogWithClients(provider.catalog,rows);
      metadata=client.setData(rows,{portfolioComplete:request.portfolio,source:config.mode==='sample'?'synthetic sample CSV':'authenticated Tableau '+config.worksheetName});
      config.semanticCatalog.driverLabels=driverCatalog(metadata.rows).labels;
      const ctx={};if(chosen[0])ctx.selectedClientGroupId=chosen[0].client_group_id;
      if($('entity').value&&(!lastGroupId||chosen[0]?.client_group_id===lastGroupId))ctx.selectedEntityId=$('entity').value;
      if($('month').value)ctx.selectedMonth=$('month').value;else if(config.defaultReportingMonth)ctx.selectedMonth=config.defaultReportingMonth;
+     failureStage='INTERPRET_QUERY_AND_PREVIEW';
      preview(a,client.prepare(question,ctx));
-   }catch(e){client.invalidate();results(a,{ok:false,answer:'No answer produced: '+e.message});}
+   }catch(e){
+     client.invalidate();
+     const details={stage:failureStage,groupCount:requestedGroupCount};
+     results(a,{ok:false,status:'error',answer:'No answer produced: '+formatRuntimeError(e,details),
+       ...(config.debug===true?{errorDiagnostic:runtimeErrorDetails(e,details)}:{})});
+   }
    finally{busy=false;controls();$('question').focus();a.scrollIntoView({block:'center',behavior:'smooth'});}
  }
  $('form').onsubmit=e=>{e.preventDefault();send();};$('question').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();send();}};
@@ -149,12 +161,12 @@ export async function main(config){
  $('newchat').onclick=()=>{$('group').value='';groupChanged();reset({history:true});};
  $('group').onchange=()=>{groupChanged();reset();};$('entity').onchange=()=>reset();$('month').onchange=()=>reset();
  if($('group-search'))$('group-search').oninput=groupOptions;
- if($('refresh-catalog'))$('refresh-catalog').onclick=async()=>{busy=true;controls();try{sourceChanged({reason:'Manual index refresh'});await readCatalog();$('status').textContent='Group index refreshed. Previous report context cleared.';}catch(e){$('status').textContent=e.message;}finally{busy=false;controls();}};
+ if($('refresh-catalog'))$('refresh-catalog').onclick=async()=>{busy=true;controls();try{sourceChanged({reason:'Manual index refresh'});await readCatalog();$('status').textContent='Group index refreshed. Previous report context cleared.';}catch(e){$('status').textContent=formatRuntimeError(e,{stage:'REFRESH_GROUP_INDEX'});}finally{busy=false;controls();}};
  try{
    $('tableau-panel').hidden=config.mode!=='tableau';if(config.mode==='tableau')$('tableau-panel').open=true;
    provider=await createProvider(config,$('tableau-host'));provider.onContextChanged(sourceChanged);
    config.semanticCatalog=provider.catalog;groups=validateCatalog(provider.catalog);groupOptions();groupChanged();
    ready=true;busy=false;$('progress').hidden=true;$('status').textContent=config.mode==='sample'?'Ready · Synthetic CSV data · Runtime ID catalog · Preview required':`Ready · ${groups.length.toLocaleString()} available groups from ${config.catalogWorksheetName} · Details loaded on demand`;
    controls();window.addEventListener('pagehide',()=>{client.reset();client.invalidate();provider.close();metadata={rows:[]};config.semanticCatalog=null;groups=[];},{once:true});
- }catch(e){provider?.close();$('status').classList.add('error');$('status').textContent='Initialization failed: '+e.message;$('progress').hidden=true;busy=false;controls();}
+ }catch(e){provider?.close();$('status').classList.add('error');$('status').textContent='Initialization failed: '+formatRuntimeError(e,{stage:'INITIALISE_APP'});$('progress').hidden=true;busy=false;controls();}
 }

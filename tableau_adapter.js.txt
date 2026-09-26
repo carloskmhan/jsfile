@@ -1,0 +1,316 @@
+import {parseCsv,expandCsvRows,safeAttributes} from './csv_adapter.js';
+import {localText} from './network.js';
+import {indexRowsToCatalog,catalogLookup,catalogSignature} from './group_catalog.js';
+/** Error diagnostics patch 6.0.1-diag. No query/rule/permission/limit changes.
+ * Tableau v2 documents message + tableauSoftwareErrorCode. Some rejected values
+ * are strings or wrapper objects. Only allowlisted message/code fields are read;
+ * raw payloads, stacks, request URLs, credentials and customer rows are not logged.
+ */
+const errorContexts = new WeakMap();
+function guardedRead(value, key) {
+  try { return value == null ? undefined : value[key]; } catch { return undefined; }
+}
+function guardedCall(value, key) {
+  const fn = guardedRead(value, key);
+  if (typeof fn !== 'function') return undefined;
+  try { return fn.call(value); } catch { return undefined; }
+}
+function readableText(value) {
+  if (typeof value !== 'string') return '';
+  let s = value.slice(0, 2400).replace(/[\u0000-\u001f\u007f]/g, ' ').trim();
+  if (!s || /^(undefined|null|\[object Object\])$/i.test(s)) return '';
+  // Defence in depth, not a guarantee that a vendor message has no sensitive text.
+  s = s.replace(/\bBearer\s+[^\s,;]+/gi, 'Bearer [REDACTED]')
+    .replace(/\b(password|passwd|authorization|access_token|refresh_token|token|secret)\b(["']?\s*[:=]\s*)(?:"[^"\r\n]*"|'[^'\r\n]*'|[^\s,;]+)/gi, '$1$2[REDACTED]')
+    .replace(/https?:\/\/[^\s<>"']+/gi, '[URL REDACTED]')
+    .replace(/\s+/g, ' ');
+  return s.length > 1000 ? s.slice(0, 997) + '...' : s;
+}
+function readableCode(value) {
+  if (typeof value === 'number' && Number.isFinite(value)) return String(value);
+  return typeof value === 'string' && /^[a-zA-Z0-9_.:-]{1,80}$/.test(value) && !/^(undefined|null)$/i.test(value) ? value : '';
+}
+function safeIsArray(value) { try { return Array.isArray(value); } catch { return false; } }
+function describeRejected(value, depth = 0, seen = new Set()) {
+  const primitive = readableText(value);
+  if (primitive) return {message: primitive, code: '', rejectedType: typeof value};
+  const rejectedType = value === null ? 'null' : safeIsArray(value) ? 'array' : typeof value;
+  if (!value || !['object', 'function'].includes(typeof value) || depth > 3 || seen.has(value))
+    return {message: '', code: '', rejectedType};
+  seen.add(value);
+  let message = '', code = '';
+  for (const key of ['message', 'errorMessage', 'description', 'detail', 'statusText']) {
+    message = readableText(guardedRead(value, key));
+    if (message) break;
+  }
+  for (const key of ['tableauSoftwareErrorCode', 'errorCode', 'code', 'id']) {
+    code = readableCode(guardedRead(value, key));
+    if (code) break;
+  }
+  // Optional compatibility methods, not an assumption about Tableau v2's API.
+  if (!message) message = readableText(guardedCall(value, 'getMessage'));
+  if (!code) code = readableCode(guardedCall(value, 'getErrorCode'));
+  const nested = safeIsArray(value)
+    ? [0, 1, 2].map(k => guardedRead(value, k))
+    : ['error', 'cause', 'reason', 'details', 'response', 'errors'].map(k => guardedRead(value, k));
+  for (const item of nested) {
+    if (item === undefined) continue;
+    const found = describeRejected(item, depth + 1, seen);
+    if (!message) message = found.message;
+    if (!code) code = found.code;
+    if (message && code) break;
+  }
+  return {message, code, rejectedType};
+}
+function cleanErrorContext(context = {}) {
+  const result = {};
+  for (const key of ['stage', 'worksheet', 'method', 'operation']) {
+    const v = readableText(guardedRead(context, key));
+    if (v) result[key] = v.slice(0, 150);
+  }
+  for (const key of ['groupCount', 'returnedRows', 'elapsedMs']) {
+    const v = guardedRead(context, key);
+    if (Number.isFinite(v) && v >= 0) result[key] = Math.round(v);
+  }
+  return result;
+}
+export function runtimeErrorDetails(error, context = {}) {
+  const known = error && ['object', 'function'].includes(typeof error) ? errorContexts.get(error) : null;
+  const info = known || describeRejected(error);
+  return {
+    ...cleanErrorContext(context),
+    ...info,
+    message: info.message || 'The operation failed without a readable error message. The failure stage is shown; the underlying cause has not been identified.'
+  };
+}
+export function formatRuntimeError(error, context = {}) {
+  const d = runtimeErrorDetails(error, context);
+  const tags = [];
+  if (d.stage) tags.push(d.stage);
+  if (d.worksheet) tags.push('sheet=' + d.worksheet);
+  if (d.groupCount !== undefined) tags.push('requested groups=' + d.groupCount.toLocaleString('en-US'));
+  if (d.code) tags.push('code=' + d.code);
+  return (tags.length ? '[' + tags.join(' | ') + '] ' : '') + d.message;
+}
+export function withErrorContext(error, context = {}) {
+  const d = runtimeErrorDetails(error, context);
+  const out = new Error(formatRuntimeError(error, context));
+  if (d.code) out.tableauSoftwareErrorCode = d.code;
+  errorContexts.set(out, Object.freeze(d));
+  return out;
+}
+
+/** Authenticated Tableau v2 provider. Uses TWO sheets in the same active dashboard.
+ * Index: only group ID/name. Detail: group ID/name/location + builder JSON.
+ * No customer master or alias file is loaded. Every data request is ID-scoped.
+ */
+const bytes=s=>new TextEncoder().encode(s).length;
+const unique=a=>[...new Set(a)];
+const eqSet=(a,b)=>a.length===b.length&&a.every(x=>b.includes(x));
+function detailFields(config){return Object.values(config.fields).filter(Boolean);}
+function limits(config){return{maxIndexRows:config.maxIndexRows??100000,maxPortfolioGroups:config.maxPortfolioGroups??500,maxDataRows:config.maxDataRows??100000,maxJsonBytes:config.maxJsonBytes??5000000,maxTotalJsonBytes:config.maxTotalJsonBytes??30000000};}
+export function tableauRowToClient(row,group,fields,options={}) {
+  if(typeof row[fields.id]!=='string'||row[fields.id].trim()!==group.client_group_id)throw new Error('Returned group ID differs from requested ID or is not a STRING dimension.');
+  if(typeof row[fields.name]!=='string'||!row[fields.name].trim())throw new Error('RWA_DATA returned a missing group display name.');
+  const raw=row[fields.json];
+  if(typeof raw==='string'&&bytes(raw)>(options.maxJsonBytes??5000000))throw new Error('Group JSON exceeds maxJsonBytes; do not truncate.');
+  let payload;try{payload=typeof raw==='string'?JSON.parse(raw.replace(/^\uFEFF/,'')):raw;}catch{throw new Error('Invalid/truncated json_data. Put the complete JSON text on Detail, not ATTR(*) or a shortened tooltip.');}
+  if(!Array.isArray(payload?.rows)||!payload.rows.length)throw new Error('json_data.rows must be a nonempty array.');
+  if(payload.metadata?.unit&&payload.metadata.unit!==(options.unit||'USDm'))throw new Error('JSON unit differs from configured unit; no implicit currency/unit conversion.');
+  if(payload.rows.length>(options.maxDataRows??100000))throw new Error('Too many entity-month rows in JSON.');
+  const entities=new Map();
+  for(const r of payload.rows){
+    if(typeof r.entity_id!=='string'||!r.entity_id.trim()||typeof r.entity!=='string'||!r.entity.trim())throw new Error('Each JSON row needs a nonempty string entity_id (LEID) and entity display name.');
+    if(r.client_group_id!==undefined&&r.client_group_id!==group.client_group_id)throw new Error('Nested row group differs from the authorised outer group.');
+    const id=r.entity_id.trim();
+    if(!entities.has(id))entities.set(id,{entity_id:id,entity_name:r.entity.trim(),months:[]});
+    const e=entities.get(id);
+    if(e.entity_name!==r.entity.trim())throw new Error(`LEID ${id} has inconsistent display names within this payload. Rebuild using the approved as-of name policy.`);
+    e.months.push({month:r.month,rwa_prev:r.rwa_prev,rwa_curr:r.rwa_curr,drivers:r.drivers,
+      attributes:safeAttributes(r.attributes||{}),
+      ...(r.driver_groups!==undefined||payload.driver_groups!==undefined?{driver_groups:r.driver_groups||Object.fromEntries(Object.entries(payload.driver_groups||{}).filter(([d])=>Object.hasOwn(r.drivers||{},d)))}:{}),
+      ...Object.fromEntries(['product','booking_location','record_id'].filter(k=>r[k]!=null).map(k=>[k,r[k]]))});
+  }
+  const client={client_group_id:group.client_group_id,client_group_name:group.client_group_name,
+    group_location:fields.location?row[fields.location]||'NOT_PROVIDED':'NOT_PROVIDED',
+    rwa_json:{entities:[...entities.values()]},source_display_name:row[fields.name],metadata:payload.metadata||{}};
+  expandCsvRows([client]);return client;
+}
+/** maxRows:0 requests all rows; flags/counts are checked, never assumed complete. */
+export async function readWorksheetRows(worksheet,config,mode='detail') {
+  let stage=mode==='index'?'READ_GROUP_INDEX':'READ_RWA_DATA';
+  const worksheetName=mode==='index'?config.catalogWorksheetName:config.worksheetName;
+  try {
+  if(typeof worksheet?.getSummaryDataAsync!=='function')throw new Error('Tableau v2 getSummaryDataAsync unavailable.');
+  const table=await worksheet.getSummaryDataAsync({maxRows:0,ignoreAliases:true,ignoreSelection:true});
+  stage=mode==='index'?'VALIDATE_GROUP_INDEX':'VALIDATE_RWA_DATA_TABLE';
+  if(typeof table?.getColumns!=='function'||typeof table?.getData!=='function'||typeof table?.getTotalRowCount!=='function')throw new Error('Invalid Tableau summary response.');
+  const columns=table.getColumns(),data=table.getData();
+  if(!Array.isArray(data)||!Array.isArray(columns)||table.getTotalRowCount()!==data.length||table.getIsTotalRowCountLimited?.())throw new Error('Incomplete/truncated Tableau response. No analysis performed.');
+  const max=mode==='index'?limits(config).maxIndexRows:limits(config).maxPortfolioGroups;
+  if(data.length>max)throw new Error(`${mode} row count exceeds configured limit (${max}). Do not raise it without size/latency validation.`);
+  const names=columns.map(c=>c.getFieldName());if(new Set(names).size!==names.length)throw new Error('Duplicate Tableau field names.');
+  const required=mode==='index'?Object.values(config.catalogFields):detailFields(config);
+  for(const field of required)if(!names.includes(field))throw new Error(`Missing ${mode} field: ${field}. Use its exact Tableau field name.`);
+  if(mode==='index'&&names.includes(config.fields.json))throw new Error('The index worksheet must NOT include json_data. Use only the ID/name dimensions.');
+  const selected=columns.filter(c=>required.includes(c.getFieldName()));
+  return data.map(cells=>Object.fromEntries(selected.map(c=>{
+    const i=c.getIndex();if(!Number.isInteger(i)||i<0||i>=cells.length)throw new Error('Invalid Tableau cell index.');
+    return[c.getFieldName(),cells[i]?.value];
+  })));
+  } catch(error) {
+    throw withErrorContext(error,{stage,worksheet:worksheetName,method:'getSummaryDataAsync'});
+  }
+}
+export async function readWorksheetGroup(worksheet,group,config) {
+  if(config.filterBy&&config.filterBy!=='id')throw new Error('Connected edition requires ID filtering; names are not unique.');
+  try { await worksheet.applyFilterAsync(config.filterField,[group.client_group_id],'replace'); }
+  catch(error) { throw withErrorContext(error,{stage:'APPLY_GROUP_FILTER',worksheet:config.worksheetName,method:'applyFilterAsync',groupCount:1}); }
+  const rows=await readWorksheetRows(worksheet,config);
+  if(rows.length!==1)throw new Error('Expected one complete authorised outer row for the requested group ID.');
+  return tableauRowToClient(rows[0],group,config.fields,config);
+}
+let apiLoading=null;
+export function loadTableauV2(url,timeoutMs=60000){
+  if(typeof globalThis.tableau?.Viz==='function')return Promise.resolve(globalThis.tableau);
+  if(apiLoading)return apiLoading;
+  apiLoading=new Promise((resolve,reject)=>{
+    const script=document.createElement('script');script.src=url;script.async=true;script.dataset.rwaTableauApi='v2';
+    let settled=false;const done=error=>{if(settled)return;settled=true;clearTimeout(timer);script.onload=null;script.onerror=null;if(error){script.remove();reject(error);}else resolve(globalThis.tableau);};
+    const timer=setTimeout(()=>done(new Error('Tableau API load timed out.')),timeoutMs);
+    script.onload=()=>done(typeof globalThis.tableau?.Viz==='function'?null:new Error('Use an approved Tableau v2 classic script exposing tableau.Viz.'));
+    script.onerror=()=>done(new Error('Tableau script load failed. Check sign-in, URL and CSP.'));document.head.append(script);
+  }).catch(e=>{apiLoading=null;throw e;});return apiLoading;
+}
+export async function createProvider(config,host) {
+  if(config.filterBy&&config.filterBy!=='id')throw new Error('filterBy must be id; group names can be duplicated.');
+  const indexFields=config.catalogFields||{id:config.fields.id,name:config.fields.name};
+  config={...config,catalogFields:indexFields};
+  if(config.mode==='sample') {
+    const rawRows=parseCsv(await localText(config.sampleCsvUrl,{maxBytes:config.maxSampleBytes??30000000}));
+    const catalog=indexRowsToCatalog(rawRows,config.fields,{...config,source:'synthetic sample CSV'});
+    const rawById=new Map();for(const r of rawRows){const id=r[config.fields.id];if(rawById.has(id))throw new Error('Sample CSV has duplicate outer group IDs.');rawById.set(id,r);}
+    const signature=catalogSignature(catalog);let closed=false;
+    const ensure=()=>{if(closed)throw new Error('Provider is closed.');};
+    const selected=ids=>{ensure();return unique(ids).map(id=>{const g=catalogLookup(catalog).byId.get(id);if(!g)throw new Error('Group is not available in this data scope.');return tableauRowToClient(rawById.get(id),g,config.fields,config);});};
+    return {catalog,version:0,async refreshCatalog(){ensure();return catalog;},async verifyCatalog(){ensure();return signature;},async load(group){return selected([group.client_group_id])[0];},async loadGroups(ids){return selected(ids);},async loadPortfolio(){if(catalog.groups.length>limits(config).maxPortfolioGroups)throw new Error('Portfolio exceeds maxPortfolioGroups.');return selected(catalog.groups.map(g=>g.client_group_id));},onContextChanged(){},close(){closed=true;}};
+  }
+  if(config.mode!=='tableau'||config.catalogSource!=='tableau')throw new Error('Live catalogSource must be tableau. Static alias/catalog fallback is disabled.');
+  if(!config.catalogWorksheetName||config.catalogWorksheetName===config.worksheetName)throw new Error('Configure two distinct worksheets: catalogWorksheetName and worksheetName.');
+  const origin=new URL(config.tableauUrl).origin;
+  let api;
+  try { api=await loadTableauV2(config.apiUrl||origin+'/javascripts/api/tableau-2.8.2.min.js',config.timeoutMs||60000); }
+  catch(error) { throw withErrorContext(error,{stage:'LOAD_TABLEAU_SDK',method:'classic script'}); }
+  let viz,closed=false,poisoned=false,revision=0,listener=()=>{},catalog=null,signature=null,tail=Promise.resolve(),expectedFilter=null;
+  await new Promise((resolve,reject)=>{
+    let done=false;const timer=setTimeout(()=>{if(done)return;done=true;viz?.dispose();reject(new Error('Tableau initialization timed out. Verify SSO and embedding permissions.'));},config.timeoutMs||60000);
+    try{viz=new api.Viz(host,config.tableauUrl,{hideTabs:true,hideToolbar:true,width:'100%',height:'520px',onFirstInteractive(){if(done)return;done=true;clearTimeout(timer);resolve();}});}catch(e){done=true;clearTimeout(timer);reject(e);}
+  }).catch(error=>{throw withErrorContext(error,{stage:'INITIALISE_TABLEAU_VIZ',method:'Viz'});});
+  let activeDiagnostic={};
+  function stage(name,details={}) {
+    activeDiagnostic={...activeDiagnostic,...details,stage:name};
+  }
+  function sheet(name){
+    const active=viz.getWorkbook().getActiveSheet();
+    if(active.getSheetType()!=='dashboard')throw new Error('Embed the DASHBOARD containing both RWA_GROUP_INDEX and RWA_DATA, not a standalone worksheet.');
+    const w=active.getWorksheets().find(w=>w.getName()===name);
+    if(!w)throw new Error('Worksheet is not in the active dashboard: '+name);return w;
+  }
+  function notify(reason){revision++;listener({reason,version:revision});}
+  function ensure(token=revision){if(closed||poisoned)throw new Error('Tableau provider is closed/stale. Reload this page.');if(token!==revision)throw new Error('Tableau scope changed during the request. Submit again after refreshing the index.');}
+  function queue(work,operation='TABLEAU_REQUEST'){
+    const job=tail.then(async()=>{
+      activeDiagnostic={stage:'START_TABLEAU_REQUEST',operation};
+      const started=Date.now();let timer;
+      try {
+        ensure();const token=revision;
+        return await Promise.race([work(token),new Promise((_,reject)=>{timer=setTimeout(()=>{poisoned=true;notify('Timed out; late results discarded');reject(new Error('Tableau request timed out. Reload the page; no late response will be used.'));},config.timeoutMs||60000);})]);
+      } catch(error) {
+        throw withErrorContext(error,{...activeDiagnostic,elapsedMs:Date.now()-started});
+      } finally { clearTimeout(timer);activeDiagnostic={}; }
+    });
+    tail=job.catch(()=>{});return job;
+  }
+  async function getIndex(token){
+    stage('READ_GROUP_INDEX',{worksheet:config.catalogWorksheetName,method:'getSummaryDataAsync'});
+    const rr=await readWorksheetRows(sheet(config.catalogWorksheetName),config,'index');ensure(token);
+    stage('BUILD_GROUP_INDEX',{returnedRows:rr.length});
+    return indexRowsToCatalog(rr,indexFields,{...config,source:'authenticated Tableau '+config.catalogWorksheetName});
+  }
+  async function refresh(token){
+    const next=await getIndex(token),sig=catalogSignature(next);
+    if(signature!==null&&sig!==signature){catalog=next;signature=sig;notify('Authorised index changed; previous context invalidated');return catalog;}
+    if(catalog&&sig===signature)return catalog;
+    catalog=next;signature=sig;return catalog;
+  }
+  async function assertIndexUnchanged(token){
+    const next=await getIndex(token),sig=catalogSignature(next);
+    stage('VERIFY_GROUP_INDEX_UNCHANGED',{worksheet:config.catalogWorksheetName});
+    if(sig!==signature){catalog=next;signature=sig;notify('Index changed during analysis. Restrict the application group filter to RWA_DATA, not RWA_GROUP_INDEX.');throw new Error('Group index changed during the detail request. No answer produced. Check filter actions / Apply to Selected Worksheets, or refresh the authorised scope.');}
+  }
+  const change=e=>{
+    const eventName=e?.getEventName?.();
+    // Suppress ONLY our exact data-sheet ID filter. All other changes invalidate,
+    // even during a request. The index is reread after every filter/read operation.
+    if(eventName==='filterchange'&&e.getWorksheet?.()?.getName()===config.worksheetName&&e.getFieldName?.()===config.filterField&&expectedFilter){
+      const expected=expectedFilter;
+      if(typeof e.getFilterAsync==='function')Promise.resolve(e.getFilterAsync()).then(f=>{
+        const values=(f.getAppliedValues?.()||[]).map(x=>String(x.value));
+        if(expected!==expectedFilter||f.getIsExcludeMode?.()||!eqSet(values,expected.ids))notify('Unexpected group filter change');
+      }).catch(()=>notify('Could not verify group filter event'));
+      else notify('Unverifiable group filter event');
+      return;
+    }
+    notify('Tableau filter, parameter, tab or custom view changed');
+  };
+  const eventNames=['filterchange','parametervaluechange','tabswitch','customviewload'];
+  for(const name of eventNames)viz.addEventListener?.(name,change);
+  async function readGroups(ids,token){
+    ensure(token);if(!catalog)throw new Error('Load the authorised group index first.');
+    ids=unique(ids);stage('CHECK_REQUESTED_GROUPS',{groupCount:ids.length,worksheet:config.worksheetName});if(!ids.length)throw new Error('No authorised groups selected.');
+    if(ids.length>limits(config).maxPortfolioGroups)throw new Error('Too many selected groups. Narrow the approved scope; a partial ranking is not returned.');
+    const lookup=catalogLookup(catalog).byId;
+    if(ids.some(id=>!lookup.has(id)))throw new Error('A requested group is not available in the current authorised index.');
+    const w=sheet(config.worksheetName);expectedFilter={ids:[...ids]};
+    stage('APPLY_GROUP_FILTER',{method:'applyFilterAsync'});
+    await w.applyFilterAsync(config.filterField,ids,'replace');ensure(token);
+    // Verify the actual field values too, not only the notification.
+    if(typeof w.getFiltersAsync==='function'){
+      stage('VERIFY_GROUP_FILTER',{method:'getFiltersAsync'});
+      const filters=await w.getFiltersAsync();ensure(token);
+      const filter=filters.find(f=>f.getFieldName?.()===config.filterField);
+      if(!filter||filter.getIsExcludeMode?.()||!eqSet((filter.getAppliedValues?.()||[]).map(v=>String(v.value)),ids))throw new Error('ID filter did not resolve to the requested exact values.');
+    }
+    stage('READ_RWA_DATA',{method:'getSummaryDataAsync'});
+    const rr=await readWorksheetRows(w,config);ensure(token);
+    stage('VALIDATE_RWA_PAYLOAD',{returnedRows:rr.length});
+    const got=new Set();let totalBytes=0;const clients=[];
+    for(const r of rr){const id=r[config.fields.id];if(typeof id!=='string'||!ids.includes(id)||got.has(id))throw new Error('Unexpected/duplicate group ID in RWA_DATA. One complete JSON row per group is required.');got.add(id);
+      totalBytes+=bytes(typeof r[config.fields.json]==='string'?r[config.fields.json]:JSON.stringify(r[config.fields.json]));
+      if(totalBytes>limits(config).maxTotalJsonBytes)throw new Error('Combined JSON exceeds maxTotalJsonBytes. Narrow the approved scope.');
+      clients.push(tableauRowToClient(r,lookup.get(id),config.fields,config));
+    }
+    stage('CHECK_DETAIL_COMPLETENESS',{returnedRows:rr.length});
+    if(!eqSet([...got],ids))throw new Error('One or more requested groups have no accessible complete RWA_DATA row. No stale/partial data fallback.');
+    if(clients.reduce((n,c)=>n+c.rwa_json.entities.reduce((m,e)=>m+e.months.length,0),0)>limits(config).maxDataRows)throw new Error('Combined entity-month row limit exceeded.');
+    await assertIndexUnchanged(token);ensure(token);
+    return ids.map(id=>clients.find(c=>c.client_group_id===id));
+  }
+  const provider={
+    get catalog(){return catalog;},get version(){return revision;},
+    refreshCatalog:()=>queue(refresh,'refreshCatalog'),
+    verifyCatalog:()=>queue(async token=>{await assertIndexUnchanged(token);return signature;},'verifyCatalog'),
+    load:group=>queue(async token=>(await readGroups([group.client_group_id],token))[0],'load'),
+    loadGroups:ids=>queue(token=>readGroups(ids,token),'loadGroups'),
+    loadPortfolio:()=>queue(token=>{if(!config.allowPortfolioQueries)throw new Error('Portfolio queries are disabled in live mode. Approve the authorised scope before enabling them.');return readGroups(catalog.groups.map(g=>g.client_group_id),token);},'loadPortfolio'),
+    onContextChanged(fn){listener=fn;},
+    close(){if(closed)return;closed=true;revision++;for(const name of eventNames)viz.removeEventListener?.(name,change);viz.dispose();catalog=null;signature=null;expectedFilter=null;}
+  };
+  try{
+    sheet(config.catalogWorksheetName);sheet(config.worksheetName);
+    // A saved custom view can finish loading just after onFirstInteractive.
+    // Retry only a detected initial scope transition, never a truncation/auth error.
+    for(let attempt=0;attempt<3;attempt++){try{await provider.refreshCatalog();break;}catch(e){if(attempt===2||poisoned||!/scope changed during/.test(formatRuntimeError(e)))throw e;}}
+    return provider;
+  }catch(e){provider.close();throw e;}
+}
