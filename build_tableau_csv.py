@@ -5,7 +5,12 @@ No ML, network access, pandas, Tableau API, or third-party dependencies.
 This prepares data ONLY; it does not change the application's catalog/NLP code.
 Amounts are converted to USD millions after an explicit unit/currency declaration.
 The supported grain is repeated entity-month snapshot balances plus additive
-attribution components. Different current-side balance grains are rejected, not guessed. Previous-side source fields are informational only and are ignored for aggregation consistency. Attribution uniqueness is detail_driver + RWA Diff by driver.
+attribution components. Different current-side balance grains are rejected, not guessed. Previous-side source fields are informational only and are ignored for aggregation consistency. Attribution uniqueness is detail_driver + RWA Diff by driver. Group identity is
+client_group_id only; group name/location are display attributes resolved from the
+latest Reporting Month seen for each group ID. Multiple labels in the SAME month
+are allowed too. A stable lexical ordering chooses one observed name/location
+pair for display; all variants are recorded in manifest.json. This is not a
+claim that the selected label is the authoritative customer master record.
 """
 from __future__ import annotations
 import argparse
@@ -25,7 +30,7 @@ from datetime import datetime
 from decimal import Decimal, InvalidOperation
 from collections import Counter
 
-VERSION = "1.0.6-review"
+VERSION = "1.0.8-review"
 FORBIDDEN = {"__proto__", "constructor", "prototype"}
 OUT_FIELDS = ["client_group_id", "client_group_name", "group_location", "json_data"]
 REQUIRED = {"group_id", "group_name", "entity_id", "entity_name", "month", "rwa_curr", "driver", "driver_impact"}
@@ -167,6 +172,71 @@ def load_config(path: Path, input_unit: str | None, currency: str | None) -> dic
     return cfg
 
 
+
+# Labels never identify a group or decide financial deduplication. In the absence
+# of a source timestamp/master-data authority, latest-month ties need an explicit
+# display-only policy. Use one OBSERVED pair (never mix a name from one row and a
+# location from another), without majority voting over repeated driver rows.
+GROUP_DISPLAY_POLICY = "latest_reporting_month_then_lexical_observed_pair"
+
+
+def display_pair_key(pair: tuple[str, str]) -> tuple[str, str, str, str]:
+    name, location = pair
+    return keytext(name), name, keytext(location), location
+
+
+def observe_group_display(groups: dict, gid: str, name: str, location: str,
+                          month: str, line: int) -> None:
+    """Record distinct observed labels; do not reject or merge IDs by name."""
+    g = groups.setdefault(gid, {"client_group_id": gid, "_display_values": {}})
+    by_month = g["_display_values"].setdefault(month, {})
+    # Keep one source reference per observed pair, independent of driver dedupe.
+    # Financial source rows are handled separately using group ID/LEID/month.
+    by_month.setdefault((name, location), line)
+
+
+def resolve_group_displays(groups: dict) -> list[dict]:
+    """Select display values after reading ALL months; return audit records."""
+    audit = []
+    for gid in sorted(groups):
+        g = groups[gid]
+        history = g["_display_values"]
+        latest = max(history)
+        selected = min(history[latest], key=display_pair_key)
+        g["client_group_name"], g["group_location"] = selected
+        g["_display_month"] = latest
+        all_pairs = {pair for month_values in history.values() for pair in month_values}
+        if len(all_pairs) <= 1:
+            continue
+        # Only groups with variations need a detailed audit. Repeated identical
+        # rows are not duplicated in this record. Source line numbers are for
+        # inspection; they never determine the chosen display value.
+        variants = []
+        for month in sorted(history):
+            for pair in sorted(history[month], key=display_pair_key):
+                variants.append({
+                    "reporting_month": month,
+                    "client_group_name": pair[0],
+                    "group_location": pair[1],
+                    "first_source_line": history[month][pair],
+                })
+        audit.append({
+            "client_group_id": gid,
+            "policy": GROUP_DISPLAY_POLICY,
+            "display_only": True,
+            "master_data_validated": False,
+            "latest_reporting_month": latest,
+            "latest_month_has_multiple_display_pairs": len(history[latest]) > 1,
+            "months_with_multiple_display_pairs": [m for m in sorted(history) if len(history[m]) > 1],
+            "selected_display": {
+                "client_group_name": selected[0],
+                "group_location": selected[1],
+            },
+            "observed_display_values": variants,
+        })
+    return audit
+
+
 def prepare(input_path: Path, cfg: dict) -> tuple[list[dict], list[dict], list[dict], dict]:
     """Validate and aggregate before any published output is created."""
     scale = MULTIPLIERS[cfg["input_amount_unit"]]
@@ -194,12 +264,16 @@ def prepare(input_path: Path, cfg: dict) -> tuple[list[dict], list[dict], list[d
                 raise DataError(f"CSV line {line}: blank group/client ID or name")
             if any(len(x) > 512 for x in (gid, gname, eid, ename)):
                 raise DataError(f"CSV line {line}: ID/name exceeds 512 characters")
-            if gid not in groups:
-                groups[gid] = {"client_group_id": gid, "client_group_name": gname, "group_location": get("group_location") or cfg.get("missing_group_location", "NOT_PROVIDED")}
-            g = groups[gid]
+
+            # Group identity is client_group_id only. Group name/location are display
+            # attributes and may legitimately change over time. Resolve the output
+            # display value by the latest Reporting Month seen for that ID.
+            month = parse_month(get("month"), cfg.get("extra_date_formats", []))
+            if not re.fullmatch(r"20\d{2}-(0[1-9]|1[0-2])", month):
+                raise DataError(f"CSV line {line}: reporting month must be between 2000 and 2099")
             loc = get("group_location") or cfg.get("missing_group_location", "NOT_PROVIDED")
-            if g["client_group_name"] != gname or g["group_location"] != loc:
-                raise DataError(f"CSV line {line}: inconsistent name/location for group ID {gid!r}; resolve as-of/master-data policy first")
+            observe_group_display(groups, gid, gname, loc, month, line)
+
             id_key = (gid, eid)
             if id_key in entity_ids and entity_ids[id_key] != ename:
                 raise DataError(f"CSV line {line}: one LEID has conflicting client names across months; current adapter requires one canonical display name")
@@ -207,9 +281,6 @@ def prepare(input_path: Path, cfg: dict) -> tuple[list[dict], list[dict], list[d
             # Client/entity names are display labels, not unique keys.
             # Distinct LEIDs may legitimately share the same client name within a group.
             # Identity and aggregation therefore use (client_group_id, LEID), never the name.
-            month = parse_month(get("month"), cfg.get("extra_date_formats", []))
-            if not re.fullmatch(r"20\d{2}-(0[1-9]|1[0-2])", month):
-                raise DataError(f"CSV line {line}: reporting month must be between 2000 and 2099")
             vals = {"rwa_curr": decimal_value(get("rwa_curr"), f"CSV line {line}/rwa_curr") * scale}
             if vals["rwa_curr"] < 0:
                 raise DataError(f"CSV line {line}: negative rwa_curr is not supported by current v5")
@@ -272,6 +343,16 @@ def prepare(input_path: Path, cfg: dict) -> tuple[list[dict], list[dict], list[d
             inv["first_month"] = min(inv["first_month"], month); inv["last_month"] = max(inv["last_month"], month)
     if not input_count:
         raise DataError("Input CSV has no data rows")
+    display_audit = resolve_group_displays(groups)
+    latest_display_ties = sum(a["latest_month_has_multiple_display_pairs"] for a in display_audit)
+    if display_audit:
+        warnings.append(
+            f"{len(display_audit)} group ID(s) have multiple display name/location pairs; "
+            f"{latest_display_ties} have multiple pairs in their latest reporting month. "
+            "Build continued using one lexically selected observed pair from the latest month. "
+            "See group_display_resolution. Display selection is NOT customer-master validation; "
+            "group IDs and financial aggregation are unchanged."
+        )
     data_by_group = {gid: [] for gid in groups}
     quality, violations = [], []
     for (gid, eid, month), b in sorted(buckets.items()):
@@ -304,7 +385,8 @@ def prepare(input_path: Path, cfg: dict) -> tuple[list[dict], list[dict], list[d
         size = len(s.encode("utf-8"))
         if size > cfg["max_group_json_bytes"]:
             raise DataError(f"Group {gid}: JSON is {size} bytes, exceeds configured {cfg['max_group_json_bytes']}. A period/chunk transport change is required; do not truncate.")
-        outputs.append({**groups[gid], "json_data": s})
+        group_out = {k: v for k, v in groups[gid].items() if not k.startswith("_")}
+        outputs.append({**group_out, "json_data": s})
         group_sizes.append({"client_group_id": gid, "json_utf8_bytes": size, "json_characters": len(s), "entity_months": len(rr)})
     if any(x["json_characters"] > 32767 for x in group_sizes):
         warnings.append("Some JSON cells exceed Excel's 32,767-character cell limit. Do not open/edit/save the generated data CSV through an Excel worksheet.")
@@ -316,6 +398,13 @@ def prepare(input_path: Path, cfg: dict) -> tuple[list[dict], list[dict], list[d
         "The legacy catalogUrl/aliases dependency is NOT removed by this converter. This package is data preparation, not a browser/Tableau-index patch."
     ])
     manifest = {"builder_version": VERSION, "input_rows": input_count, "group_count": len(groups), "entity_month_count": len(buckets), "driver_label_count": len(inventory), "input_amount_unit": cfg["input_amount_unit"], "input_currency": cfg["currency"], "output_unit": "USDm", "source_balance_mode": cfg["balance_grain"], "snapshot_deduplication": "current-fields-equal; all prev_* fields ignored; exact duplicate (detail_driver, RWA Diff by driver) pairs de-duplicated; same driver with different impacts remains additive", "duplicate_driver_policy": "detail_driver_plus_impact", "missing_driver_policy": "unknown-not-zero", "reconciliation_tolerance_usdm": str(cfg["_tolerance"]), "reconciliation_failures": len(violations), "groups": group_sizes, "warnings": warnings}
+    manifest.update({
+        "group_identity_key": "client_group_id",
+        "group_display_policy": GROUP_DISPLAY_POLICY,
+        "groups_with_display_variations": len(display_audit),
+        "groups_with_latest_display_ties": latest_display_ties,
+        "group_display_resolution": display_audit,
+    })
     return outputs, quality, list(sorted(inventory.values(), key=lambda d: d["detail_driver"])), manifest
 
 
@@ -362,6 +451,7 @@ def build(input_path: Path, config_path: Path, out: Path, input_unit: str | None
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--version", action="version", version=VERSION)
     ap.add_argument("--input", type=Path, required=True, help="Raw CSV; IDs must already be correctly exported as text")
     ap.add_argument("--config", type=Path, default=Path(__file__).with_name("data_mapping.json"))
     ap.add_argument("--output-dir", type=Path, required=True, help="New versioned local output directory")
@@ -373,6 +463,12 @@ def main() -> int:
     except (DataError, OSError, csv.Error, json.JSONDecodeError) as exc:
         print(f"ERROR: {exc}\nBuild aborted; no existing output was replaced.", file=sys.stderr)
         return 2
+    if r["groups_with_display_variations"]:
+        print(
+            f"WARNING: {r['groups_with_display_variations']} group ID(s) have display-name/location variations "
+            f"({r['groups_with_latest_display_ties']} latest-month ties). "
+            "Build continued. Review manifest.json -> group_display_resolution; labels are display-only."
+        )
     print(f"Created {args.output_dir / 'tableau_data.csv'}")
     print(f"{r['input_rows']} source rows -> {r['entity_month_count']} entity-months -> {r['group_count']} group rows; {r['driver_label_count']} dynamic labels.")
     print(f"Reconciliation failures: {r['reconciliation_failures']}. Review manifest.json before Tableau ingestion.")
