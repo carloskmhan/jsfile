@@ -4,6 +4,9 @@ import {commitState} from './semantic/followups.js';
 import {RuleParser, RULE_VERSION, monthRange, norm} from './rule_parser.js';
 const EPS=1e-8, sum=a=>a.reduce((s,x)=>s+x,0), unique=a=>[...new Set(a)], badKey=k=>['__proto__','constructor','prototype'].includes(k);
 const clone=x=>JSON.parse(JSON.stringify(x));
+// Patch 6.0.8-basis-note-display: keep methodology in evidence, not a repeated
+// ordinary-chat warning. Actual data-quality warnings are NEVER suppressed.
+const DERIVED_PREVIOUS_INFO = 'Comparison basis: previous RWA is derived as current RWA minus deduplicated reported driver impacts; it is NOT an independently observed prior-month balance. Raw prev_* fields were ignored upstream. Reconciliation is algebraic, not independent verification.';
 export class RwaQaEngine {
  constructor(rows=[],options={}) {
   if(rows===null&&Array.isArray(options)){rows=options;options=arguments[2]||{};} // legacy deterministic call shape only
@@ -74,7 +77,7 @@ export class RwaQaEngine {
   const aligned=list.filter(d=>Math.sign(d.impact)===alignedDirection&&Math.abs(d.impact)>EPS),offsets=list.filter(d=>alignedDirection&&Math.sign(d.impact)===-alignedDirection);
   const main=aligned[0]||null;
   const derivedPreviousRows=rows.filter(isDerivedPrevious).length;
-  if(derivedPreviousRows)warnings.push('Comparison basis: previous RWA is derived as current RWA minus deduplicated reported driver impacts; it is NOT an independently observed prior-month balance. Raw prev_* fields were ignored upstream. Reconciliation is algebraic, not independent verification.');
+  if(derivedPreviousRows)warnings.push(DERIVED_PREVIOUS_INFO);
   if(rows.some(r=>isDerivedPrevious(r)&&r.rwa_prev<0))warnings.push('A negative derived comparison basis exists. It is not a negative reported RWA balance; check the driver bridge. Percentage change is unavailable when the aggregate basis is not positive.');
   const continuityIssues=monthly.slice(1).filter((m,i)=>Math.abs(m.prev-monthly[i].curr)>tolerance).map(m=>m.month);
   if(continuityIssues.length)warnings.push('Opening/closing balances are discontinuous at '+continuityIssues.join(', ')+'. Window movement is the sum of reported monthly movements, not an endpoint bridge.');
@@ -270,8 +273,17 @@ export class RwaQaEngine {
   if(p.candidateGroups?.length)parts.unshift('Basis: limited to the prior displayed group set.');
   if(p.excludedGroups?.length)parts.unshift('Groups excluded: '+p.excludedGroups.join(', ')+'.');
   const notes=unique(warnings);
-  const narrative=p.concise?parts.filter(Boolean).slice(0,p.excludedDrivers.length||p.excludedEntities.length?3:2).join(' '):parts.filter(Boolean).join('\n');
-  return {result,table,answer:narrative+(notes.length?'\n\nChecks: '+notes.join(' '):''),warnings:notes};
+  // Hide only the exact routine methodology sentence from the normal answer.
+  // Preserve the full warnings contract, aggregate metadata and reconciliation
+  // report so this remains a display-only change, not a different RWA basis.
+  const methodologyNotes=notes.filter(note=>note===DERIVED_PREVIOUS_INFO);
+  const displayWarnings=notes.filter(note=>note!==DERIVED_PREVIOUS_INFO);
+  let narrative=p.concise?parts.filter(Boolean).slice(0,p.excludedDrivers.length||p.excludedEntities.length?3:2).join(' '):parts.filter(Boolean).join('\n');
+  // A percentage based on a constructed opening balance must still be labelled.
+  // Contribution shares use net movement, not prior balance, and are unaffected.
+  if(methodologyNotes.length&&(p.metric==='PERCENT'||p.condition?.metric==='PERCENT'))
+   narrative+='\nPercentage basis: derived previous RWA, not an observed prior-month balance.';
+  return {result,table,answer:narrative+(displayWarnings.length?'\n\nChecks: '+displayWarnings.join(' '):''),warnings:notes,displayWarnings,methodologyNotes};
  }
  answer(question,context={}){
   const parsed=this.parseQuestion(question,context);
