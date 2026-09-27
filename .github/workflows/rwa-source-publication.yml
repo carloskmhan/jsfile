@@ -1,0 +1,61 @@
+name: Assemble expanded RWA sources on staging
+
+on:
+  push:
+    branches: [rwa-publish-staging-20260927]
+    paths: [.github/workflows/rwa-source-publication.yml]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rwa-source-publication-20260927
+  cancel-in-progress: false
+
+jobs:
+  assemble:
+    if: github.repository == 'carloskmhan/jsfile'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Fetch the exact staging revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF_NAME" = 'rwa-publish-staging-20260927'
+          git init .
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --no-tags --depth=1 origin "$GITHUB_SHA"
+          git checkout -B "$GITHUB_REF_NAME" FETCH_HEAD
+
+      - name: Assemble existing hash-checked sources as individual files
+        shell: bash
+        env:
+          PYTHONUTF8: '1'
+        run: |
+          set -euo pipefail
+          python .github/rwa_publish_once.py
+          cd rwa_latest
+          sha256sum -c SHA256SUMS.txt
+          echo 'e23e82704b2567d421a381adde2ec0c1b632646e9779604d559e76f5392d5f43  UPLOAD_MANIFEST.json' | sha256sum -c -
+
+      - name: Commit the assembled folder to staging only
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF_NAME" = 'rwa-publish-staging-20260927'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f -- rwa_latest
+          python - <<'PY'
+          import subprocess
+          paths = subprocess.check_output(['git', 'diff', '--cached', '--name-only', '-z']).decode().split('\0')
+          assert all(not p or p.startswith('rwa_latest/') for p in paths)
+          assert sum(bool(p) for p in paths) == 186
+          PY
+          git commit -m 'Assemble 186 expanded current RWA source files'
+          basic=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $basic" push origin "HEAD:refs/heads/${GITHUB_REF_NAME}"
+          unset basic GH_TOKEN
