@@ -1,0 +1,14 @@
+{
+  "name": "rwa-tableau-connected",
+  "private": true,
+  "version": "6.0.0-review",
+  "type": "module",
+  "description": "Two authenticated Tableau worksheets; runtime ID catalog; deterministic rule reporting; no ML runtime.",
+  "scripts": {
+    "serve": "node serve.mjs",
+    "test": "node tests/run_all.mjs",
+    "evaluate": "node tools/evaluate.mjs",
+    "build:rules": "python build_command_patterns.py",
+    "build:standalone": "python tools/build_standalone.py"
+  }
+}

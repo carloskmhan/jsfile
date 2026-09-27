@@ -1,0 +1,35 @@
+{
+  "suite": "Holdout workflow integrity checks, not a blind corpus evaluation",
+  "passed": 7,
+  "failed": 0,
+  "tests": [
+    {
+      "test": "Empty holdout cannot be evaluated",
+      "passed": true
+    },
+    {
+      "test": "Regression label cannot pass holdout guard",
+      "passed": true
+    },
+    {
+      "test": "Relabelled known question is detected",
+      "passed": true
+    },
+    {
+      "test": "Incomplete accepted gold cannot be sealed",
+      "passed": true
+    },
+    {
+      "test": "Intact guard fixture verifies hashes",
+      "passed": true
+    },
+    {
+      "test": "Corpus edit after seal is detected",
+      "passed": true
+    },
+    {
+      "test": "Runtime hash mismatch retires seal",
+      "passed": true
+    }
+  ]
+}

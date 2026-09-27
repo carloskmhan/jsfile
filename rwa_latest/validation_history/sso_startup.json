@@ -1,0 +1,120 @@
+{
+  "version": "6.0.5-signin-review",
+  "base": "Latest v6: large_batch_fix adapter + timeout_progress_fix app + query_loading_patch HTML/CSS + name_lookup_fix catalog",
+  "changedRuntimeFiles": [
+    {
+      "file": "demo.html",
+      "beforeSha256": "3b7025058d8b62798eb2eb498a87624e5e39bc82893147ba18694a0b05d32c79",
+      "afterSha256": "27bbb0b2fdfd881d8677a911bc996413a00971dc92481fbd5fc61ae7a4dceaa6"
+    },
+    {
+      "file": "loading_screen.css",
+      "beforeSha256": "d4f57c6fb539582c02485c0d27199c37c028e732c8696699523cd91388e54dc0",
+      "afterSha256": "135329f121d4c3ead68368fcc7901b30d9a2e8ee148e2413e7b32d489f278c13"
+    },
+    {
+      "file": "loading_screen.js",
+      "beforeSha256": "a2b6409fa4b9d5044e3aa4076da3d27bc1b668541ccbfda36e1afa047acac959",
+      "afterSha256": "316d0d13c48d03f626080246f2036a2c48c3d741a58060906f0ecfd268188ac8"
+    },
+    {
+      "file": "bootstrap.js",
+      "beforeSha256": "78903181702fbab3a144dcfd8788ac98edd2728797e65bf55c86e6c5bdc28a60",
+      "afterSha256": "b81c6f4e05ace843c526b76ee2ce550bc13953527771cfe9a9248ff985767080"
+    },
+    {
+      "file": "app.js",
+      "beforeSha256": "ff36961486fb1fbbf2e3c1b48dd89cf550c324f593b64977df623b5b22b58542",
+      "afterSha256": "b3cfb3cc6c71cddb481d1cac00598168c3b0f67cdf306143cef83fbcc362f177"
+    },
+    {
+      "file": "tableau_adapter.js",
+      "beforeSha256": "2b167a8e007fee7570b7a83393699f98d57a971466966e1ec9e9838e66a37422",
+      "afterSha256": "786c26787b8b7d529ba50b3cbc65155efd6f2d2d7b876cfd72a047e89dd56b5b"
+    }
+  ],
+  "unchangedKeyFiles": [
+    {
+      "file": "rwa_engine.js",
+      "sha256": "4a10e977e4bb431fb11976611de507f6f8189bf541edaf878387ee7d371bebf8"
+    },
+    {
+      "file": "csv_adapter.js",
+      "sha256": "c2e3a4b9fa2998d23ae0de76b998d89f319f1854a9667512e519306e7d5a9387"
+    },
+    {
+      "file": "rule_client.js",
+      "sha256": "1dbeca0f7f147b0fdcfdcb1222ef57cb686cff5f933fd8e4c56e5244c6f2d58a"
+    },
+    {
+      "file": "group_catalog.js",
+      "sha256": "9fdfbb74cb95a7f85b05636f8a1500ab0c0f9ce70dec163b69808c55b5a9e266"
+    },
+    {
+      "file": "driver_catalog.js",
+      "sha256": "06e0af0f5ab53e784e31737a1819575610f1fb548a9d551929668d24f413ca8d"
+    },
+    {
+      "file": "network.js",
+      "sha256": "e9dc933a0cd6407cf7aae19d54563cf129602e1c051a9c34732c8d73e2f0d3a3"
+    },
+    {
+      "file": "command_patterns.txt",
+      "sha256": "998dc85ec49e815a9481ee8e900c4341f092ccf37c7b5db54e9d033814986799"
+    },
+    {
+      "file": "tableau_config.txt",
+      "sha256": "2f655646a618b514c88d1bb9a9dd85c8611940f0fb55132c5c36cce4f76f3060"
+    },
+    {
+      "file": "styles.css",
+      "sha256": "387acaa40fd5dc7e3cc25c243219344e46d0d103b79141ec36c5322bc31fb7e0"
+    },
+    {
+      "file": "tableau_sample.csv",
+      "sha256": "231e897e26db02d9e5f66cba36dd8da935eea9326424fa03b62f3aac96e9f1cc"
+    }
+  ],
+  "browserTests": {
+    "passed": 39,
+    "failed": 0,
+    "scope": "Chromium in-memory DOM + clearly-labelled synthetic Tableau iframe. Actual click tested; no real bank SSO, SDK, HTTP/CSP or IdP tested. One slow-wait test uses virtual time.",
+    "report": "browser_report.json"
+  },
+  "connectedRegression": {
+    "passed": 84,
+    "failed": 0,
+    "suite": "tests/connected_tableau.mjs",
+    "scope": "existing mock integration"
+  },
+  "queryRegressions": [
+    {
+      "suite": "regression_626.json",
+      "passed": 626,
+      "failed": 0,
+      "total": 626,
+      "scope": "developer-known parsing/arithmetic fixtures, not independent bank UAT"
+    },
+    {
+      "suite": "regression_225.json",
+      "passed": 225,
+      "failed": 0,
+      "total": 225,
+      "scope": "developer-known parsing/arithmetic fixtures, not independent bank UAT"
+    }
+  ],
+  "httpBrowserCheck": {
+    "mode": "Local HTTP sample app; no SSO or bank data",
+    "attempted": true,
+    "passed": false,
+    "reason": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:43041/demo.html\nCall log:\n  - navigating to \"http://127.0.0.1:43041/demo.html\", waiting until \"domcontentloaded\"\n"
+  },
+  "realSSOTested": false,
+  "realTableauTested": false,
+  "independentUserValidation": false,
+  "limits": [
+    "In-memory mock tests cannot verify bank SSO, cookie/popup/frame policy or real background Tableau API behaviour.",
+    "Initial-view timeout includes human sign-in and view loading, not an auth success detector.",
+    "No new MiniLM A/B performance claim."
+  ]
+}

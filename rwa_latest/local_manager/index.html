@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RWA Capabilities</title><link rel="stylesheet" href="/simple.css"></head>
+<body>
+<header class="site-header"><a class="brand" href="/" aria-label="RWA capabilities home"><span class="brand-mark">R</span><span>RWA <b>Capabilities</b></span></a><div class="header-right"><span class="local"><i></i> Local workspace</span><a href="/advanced" class="advanced-link">Advanced</a></div></header>
+<main class="workspace">
+<section id="home">
+ <div class="home-heading"><div><p class="eyebrow">YOUR RWA ENGINE</p><h1>Your RWA reports.<br>In your own words.</h1><p class="lead">Choose a capability, add the words people use, and check the meaning.</p></div><button id="test-engine" class="button secondary">Test engine <span aria-hidden="true">↗</span></button></div>
+ <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+ <div class="home-toolbar"><label class="search"><span class="sr-only">Search capabilities</span><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><input id="search" type="search" placeholder="Search capabilities or example questions" autocomplete="off"></label><button id="add-capability" class="button primary">+ Add new capability</button></div>
+ <div class="list-heading"><h2>Your capabilities</h2><span id="cap-count" class="muted"></span></div>
+ <div id="capability-list" class="capability-grid" aria-live="polite"></div>
+ <div id="empty-search" class="empty" hidden><h3>No matching capabilities</h3><p>Try a different search, or add a new expression.</p></div>
+ <div class="home-bottom"><span>Changes stay local until you deploy the generated file.</span><button id="download-rules" class="text-button">Download updated rules</button></div>
+</section>
+<section id="test-page" hidden>
+ <button id="back-home" class="text-button back">← All capabilities</button>
+ <div class="test-heading"><p class="eyebrow">TRY A REAL QUESTION</p><h1>Test your engine.</h1><p class="lead">Check the meaning before changing a rule. Uses your existing engine and local sample data.</p></div>
+ <div class="test-card"><label class="field-label" for="test-question">What would someone ask?</label><textarea id="test-question" class="large-input" rows="3" placeholder="Which groups increased the most last month?"></textarea>
+ <div class="test-bar"><details class="context"><summary>Test context</summary><div class="context-fields"><label>Client group<select id="test-group"></select></label><label>Reference month<input id="test-month" type="month"></label><button id="reset-conversation" class="text-button" type="button">Reset conversation</button></div></details><button id="check-question" class="button primary">Check meaning</button></div>
+ <div id="test-notice" class="notice" role="status" hidden></div>
+ <section id="test-result" class="test-result" hidden><h2 id="result-title"></h2><p id="result-message"></p><dl id="meaning-grid" class="meaning-grid"></dl><div class="test-actions"><button id="looks-right" class="button primary">✓ Looks right</button><button id="fix-interpretation" class="button secondary">Fix interpretation</button></div><p class="helper">Looks right runs the local sample and makes this report available to your next follow-up. It does not train or change rules.</p></section>
+ <div id="conversation-log" class="conversation-log"></div>
+ </div>
+</section>
+<footer class="page-footer"><span id="project-name"></span><span>No machine learning · Local authoring only <a href="/advanced">Developer tools &amp; backups</a></span></footer>
+</main>
+<dialog id="wizard" class="wizard" aria-labelledby="wizard-title">
+ <div class="wizard-top"><span id="wizard-mode" class="eyebrow">ADD CAPABILITY</span><button id="close-wizard" class="icon-button" aria-label="Close wizard">×</button></div>
+ <div id="wizard-progress" class="wizard-progress" aria-label="Wizard progress"></div>
+ <div class="wizard-body"><p id="step-label" class="step-label"></p><h2 id="wizard-title"></h2><p id="wizard-description" class="wizard-description"></p><div id="wizard-content"></div><div id="wizard-error" class="notice error" role="alert" hidden></div></div>
+ <div class="wizard-footer"><button id="wizard-back" class="button quiet">Back</button><span id="wizard-saving" class="muted"></span><button id="wizard-next" class="button primary">Continue →</button></div>
+</dialog>
+<dialog id="delete-dialog" class="confirm-dialog" aria-labelledby="delete-title"><span class="eyebrow">REMOVE CAPABILITY</span><h2 id="delete-title"></h2><p id="delete-description">Only this capability and its unused added expressions will be removed. Shared wording stays available.</p><div id="delete-notice" class="notice" hidden></div><div class="confirm-actions"><button id="cancel-delete" class="button secondary">Cancel</button><button id="confirm-delete" class="button danger">Delete</button></div></dialog>
+<script type="module" src="/simple.js"></script>
+</body></html>

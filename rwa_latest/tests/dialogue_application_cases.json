@@ -1,0 +1,676 @@
+{
+  "note": "Developer-authored dialogue/application regression; not independent blind validation. Expected fields represent explicit report commands, not semantic judgements.",
+  "conversations": [
+    {
+      "id": "D01",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "turns": [
+        {
+          "question": "Top 3 entities",
+          "expected": {
+            "action": "TOP_ENTITY",
+            "topN": 3,
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "Why?",
+          "expected": {
+            "action": "ENTITY_DRIVER",
+            "entity": "Samsung Electronics",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "What about the next one?",
+          "expected": {
+            "action": "ENTITY_DRIVER",
+            "entity": "Samsung SDI",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "Exclude FX",
+          "expected": {
+            "action": "ENTITY_DRIVER",
+            "entity": "Samsung SDI",
+            "period": "2026-06",
+            "excludedDrivers": [
+              "FX"
+            ]
+          }
+        },
+        {
+          "question": "Same for May",
+          "expected": {
+            "action": "ENTITY_DRIVER",
+            "entity": "Samsung SDI",
+            "period": "2026-05",
+            "excludedDrivers": [
+              "FX"
+            ]
+          }
+        },
+        {
+          "question": "Include FX back",
+          "expected": {
+            "action": "ENTITY_DRIVER",
+            "entity": "Samsung SDI",
+            "period": "2026-05",
+            "excludedDrivers": []
+          }
+        },
+        {
+          "question": "Compare that with last month",
+          "expected": {
+            "action": "COMPARE",
+            "entity": "Samsung SDI",
+            "comparison": [
+              "2026-05",
+              "2026-04"
+            ]
+          }
+        },
+        {
+          "question": "What are the offsets?",
+          "expected": {
+            "action": "OFFSETS",
+            "entity": "Samsung SDI",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "Does it reconcile?",
+          "expected": {
+            "action": "DATA_QUALITY",
+            "entity": "Samsung SDI",
+            "period": "2026-06"
+          }
+        }
+      ]
+    },
+    {
+      "id": "D02",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "turns": [
+        {
+          "question": "Explain Samsung Group RWA increase",
+          "expected": {
+            "action": "GROUP_ROOT_CAUSE",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "Which entity?",
+          "expected": {
+            "action": "TOP_ENTITY",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "What drove the first one?",
+          "expected": {
+            "action": "ENTITY_DRIVER",
+            "entity": "Samsung Electronics",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "What drove the second one?",
+          "expected": {
+            "action": "ENTITY_DRIVER",
+            "entity": "Samsung SDI",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "Back to the group",
+          "expected": {
+            "action": "GROUP_ROOT_CAUSE",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "What was the main driver?",
+          "expected": {
+            "action": "MAIN_DRIVER",
+            "period": "2026-06"
+          }
+        }
+      ]
+    },
+    {
+      "id": "D03",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "turns": [
+        {
+          "question": "Top 3 entities",
+          "expected": {
+            "action": "TOP_ENTITY",
+            "topN": 3,
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "Rank those by CG",
+          "expected": {
+            "action": "TOP_ENTITY",
+            "driver": "CG",
+            "period": "2026-06",
+            "candidateCount": 3
+          }
+        },
+        {
+          "question": "Which of those had the largest percentage increase",
+          "expected": {
+            "action": "TOP_ENTITY",
+            "metric": "PERCENT",
+            "period": "2026-06",
+            "candidateCount": 3
+          }
+        },
+        {
+          "question": "Why?",
+          "expected": {
+            "action": "ENTITY_DRIVER",
+            "entity": "Samsung Electronics",
+            "period": "2026-06"
+          }
+        }
+      ]
+    },
+    {
+      "id": "D04",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "turns": [
+        {
+          "question": "Top 3 entities by increase",
+          "expected": {
+            "action": "TOP_ENTITY",
+            "metric": "CHANGE",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "Same but by percentage increase",
+          "expected": {
+            "action": "TOP_ENTITY",
+            "metric": "PERCENT",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "Same but by CG",
+          "expected": {
+            "action": "TOP_ENTITY",
+            "driver": "CG",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "Same for May",
+          "expected": {
+            "action": "TOP_ENTITY",
+            "driver": "CG",
+            "period": "2026-05"
+          }
+        }
+      ]
+    },
+    {
+      "id": "D05",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "turns": [
+        {
+          "question": "Explain Samsung Group in June 2026",
+          "expected": {
+            "action": "GROUP_ROOT_CAUSE",
+            "group": "SAMSUNG GROUP",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "Do the same for Hyundai Motor Group",
+          "expected": {
+            "action": "GROUP_ROOT_CAUSE",
+            "group": "HYUNDAI MOTOR GROUP",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "Which entity",
+          "expected": {
+            "action": "TOP_ENTITY",
+            "group": "HYUNDAI MOTOR GROUP",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "Why?",
+          "expected": {
+            "action": "ENTITY_DRIVER",
+            "group": "HYUNDAI MOTOR GROUP",
+            "entity": "Hyundai Motor",
+            "period": "2026-06"
+          }
+        }
+      ]
+    },
+    {
+      "id": "D06",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "turns": [
+        {
+          "question": "Explain the RWA increase excluding FX",
+          "expected": {
+            "action": "GROUP_ROOT_CAUSE",
+            "period": "2026-06",
+            "excludedDrivers": [
+              "FX"
+            ]
+          }
+        },
+        {
+          "question": "Same for May",
+          "expected": {
+            "action": "GROUP_ROOT_CAUSE",
+            "period": "2026-05",
+            "excludedDrivers": [
+              "FX"
+            ]
+          }
+        },
+        {
+          "question": "Clear exclusions",
+          "expected": {
+            "action": "GROUP_ROOT_CAUSE",
+            "period": "2026-05",
+            "excludedDrivers": []
+          }
+        },
+        {
+          "question": "How much came from FX?",
+          "expected": {
+            "action": "DRIVER_CONTRIBUTION",
+            "driver": "FX",
+            "period": "2026-06"
+          }
+        }
+      ]
+    },
+    {
+      "id": "D07",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "turns": [
+        {
+          "question": "What drove Samsung Electronics?",
+          "expected": {
+            "action": "ENTITY_DRIVER",
+            "entity": "Samsung Electronics",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "Compare that with last month",
+          "expected": {
+            "action": "COMPARE",
+            "entity": "Samsung Electronics",
+            "comparison": [
+              "2026-06",
+              "2026-05"
+            ]
+          }
+        },
+        {
+          "question": "What are the offsets?",
+          "expected": {
+            "action": "OFFSETS",
+            "entity": "Samsung Electronics",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "How much is unexplained?",
+          "expected": {
+            "action": "DATA_QUALITY",
+            "entity": "Samsung Electronics",
+            "period": "2026-06"
+          }
+        }
+      ]
+    },
+    {
+      "id": "D08",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "turns": [
+        {
+          "question": "Which entities had the largest increase?",
+          "expected": {
+            "action": "TOP_ENTITY",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "What about the third one?",
+          "expected": {
+            "action": "ENTITY_DRIVER",
+            "entity": "Samsung C&T",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "And the next one?",
+          "expected": {
+            "action": "ENTITY_DRIVER",
+            "entity": "Samsung C&T",
+            "period": "2026-06"
+          }
+        }
+      ]
+    },
+    {
+      "id": "D09",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "turns": [
+        {
+          "question": "Was CG the main driver?",
+          "expected": {
+            "action": "DRIVER_CHECK",
+            "driver": "CG",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "How much came from CG?",
+          "expected": {
+            "action": "DRIVER_CONTRIBUTION",
+            "driver": "CG",
+            "period": "2026-06"
+          }
+        },
+        {
+          "question": "Same for May",
+          "expected": {
+            "action": "DRIVER_CONTRIBUTION",
+            "driver": "CG",
+            "period": "2026-05"
+          }
+        },
+        {
+          "question": "What about EAD?",
+          "expected": {
+            "action": "DRIVER_CONTRIBUTION",
+            "driver": "EAD",
+            "period": "2026-05"
+          }
+        }
+      ]
+    },
+    {
+      "id": "D10",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "turns": [
+        {
+          "question": "Show the trend over last 3 months",
+          "expected": {
+            "action": "TREND"
+          }
+        },
+        {
+          "question": "Which month had the largest increase?",
+          "expected": {
+            "action": "PEAK_MONTH"
+          }
+        },
+        {
+          "question": "Compare June 2026 with May 2026",
+          "expected": {
+            "action": "COMPARE",
+            "comparison": [
+              "2026-06",
+              "2026-05"
+            ]
+          }
+        },
+        {
+          "question": "Briefly",
+          "expected": {
+            "action": "COMPARE",
+            "comparison": [
+              "2026-06",
+              "2026-05"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "applications": [
+    {
+      "id": "A01",
+      "question": "Show the top 2 entities in Samsung Group in June 2026 by CG above $50m excluding FX",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "expected": {
+        "action": "TOP_ENTITY",
+        "topN": 2,
+        "driver": "CG",
+        "period": "2026-06",
+        "excludedDrivers": [
+          "FX"
+        ]
+      }
+    },
+    {
+      "id": "A02",
+      "question": "Which entities had the largest percentage increase in June 2026?",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "expected": {
+        "action": "TOP_ENTITY",
+        "metric": "PERCENT",
+        "period": "2026-06"
+      }
+    },
+    {
+      "id": "A03",
+      "question": "Which entities decreased the most in June 2026?",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "expected": {
+        "action": "TOP_ENTITY",
+        "direction": "DOWN",
+        "period": "2026-06"
+      }
+    },
+    {
+      "id": "A04",
+      "question": "Show Samsung Group trend over last 3 months",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "expected": {
+        "action": "TREND"
+      }
+    },
+    {
+      "id": "A05",
+      "question": "What changed between May 2026 and June 2026?",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "expected": {
+        "action": "COMPARE",
+        "comparison": [
+          "2026-05",
+          "2026-06"
+        ]
+      }
+    },
+    {
+      "id": "A06",
+      "question": "How much of Samsung Group increase came from EAD?",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "expected": {
+        "action": "DRIVER_CONTRIBUTION",
+        "driver": "EAD",
+        "period": "2026-06"
+      }
+    },
+    {
+      "id": "A07",
+      "question": "Was FX the main reason for the increase?",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "expected": {
+        "action": "DRIVER_CHECK",
+        "driver": "FX",
+        "period": "2026-06"
+      }
+    },
+    {
+      "id": "A08",
+      "question": "Was the increase concentrated in one subsidiary?",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "expected": {
+        "action": "CONCENTRATION",
+        "period": "2026-06"
+      }
+    },
+    {
+      "id": "A09",
+      "question": "How large is the unexplained part of the increase?",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "expected": {
+        "action": "DATA_QUALITY",
+        "period": "2026-06"
+      }
+    },
+    {
+      "id": "A10",
+      "question": "Which month had the largest RWA decrease?",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "expected": {
+        "action": "PEAK_MONTH",
+        "direction": "DOWN"
+      }
+    },
+    {
+      "id": "A11",
+      "question": "Top 3 entities by EAD excluding FX",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "expected": {
+        "action": "TOP_ENTITY",
+        "driver": "EAD",
+        "excludedDrivers": [
+          "FX"
+        ],
+        "period": "2026-06"
+      }
+    },
+    {
+      "id": "A12",
+      "question": "Compare Samsung Group with peers",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "expected": {
+        "action": "COMPARE"
+      }
+    },
+    {
+      "id": "A13",
+      "question": "What offset the increase in Samsung Group?",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "expected": {
+        "action": "OFFSETS",
+        "period": "2026-06"
+      }
+    },
+    {
+      "id": "A14",
+      "question": "Show Samsung Group current RWA",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "expected": {
+        "action": "GROUP_ROOT_CAUSE",
+        "metric": "BALANCE",
+        "period": "2026-06"
+      }
+    },
+    {
+      "id": "A15",
+      "question": "Top 2 entities above $100m",
+      "context": {
+        "selectedClientGroup": "SAMSUNG GROUP",
+        "selectedMonth": "2026-06"
+      },
+      "expected": {
+        "action": "TOP_ENTITY",
+        "topN": 2,
+        "period": "2026-06"
+      }
+    }
+  ]
+}

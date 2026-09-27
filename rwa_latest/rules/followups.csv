@@ -1,0 +1,116 @@
+﻿rule_id,pattern,patch_type,target_slot,command_id,enabled,notes
+F001,how about {scope},REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F002,how about {period},REPLACE_PERIOD,period,,true,Explicit state patch; committed numeric results are never copied.
+F003,what about {scope},REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F004,what about {period},REPLACE_PERIOD,period,,true,Explicit state patch; committed numeric results are never copied.
+F005,and {scope},REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F006,and {period},REPLACE_PERIOD,period,,true,Explicit state patch; committed numeric results are never copied.
+F007,same for {scope},REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F008,same for {period},REPLACE_PERIOD,period,,true,Explicit state patch; committed numeric results are never copied.
+F009,do the same for {scope},REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F010,do the same for {period},REPLACE_PERIOD,period,,true,Explicit state patch; committed numeric results are never copied.
+F011,also {scope},REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F012,also {period},REPLACE_PERIOD,period,,true,Explicit state patch; committed numeric results are never copied.
+F013,instead of that use {scope},REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F014,instead of that use {period},REPLACE_PERIOD,period,,true,Explicit state patch; committed numeric results are never copied.
+F015,{scope},REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F016,{period},REPLACE_PERIOD,period,,true,Explicit state patch; committed numeric results are never copied.
+F017,how about {scope} in {period},REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F018,how about {scope} on the same basis,REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F019,what about {scope} in {period},REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F020,what about {scope} on the same basis,REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F021,and {scope} in {period},REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F022,and {scope} on the same basis,REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F023,same for {scope} in {period},REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F024,same for {scope} on the same basis,REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F025,do the same for {scope} in {period},REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F026,do the same for {scope} on the same basis,REPLACE_SCOPE,entity,,true,Explicit state patch; committed numeric results are never copied.
+F027,what about {driver},SET_DRIVER,driver,DRIVER_AMOUNT,true,Explicit state patch; committed numeric results are never copied.
+F028,how about {driver},SET_DRIVER,driver,DRIVER_AMOUNT,true,Explicit state patch; committed numeric results are never copied.
+F029,and {driver},SET_DRIVER,driver,DRIVER_AMOUNT,true,Explicit state patch; committed numeric results are never copied.
+F030,exclude {driver},EXCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F031,exclude {scope},EXCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F032,excluding {driver},EXCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F033,excluding {scope},EXCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F034,without {driver},EXCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F035,without {scope},EXCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F036,leave out {driver},EXCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F037,leave out {scope},EXCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F038,leaving out {driver},EXCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F039,leaving out {scope},EXCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F040,remove {driver},EXCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F041,remove {scope},EXCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F042,except {driver},EXCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F043,except {scope},EXCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F044,include {driver},INCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F045,include {driver} back,INCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F046,add back {driver},INCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F047,restore {driver},INCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F048,put {driver} back,INCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F049,include {scope},INCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F050,include {scope} back,INCLUDE,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F051,clear exclusions,CLEAR_EXCLUSIONS,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F052,clear all exclusions,CLEAR_EXCLUSIONS,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F053,reset exclusions,CLEAR_EXCLUSIONS,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F054,remove exclusions,CLEAR_EXCLUSIONS,exclusions,,true,Explicit state patch; committed numeric results are never copied.
+F055,only those {threshold},ADD_FILTER,threshold,,true,Explicit state patch; committed numeric results are never copied.
+F056,only {threshold},ADD_FILTER,threshold,,true,Explicit state patch; committed numeric results are never copied.
+F057,those {threshold},ADD_FILTER,threshold,,true,Explicit state patch; committed numeric results are never copied.
+F058,only those with movement {threshold},ADD_FILTER,threshold,,true,Explicit state patch; committed numeric results are never copied.
+F059,compare it with {scope},COMPARE_SCOPE,comparison,COMPARE,true,Explicit state patch; committed numeric results are never copied.
+F060,compare that with {scope},COMPARE_SCOPE,comparison,COMPARE,true,Explicit state patch; committed numeric results are never copied.
+F061,compare with {scope},COMPARE_SCOPE,comparison,COMPARE,true,Explicit state patch; committed numeric results are never copied.
+F062,compare {rankref} with {scope},COMPARE_REFERENCE,comparison,COMPARE,true,Explicit state patch; committed numeric results are never copied.
+F063,compare {rankref} to {scope},COMPARE_REFERENCE,comparison,COMPARE,true,Explicit state patch; committed numeric results are never copied.
+F064,compare that with last month,COMPARE_PREVIOUS_PERIOD,comparison,COMPARE,true,Explicit state patch; committed numeric results are never copied.
+F065,compare it with last month,COMPARE_PREVIOUS_PERIOD,comparison,COMPARE,true,Explicit state patch; committed numeric results are never copied.
+F066,compare with last month,COMPARE_PREVIOUS_PERIOD,comparison,COMPARE,true,Explicit state patch; committed numeric results are never copied.
+F067,compare that with previous month,COMPARE_PREVIOUS_PERIOD,comparison,COMPARE,true,Explicit state patch; committed numeric results are never copied.
+F068,compare the two,COMPARE_TWO,comparison,COMPARE,true,Explicit state patch; committed numeric results are never copied.
+F069,compare them,COMPARE_TWO,comparison,COMPARE,true,Explicit state patch; committed numeric results are never copied.
+F070,compare both,COMPARE_TWO,comparison,COMPARE,true,Explicit state patch; committed numeric results are never copied.
+F071,compare both entities,COMPARE_TWO,comparison,COMPARE,true,Explicit state patch; committed numeric results are never copied.
+F072,why,TOP_REFERENCE,rankReference,RWA_DRIVER,true,Explicit state patch; committed numeric results are never copied.
+F073,why so,TOP_REFERENCE,rankReference,RWA_DRIVER,true,Explicit state patch; committed numeric results are never copied.
+F074,what drove it,TOP_REFERENCE,rankReference,RWA_DRIVER,true,Explicit state patch; committed numeric results are never copied.
+F075,what drove that entity,TOP_REFERENCE,rankReference,RWA_DRIVER,true,Explicit state patch; committed numeric results are never copied.
+F076,what drove that group,TOP_REFERENCE,rankReference,RWA_DRIVER,true,Explicit state patch; committed numeric results are never copied.
+F077,what about {rankref},FOCUS_REFERENCE,rankReference,RWA_DRIVER,true,Explicit state patch; committed numeric results are never copied.
+F078,how about {rankref},FOCUS_REFERENCE,rankReference,RWA_DRIVER,true,Explicit state patch; committed numeric results are never copied.
+F079,what drove {rankref},FOCUS_REFERENCE,rankReference,RWA_DRIVER,true,Explicit state patch; committed numeric results are never copied.
+F080,why did {rankref} increase,FOCUS_REFERENCE,rankReference,RWA_DRIVER,true,Explicit state patch; committed numeric results are never copied.
+F081,what about the next one,NEXT_REFERENCE,rankReference,RWA_DRIVER,true,Explicit state patch; committed numeric results are never copied.
+F082,how about the next one,NEXT_REFERENCE,rankReference,RWA_DRIVER,true,Explicit state patch; committed numeric results are never copied.
+F083,next one,NEXT_REFERENCE,rankReference,RWA_DRIVER,true,Explicit state patch; committed numeric results are never copied.
+F084,rank those by {driver},RERANK_SET,candidateSet,,true,Explicit state patch; committed numeric results are never copied.
+F085,sort those by {driver},RERANK_SET,candidateSet,,true,Explicit state patch; committed numeric results are never copied.
+F086,which of those had the largest percentage increase,SET_METRIC,metric,,true,Explicit state patch; committed numeric results are never copied.
+F087,rank those by percentage increase,SET_METRIC,metric,,true,Explicit state patch; committed numeric results are never copied.
+F088,sort those by percentage change,SET_METRIC,metric,,true,Explicit state patch; committed numeric results are never copied.
+F089,top {n} instead,SET_LIMIT,topN,,true,Explicit state patch; committed numeric results are never copied.
+F090,make it top {n},SET_LIMIT,topN,,true,Explicit state patch; committed numeric results are never copied.
+F091,show top {n} instead,SET_LIMIT,topN,,true,Explicit state patch; committed numeric results are never copied.
+F092,shorter,SET_STYLE,concise,,true,Explicit state patch; committed numeric results are never copied.
+F093,briefly,SET_STYLE,concise,,true,Explicit state patch; committed numeric results are never copied.
+F094,in one sentence,SET_STYLE,concise,,true,Explicit state patch; committed numeric results are never copied.
+F095,one sentence,SET_STYLE,concise,,true,Explicit state patch; committed numeric results are never copied.
+F096,more detail,SET_STYLE,concise,,true,Explicit state patch; committed numeric results are never copied.
+F097,in detail,SET_STYLE,concise,,true,Explicit state patch; committed numeric results are never copied.
+F098,at group level,GROUP_LEVEL,scope,,true,Explicit state patch; committed numeric results are never copied.
+F099,back to group level,GROUP_LEVEL,scope,,true,Explicit state patch; committed numeric results are never copied.
+F100,back to the group,GROUP_LEVEL,scope,,true,Explicit state patch; committed numeric results are never copied.
+F101,whole group instead,GROUP_LEVEL,scope,,true,Explicit state patch; committed numeric results are never copied.
+F102,which entity,CHANGE_COMMAND,intent,TOP_ENTITIES,true,Explicit state patch; committed numeric results are never copied.
+F103,which entities,CHANGE_COMMAND,intent,TOP_ENTITIES,true,Explicit state patch; committed numeric results are never copied.
+F104,what are the offsets,CHANGE_COMMAND,intent,OFFSETS,true,Explicit state patch; committed numeric results are never copied.
+F105,does it reconcile,CHANGE_COMMAND,intent,RECONCILE,true,Explicit state patch; committed numeric results are never copied.
+F106,what is the main driver,CHANGE_COMMAND,intent,MAIN_DRIVER,true,Explicit state patch; committed numeric results are never copied.
+F107,which driver,CHANGE_COMMAND,intent,MAIN_DRIVER,true,Explicit state patch; committed numeric results are never copied.
+F108,again,REPEAT,,,true,Explicit state patch; committed numeric results are never copied.
+EXTRA_109,what was the main driver,CHANGE_COMMAND,intent,MAIN_DRIVER,true,Reviewed finite follow-up pattern.
+EXTRA_110,how much is unexplained,CHANGE_COMMAND,intent,RECONCILE,true,Reviewed finite follow-up pattern.
+EXTRA_111,do the drivers reconcile,CHANGE_COMMAND,intent,RECONCILE,true,Reviewed finite follow-up pattern.
+EXTRA_112,same but by {driver},RERANK_SET,driver,,true,Reviewed finite follow-up pattern.
+EXTRA_113,same but by {metric},SET_METRIC,metric,,true,Reviewed finite follow-up pattern.
+EXTRA_114,and {rankref},FOCUS_REFERENCE,rankReference,RWA_DRIVER,true,Reviewed finite follow-up pattern.
+EXTRA_115,top {n},SET_LIMIT,topN,,true,Reviewed finite follow-up pattern.

@@ -1,0 +1,8 @@
+{
+  "scope": "Actual rule_manager.py and browser localhost navigation",
+  "policyBypassed": false,
+  "status": "BLOCKED_BY_ENVIRONMENT",
+  "serverHttpResponded": true,
+  "reason": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:51883/",
+  "fullBrowserHttpWorkflowValidated": false
+}

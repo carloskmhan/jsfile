@@ -1,0 +1,83 @@
+{
+  "suite": "v3-to-v5 expectation migration, not erased failures",
+  "legacyAccounting": {
+    "passed": 180,
+    "oldExpectationDifferences": 1
+  },
+  "legacyDialogues": {
+    "passed": 56,
+    "oldExpectationDifferences": 5
+  },
+  "allDifferencesExplicitlyExplained": true,
+  "changes": [
+    {
+      "test": "Negated rhetorical question",
+      "policy": "Qualify the positive proposition before Yes/No; old /^Yes/ text assertion intentionally differs."
+    },
+    {
+      "tests": [
+        "D01:8",
+        "D01:9",
+        "D07:3",
+        "D07:4"
+      ],
+      "policy": "After a two-period comparison, ask which month instead of silently falling back to screen month."
+    },
+    {
+      "test": "D08:3",
+      "policy": "After the final ranked entity, reject next instead of repeating the last entity."
+    }
+  ],
+  "runs": [
+    {
+      "name": "build_command_patterns.py --check",
+      "status": 0,
+      "expectedLegacyMigrationDifference": false
+    },
+    {
+      "name": "tests/test_compiler.py",
+      "status": 0,
+      "expectedLegacyMigrationDifference": false
+    },
+    {
+      "name": "tests/test_holdout_guard.py",
+      "status": 0,
+      "expectedLegacyMigrationDifference": false
+    },
+    {
+      "name": "tests/test_engine.mjs",
+      "status": 0,
+      "expectedLegacyMigrationDifference": false
+    },
+    {
+      "name": "tools/evaluate.mjs",
+      "status": 0,
+      "expectedLegacyMigrationDifference": false
+    },
+    {
+      "name": "tests/test_robustness.mjs",
+      "status": 0,
+      "expectedLegacyMigrationDifference": false
+    },
+    {
+      "name": "tools/evaluate.mjs tests/robustness.csv reports/robustness.json",
+      "status": 0,
+      "expectedLegacyMigrationDifference": false
+    },
+    {
+      "name": "tools/fuzzy_clean_check.mjs",
+      "status": 0,
+      "expectedLegacyMigrationDifference": false
+    },
+    {
+      "name": "tests/legacy_regression.mjs",
+      "status": 1,
+      "expectedLegacyMigrationDifference": true
+    },
+    {
+      "name": "tests/legacy_dialogue.mjs",
+      "status": 1,
+      "expectedLegacyMigrationDifference": true
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+"""Package a locally tested v5 review build. Does not approve deployment or invent holdout results."""
+from pathlib import Path
+import hashlib,json,zipfile,platform,subprocess,argparse
+ROOT=Path(__file__).resolve().parents[1]
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def load(n):return json.loads((ROOT/'reports'/n).read_text())
+def write(p,x):p.write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n')
+def run(baseline):
+    names=['semantic_regression.json','robustness.json','fuzzy_clean_comparison.json','engine_tests.json','compiler_tests.json','robustness_units.json','holdout_guard_tests.json','browser_dom_tests.json']
+    tests={n:load(n) for n in names};migration=load('migration_tests.json');ab=load('ab_results.json');holdout=load('holdout_status.json');http=load('browser_http_tests.json')
+    if any(t.get('failed',0) for t in tests.values()) or not migration['allDifferencesExplicitlyExplained']:raise ValueError('Local release gate failed; inspect current reports.')
+    for n in ['semantic_regression.json','robustness.json']:
+        for k,v in tests[n]['runtimeHashes'].items():
+            if sha(ROOT/k)!=v:raise ValueError('Stale tested runtime hash: '+k+' in '+n)
+    for k,v in ab['newRuntimeHashes'].items():
+        if sha(ROOT/k)!=v:raise ValueError('Stale measured A/B runtime hash: '+k)
+    # Verify the current compiled artifact is reproducible, not a manual edit.
+    subprocess.run(['python','build_command_patterns.py','--check'],cwd=ROOT,check=True)
+    registry=json.loads('\n'.join(x for x in (ROOT/'command_patterns.txt').read_text().splitlines() if not x.startswith('#')))
+    diff=[]
+    if baseline and baseline.is_dir():
+        for p in sorted(ROOT.rglob('*')):
+            rel=p.relative_to(ROOT);other=baseline/rel
+            if p.is_file() and other.is_file() and rel.parts[0] not in {'reports','__pycache__','tests'} and p.suffix not in {'.pyc'} and p.name not in {'SHA256SUMS.txt','BUILD_INFO.json','standalone_demo.html'}:
+                diff.append({'file':str(rel),'originalSha256':sha(other),'currentSha256':sha(p),'unchanged':sha(p)==sha(other)})
+    write(ROOT/'reports/source_diff.json',{'baseline':'Original complete rwa_semantic_tableau_v4 source','baselineAvailable':bool(baseline and baseline.is_dir()),'files':diff})
+    def counts(t):return {k:t[k] for k in ['total','passed','failed'] if k in t}
+    summary={'release':'5.0.0-review','status':'Production-like local review build; not bank deployment/governance approval',
+      'tests':{n:counts(t) for n,t in tests.items()},'metrics':tests['robustness.json']['metrics'],'execution':tests['robustness.json']['executionSummary'],
+      'oldCorpusMetrics':tests['semantic_regression.json']['metrics'],'legacyMigration':migration,'counts':{k:len(registry[k]) for k in ['commands','synonyms','aliases','followups','fuzzyConfig','units','temporal']},
+      'fuzzyCleanControl':{'total':tests['fuzzy_clean_comparison.json']['total'],'preserved':tests['fuzzy_clean_comparison.json']['passed'],'note':'Clean command contracts + negative refusal controls; excludes intentional positive-typo conversations.'},
+      'blindHoldout':holdout,'browser':{'dom':counts(tests['browser_dom_tests.json']),'http':counts(http),'httpSetupErrors':[x.get('error') for x in http.get('tests',[]) if not x.get('passed')]},
+      'minilmAB':{'executed':True,'corpus':ab['corpus'],'splits':ab['splits'],'independent':False if holdout['status']=='NOT_RUN' else None,'tokenParity':{k:v for k,v in ab['baselineParity'].items() if k!='fixtures'},'fullParameters':'Baseline full gold fields are not all observable; primary full-command metrics are not a spurious 0% intrinsic MiniLM claim.','report':'reports/ab_results.json'},
+      'limitations':['Developer-known synthetic/regression tests, not independent natural-language accuracy','No live bank Tableau/SSO/SharePoint/RLS/CSP/security validation','HTTP browser navigation blocked by environment administrator; no bypass','No total native/WASM peak memory or bank cold-network loading measurement','No non-AI governance exemption or universal MiniLM superiority claim']}
+    write(ROOT/'reports/release_summary.json',summary)
+    runtime=sorted(set(list(ROOT.glob('*.js'))+list((ROOT/'semantic').glob('*.js'))+[ROOT/n for n in ['demo.html','styles.css','command_patterns.txt','tableau_config.txt','rules_config.txt','rwa_sample_data.txt','tableau_sample.csv','commands_editor.html']]))
+    js=sum(p.stat().st_size for p in runtime if p.suffix=='.js')
+    info={'release':'5.0.0-review','python':platform.python_version(),'node':subprocess.check_output(['node','--version'],text=True).strip(),'browser':ab['browser'],
+      'runtimeJsBytesExcludingTableauSDK':js,'generatedRuleBytes':(ROOT/'command_patterns.txt').stat().st_size,'ruleSourceSha256':registry['sourceSha256'],'learnedRuntimeAssets':[],
+      'runtimeFiles':[{'path':str(p.relative_to(ROOT)),'bytes':p.stat().st_size,'sha256':sha(p)} for p in runtime],
+      'baselineModelAssetsPreservedSeparately':ab['baselineHashes'],'notes':'Timing/preview tokens are diagnostic. Same semantic input/state/data/rules produce deterministic commands. Hash equality does not authenticate origin.'}
+    write(ROOT/'BUILD_INFO.json',info)
+    excluded={'ab_smoke.json','probe.mjs','SHA256SUMS.txt'}
+    allfiles=[p for p in sorted(ROOT.rglob('*')) if p.is_file() and '__pycache__' not in p.parts and p.suffix not in {'.pyc','.log'} and p.name not in excluded]
+    if any(p.suffix.lower() in {'.onnx','.wasm','.bin','.safetensors','.pt','.pkl'} for p in allfiles):raise ValueError('Unexpected learned/model/runtime binary in source package')
+    (ROOT/'SHA256SUMS.txt').write_text(''.join(sha(p)+'  '+str(p.relative_to(ROOT))+'\n' for p in allfiles))
+    source=ROOT.parent/'rwa_semantic_tableau_v5.zip';web=ROOT.parent/'rwa_semantic_tableau_v5_web.zip'
+    with zipfile.ZipFile(source,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
+        for p in allfiles+[ROOT/'SHA256SUMS.txt']:z.write(p,'rwa_semantic_tableau_v5/'+str(p.relative_to(ROOT)))
+    docs=[ROOT/n for n in ['README.md','COMMANDS.md','MIGRATION.md','ARCHITECTURE.md','CISO_SECURITY.md','DEPLOYMENT_REVIEW.md','ACCEPTANCE.md','BUILD_INFO.json']]
+    files=sorted(set(runtime+docs));prefix='rwa_semantic_tableau_v5_web/'
+    with zipfile.ZipFile(web,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
+        for p in files:z.write(p,prefix+str(p.relative_to(ROOT)))
+        z.writestr(prefix+'SHA256SUMS.txt',''.join(sha(p)+'  '+str(p.relative_to(ROOT))+'\n' for p in files))
+        z.writestr(prefix+'WEB_ONLY.txt','Runtime subset only. CSV sources, compiler, tests, standalone and optional A/B tools are in rwa_semantic_tableau_v5.zip. Preserve approved bank configuration and test before live deployment. No original MiniLM model is included.\n')
+    for out in [source,web]:
+        with zipfile.ZipFile(out) as z:
+            if z.testzip():raise ValueError('Archive CRC failure')
+        print(out,out.stat().st_size,sha(out))
+    print('Runtime JS',js,'Rule artifact',info['generatedRuleBytes'])
+if __name__=='__main__':
+    p=argparse.ArgumentParser();p.add_argument('--baseline-dir',type=Path,default=ROOT.parent/'reference/v4_original/rwa_semantic_tableau_v4');run(p.parse_args().baseline_dir)

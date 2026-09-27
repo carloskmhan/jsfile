@@ -1,0 +1,55 @@
+{
+  "scope": "Unmodified v1.0.8 builder actual execution + generated CSV + v6 JS adapters and arithmetic; synthetic data, no bank data.",
+  "passed": 12,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Two groups with the same display name survive",
+      "pass": true
+    },
+    {
+      "name": "Leading-zero IDs preserved",
+      "pass": true
+    },
+    {
+      "name": "ID-level report succeeds",
+      "pass": true
+    },
+    {
+      "name": "Current balance counted once per LEID",
+      "pass": true
+    },
+    {
+      "name": "Driver pairs de-duplicated upstream, distinct amounts summed",
+      "pass": true
+    },
+    {
+      "name": "Derived comparison previous balance preserved",
+      "pass": true
+    },
+    {
+      "name": "Derived provenance not dropped",
+      "pass": true
+    },
+    {
+      "name": "Derived basis explicitly labelled, not observed prior month",
+      "pass": true
+    },
+    {
+      "name": "Repeated client names retain two LEID contributions",
+      "pass": true
+    },
+    {
+      "name": "No unique-name rejection on duplicate groups",
+      "pass": true
+    },
+    {
+      "name": "Follow-up selects second ID fresh data",
+      "pass": true
+    },
+    {
+      "name": "Arbitrary detail label recognises and calculates",
+      "pass": true
+    }
+  ]
+}

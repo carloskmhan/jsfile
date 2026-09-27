@@ -1,0 +1,7 @@
+{
+  "status": "NOT_RUN",
+  "independentCorpusProvided": false,
+  "accuracy": null,
+  "reason": "No independent reviewer-owned blind holdout was supplied. Empty template and guard tests do not establish generalisation. Current questions are developer-known regression.",
+  "nextStep": "Freeze runtime before reviewer corpus; seal manifest; evaluate with --require-holdout. Retire set after any tuning based on its output."
+}

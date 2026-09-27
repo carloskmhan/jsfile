@@ -1,0 +1,4 @@
+﻿category,min_length,threshold,max_edits,min_margin,max_corrections,enabled,notes
+semantic_word,5,.80,1,.08,2,true,Unknown alphabetic words only; adjacent transposition costs one edit.
+entity,5,.83,1,.08,1,true,Only enabled CSV aliases bound to authorised known IDs; never invent IDs.
+short_word,0,1,0,.10,0,false,Short-token correction is forbidden.

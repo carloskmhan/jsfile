@@ -1,0 +1,40 @@
+﻿expected_intent,question
+GROUP_ROOT_CAUSE,Explain the reasons behind this client movement
+GROUP_ROOT_CAUSE,Could you summarize why the total RWA changed?
+GROUP_ROOT_CAUSE,What explains the sudden rise in group RWA?
+MAIN_DRIVER,Which risk factor had the greatest impact?
+MAIN_DRIVER,Tell me the primary driver behind the movement
+MAIN_DRIVER,What is the dominant cause of the change?
+DRIVER_CONTRIBUTION,How much of the net change is attributable to foreign exchange?
+DRIVER_CONTRIBUTION,Give me the amount contributed by EAD
+DRIVER_CONTRIBUTION,What percentage of the increase came from CG?
+DRIVER_CHECK,Was rating deterioration responsible for the jump?
+DRIVER_CHECK,Did exposure growth cause the movement?
+DRIVER_CHECK,Was currency the main reason for the increase?
+TOP_ENTITY,Which subsidiary contributed the biggest increase?
+TOP_ENTITY,List the leading entity contributors
+TOP_ENTITY,Which affiliate accounts for the largest RWA jump?
+ENTITY_CONTRIBUTION,What share did ABC Finance contribute?
+ENTITY_CONTRIBUTION,How much of the movement came from ABC Electronics?
+ENTITY_CONTRIBUTION,Give the contribution of this subsidiary
+ENTITY_DRIVER,Explain the drivers within ABC Electronics
+ENTITY_DRIVER,What caused the RWA change at ABC Finance?
+ENTITY_DRIVER,Why did this subsidiary have a jump?
+CONCENTRATION,Was most of the jump concentrated in a single subsidiary?
+CONCENTRATION,Did many entities contribute or just one?
+CONCENTRATION,Is this movement spread across affiliates?
+PEAK_MONTH,Identify the month with the largest positive change
+PEAK_MONTH,In which month did the sharpest jump occur?
+PEAK_MONTH,When was the biggest monthly RWA increase?
+TREND,Describe the pattern over the past three months
+TREND,Is the RWA rise continuing month after month?
+TREND,Show the direction of RWA over time
+TOP_CLIENTS,Rank the client groups by their RWA increase
+TOP_CLIENTS,List the groups responsible for the largest jumps
+TOP_CLIENTS,Which clients were the biggest contributors?
+COMPARE,How unusual is the change compared with peers?
+COMPARE,Benchmark this client against other groups
+COMPARE,Is the client an outlier relative to its peers?
+DATA_QUALITY,Does the sum of drivers match the net change?
+DATA_QUALITY,How large is the unexplained part of the increase?
+DATA_QUALITY,Check whether the attribution reconciles

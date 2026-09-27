@@ -1,0 +1,7 @@
+﻿id,split,conversation_id,turn,question,context_group,context_entity,context_month,expected_status,expected_action,expected_group_id,expected_entity_id,expected_period,expected_metric,expected_direction,expected_top_n,expected_driver,expected_excluded_groups,expected_excluded_drivers,expected_comparison_ids,expected_threshold_op,expected_threshold_value,expected_threshold_metric,notes
+Q0001,regression,S0001,1,Why did Samsung RWA increase in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0002,regression,S0002,1,Why did Samsung RWA increase in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0597,regression,C001,1,Why did Samsung RWA increase in July?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0598,regression,C001,2,How about Toyota?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0599,regression,C001,3,And August?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-08,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0526,regression,S0526,1,Predict Samsung RWA next year.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.

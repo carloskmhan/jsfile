@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0-simple-review",
+  "engine": "Existing connected v6 / v5-family semantics unchanged",
+  "language": "en",
+  "executableRuleTables": 7,
+  "optionalManagementMetadataTables": 2,
+  "customerMasterEditing": false,
+  "files": {
+    "rule_manager.py": "08875ebaa1fbb8ee14a06e05bb6cf81b65510a1d24db7d1db3cd51039d45ffc0",
+    "capability_manager.py": "39c3dc33e8d419626c546c7817184544556b260c152f468da93585198b049fe1",
+    "local_manager/index.html": "ab8942dd37c848ad8803dbb08f6db00e1102fb57beca9ae4dbfc672f8db8c610",
+    "local_manager/advanced.html": "0b697e35d6fc01c718d02e97819c2c46cfecca8da94ccbe77f89651fb30b59a3",
+    "local_manager/simple.js": "4d6c2e770ee8d52789975d94bc35966e37d0583d71ae5fb4aa005dc9eb0dd4f1",
+    "local_manager/simple_logic.js": "172eb19521e3db8919770f18d260a5d8460e402403e3b91e091a1c7ce0884ed3",
+    "local_manager/simple.css": "4a6d9d38d51bd46963437c5004bcc4f2cc36a66c5640b30a1cec8ced03d9e5a4",
+    "local_manager_tests/dom_fixture.py": "64951a086dcb85a967772afdd6cfa0cc29ad9536e19af2e42cb2792c24619655",
+    "LOCAL_RULE_MANAGER.md": "14d1df616da44f1186b4c1e014e1d0ce78ef7f1b5aed7be3ece72e63a154f516",
+    "COMMANDS.md": "3b2a825b18d0f000af28f957c74d5243d619145cef3ddf67092e74ed4d1ac7ae",
+    "SIMPLE_RULE_MANAGER.md": "bb29fb2657c641b2fe41c7e09c3733b046ef8da38d98eb65815984e4ea489f47",
+    "SIMPLE_MANAGER_CHANGELOG.md": "18daae2f06cef5643d4d8b8c7fd66e2a290238eaaf3bb563bb699082b4a65486",
+    "simple_manager_tests/test_capabilities.py": "6094b7ee48d701f921d692cc8fcb245f6e02d039627ba35b7247d13157c0fec9",
+    "simple_manager_tests/dom_harness.py": "ad84427246d8f5cf2a0ed99880d6bf1fd29132ac22c10ae71b4794635ecc4da8",
+    "simple_manager_tests/browser_http_attempt.py": "4dd3d6f280825705b9f9b032235c2a242d4203f1f3853b6cea94b9ef49f1ac0b",
+    "simple_manager_tests/run_all.py": "fabeba1edc80b6849563bd2104507415c39fb4dd9af6b7463a04f7c20aeb95da",
+    "simple_manager_tests/http_workflow.py": "36adce621422d0f18deadbd553b852bf4deba62836a0b5cc99ba2626d9489295",
+    "simple_manager_tests/browser_logic.py": "45cd8aced672ad69a36d616175fe29a2463ded9e85a8238c1e908a842151382a",
+    "simple_manager_tests/browser_workflow.py": "e665d80e81b6dc862a827a3ecd45de17fa1013b20552562ba24fca107bd7bee1"
+  },
+  "preservedProductionFiles": "simple_manager_reports/source_preservation.json",
+  "testEvidence": "simple_manager_reports/SUMMARY.json"
+}

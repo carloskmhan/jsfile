@@ -1,0 +1,241 @@
+import {planDataRequest} from './semantic/routing.js';
+import {RuleClient} from './rule_client.js';
+import {createProvider,formatRuntimeError,runtimeErrorDetails} from './tableau_adapter.js';
+// Timeout/progress UI 6.0.3-review. Keep query wave dots and all calculations.
+import {validateCatalog,catalogWithClients,catalogLookup} from './group_catalog.js';
+import {driverCatalog} from './driver_catalog.js';
+import {norm} from './rule_parser.js';
+/** Existing chat/confirmation UI, now wired to the authenticated two-sheet provider. */
+export async function main(config){
+ const $=id=>document.getElementById(id),client=new RuleClient(config);
+ let groups=[],provider,lastGroupId=null,pendingQuestion=null,metadata={rows:[]},busy=true,ready=false,epoch=0;
+ // 6.0.5-signin: UI progress is NOT an authentication verdict. The provider
+ // must become interactive and read/validate the index before startupReady().
+ const startupProgress=phase=>{
+   document.documentElement.dataset.rwaStartupPhase=phase;
+   document.dispatchEvent(new CustomEvent('rwa:startup-progress',{detail:{phase}}));
+ };
+ const startupFailed=message=>{
+   document.documentElement.dataset.rwaAppReady='false';
+   document.documentElement.dataset.rwaStartupError=message;
+   document.dispatchEvent(new CustomEvent('rwa:startup-failed',{detail:{message}}));
+ };
+ const hideStartupView=()=>{
+   const panel=$('tableau-panel');
+   if(panel){panel.hidden=true;panel.setAttribute('aria-hidden','true');panel.setAttribute('inert','');}
+   // hide() is presentation only; dispose()/provider.close() would break queries.
+   try{provider?.hideView?.();}catch{/* hidden parent still keeps it off screen */}
+ };
+ const startupReady=()=>{
+   document.documentElement.dataset.rwaAppReady='true';
+   document.documentElement.dataset.rwaInitialization='ready';
+   document.addEventListener('rwa:splash-hidden',hideStartupView,{once:true});
+   document.dispatchEvent(new Event('rwa:startup-ready'));
+   if(document.documentElement.dataset.rwaLoadingState==='done')hideStartupView();
+ };
+ if($('reconnect-tableau'))$('reconnect-tableau').onclick=()=>{
+   // Explicit reload, never silent reauthentication or reuse of old answers.
+   client.reset();client.invalidate();provider?.close();window.location.reload();
+ };
+ const offerReconnect=()=>{if($('reconnect-tableau')&&config.mode==='tableau'){$('reconnect-tableau').hidden=false;if($('settings'))$('settings').open=true;}};
+ let loadingArticle=null,loadingStarted=0;
+ const controls=()=>{for(const e of document.querySelectorAll('#ask,#question,#newchat,#group,#entity,#month,#group-search,#refresh-catalog,[data-question],.choices button,.confirm-report,.cancel-report'))if(!e.dataset.finished)e.disabled=busy||!ready;};
+ const options=(id,items)=>$(id).replaceChildren(...items.map(([name,value])=>new Option(name,value)));
+ const byId=id=>config.semanticCatalog?catalogLookup(config.semanticCatalog).byId.get(id):null;
+ function groupOptions(){
+   const selected=$('group').value,term=norm($('group-search')?.value||'');
+   const found=groups.filter(g=>!term||norm(g.client_group_name).includes(term)||norm(g.client_group_id).includes(term));
+   const shown=found.slice(0,config.maxGroupOptions??200);
+   if(selected&&!shown.some(g=>g.client_group_id===selected)){const g=groups.find(g=>g.client_group_id===selected);if(g)shown.unshift(g);}
+   options('group',[['From conversation / question',''],...shown.map(g=>[`${g.client_group_name} [${g.client_group_id}]`,g.client_group_id])]);
+   if(shown.some(g=>g.client_group_id===selected))$('group').value=selected;
+   if($('catalog-count'))$('catalog-count').textContent=`${groups.length.toLocaleString()} available groups · showing ${Math.min(found.length,config.maxGroupOptions??200)} matches. Search by name or ID; the parser uses the complete loaded index.`;
+ }
+ function groupChanged(){
+   const rr=metadata.rows.filter(r=>!$('group').value||r.client_group_id===$('group').value),uniqueEntities=new Map();
+   for(const r of rr){const key=r.client_group_id+'/'+r.entity_id;if(!uniqueEntities.has(key))uniqueEntities.set(key,r);}
+   // Entities are available only after authorised detail data for their group is read.
+   options('entity',[['From conversation / all in group',''],...[...uniqueEntities.values()].map(r=>[`${r.entity} [${r.entity_id}]`,r.entity_id])]);
+   options('month',[['From question / latest loaded',''],...[...new Set(rr.map(r=>r.month))].sort().reverse().map(m=>[m,m])]);
+ }
+ function context(c={}){
+   $('context').textContent=[c.clientGroup?c.clientGroup+(c.clientGroupId?' ['+c.clientGroupId+']':''):null,c.entity?c.entity+(c.entityId?' ['+c.entityId+']':''):null,c.month,c.excludedDrivers?.length?'Excluding '+c.excludedDrivers.join(', '):''].filter(Boolean).join(' · ')||'No group selected · Enter a group name or system ID';
+ }
+ // Only presentation changes here: no data, permissions, parser or timing changes.
+ function setMessage(a,text,{loading=false}={}){
+   const b=a.querySelector('.message');
+   b.removeAttribute('aria-busy');
+   if(loading){
+     const existing=b.querySelector('.rwa-query-loading');
+     const existingLabel=existing?.querySelector('.rwa-query-loading-label');
+     if(existingLabel){
+       existingLabel.textContent=String(text??'').replace(/(?:\u2026|\.{3})\s*$/u,'');
+       b.setAttribute('aria-busy','true');return; // Do not restart CSS wave animation.
+     }
+     const template=$('rwa-query-loading-template');
+     // Mixed/older HTML still shows the original text instead of breaking requests.
+     if(template?.content){
+       const content=template.content.cloneNode(true);
+       const indicator=content.querySelector('.rwa-query-loading');
+       const label=indicator?.querySelector('.rwa-query-loading-label');
+       if(indicator&&label){
+         label.textContent=String(text??'').replace(/(?:\u2026|\.{3})\s*$/u,'');
+         // Insert the element only: template whitespace must not create blank
+         // lines inside the existing white-space: pre-wrap message container.
+         b.replaceChildren(indicator);
+         b.setAttribute('aria-busy','true');
+         return;
+       }
+     }
+   }
+   b.textContent=text;
+ }
+ function message(role,text,options={}){
+   $('welcome').hidden=true;const a=document.createElement('article');a.className=role;const label=document.createElement('div');label.className='role';label.textContent=role==='user'?'You':'RWA Analytics';
+   const b=document.createElement('div');b.className='message';a.append(label,b);
+   setMessage(a,text,{loading:role==='assistant'&&options.loading===true});
+   $('history').append(a);return a;
+ }
+ function results(a,r){
+   // Success, preview, clarification and error all remove the pending animation.
+   setMessage(a,r.answer);
+   if(r.table?.rows?.length){const t=document.createElement('table');t.className='message-table';const head=document.createElement('tr');for(const v of r.table.columns){const th=document.createElement('th');th.textContent=v;head.append(th);}t.append(head);for(const values of r.table.rows){const tr=document.createElement('tr');for(const v of values){const td=document.createElement('td');td.textContent=String(v);tr.append(td);}t.append(tr);}a.append(t);}
+   if(r.choices?.length){const div=document.createElement('div');div.className='choices';for(const choice of r.choices){const b=document.createElement('button');b.type='button';b.textContent=choice;b.onclick=()=>{$('question').value=choice;send();};div.append(b);}a.append(div);}
+   if(config.debug===true){const d=document.createElement('details'),s=document.createElement('summary'),pre=document.createElement('pre');s.textContent=r.ok?'Executed command & calculation evidence':r.status==='preview'?'Semantic features, candidates & context':'Why no calculation ran';pre.className='debug';pre.textContent=JSON.stringify(r,null,2);d.append(s,pre);a.append(d);}
+ }
+ function reset({history=false}={}){
+   client.reset();lastGroupId=null;pendingQuestion=null;
+   if(history){$('history').replaceChildren();$('welcome').hidden=false;}
+   context({clientGroup:byId($('group').value)?.client_group_name,clientGroupId:$('group').value,entity:$('entity').selectedOptions[0]?.value?$('entity').selectedOptions[0].text:null,month:$('month').value});
+ }
+ function accepted(r){
+   if(!r.ok)return;pendingQuestion=null;lastGroupId=r.plan.groupId||null;
+   const oldMonth=$('month').value;$('group').value=lastGroupId||'';groupOptions();$('group').value=lastGroupId||'';groupChanged();
+   if(r.plan.entityId&&[...$('entity').options].some(o=>o.value===r.plan.entityId))$('entity').value=r.plan.entityId;
+   if([...$('month').options].some(o=>o.value===oldMonth))$('month').value=oldMonth;
+   context(r.conversationContext);
+ }
+ function preview(a,r){
+   results(a,r);if(r.status!=='preview')return;
+   const requestEpoch=epoch,sourceVersion=provider.version,fields=document.createElement('div');fields.className='plan-preview';
+   const p=r.plan,period=p.period.mode==='month'?p.period.month:p.period.mode==='comparison'?p.period.months.join(' versus '):p.period.mode==='window'?p.period.start+' to '+p.period.end:'Available history through '+p.period.end;
+   const labels={MOVEMENT_CHECK:'Check recorded RWA direction',TOP_ENTITY:'Rank contributors',TOP_CLIENTS:'Rank client groups',GROUP_ROOT_CAUSE:'RWA movement breakdown',ENTITY_DRIVER:'Entity driver breakdown',MAIN_DRIVER:'Largest attributed driver',DRIVER_CONTRIBUTION:'Driver contribution',DRIVER_CHECK:'Check reported driver',ENTITY_CONTRIBUTION:'Entity contribution',CONCENTRATION:'Entity concentration share',DATA_QUALITY:'Attribution / bridge check',OFFSETS:'Offsetting contributions',COMPARE:'Comparison',TREND:'Monthly movement report',PEAK_MONTH:'Largest month / balance'};
+   const pair=(names,ids)=>names.map((name,i)=>name+(ids?.[i]?' ['+ids[i]+']':'')).join(' versus ');
+   const f={Report:labels[p.action]||p.action,Group:p.groups?.length?pair(p.groups,p.comparisonIds):p.group?`${p.group} [${p.groupId}]`:'Authorised loaded portfolio',Entity:p.entities?.length?pair(p.entities,p.comparisonIds):p.entity?`${p.entity} [${p.entityId}]`:'All in selected group(s)',Period:period};
+   if(p.dimension)f.Breakdown=p.dimension.toLowerCase();if(['TOP_ENTITY','TOP_CLIENTS'].includes(p.action))f.Limit='Top '+p.topN;
+   f.Metric=p.metric==='PERCENT'?'Percentage change / comparison basis':p.metric==='BALANCE'?'Closing RWA balance':'RWA movement';if(p.direction!=='AUTO')f.Direction=p.direction;
+   f.Driver=p.driver||'All reported detail drivers';
+   f.Exclusions=[...p.excludedDrivers,...p.excludedEntities,...(p.excludedGroups||[])].join(', ')||'None';
+   if(p.excludedEntityIds?.length)f['Excluded LEIDs']=p.excludedEntityIds.join(', ');if(p.excludedGroupIds?.length)f['Excluded group IDs']=p.excludedGroupIds.join(', ');
+   if(p.condition)f.Threshold=p.condition.metric+' '+p.condition.op+' '+p.condition.value+(p.condition.metric==='PERCENT'?'%':' USDm');
+   if(p.action==='MOVEMENT_CHECK')f.Check='RWA did '+(p.negatedCheck?'not ':'')+(p.direction==='UP'?'increase':'decrease');
+   if(p.action==='DRIVER_CHECK')f.Check=p.checkMode;
+   if(p.candidateGroupIds?.length||p.candidateEntityIds?.length)f['Candidate set']='Prior displayed IDs only; values recalculated';
+   if(p.contextNotes?.length)f['Context notes']=p.contextNotes.join(' ');
+   if(metadata.rows.some(row=>row.attributes?.rwa_prev_source?.startsWith('derived_')))f['Comparison basis']='Builder-derived previous RWA, not independently observed prior-month balance';
+   for(const [k,v]of Object.entries(f)){const row=document.createElement('div');row.textContent=k+': '+v;fields.append(row);}
+   const run=document.createElement('button'),cancel=document.createElement('button');run.textContent='Run report';cancel.textContent='Cancel';run.type=cancel.type='button';run.className='confirm-report';cancel.className='cancel-report';
+   run.onclick=async()=>{
+     if(busy)return;busy=true;controls();run.disabled=cancel.disabled=true;
+     try{
+       if(requestEpoch!==epoch||sourceVersion!==provider.version)throw new Error('Source scope changed. Submit the request again.');
+       await provider.verifyCatalog(); // Names/IDs still available before confirming this snapshot.
+       if(requestEpoch!==epoch||sourceVersion!==provider.version)throw new Error('The authorised catalog changed after preview. Submit again.');
+       const out=client.confirm(r.previewToken);a.replaceChildren(a.firstChild,a.querySelector('.message'));results(a,out);accepted(out);
+     }catch(e){client.invalidate();offerReconnect();a.querySelector('.message').textContent='No report produced: '+formatRuntimeError(e,{stage:'CONFIRM_REPORT'});}
+     finally{run.dataset.finished=cancel.dataset.finished='true';busy=false;controls();}
+   };
+   cancel.onclick=()=>{client.cancel();run.dataset.finished=cancel.dataset.finished='true';run.disabled=cancel.disabled=true;a.querySelector('.message').textContent='Cancelled. No report calculation ran.';};
+   fields.append(run,cancel);a.insertBefore(fields,a.querySelector('details'));
+ }
+ function updateQueryProgress(p){
+   if(!loadingArticle||!busy||!p||p.phase!=='active')return;
+   const elapsed=Math.max(0,Math.floor((Date.now()-loadingStarted)/1000));
+   const time=elapsed>=60?Math.floor(elapsed/60)+'m '+(elapsed%60)+'s':elapsed+'s';
+   let text;
+   if(p.groupCount!==undefined){
+     const step=p.stage==='VERIFY_GROUP_FILTER'?'Checking ID filter':
+       p.stage==='VERIFY_FILTER_EVENTS'?'Checking filter events':
+       p.stage==='APPLY_GROUP_FILTER'?'Applying ID filter':
+       /INDEX/.test(p.stage)?'Checking available group index':'Reading and validating RWA data';
+     text=step+' - '+(p.completedGroups||0).toLocaleString('en-US')+' / '+p.groupCount.toLocaleString('en-US')+' groups completed';
+     if(p.batchNumber!==undefined)text+=' - batch '+p.batchNumber+'/'+p.batchCount;
+   }else text='Reading authorised Tableau index and selected group data';
+   setMessage(loadingArticle,text+' - '+time,{loading:true});
+ }
+ function sourceChanged(e){
+   epoch++;client.invalidate();client.reset();lastGroupId=null;pendingQuestion=null;metadata={rows:[]};
+   groups=[];config.semanticCatalog={identitySource:'runtime_catalog',groups:[],entities:[]};options('group',[['Refresh available groups','']]);groupChanged();context();
+   $('status').textContent=(e?.reason||'Tableau scope changed')+'. Cached detail/context discarded. The next request refreshes the index.';
+ }
+ async function readCatalog(){
+   const c=await provider.refreshCatalog();groups=validateCatalog(c);
+   config.semanticCatalog={...c,entities:config.semanticCatalog?.entities?.filter(e=>groups.some(g=>g.client_group_id===e.client_group_id))||[],driverLabels:config.semanticCatalog?.driverLabels||[]};
+   groupOptions();return c;
+ }
+ async function send(){
+   const q=$('question').value.trim();if(!q||busy||!ready)return;
+   busy=true;controls();$('question').value='';message('user',q);const a=message('assistant','Reading authorised Tableau index and selected group data…',{loading:true});const thisEpoch=epoch;
+   loadingArticle=a;loadingStarted=Date.now();
+   let failureStage='REFRESH_GROUP_INDEX',requestedGroupCount;
+   try{
+     await readCatalog();if(epoch!==thisEpoch)throw new Error('Available groups changed. Review the new scope and submit the request again.');
+     if(!groups.length)throw new Error('No groups are available in the index for this session. No static catalog fallback is used.');
+     failureStage='PLAN_DATA_REQUEST';
+     const request=planDataRequest(q,config.semanticCatalog,config.commandPatterns,client.state,{selectedClientGroupId:$('group').value});
+     if(!request.ok){if(request.code==='MISSING_REQUIRED_SLOT')pendingQuestion=q;results(a,{ok:false,status:'clarify',code:request.code,answer:request.message});return;}
+     const chosen=request.groups,bare=chosen.length===1&&[chosen[0].client_group_id,chosen[0].client_group_name,...chosen[0].aliases].some(x=>norm(x)===norm(q));
+     const question=pendingQuestion&&bare?pendingQuestion+' for '+chosen[0].client_group_id:q;
+     client.invalidate();
+     failureStage=request.portfolio?'LOAD_PORTFOLIO_DATA':'LOAD_GROUP_DATA';
+     requestedGroupCount=request.portfolio?groups.length:request.groupIds.length;
+     const rows=request.portfolio?await provider.loadPortfolio():await provider.loadGroups(request.groupIds);
+     if(epoch!==thisEpoch)throw new Error('Source changed while fetching data. No stale answer was produced.');
+     failureStage='NORMALIZE_LOADED_DATA';
+     config.semanticCatalog=catalogWithClients(provider.catalog,rows);
+     metadata=client.setData(rows,{portfolioComplete:request.portfolio,source:config.mode==='sample'?'synthetic sample CSV':'authenticated Tableau '+config.worksheetName});
+     config.semanticCatalog.driverLabels=driverCatalog(metadata.rows).labels;
+     const ctx={};if(chosen[0])ctx.selectedClientGroupId=chosen[0].client_group_id;
+     if($('entity').value&&(!lastGroupId||chosen[0]?.client_group_id===lastGroupId))ctx.selectedEntityId=$('entity').value;
+     if($('month').value)ctx.selectedMonth=$('month').value;else if(config.defaultReportingMonth)ctx.selectedMonth=config.defaultReportingMonth;
+     failureStage='INTERPRET_QUERY_AND_PREVIEW';
+     preview(a,client.prepare(question,ctx));
+   }catch(e){
+     client.invalidate();offerReconnect();
+     const details={stage:failureStage,groupCount:requestedGroupCount};
+     results(a,{ok:false,status:'error',answer:'No answer produced: '+formatRuntimeError(e,details),
+       ...(config.debug===true?{errorDiagnostic:runtimeErrorDetails(e,details)}:{})});
+   }
+   finally{loadingArticle=null;busy=false;controls();$('question').focus();a.scrollIntoView({block:'center',behavior:'smooth'});}
+ }
+ $('form').onsubmit=e=>{e.preventDefault();send();};$('question').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();send();}};
+ for(const b of document.querySelectorAll('[data-question]'))b.onclick=()=>{$('question').value=b.dataset.question;send();};
+ $('newchat').onclick=()=>{$('group').value='';groupChanged();reset({history:true});};
+ $('group').onchange=()=>{groupChanged();reset();};$('entity').onchange=()=>reset();$('month').onchange=()=>reset();
+ if($('group-search'))$('group-search').oninput=groupOptions;
+ if($('refresh-catalog'))$('refresh-catalog').onclick=async()=>{busy=true;controls();try{sourceChanged({reason:'Manual index refresh'});await readCatalog();$('status').textContent='Group index refreshed. Previous report context cleared.';}catch(e){offerReconnect();$('status').textContent=formatRuntimeError(e,{stage:'REFRESH_GROUP_INDEX'});}finally{busy=false;controls();}};
+ try{
+   const panel=$('tableau-panel');
+   if(!panel||!$('tableau-host'))throw new Error('The Tableau startup host is missing. Deploy the matching demo.html.');
+   if(panel.closest('[data-startup-layout="tableau-signin"]')&&!document.documentElement.dataset.rwaSplashController)
+     throw new Error('The sign-in loading controller is missing. Check loading_screen.js and reload.');
+   panel.hidden=config.mode!=='tableau';
+   if(config.mode==='tableau'){
+     panel.removeAttribute('inert');panel.removeAttribute('aria-hidden');
+     if(panel.tagName==='DETAILS')panel.open=true;
+   }
+   startupProgress(config.mode==='tableau'?'loading_sdk':'loading_sample');
+   provider=await createProvider({...config,onTableauStartup:startupProgress},$('tableau-host'));provider.onContextChanged(sourceChanged);
+   provider.onProgress?.(updateQueryProgress);
+   config.semanticCatalog=provider.catalog;groups=validateCatalog(provider.catalog);groupOptions();groupChanged();
+   ready=true;busy=false;$('progress').hidden=true;$('status').textContent=config.mode==='sample'?'Ready · Synthetic CSV data · Runtime ID catalog · Preview required':`Ready · ${groups.length.toLocaleString()} available groups from ${config.catalogWorksheetName} · Details loaded on demand`;
+   controls();window.addEventListener('pagehide',()=>{client.reset();client.invalidate();provider.close();metadata={rows:[]};config.semanticCatalog=null;groups=[];},{once:true});
+   startupReady();return {ok:true};
+ }catch(e){
+   provider?.close();ready=false;client.invalidate();
+   const message='Initialization failed: '+formatRuntimeError(e,{stage:'INITIALISE_APP'});
+   $('status').classList.add('error');$('status').textContent=message;
+   $('progress').hidden=true;busy=false;controls();startupFailed(message);
+   return {ok:false,message};
+ }
+}

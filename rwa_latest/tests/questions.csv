@@ -1,0 +1,627 @@
+﻿id,split,conversation_id,turn,question,context_group,context_entity,context_month,expected_status,expected_action,expected_group_id,expected_entity_id,expected_period,expected_metric,expected_direction,expected_top_n,expected_driver,expected_excluded_groups,expected_excluded_drivers,expected_comparison_ids,expected_threshold_op,expected_threshold_value,expected_threshold_metric,notes
+Q0001,regression,S0001,1,Why did Samsung RWA increase in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0002,regression,S0002,1,Why did Samsung RWA increase in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0003,regression,S0003,1,Why did Samsung RWA increase in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0004,regression,S0004,1,Why did Samsung RWA increase in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0005,regression,S0005,1,Why did Hyundai RWA increase in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0006,regression,S0006,1,Why did Hyundai RWA increase in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0007,regression,S0007,1,Why did Hyundai RWA increase in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0008,regression,S0008,1,Why did Hyundai RWA increase in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0009,regression,S0009,1,Why did Apple RWA increase in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0010,regression,S0010,1,Why did Apple RWA increase in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0011,regression,S0011,1,Why did Apple RWA increase in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0012,regression,S0012,1,Why did Apple RWA increase in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0013,regression,S0013,1,Why did Toyota RWA increase in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0014,regression,S0014,1,Why did Toyota RWA increase in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0015,regression,S0015,1,Why did Toyota RWA increase in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0016,regression,S0016,1,Why did Toyota RWA increase in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0017,regression,S0017,1,What drove Samsung RWA higher in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0018,regression,S0018,1,What drove Samsung RWA higher in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0019,regression,S0019,1,What drove Samsung RWA higher in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0020,regression,S0020,1,What drove Samsung RWA higher in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0021,regression,S0021,1,What drove Hyundai RWA higher in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0022,regression,S0022,1,What drove Hyundai RWA higher in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0023,regression,S0023,1,What drove Hyundai RWA higher in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0024,regression,S0024,1,What drove Hyundai RWA higher in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0025,regression,S0025,1,What drove Apple RWA higher in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0026,regression,S0026,1,What drove Apple RWA higher in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0027,regression,S0027,1,What drove Apple RWA higher in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0028,regression,S0028,1,What drove Apple RWA higher in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0029,regression,S0029,1,What drove Toyota RWA higher in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0030,regression,S0030,1,What drove Toyota RWA higher in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0031,regression,S0031,1,What drove Toyota RWA higher in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0032,regression,S0032,1,What drove Toyota RWA higher in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0033,regression,S0033,1,Reason for Samsung RWA rise in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0034,regression,S0034,1,Reason for Samsung RWA rise in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0035,regression,S0035,1,Reason for Samsung RWA rise in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0036,regression,S0036,1,Reason for Samsung RWA rise in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0037,regression,S0037,1,Reason for Hyundai RWA rise in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0038,regression,S0038,1,Reason for Hyundai RWA rise in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0039,regression,S0039,1,Reason for Hyundai RWA rise in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0040,regression,S0040,1,Reason for Hyundai RWA rise in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0041,regression,S0041,1,Reason for Apple RWA rise in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0042,regression,S0042,1,Reason for Apple RWA rise in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0043,regression,S0043,1,Reason for Apple RWA rise in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0044,regression,S0044,1,Reason for Apple RWA rise in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0045,regression,S0045,1,Reason for Toyota RWA rise in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0046,regression,S0046,1,Reason for Toyota RWA rise in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0047,regression,S0047,1,Reason for Toyota RWA rise in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0048,regression,S0048,1,Reason for Toyota RWA rise in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0049,regression,S0049,1,Samsung RWA went up in June 2026. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0050,regression,S0050,1,Samsung RWA went up in July 2026. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0051,regression,S0051,1,Samsung RWA went up in Jun-26. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0052,regression,S0052,1,Samsung RWA went up in 2026-07. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0053,regression,S0053,1,Hyundai RWA went up in June 2026. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0054,regression,S0054,1,Hyundai RWA went up in July 2026. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0055,regression,S0055,1,Hyundai RWA went up in Jun-26. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0056,regression,S0056,1,Hyundai RWA went up in 2026-07. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0057,regression,S0057,1,Apple RWA went up in June 2026. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0058,regression,S0058,1,Apple RWA went up in July 2026. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0059,regression,S0059,1,Apple RWA went up in Jun-26. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0060,regression,S0060,1,Apple RWA went up in 2026-07. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0061,regression,S0061,1,Toyota RWA went up in June 2026. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0062,regression,S0062,1,Toyota RWA went up in July 2026. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0063,regression,S0063,1,Toyota RWA went up in Jun-26. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0064,regression,S0064,1,Toyota RWA went up in 2026-07. Why?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0065,regression,S0065,1,What caused the increase in Samsung RWA in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0066,regression,S0066,1,What caused the increase in Samsung RWA in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0067,regression,S0067,1,What caused the increase in Samsung RWA in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0068,regression,S0068,1,What caused the increase in Samsung RWA in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0069,regression,S0069,1,What caused the increase in Hyundai RWA in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0070,regression,S0070,1,What caused the increase in Hyundai RWA in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0071,regression,S0071,1,What caused the increase in Hyundai RWA in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0072,regression,S0072,1,What caused the increase in Hyundai RWA in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0073,regression,S0073,1,What caused the increase in Apple RWA in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0074,regression,S0074,1,What caused the increase in Apple RWA in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0075,regression,S0075,1,What caused the increase in Apple RWA in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0076,regression,S0076,1,What caused the increase in Apple RWA in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0077,regression,S0077,1,What caused the increase in Toyota RWA in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0078,regression,S0078,1,What caused the increase in Toyota RWA in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0079,regression,S0079,1,What caused the increase in Toyota RWA in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0080,regression,S0080,1,What caused the increase in Toyota RWA in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0081,regression,S0081,1,Walk me through Samsung RWA movement in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0082,regression,S0082,1,Walk me through Samsung RWA movement in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0083,regression,S0083,1,Walk me through Samsung RWA movement in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0084,regression,S0084,1,Walk me through Samsung RWA movement in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0085,regression,S0085,1,Walk me through Hyundai RWA movement in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0086,regression,S0086,1,Walk me through Hyundai RWA movement in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0087,regression,S0087,1,Walk me through Hyundai RWA movement in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0088,regression,S0088,1,Walk me through Hyundai RWA movement in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0089,regression,S0089,1,Walk me through Apple RWA movement in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0090,regression,S0090,1,Walk me through Apple RWA movement in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0091,regression,S0091,1,Walk me through Apple RWA movement in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0092,regression,S0092,1,Walk me through Apple RWA movement in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0093,regression,S0093,1,Walk me through Toyota RWA movement in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0094,regression,S0094,1,Walk me through Toyota RWA movement in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0095,regression,S0095,1,Walk me through Toyota RWA movement in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0096,regression,S0096,1,Walk me through Toyota RWA movement in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0097,regression,S0097,1,Explain Samsung RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0098,regression,S0098,1,Explain Samsung RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0099,regression,S0099,1,Explain Samsung RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0100,regression,S0100,1,Explain Samsung RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0101,regression,S0101,1,Explain Hyundai RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0102,regression,S0102,1,Explain Hyundai RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0103,regression,S0103,1,Explain Hyundai RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0104,regression,S0104,1,Explain Hyundai RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0105,regression,S0105,1,Explain Apple RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0106,regression,S0106,1,Explain Apple RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0107,regression,S0107,1,Explain Apple RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0108,regression,S0108,1,Explain Apple RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0109,regression,S0109,1,Explain Toyota RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0110,regression,S0110,1,Explain Toyota RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0111,regression,S0111,1,Explain Toyota RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0112,regression,S0112,1,Explain Toyota RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0113,regression,S0113,1,What led to Samsung RWA uptick in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0114,regression,S0114,1,What led to Samsung RWA uptick in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0115,regression,S0115,1,What led to Samsung RWA uptick in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0116,regression,S0116,1,What led to Samsung RWA uptick in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0117,regression,S0117,1,What led to Hyundai RWA uptick in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0118,regression,S0118,1,What led to Hyundai RWA uptick in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0119,regression,S0119,1,What led to Hyundai RWA uptick in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0120,regression,S0120,1,What led to Hyundai RWA uptick in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0121,regression,S0121,1,What led to Apple RWA uptick in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0122,regression,S0122,1,What led to Apple RWA uptick in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0123,regression,S0123,1,What led to Apple RWA uptick in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0124,regression,S0124,1,What led to Apple RWA uptick in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0125,regression,S0125,1,What led to Toyota RWA uptick in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0126,regression,S0126,1,What led to Toyota RWA uptick in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0127,regression,S0127,1,What led to Toyota RWA uptick in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0128,regression,S0128,1,What led to Toyota RWA uptick in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0129,regression,S0129,1,Could you explain Samsung RWA increase in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0130,regression,S0130,1,Could you explain Samsung RWA increase in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0131,regression,S0131,1,Could you explain Samsung RWA increase in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0132,regression,S0132,1,Could you explain Samsung RWA increase in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0133,regression,S0133,1,Could you explain Hyundai RWA increase in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0134,regression,S0134,1,Could you explain Hyundai RWA increase in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0135,regression,S0135,1,Could you explain Hyundai RWA increase in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0136,regression,S0136,1,Could you explain Hyundai RWA increase in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0137,regression,S0137,1,Could you explain Apple RWA increase in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0138,regression,S0138,1,Could you explain Apple RWA increase in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0139,regression,S0139,1,Could you explain Apple RWA increase in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0140,regression,S0140,1,Could you explain Apple RWA increase in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0141,regression,S0141,1,Could you explain Toyota RWA increase in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0142,regression,S0142,1,Could you explain Toyota RWA increase in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0143,regression,S0143,1,Could you explain Toyota RWA increase in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0144,regression,S0144,1,Could you explain Toyota RWA increase in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0145,regression,S0145,1,Why did Samsung RWA decline in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0146,regression,S0146,1,Why did Samsung RWA decline in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0147,regression,S0147,1,Why did Samsung RWA decline in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0148,regression,S0148,1,Why did Samsung RWA decline in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0149,regression,S0149,1,Why did Hyundai RWA decline in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0150,regression,S0150,1,Why did Hyundai RWA decline in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0151,regression,S0151,1,Why did Hyundai RWA decline in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0152,regression,S0152,1,Why did Hyundai RWA decline in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0153,regression,S0153,1,Why did Apple RWA decline in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0154,regression,S0154,1,Why did Apple RWA decline in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0155,regression,S0155,1,Why did Apple RWA decline in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0156,regression,S0156,1,Why did Apple RWA decline in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0157,regression,S0157,1,Why did Toyota RWA decline in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0158,regression,S0158,1,Why did Toyota RWA decline in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0159,regression,S0159,1,Why did Toyota RWA decline in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0160,regression,S0160,1,Why did Toyota RWA decline in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0161,regression,S0161,1,What drove Samsung RWA lower in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0162,regression,S0162,1,What drove Samsung RWA lower in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0163,regression,S0163,1,What drove Samsung RWA lower in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0164,regression,S0164,1,What drove Samsung RWA lower in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0165,regression,S0165,1,What drove Hyundai RWA lower in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0166,regression,S0166,1,What drove Hyundai RWA lower in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0167,regression,S0167,1,What drove Hyundai RWA lower in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0168,regression,S0168,1,What drove Hyundai RWA lower in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0169,regression,S0169,1,What drove Apple RWA lower in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0170,regression,S0170,1,What drove Apple RWA lower in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0171,regression,S0171,1,What drove Apple RWA lower in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0172,regression,S0172,1,What drove Apple RWA lower in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0173,regression,S0173,1,What drove Toyota RWA lower in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0174,regression,S0174,1,What drove Toyota RWA lower in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0175,regression,S0175,1,What drove Toyota RWA lower in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0176,regression,S0176,1,What drove Toyota RWA lower in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0177,regression,S0177,1,What happened to Samsung RWA in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0178,regression,S0178,1,What happened to Samsung RWA in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0179,regression,S0179,1,What happened to Samsung RWA in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0180,regression,S0180,1,What happened to Samsung RWA in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0181,regression,S0181,1,What happened to Hyundai RWA in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0182,regression,S0182,1,What happened to Hyundai RWA in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0183,regression,S0183,1,What happened to Hyundai RWA in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0184,regression,S0184,1,What happened to Hyundai RWA in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0185,regression,S0185,1,What happened to Apple RWA in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0186,regression,S0186,1,What happened to Apple RWA in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0187,regression,S0187,1,What happened to Apple RWA in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0188,regression,S0188,1,What happened to Apple RWA in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0189,regression,S0189,1,What happened to Toyota RWA in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0190,regression,S0190,1,What happened to Toyota RWA in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0191,regression,S0191,1,What happened to Toyota RWA in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0192,regression,S0192,1,What happened to Toyota RWA in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0193,regression,S0193,1,Talk me through Samsung RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0194,regression,S0194,1,Talk me through Samsung RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0195,regression,S0195,1,Talk me through Samsung RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0196,regression,S0196,1,Talk me through Samsung RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0197,regression,S0197,1,Talk me through Hyundai RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0198,regression,S0198,1,Talk me through Hyundai RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0199,regression,S0199,1,Talk me through Hyundai RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0200,regression,S0200,1,Talk me through Hyundai RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0201,regression,S0201,1,Talk me through Apple RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0202,regression,S0202,1,Talk me through Apple RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0203,regression,S0203,1,Talk me through Apple RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0204,regression,S0204,1,Talk me through Apple RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0205,regression,S0205,1,Talk me through Toyota RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0206,regression,S0206,1,Talk me through Toyota RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0207,regression,S0207,1,Talk me through Toyota RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0208,regression,S0208,1,Talk me through Toyota RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0209,regression,S0209,1,Give me a breakdown of Samsung RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0210,regression,S0210,1,Give me a breakdown of Samsung RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0211,regression,S0211,1,Give me a breakdown of Samsung RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0212,regression,S0212,1,Give me a breakdown of Samsung RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0213,regression,S0213,1,Give me a breakdown of Hyundai RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0214,regression,S0214,1,Give me a breakdown of Hyundai RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0215,regression,S0215,1,Give me a breakdown of Hyundai RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0216,regression,S0216,1,Give me a breakdown of Hyundai RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0217,regression,S0217,1,Give me a breakdown of Apple RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0218,regression,S0218,1,Give me a breakdown of Apple RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0219,regression,S0219,1,Give me a breakdown of Apple RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0220,regression,S0220,1,Give me a breakdown of Apple RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0221,regression,S0221,1,Give me a breakdown of Toyota RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0222,regression,S0222,1,Give me a breakdown of Toyota RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0223,regression,S0223,1,Give me a breakdown of Toyota RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0224,regression,S0224,1,Give me a breakdown of Toyota RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0225,regression,S0225,1,What explains Samsung RWA surge in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0226,regression,S0226,1,What explains Samsung RWA surge in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0227,regression,S0227,1,What explains Samsung RWA surge in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0228,regression,S0228,1,What explains Samsung RWA surge in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0229,regression,S0229,1,What explains Hyundai RWA surge in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0230,regression,S0230,1,What explains Hyundai RWA surge in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0231,regression,S0231,1,What explains Hyundai RWA surge in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0232,regression,S0232,1,What explains Hyundai RWA surge in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0233,regression,S0233,1,What explains Apple RWA surge in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0234,regression,S0234,1,What explains Apple RWA surge in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0235,regression,S0235,1,What explains Apple RWA surge in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0236,regression,S0236,1,What explains Apple RWA surge in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0237,regression,S0237,1,What explains Toyota RWA surge in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0238,regression,S0238,1,What explains Toyota RWA surge in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0239,regression,S0239,1,What explains Toyota RWA surge in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0240,regression,S0240,1,What explains Toyota RWA surge in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0241,regression,S0241,1,Summarize Samsung RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0242,regression,S0242,1,Summarize Samsung RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0243,regression,S0243,1,Summarize Samsung RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0244,regression,S0244,1,Summarize Samsung RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0245,regression,S0245,1,Summarize Hyundai RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0246,regression,S0246,1,Summarize Hyundai RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0247,regression,S0247,1,Summarize Hyundai RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0248,regression,S0248,1,Summarize Hyundai RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0249,regression,S0249,1,Summarize Apple RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0250,regression,S0250,1,Summarize Apple RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0251,regression,S0251,1,Summarize Apple RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0252,regression,S0252,1,Summarize Apple RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0253,regression,S0253,1,Summarize Toyota RWA in June 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0254,regression,S0254,1,Summarize Toyota RWA in July 2026.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0255,regression,S0255,1,Summarize Toyota RWA in Jun-26.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0256,regression,S0256,1,Summarize Toyota RWA in 2026-07.,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,AUTO,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0257,regression,S0257,1,Why did Samsung RWA fall in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0258,regression,S0258,1,Why did Samsung RWA fall in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0259,regression,S0259,1,Why did Samsung RWA fall in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0260,regression,S0260,1,Why did Samsung RWA fall in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0261,regression,S0261,1,Why did Hyundai RWA fall in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0262,regression,S0262,1,Why did Hyundai RWA fall in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0263,regression,S0263,1,Why did Hyundai RWA fall in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0264,regression,S0264,1,Why did Hyundai RWA fall in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0265,regression,S0265,1,Why did Apple RWA fall in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0266,regression,S0266,1,Why did Apple RWA fall in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0267,regression,S0267,1,Why did Apple RWA fall in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0268,regression,S0268,1,Why did Apple RWA fall in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0269,regression,S0269,1,Why did Toyota RWA fall in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0270,regression,S0270,1,Why did Toyota RWA fall in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0271,regression,S0271,1,Why did Toyota RWA fall in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0272,regression,S0272,1,Why did Toyota RWA fall in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,DOWN,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0273,regression,S0273,1,Why did Samsung RWA grow in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0274,regression,S0274,1,Why did Samsung RWA grow in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0275,regression,S0275,1,Why did Samsung RWA grow in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0276,regression,S0276,1,Why did Samsung RWA grow in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0277,regression,S0277,1,Why did Hyundai RWA grow in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0278,regression,S0278,1,Why did Hyundai RWA grow in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0279,regression,S0279,1,Why did Hyundai RWA grow in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0280,regression,S0280,1,Why did Hyundai RWA grow in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0002,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0281,regression,S0281,1,Why did Apple RWA grow in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0282,regression,S0282,1,Why did Apple RWA grow in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0283,regression,S0283,1,Why did Apple RWA grow in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0284,regression,S0284,1,Why did Apple RWA grow in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0003,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0285,regression,S0285,1,Why did Toyota RWA grow in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0286,regression,S0286,1,Why did Toyota RWA grow in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0287,regression,S0287,1,Why did Toyota RWA grow in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0288,regression,S0288,1,Why did Toyota RWA grow in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,CHANGE,UP,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0289,regression,S0289,1,Show top 3 entities in June 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,CHANGE,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0290,regression,S0290,1,Show top 3 entities by percentage increase in June 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,PERCENT,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0291,regression,S0291,1,Show top 3 entities in July 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,CHANGE,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0292,regression,S0292,1,Show top 3 entities by percentage increase in July 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,PERCENT,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0293,regression,S0293,1,Show top 3 entities in Jun-26 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,CHANGE,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0294,regression,S0294,1,Show top 3 entities by percentage increase in Jun-26 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,PERCENT,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0295,regression,S0295,1,Show top 3 entities in 2026-07 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,CHANGE,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0296,regression,S0296,1,Show top 3 entities by percentage increase in 2026-07 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,PERCENT,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0297,regression,S0297,1,Show top 5 entities in June 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,CHANGE,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0298,regression,S0298,1,Show top 5 entities by percentage increase in June 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,PERCENT,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0299,regression,S0299,1,Show top 5 entities in July 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,CHANGE,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0300,regression,S0300,1,Show top 5 entities by percentage increase in July 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,PERCENT,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0301,regression,S0301,1,Show top 5 entities in Jun-26 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,CHANGE,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0302,regression,S0302,1,Show top 5 entities by percentage increase in Jun-26 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,PERCENT,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0303,regression,S0303,1,Show top 5 entities in 2026-07 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,CHANGE,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0304,regression,S0304,1,Show top 5 entities by percentage increase in 2026-07 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,PERCENT,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0305,regression,S0305,1,Show top 10 entities in June 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,CHANGE,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0306,regression,S0306,1,Show top 10 entities by percentage increase in June 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,PERCENT,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0307,regression,S0307,1,Show top 10 entities in July 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,CHANGE,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0308,regression,S0308,1,Show top 10 entities by percentage increase in July 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,PERCENT,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0309,regression,S0309,1,Show top 10 entities in Jun-26 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,CHANGE,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0310,regression,S0310,1,Show top 10 entities by percentage increase in Jun-26 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,PERCENT,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0311,regression,S0311,1,Show top 10 entities in 2026-07 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,CHANGE,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0312,regression,S0312,1,Show top 10 entities by percentage increase in 2026-07 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,PERCENT,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0313,regression,S0313,1,Show top 3 subsidiaries in June 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,CHANGE,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0314,regression,S0314,1,Show top 3 subsidiaries by percentage increase in June 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,PERCENT,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0315,regression,S0315,1,Show top 3 subsidiaries in July 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,CHANGE,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0316,regression,S0316,1,Show top 3 subsidiaries by percentage increase in July 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,PERCENT,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0317,regression,S0317,1,Show top 3 subsidiaries in Jun-26 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,CHANGE,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0318,regression,S0318,1,Show top 3 subsidiaries by percentage increase in Jun-26 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,PERCENT,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0319,regression,S0319,1,Show top 3 subsidiaries in 2026-07 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,CHANGE,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0320,regression,S0320,1,Show top 3 subsidiaries by percentage increase in 2026-07 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,PERCENT,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0321,regression,S0321,1,Show top 5 subsidiaries in June 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,CHANGE,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0322,regression,S0322,1,Show top 5 subsidiaries by percentage increase in June 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,PERCENT,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0323,regression,S0323,1,Show top 5 subsidiaries in July 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,CHANGE,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0324,regression,S0324,1,Show top 5 subsidiaries by percentage increase in July 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,PERCENT,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0325,regression,S0325,1,Show top 5 subsidiaries in Jun-26 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,CHANGE,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0326,regression,S0326,1,Show top 5 subsidiaries by percentage increase in Jun-26 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,PERCENT,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0327,regression,S0327,1,Show top 5 subsidiaries in 2026-07 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,CHANGE,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0328,regression,S0328,1,Show top 5 subsidiaries by percentage increase in 2026-07 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,PERCENT,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0329,regression,S0329,1,Show top 10 subsidiaries in June 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,CHANGE,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0330,regression,S0330,1,Show top 10 subsidiaries by percentage increase in June 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,PERCENT,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0331,regression,S0331,1,Show top 10 subsidiaries in July 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,CHANGE,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0332,regression,S0332,1,Show top 10 subsidiaries by percentage increase in July 2026 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,PERCENT,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0333,regression,S0333,1,Show top 10 subsidiaries in Jun-26 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,CHANGE,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0334,regression,S0334,1,Show top 10 subsidiaries by percentage increase in Jun-26 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,PERCENT,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0335,regression,S0335,1,Show top 10 subsidiaries in 2026-07 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,CHANGE,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0336,regression,S0336,1,Show top 10 subsidiaries by percentage increase in 2026-07 for Samsung,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-07,PERCENT,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0337,regression,S0337,1,Show top 3 groups in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,CHANGE,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0338,regression,S0338,1,Show top 3 groups by percentage increase in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,PERCENT,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0339,regression,S0339,1,Show top 3 groups in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,CHANGE,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0340,regression,S0340,1,Show top 3 groups by percentage increase in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,PERCENT,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0341,regression,S0341,1,Show top 3 groups in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,CHANGE,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0342,regression,S0342,1,Show top 3 groups by percentage increase in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,PERCENT,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0343,regression,S0343,1,Show top 3 groups in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,CHANGE,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0344,regression,S0344,1,Show top 3 groups by percentage increase in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,PERCENT,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0345,regression,S0345,1,Show top 5 groups in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,CHANGE,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0346,regression,S0346,1,Show top 5 groups by percentage increase in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,PERCENT,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0347,regression,S0347,1,Show top 5 groups in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,CHANGE,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0348,regression,S0348,1,Show top 5 groups by percentage increase in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,PERCENT,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0349,regression,S0349,1,Show top 5 groups in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,CHANGE,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0350,regression,S0350,1,Show top 5 groups by percentage increase in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,PERCENT,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0351,regression,S0351,1,Show top 5 groups in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,CHANGE,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0352,regression,S0352,1,Show top 5 groups by percentage increase in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,PERCENT,,5,,,,,,,,Developer-authored; not independent user accuracy.
+Q0353,regression,S0353,1,Show top 10 groups in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,CHANGE,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0354,regression,S0354,1,Show top 10 groups by percentage increase in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,PERCENT,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0355,regression,S0355,1,Show top 10 groups in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,CHANGE,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0356,regression,S0356,1,Show top 10 groups by percentage increase in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,PERCENT,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0357,regression,S0357,1,Show top 10 groups in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,CHANGE,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0358,regression,S0358,1,Show top 10 groups by percentage increase in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,PERCENT,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0359,regression,S0359,1,Show top 10 groups in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,CHANGE,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0360,regression,S0360,1,Show top 10 groups by percentage increase in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,PERCENT,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0361,regression,S0361,1,How much came from CG for Samsung in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0001,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0362,regression,S0362,1,Was CG the main driver for Samsung in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0001,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0363,regression,S0363,1,How much came from EAD for Samsung in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0001,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0364,regression,S0364,1,Was EAD the main driver for Samsung in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0001,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0365,regression,S0365,1,How much came from FX for Samsung in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0001,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0366,regression,S0366,1,Was FX the main driver for Samsung in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0001,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0367,regression,S0367,1,How much came from CG for Samsung in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0001,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0368,regression,S0368,1,Was CG the main driver for Samsung in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0001,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0369,regression,S0369,1,How much came from EAD for Samsung in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0001,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0370,regression,S0370,1,Was EAD the main driver for Samsung in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0001,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0371,regression,S0371,1,How much came from FX for Samsung in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0001,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0372,regression,S0372,1,Was FX the main driver for Samsung in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0001,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0373,regression,S0373,1,How much came from CG for Samsung in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0001,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0374,regression,S0374,1,Was CG the main driver for Samsung in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0001,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0375,regression,S0375,1,How much came from EAD for Samsung in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0001,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0376,regression,S0376,1,Was EAD the main driver for Samsung in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0001,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0377,regression,S0377,1,How much came from FX for Samsung in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0001,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0378,regression,S0378,1,Was FX the main driver for Samsung in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0001,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0379,regression,S0379,1,How much came from CG for Samsung in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0001,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0380,regression,S0380,1,Was CG the main driver for Samsung in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0001,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0381,regression,S0381,1,How much came from EAD for Samsung in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0001,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0382,regression,S0382,1,Was EAD the main driver for Samsung in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0001,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0383,regression,S0383,1,How much came from FX for Samsung in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0001,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0384,regression,S0384,1,Was FX the main driver for Samsung in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0001,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0385,regression,S0385,1,How much came from CG for Hyundai in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0002,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0386,regression,S0386,1,Was CG the main driver for Hyundai in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0002,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0387,regression,S0387,1,How much came from EAD for Hyundai in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0002,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0388,regression,S0388,1,Was EAD the main driver for Hyundai in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0002,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0389,regression,S0389,1,How much came from FX for Hyundai in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0002,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0390,regression,S0390,1,Was FX the main driver for Hyundai in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0002,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0391,regression,S0391,1,How much came from CG for Hyundai in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0002,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0392,regression,S0392,1,Was CG the main driver for Hyundai in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0002,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0393,regression,S0393,1,How much came from EAD for Hyundai in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0002,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0394,regression,S0394,1,Was EAD the main driver for Hyundai in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0002,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0395,regression,S0395,1,How much came from FX for Hyundai in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0002,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0396,regression,S0396,1,Was FX the main driver for Hyundai in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0002,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0397,regression,S0397,1,How much came from CG for Hyundai in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0002,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0398,regression,S0398,1,Was CG the main driver for Hyundai in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0002,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0399,regression,S0399,1,How much came from EAD for Hyundai in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0002,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0400,regression,S0400,1,Was EAD the main driver for Hyundai in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0002,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0401,regression,S0401,1,How much came from FX for Hyundai in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0002,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0402,regression,S0402,1,Was FX the main driver for Hyundai in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0002,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0403,regression,S0403,1,How much came from CG for Hyundai in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0002,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0404,regression,S0404,1,Was CG the main driver for Hyundai in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0002,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0405,regression,S0405,1,How much came from EAD for Hyundai in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0002,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0406,regression,S0406,1,Was EAD the main driver for Hyundai in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0002,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0407,regression,S0407,1,How much came from FX for Hyundai in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0002,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0408,regression,S0408,1,Was FX the main driver for Hyundai in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0002,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0409,regression,S0409,1,How much came from CG for Apple in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0003,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0410,regression,S0410,1,Was CG the main driver for Apple in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0003,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0411,regression,S0411,1,How much came from EAD for Apple in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0003,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0412,regression,S0412,1,Was EAD the main driver for Apple in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0003,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0413,regression,S0413,1,How much came from FX for Apple in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0003,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0414,regression,S0414,1,Was FX the main driver for Apple in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0003,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0415,regression,S0415,1,How much came from CG for Apple in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0003,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0416,regression,S0416,1,Was CG the main driver for Apple in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0003,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0417,regression,S0417,1,How much came from EAD for Apple in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0003,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0418,regression,S0418,1,Was EAD the main driver for Apple in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0003,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0419,regression,S0419,1,How much came from FX for Apple in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0003,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0420,regression,S0420,1,Was FX the main driver for Apple in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0003,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0421,regression,S0421,1,How much came from CG for Apple in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0003,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0422,regression,S0422,1,Was CG the main driver for Apple in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0003,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0423,regression,S0423,1,How much came from EAD for Apple in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0003,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0424,regression,S0424,1,Was EAD the main driver for Apple in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0003,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0425,regression,S0425,1,How much came from FX for Apple in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0003,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0426,regression,S0426,1,Was FX the main driver for Apple in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0003,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0427,regression,S0427,1,How much came from CG for Apple in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0003,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0428,regression,S0428,1,Was CG the main driver for Apple in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0003,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0429,regression,S0429,1,How much came from EAD for Apple in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0003,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0430,regression,S0430,1,Was EAD the main driver for Apple in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0003,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0431,regression,S0431,1,How much came from FX for Apple in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0003,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0432,regression,S0432,1,Was FX the main driver for Apple in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0003,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0433,regression,S0433,1,How much came from CG for Toyota in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0004,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0434,regression,S0434,1,Was CG the main driver for Toyota in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0004,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0435,regression,S0435,1,How much came from EAD for Toyota in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0004,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0436,regression,S0436,1,Was EAD the main driver for Toyota in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0004,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0437,regression,S0437,1,How much came from FX for Toyota in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0004,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0438,regression,S0438,1,Was FX the main driver for Toyota in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0004,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0439,regression,S0439,1,How much came from CG for Toyota in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0004,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0440,regression,S0440,1,Was CG the main driver for Toyota in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0004,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0441,regression,S0441,1,How much came from EAD for Toyota in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0004,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0442,regression,S0442,1,Was EAD the main driver for Toyota in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0004,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0443,regression,S0443,1,How much came from FX for Toyota in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0004,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0444,regression,S0444,1,Was FX the main driver for Toyota in July 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0004,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0445,regression,S0445,1,How much came from CG for Toyota in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0004,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0446,regression,S0446,1,Was CG the main driver for Toyota in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0004,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0447,regression,S0447,1,How much came from EAD for Toyota in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0004,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0448,regression,S0448,1,Was EAD the main driver for Toyota in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0004,,2026-06,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0449,regression,S0449,1,How much came from FX for Toyota in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0004,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0450,regression,S0450,1,Was FX the main driver for Toyota in Jun-26?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0004,,2026-06,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0451,regression,S0451,1,How much came from CG for Toyota in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0004,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0452,regression,S0452,1,Was CG the main driver for Toyota in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0004,,2026-07,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0453,regression,S0453,1,How much came from EAD for Toyota in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0004,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0454,regression,S0454,1,Was EAD the main driver for Toyota in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0004,,2026-07,,,,EAD,,,,,,,Developer-authored; not independent user accuracy.
+Q0455,regression,S0455,1,How much came from FX for Toyota in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CONTRIBUTION,CG0004,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0456,regression,S0456,1,Was FX the main driver for Toyota in 2026-07?,SAMSUNG GROUP,,2026-06,ACCEPT,DRIVER_CHECK,CG0004,,2026-07,,,,FX,,,,,,,Developer-authored; not independent user accuracy.
+Q0457,regression,S0457,1,Compare Samsung and Hyundai RWA in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0001,,2026-06,,,,,,,CG0001|CG0002,,,,Developer-authored; not independent user accuracy.
+Q0458,regression,S0458,1,Compare Samsung and Hyundai RWA in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0001,,2026-07,,,,,,,CG0001|CG0002,,,,Developer-authored; not independent user accuracy.
+Q0459,regression,S0459,1,Compare Samsung and Hyundai RWA in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0001,,2026-06,,,,,,,CG0001|CG0002,,,,Developer-authored; not independent user accuracy.
+Q0460,regression,S0460,1,Compare Samsung and Hyundai RWA in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0001,,2026-07,,,,,,,CG0001|CG0002,,,,Developer-authored; not independent user accuracy.
+Q0461,regression,S0461,1,Compare Samsung and Apple RWA in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0001,,2026-06,,,,,,,CG0001|CG0003,,,,Developer-authored; not independent user accuracy.
+Q0462,regression,S0462,1,Compare Samsung and Apple RWA in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0001,,2026-07,,,,,,,CG0001|CG0003,,,,Developer-authored; not independent user accuracy.
+Q0463,regression,S0463,1,Compare Samsung and Apple RWA in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0001,,2026-06,,,,,,,CG0001|CG0003,,,,Developer-authored; not independent user accuracy.
+Q0464,regression,S0464,1,Compare Samsung and Apple RWA in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0001,,2026-07,,,,,,,CG0001|CG0003,,,,Developer-authored; not independent user accuracy.
+Q0465,regression,S0465,1,Compare Samsung and Toyota RWA in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0001,,2026-06,,,,,,,CG0001|CG0004,,,,Developer-authored; not independent user accuracy.
+Q0466,regression,S0466,1,Compare Samsung and Toyota RWA in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0001,,2026-07,,,,,,,CG0001|CG0004,,,,Developer-authored; not independent user accuracy.
+Q0467,regression,S0467,1,Compare Samsung and Toyota RWA in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0001,,2026-06,,,,,,,CG0001|CG0004,,,,Developer-authored; not independent user accuracy.
+Q0468,regression,S0468,1,Compare Samsung and Toyota RWA in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0001,,2026-07,,,,,,,CG0001|CG0004,,,,Developer-authored; not independent user accuracy.
+Q0469,regression,S0469,1,Compare Hyundai and Samsung RWA in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0002,,2026-06,,,,,,,CG0002|CG0001,,,,Developer-authored; not independent user accuracy.
+Q0470,regression,S0470,1,Compare Hyundai and Samsung RWA in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0002,,2026-07,,,,,,,CG0002|CG0001,,,,Developer-authored; not independent user accuracy.
+Q0471,regression,S0471,1,Compare Hyundai and Samsung RWA in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0002,,2026-06,,,,,,,CG0002|CG0001,,,,Developer-authored; not independent user accuracy.
+Q0472,regression,S0472,1,Compare Hyundai and Samsung RWA in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0002,,2026-07,,,,,,,CG0002|CG0001,,,,Developer-authored; not independent user accuracy.
+Q0473,regression,S0473,1,Compare Hyundai and Apple RWA in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0002,,2026-06,,,,,,,CG0002|CG0003,,,,Developer-authored; not independent user accuracy.
+Q0474,regression,S0474,1,Compare Hyundai and Apple RWA in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0002,,2026-07,,,,,,,CG0002|CG0003,,,,Developer-authored; not independent user accuracy.
+Q0475,regression,S0475,1,Compare Hyundai and Apple RWA in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0002,,2026-06,,,,,,,CG0002|CG0003,,,,Developer-authored; not independent user accuracy.
+Q0476,regression,S0476,1,Compare Hyundai and Apple RWA in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0002,,2026-07,,,,,,,CG0002|CG0003,,,,Developer-authored; not independent user accuracy.
+Q0477,regression,S0477,1,Compare Hyundai and Toyota RWA in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0002,,2026-06,,,,,,,CG0002|CG0004,,,,Developer-authored; not independent user accuracy.
+Q0478,regression,S0478,1,Compare Hyundai and Toyota RWA in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0002,,2026-07,,,,,,,CG0002|CG0004,,,,Developer-authored; not independent user accuracy.
+Q0479,regression,S0479,1,Compare Hyundai and Toyota RWA in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0002,,2026-06,,,,,,,CG0002|CG0004,,,,Developer-authored; not independent user accuracy.
+Q0480,regression,S0480,1,Compare Hyundai and Toyota RWA in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0002,,2026-07,,,,,,,CG0002|CG0004,,,,Developer-authored; not independent user accuracy.
+Q0481,regression,S0481,1,Compare Apple and Samsung RWA in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0003,,2026-06,,,,,,,CG0003|CG0001,,,,Developer-authored; not independent user accuracy.
+Q0482,regression,S0482,1,Compare Apple and Samsung RWA in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0003,,2026-07,,,,,,,CG0003|CG0001,,,,Developer-authored; not independent user accuracy.
+Q0483,regression,S0483,1,Compare Apple and Samsung RWA in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0003,,2026-06,,,,,,,CG0003|CG0001,,,,Developer-authored; not independent user accuracy.
+Q0484,regression,S0484,1,Compare Apple and Samsung RWA in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0003,,2026-07,,,,,,,CG0003|CG0001,,,,Developer-authored; not independent user accuracy.
+Q0485,regression,S0485,1,Compare Apple and Hyundai RWA in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0003,,2026-06,,,,,,,CG0003|CG0002,,,,Developer-authored; not independent user accuracy.
+Q0486,regression,S0486,1,Compare Apple and Hyundai RWA in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0003,,2026-07,,,,,,,CG0003|CG0002,,,,Developer-authored; not independent user accuracy.
+Q0487,regression,S0487,1,Compare Apple and Hyundai RWA in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0003,,2026-06,,,,,,,CG0003|CG0002,,,,Developer-authored; not independent user accuracy.
+Q0488,regression,S0488,1,Compare Apple and Hyundai RWA in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0003,,2026-07,,,,,,,CG0003|CG0002,,,,Developer-authored; not independent user accuracy.
+Q0489,regression,S0489,1,Compare Apple and Toyota RWA in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0003,,2026-06,,,,,,,CG0003|CG0004,,,,Developer-authored; not independent user accuracy.
+Q0490,regression,S0490,1,Compare Apple and Toyota RWA in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0003,,2026-07,,,,,,,CG0003|CG0004,,,,Developer-authored; not independent user accuracy.
+Q0491,regression,S0491,1,Compare Apple and Toyota RWA in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0003,,2026-06,,,,,,,CG0003|CG0004,,,,Developer-authored; not independent user accuracy.
+Q0492,regression,S0492,1,Compare Apple and Toyota RWA in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0003,,2026-07,,,,,,,CG0003|CG0004,,,,Developer-authored; not independent user accuracy.
+Q0493,regression,S0493,1,Compare Toyota and Samsung RWA in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0004,,2026-06,,,,,,,CG0004|CG0001,,,,Developer-authored; not independent user accuracy.
+Q0494,regression,S0494,1,Compare Toyota and Samsung RWA in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0004,,2026-07,,,,,,,CG0004|CG0001,,,,Developer-authored; not independent user accuracy.
+Q0495,regression,S0495,1,Compare Toyota and Samsung RWA in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0004,,2026-06,,,,,,,CG0004|CG0001,,,,Developer-authored; not independent user accuracy.
+Q0496,regression,S0496,1,Compare Toyota and Samsung RWA in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0004,,2026-07,,,,,,,CG0004|CG0001,,,,Developer-authored; not independent user accuracy.
+Q0497,regression,S0497,1,Compare Toyota and Hyundai RWA in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0004,,2026-06,,,,,,,CG0004|CG0002,,,,Developer-authored; not independent user accuracy.
+Q0498,regression,S0498,1,Compare Toyota and Hyundai RWA in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0004,,2026-07,,,,,,,CG0004|CG0002,,,,Developer-authored; not independent user accuracy.
+Q0499,regression,S0499,1,Compare Toyota and Hyundai RWA in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0004,,2026-06,,,,,,,CG0004|CG0002,,,,Developer-authored; not independent user accuracy.
+Q0500,regression,S0500,1,Compare Toyota and Hyundai RWA in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0004,,2026-07,,,,,,,CG0004|CG0002,,,,Developer-authored; not independent user accuracy.
+Q0501,regression,S0501,1,Compare Toyota and Apple RWA in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0004,,2026-06,,,,,,,CG0004|CG0003,,,,Developer-authored; not independent user accuracy.
+Q0502,regression,S0502,1,Compare Toyota and Apple RWA in July 2026,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0004,,2026-07,,,,,,,CG0004|CG0003,,,,Developer-authored; not independent user accuracy.
+Q0503,regression,S0503,1,Compare Toyota and Apple RWA in Jun-26,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0004,,2026-06,,,,,,,CG0004|CG0003,,,,Developer-authored; not independent user accuracy.
+Q0504,regression,S0504,1,Compare Toyota and Apple RWA in 2026-07,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0004,,2026-07,,,,,,,CG0004|CG0003,,,,Developer-authored; not independent user accuracy.
+Q0505,regression,S0505,1,Top 10 groups excluding Samsung in June 2026 above 25m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,,,,,CG0001,,,GT,25,CHANGE,Developer-authored; not independent user accuracy.
+Q0506,regression,S0506,1,Top 10 groups excluding Samsung in June 2026 at least 100m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,,,,,CG0001,,,GTE,100,CHANGE,Developer-authored; not independent user accuracy.
+Q0507,regression,S0507,1,Top 10 groups excluding Samsung in June 2026 below 500m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,,,,,CG0001,,,LT,500,CHANGE,Developer-authored; not independent user accuracy.
+Q0508,regression,S0508,1,Top 10 groups excluding Samsung in June 2026 at most 1000m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,,,,,CG0001,,,LTE,1000,CHANGE,Developer-authored; not independent user accuracy.
+Q0509,regression,S0509,1,Top 10 groups excluding Samsung in July 2026 above 25m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,,,,,CG0001,,,GT,25,CHANGE,Developer-authored; not independent user accuracy.
+Q0510,regression,S0510,1,Top 10 groups excluding Samsung in July 2026 at least 100m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,,,,,CG0001,,,GTE,100,CHANGE,Developer-authored; not independent user accuracy.
+Q0511,regression,S0511,1,Top 10 groups excluding Samsung in July 2026 below 500m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,,,,,CG0001,,,LT,500,CHANGE,Developer-authored; not independent user accuracy.
+Q0512,regression,S0512,1,Top 10 groups excluding Samsung in July 2026 at most 1000m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,,,,,CG0001,,,LTE,1000,CHANGE,Developer-authored; not independent user accuracy.
+Q0513,regression,S0513,1,Top 10 groups excluding Samsung in Jun-26 above 25m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,,,,,CG0001,,,GT,25,CHANGE,Developer-authored; not independent user accuracy.
+Q0514,regression,S0514,1,Top 10 groups excluding Samsung in Jun-26 at least 100m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,,,,,CG0001,,,GTE,100,CHANGE,Developer-authored; not independent user accuracy.
+Q0515,regression,S0515,1,Top 10 groups excluding Samsung in Jun-26 below 500m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,,,,,CG0001,,,LT,500,CHANGE,Developer-authored; not independent user accuracy.
+Q0516,regression,S0516,1,Top 10 groups excluding Samsung in Jun-26 at most 1000m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,,,,,CG0001,,,LTE,1000,CHANGE,Developer-authored; not independent user accuracy.
+Q0517,regression,S0517,1,Top 10 groups excluding Samsung in 2026-07 above 25m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,,,,,CG0001,,,GT,25,CHANGE,Developer-authored; not independent user accuracy.
+Q0518,regression,S0518,1,Top 10 groups excluding Samsung in 2026-07 at least 100m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,,,,,CG0001,,,GTE,100,CHANGE,Developer-authored; not independent user accuracy.
+Q0519,regression,S0519,1,Top 10 groups excluding Samsung in 2026-07 below 500m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,,,,,CG0001,,,LT,500,CHANGE,Developer-authored; not independent user accuracy.
+Q0520,regression,S0520,1,Top 10 groups excluding Samsung in 2026-07 at most 1000m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-07,,,,,CG0001,,,LTE,1000,CHANGE,Developer-authored; not independent user accuracy.
+Q0521,regression,S0521,1,What are the offsets for Samsung in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,OFFSETS,CG0001,,2026-06,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0522,regression,S0522,1,Does Samsung reconcile in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,DATA_QUALITY,CG0001,,2026-06,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0523,regression,S0523,1,Show Samsung trend over last 3 months in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TREND,CG0001,,2026-04..2026-06,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0524,regression,S0524,1,When did Samsung RWA peak?,SAMSUNG GROUP,,2026-06,ACCEPT,PEAK_MONTH,CG0001,,history:2026-06,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0525,regression,S0525,1,Was Samsung concentrated in June 2026?,SAMSUNG GROUP,,2026-06,ACCEPT,CONCENTRATION,CG0001,,2026-06,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0526,regression,S0526,1,Predict Samsung RWA next year.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0527,regression,S0527,1,Predict Hyundai RWA next year.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0528,regression,S0528,1,Predict Apple RWA next year.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0529,regression,S0529,1,Predict Toyota RWA next year.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0530,regression,S0530,1,Tell me a joke about Samsung.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0531,regression,S0531,1,Tell me a joke about Hyundai.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0532,regression,S0532,1,Tell me a joke about Apple.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0533,regression,S0533,1,Tell me a joke about Toyota.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0534,regression,S0534,1,What is Samsung stock price?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0535,regression,S0535,1,What is Hyundai stock price?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0536,regression,S0536,1,What is Apple stock price?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0537,regression,S0537,1,What is Toyota stock price?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0538,regression,S0538,1,Forecast Samsung RWA next month.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0539,regression,S0539,1,Forecast Hyundai RWA next month.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0540,regression,S0540,1,Forecast Apple RWA next month.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0541,regression,S0541,1,Forecast Toyota RWA next month.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0542,regression,S0542,1,Should we sell Samsung?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0543,regression,S0543,1,Should we sell Hyundai?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0544,regression,S0544,1,Should we sell Apple?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0545,regression,S0545,1,Should we sell Toyota?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0546,regression,S0546,1,Explain Samsung revenue.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0547,regression,S0547,1,Explain Hyundai revenue.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0548,regression,S0548,1,Explain Apple revenue.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0549,regression,S0549,1,Explain Toyota revenue.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0550,regression,S0550,1,Calculate Samsung risk density.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0551,regression,S0551,1,Calculate Hyundai risk density.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0552,regression,S0552,1,Calculate Apple risk density.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0553,regression,S0553,1,Calculate Toyota risk density.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0554,regression,S0554,1,Why did Samsung RWA increase adjusted for inflation?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0555,regression,S0555,1,Why did Hyundai RWA increase adjusted for inflation?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0556,regression,S0556,1,Why did Apple RWA increase adjusted for inflation?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0557,regression,S0557,1,Why did Toyota RWA increase adjusted for inflation?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0558,regression,S0558,1,Top entities for Samsung unless FX is zero.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0559,regression,S0559,1,Top entities for Hyundai unless FX is zero.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0560,regression,S0560,1,Top entities for Apple unless FX is zero.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0561,regression,S0561,1,Top entities for Toyota unless FX is zero.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0562,regression,S0562,1,Explain Samsung RWA in June not July.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0563,regression,S0563,1,Explain Hyundai RWA in June not July.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0564,regression,S0564,1,Explain Apple RWA in June not July.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0565,regression,S0565,1,Explain Toyota RWA in June not July.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0566,regression,S0566,1,Show Samsung increase and decrease.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0567,regression,S0567,1,Show Hyundai increase and decrease.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0568,regression,S0568,1,Show Apple increase and decrease.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0569,regression,S0569,1,Show Toyota increase and decrease.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0570,regression,S0570,1,Explain Samsung excluding unicorns.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0571,regression,S0571,1,Explain Hyundai excluding unicorns.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0572,regression,S0572,1,Explain Apple excluding unicorns.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0573,regression,S0573,1,Explain Toyota excluding unicorns.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0574,regression,S0574,1,What if Samsung exposure fell by 20 percent?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0575,regression,S0575,1,What if Hyundai exposure fell by 20 percent?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0576,regression,S0576,1,What if Apple exposure fell by 20 percent?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0577,regression,S0577,1,What if Toyota exposure fell by 20 percent?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0578,regression,S0578,1,Execute code for Samsung.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0579,regression,S0579,1,Execute code for Hyundai.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0580,regression,S0580,1,Execute code for Apple.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0581,regression,S0581,1,Execute code for Toyota.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0582,regression,S0582,1,Compare Samsung with unknown holdings.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0583,regression,S0583,1,Compare Hyundai with unknown holdings.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0584,regression,S0584,1,Compare Apple with unknown holdings.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0585,regression,S0585,1,Compare Toyota with unknown holdings.,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0586,regression,S0586,1,Why Samsung RWA and compare Toyota?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0587,regression,S0587,1,Explain Samsung in June and July,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0588,regression,S0588,1,Top groups with magical weighting,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0589,regression,S0589,1,Show Samsung risk density,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0590,regression,S0590,1,Compare Samsung and Toyota in June and July,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0591,regression,S0591,1,Explain Samsung without FX on a constant currency balance basis,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0592,regression,S0592,1,Which is better Samsung or Toyota?,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0593,regression,S0593,1,Top groups above 25,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0594,regression,S0594,1,Explain Samsung excluding,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0595,regression,S0595,1,Not Samsung in July,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0596,regression,S0596,1,Explain Samsung but not in July,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0597,regression,C001,1,Why did Samsung RWA increase in July?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-07,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0598,regression,C001,2,How about Toyota?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-07,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0599,regression,C001,3,And August?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-08,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0600,regression,C002,1,Top 10 groups in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,,,10,,,,,,,,Developer-authored; not independent user accuracy.
+Q0601,regression,C002,2,Only those above 25m,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_CLIENTS,~,,2026-06,,,,,,,,GT,25,,Developer-authored; not independent user accuracy.
+Q0602,regression,C002,3,Compare the first one with Toyota,SAMSUNG GROUP,,2026-06,ACCEPT,COMPARE,CG0001,,2026-06,,,,,,,CG0001|CG0004,,,,Developer-authored; not independent user accuracy.
+Q0603,regression,C003,1,Explain Samsung in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0604,regression,C003,2,Exclude FX,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,,2026-06,,,,,,FX,,,,,Developer-authored; not independent user accuracy.
+Q0605,regression,C003,3,How about Toyota?,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,,,,,,FX,,,,,Developer-authored; not independent user accuracy.
+Q0606,regression,C003,4,Include FX back,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0004,,2026-06,,,,,,~,,,,,Developer-authored; not independent user accuracy.
+Q0607,regression,C004,1,Top 3 entities for Samsung in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,,,3,,,,,,,,Developer-authored; not independent user accuracy.
+Q0608,regression,C004,2,Why?,SAMSUNG GROUP,,2026-06,ACCEPT,ENTITY_DRIVER,CG0001,CG0001-E001,2026-06,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0609,regression,C004,3,What about the next one?,SAMSUNG GROUP,,2026-06,ACCEPT,ENTITY_DRIVER,CG0001,CG0001-E002,2026-06,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0610,regression,C004,4,Same for May,SAMSUNG GROUP,,2026-06,ACCEPT,ENTITY_DRIVER,CG0001,CG0001-E002,2026-05,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0611,regression,C004,5,At group level,SAMSUNG GROUP,,2026-06,ACCEPT,GROUP_ROOT_CAUSE,CG0001,~,2026-05,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0612,regression,C005,1,Top 3 entities for Samsung in June 2026,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0613,regression,C005,2,Rank those by CG,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,,,,CG,,,,,,,Developer-authored; not independent user accuracy.
+Q0614,regression,C005,3,Which of those had the largest percentage increase?,SAMSUNG GROUP,,2026-06,ACCEPT,TOP_ENTITY,CG0001,,2026-06,PERCENT,,,~,,,,,,,Developer-authored; not independent user accuracy.
+Q0615,regression,S0615,1,Explain Samsung in June and July,SAMSUNG GROUP,,2026-06,AMBIGUOUS,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0616,regression,S0616,1,Explain Samsung increase and decrease,SAMSUNG GROUP,,2026-06,AMBIGUOUS,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0617,regression,S0617,1,Explain Samsung in June not July,SAMSUNG GROUP,,2026-06,AMBIGUOUS,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0618,regression,S0618,1,Not Samsung in July,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0619,regression,S0619,1,Explain Samsung but not in July,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0620,regression,S0620,1,Compare Samsung and Toyota and Hyundai,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0621,regression,S0621,1,Why Samsung RWA and compare Toyota?,SAMSUNG GROUP,,2026-06,AMBIGUOUS,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0622,regression,S0622,1,Explain Samsung by product in June,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0623,regression,S0623,1,Explain Samsung by booking location,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0624,regression,S0624,1,Explain Samsung CG in June,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0625,regression,S0625,1,Show Samsung FX trend,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.
+Q0626,regression,S0626,1,Main driver Samsung CG,SAMSUNG GROUP,,2026-06,REJECT,,,,,,,,,,,,,,,Developer-authored; not independent user accuracy.

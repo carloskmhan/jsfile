@@ -1,0 +1,60 @@
+{
+  "baseline": "Same latest incremental web/engine patches before manager UX changes",
+  "suites": [
+    {
+      "suite": "build_command_patterns.py --check",
+      "baselinePassed": true,
+      "currentPassed": true,
+      "newFailure": false
+    },
+    {
+      "suite": "tests/test_compiler.py",
+      "baselinePassed": true,
+      "currentPassed": true,
+      "newFailure": false
+    },
+    {
+      "suite": "tests/connected_tableau.mjs",
+      "baselinePassed": true,
+      "currentPassed": true,
+      "newFailure": false
+    },
+    {
+      "suite": "tests/test_robustness.mjs",
+      "baselinePassed": true,
+      "currentPassed": true,
+      "newFailure": false
+    },
+    {
+      "suite": "tools/evaluate.mjs tests/questions.csv reports/v6_existing_questions.json",
+      "baselinePassed": true,
+      "currentPassed": true,
+      "newFailure": false
+    },
+    {
+      "suite": "tools/evaluate.mjs tests/robustness.csv reports/v6_existing_robustness.json",
+      "baselinePassed": true,
+      "currentPassed": true,
+      "newFailure": false
+    },
+    {
+      "suite": "tests/test_builder_integration.py",
+      "baselinePassed": false,
+      "currentPassed": false,
+      "newFailure": false
+    },
+    {
+      "suite": "-m unittest local_manager_tests.test_manager -q",
+      "baselinePassed": true,
+      "currentPassed": true,
+      "newFailure": false
+    }
+  ],
+  "newFailures": 0,
+  "inheritedFailure": {
+    "test": "tests/test_builder_integration.py -> tests/builder_integration.mjs",
+    "expectation": "NOT an independently observed in the normal answer text",
+    "reason": "The previously requested comparison-note display patch hides this routine prose while preserving the warnings metadata. That engine was already in the baseline. The unchanged legacy assertion fails before and after this manager update.",
+    "testsModifiedToHideFailure": false
+  }
+}

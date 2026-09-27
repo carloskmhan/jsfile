@@ -1,0 +1,84 @@
+{
+  "release": "6.0.0-review",
+  "status": "Integrated, developer-tested review build; bank live staging/approval remains required",
+  "tests": {
+    "connected_tests.json": {
+      "passed": 84,
+      "failed": 0,
+      "total": 84
+    },
+    "compiler_tests.json": {
+      "passed": 53,
+      "failed": 0
+    },
+    "builder_integration.json": {
+      "passed": 12,
+      "failed": 0
+    },
+    "robustness_units.json": {
+      "passed": 55,
+      "failed": 0
+    },
+    "v6_existing_questions.json": {
+      "passed": 626,
+      "failed": 0,
+      "total": 626
+    },
+    "v6_existing_robustness.json": {
+      "passed": 225,
+      "failed": 0,
+      "total": 225
+    },
+    "test_runs.json": {
+      "passed": 8,
+      "failed": 0
+    }
+  },
+  "browser": {
+    "sampleDom": {
+      "passed": 15,
+      "failed": 0
+    },
+    "tableauMockDom": {
+      "passed": 11,
+      "failed": 0
+    },
+    "managerDom": {
+      "passed": 25,
+      "failed": 0
+    },
+    "actualHttpNavigation": {
+      "pass": false,
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:43295/demo.html\nCall log:\n  - navigating to \"http://127.0.0.1:43295/demo.html\", waiting until \"load\"\n",
+      "note": "No policy bypass. Testing identical synthetic standalone modules with in-memory DOM separately."
+    }
+  },
+  "localManagerBackend": {
+    "passed": 40,
+    "failed": 0,
+    "evidence": "python unittest output captured in reports/test_runs.json"
+  },
+  "builder": "Unmodified v1.0.8; synthetic output tested through adapters/calculator",
+  "knownQuestionRegressions": {
+    "total": 851,
+    "passed": 851,
+    "independent": false
+  },
+  "indexScaleMock": {
+    "indexBuildMs": 323.779961,
+    "firstRouteMs": 2400.624524,
+    "cachedRouteMs": 0.32481300000017654
+  },
+  "newMiniLMAB": "NOT_RUN",
+  "liveBankIntegration": "NOT_RUN",
+  "customerAliasesInArtifact": 0,
+  "runtimeJSBytes": 180380,
+  "limits": [
+    "Developer-authored synthetic/mock/known regression fixtures; not production accuracy",
+    "Real Tableau SDK, SSO, RLS, HTTP browser loading, server CSP and permissions not validated",
+    "ID index membership is not server authorization",
+    "Derived previous RWA is not independently observed history; algebraic check not independent reconciliation",
+    "Optional driver family mapping is explicit only; no automatic family inference",
+    "No governance exemption or MiniLM superiority claim"
+  ]
+}

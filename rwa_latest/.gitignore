@@ -1,0 +1,20 @@
+# Local runtime state and private source data
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+.rule_manager/
+.env
+.env.*
+*.pem
+*.key
+output/
+output_*/
+converted_*/
+actual_data/
+private_data/
+rmi_clients*.csv
+raw_data.csv
+data_builder/data_mapping.json
+tableau_config.local.txt

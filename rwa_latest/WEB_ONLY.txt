@@ -1,0 +1,1 @@
+Deploy only the web subset on approved static hosting. CSV compiler, local manager, tests and source reports are development tools. Never publish real bank CSV as tableau_sample.csv. See TABLEAU_SETUP.md.
