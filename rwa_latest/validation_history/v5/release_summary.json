@@ -1,0 +1,444 @@
+{
+  "release": "5.0.0-review",
+  "status": "Production-like local review build; not bank deployment/governance approval",
+  "tests": {
+    "semantic_regression.json": {
+      "total": 626,
+      "passed": 626,
+      "failed": 0
+    },
+    "robustness.json": {
+      "total": 225,
+      "passed": 225,
+      "failed": 0
+    },
+    "fuzzy_clean_comparison.json": {
+      "total": 830,
+      "passed": 830,
+      "failed": 0
+    },
+    "engine_tests.json": {
+      "passed": 48,
+      "failed": 0
+    },
+    "compiler_tests.json": {
+      "passed": 56,
+      "failed": 0
+    },
+    "robustness_units.json": {
+      "passed": 55,
+      "failed": 0
+    },
+    "holdout_guard_tests.json": {
+      "passed": 7,
+      "failed": 0
+    },
+    "browser_dom_tests.json": {
+      "passed": 24,
+      "failed": 0
+    }
+  },
+  "metrics": {
+    "intentAccuracy": {
+      "correct": 159,
+      "total": 159,
+      "rate": 1
+    },
+    "entityAccuracy": {
+      "correct": 477,
+      "total": 477,
+      "rate": 1
+    },
+    "periodAccuracy": {
+      "correct": 159,
+      "total": 159,
+      "rate": 1
+    },
+    "slotAccuracy": {
+      "correct": 3975,
+      "total": 3975,
+      "rate": 1
+    },
+    "supportedFullPlanAccuracy": {
+      "correct": 159,
+      "total": 159,
+      "rate": 1
+    },
+    "followupContextAccuracy": {
+      "correct": 7,
+      "total": 7,
+      "rate": 1
+    },
+    "unsupportedRejectionAccuracy": {
+      "correct": 64,
+      "total": 64,
+      "rate": 1
+    },
+    "falsePositiveRate": {
+      "numerator": 0,
+      "denominator": 64,
+      "rate": 0
+    },
+    "ambiguityHandlingAccuracy": {
+      "correct": 2,
+      "total": 2,
+      "rate": 1
+    },
+    "numberUnitAccuracy": {
+      "correct": 636,
+      "total": 636,
+      "rate": 1
+    },
+    "relationAccuracy": {
+      "correct": 477,
+      "total": 477,
+      "rate": 1
+    },
+    "negationModifierAccuracy": {
+      "correct": 636,
+      "total": 636,
+      "rate": 1
+    },
+    "typoRecoveryAccuracy": {
+      "correct": 17,
+      "total": 17,
+      "rate": 1
+    },
+    "entityFuzzyAccuracy": {
+      "correct": 3,
+      "total": 3,
+      "rate": 1
+    },
+    "fuzzyFalsePositiveRate": {
+      "numerator": 0,
+      "denominator": 20,
+      "rate": 0
+    },
+    "overallFalsePositiveCommandRate": {
+      "numerator": 0,
+      "denominator": 66,
+      "rate": 0
+    },
+    "endToEndExactMatch": {
+      "correct": 159,
+      "total": 159,
+      "rate": 1
+    },
+    "wrongExecutableCommandRate": {
+      "numerator": 0,
+      "denominator": 159,
+      "rate": 0
+    },
+    "parsingLatencyMs": {
+      "samples": 225,
+      "p50": 1.0647629999999708,
+      "p95": 1.8453170000000227,
+      "max": 30.270618999999996
+    }
+  },
+  "execution": {
+    "acceptedPlans": 159,
+    "answered": 147,
+    "blockedAfterParse": [
+      {
+        "id": "V5_0109",
+        "question": "Explain Samsung RWA in August",
+        "reason": "No data for 2026-08 in this scope. Missing months were not replaced or treated as zero."
+      },
+      {
+        "id": "V5_0110",
+        "question": "Explain Samsung RWA in Aug",
+        "reason": "No data for 2026-08 in this scope. Missing months were not replaced or treated as zero."
+      },
+      {
+        "id": "V5_0111",
+        "question": "Explain Samsung RWA in July 2025",
+        "reason": "No data for 2025-07 in this scope. Missing months were not replaced or treated as zero."
+      },
+      {
+        "id": "V5_0113",
+        "question": "Explain Samsung RWA in Q1",
+        "reason": "No data for 2026-01, 2026-02, 2026-03 in this scope. Missing months were not replaced or treated as zero."
+      },
+      {
+        "id": "V5_0115",
+        "question": "Explain Samsung RWA in Q3",
+        "reason": "No data for 2026-08, 2026-09 in this scope. Missing months were not replaced or treated as zero."
+      },
+      {
+        "id": "V5_0116",
+        "question": "Explain Samsung RWA in Q4",
+        "reason": "No data for 2026-10, 2026-11, 2026-12 in this scope. Missing months were not replaced or treated as zero."
+      },
+      {
+        "id": "V5_0123",
+        "question": "Explain Samsung RWA in current quarter",
+        "reason": "No data for 2026-08, 2026-09 in this scope. Missing months were not replaced or treated as zero."
+      },
+      {
+        "id": "V5_0124",
+        "question": "Explain Samsung RWA in YTD",
+        "reason": "No data for 2026-01, 2026-02, 2026-03 in this scope. Missing months were not replaced or treated as zero."
+      },
+      {
+        "id": "V5_0125",
+        "question": "Explain Samsung RWA in year to date",
+        "reason": "No data for 2026-01, 2026-02, 2026-03 in this scope. Missing months were not replaced or treated as zero."
+      },
+      {
+        "id": "V5_0126",
+        "question": "Explain Samsung RWA in 12m",
+        "reason": "No data for 2025-08, 2025-09, 2025-10, 2025-11, 2025-12, 2026-01, 2026-02, 2026-03 in this scope. Missing months were not replaced or treated as zero."
+      },
+      {
+        "id": "V5_0127",
+        "question": "Explain Samsung RWA in 12 months",
+        "reason": "No data for 2025-08, 2025-09, 2025-10, 2025-11, 2025-12, 2026-01, 2026-02, 2026-03 in this scope. Missing months were not replaced or treated as zero."
+      },
+      {
+        "id": "V5_0128",
+        "question": "Explain Samsung RWA in last 12 months",
+        "reason": "No data for 2025-08, 2025-09, 2025-10, 2025-11, 2025-12, 2026-01, 2026-02, 2026-03 in this scope. Missing months were not replaced or treated as zero."
+      }
+    ],
+    "note": "Parsing exact-match and actual answer production are separate. Missing data must stop execution and cannot be replaced by an old result."
+  },
+  "oldCorpusMetrics": {
+    "intentAccuracy": {
+      "correct": 543,
+      "total": 543,
+      "rate": 1
+    },
+    "entityAccuracy": {
+      "correct": 596,
+      "total": 596,
+      "rate": 1
+    },
+    "periodAccuracy": {
+      "correct": 543,
+      "total": 543,
+      "rate": 1
+    },
+    "slotAccuracy": {
+      "correct": 2572,
+      "total": 2572,
+      "rate": 1
+    },
+    "supportedFullPlanAccuracy": {
+      "correct": 543,
+      "total": 543,
+      "rate": 1
+    },
+    "followupContextAccuracy": {
+      "correct": 13,
+      "total": 13,
+      "rate": 1
+    },
+    "unsupportedRejectionAccuracy": {
+      "correct": 79,
+      "total": 79,
+      "rate": 1
+    },
+    "falsePositiveRate": {
+      "numerator": 0,
+      "denominator": 79,
+      "rate": 0
+    },
+    "ambiguityHandlingAccuracy": {
+      "correct": 4,
+      "total": 4,
+      "rate": 1
+    },
+    "numberUnitAccuracy": {
+      "correct": 91,
+      "total": 91,
+      "rate": 1
+    },
+    "relationAccuracy": {
+      "correct": 65,
+      "total": 65,
+      "rate": 1
+    },
+    "negationModifierAccuracy": {
+      "correct": 20,
+      "total": 20,
+      "rate": 1
+    },
+    "typoRecoveryAccuracy": {
+      "correct": 0,
+      "total": 0,
+      "rate": null
+    },
+    "entityFuzzyAccuracy": {
+      "correct": 0,
+      "total": 0,
+      "rate": null
+    },
+    "fuzzyFalsePositiveRate": {
+      "numerator": 0,
+      "denominator": 0,
+      "rate": null
+    },
+    "overallFalsePositiveCommandRate": {
+      "numerator": 0,
+      "denominator": 83,
+      "rate": 0
+    },
+    "endToEndExactMatch": {
+      "correct": 0,
+      "total": 0,
+      "rate": null
+    },
+    "wrongExecutableCommandRate": {
+      "numerator": 0,
+      "denominator": 543,
+      "rate": 0
+    },
+    "parsingLatencyMs": {
+      "samples": 626,
+      "p50": 0.6013149999999996,
+      "p95": 1.2905320000000131,
+      "max": 32.230103
+    }
+  },
+  "legacyMigration": {
+    "suite": "v3-to-v5 expectation migration, not erased failures",
+    "legacyAccounting": {
+      "passed": 180,
+      "oldExpectationDifferences": 1
+    },
+    "legacyDialogues": {
+      "passed": 56,
+      "oldExpectationDifferences": 5
+    },
+    "allDifferencesExplicitlyExplained": true,
+    "changes": [
+      {
+        "test": "Negated rhetorical question",
+        "policy": "Qualify the positive proposition before Yes/No; old /^Yes/ text assertion intentionally differs."
+      },
+      {
+        "tests": [
+          "D01:8",
+          "D01:9",
+          "D07:3",
+          "D07:4"
+        ],
+        "policy": "After a two-period comparison, ask which month instead of silently falling back to screen month."
+      },
+      {
+        "test": "D08:3",
+        "policy": "After the final ranked entity, reject next instead of repeating the last entity."
+      }
+    ],
+    "runs": [
+      {
+        "name": "build_command_patterns.py --check",
+        "status": 0,
+        "expectedLegacyMigrationDifference": false
+      },
+      {
+        "name": "tests/test_compiler.py",
+        "status": 0,
+        "expectedLegacyMigrationDifference": false
+      },
+      {
+        "name": "tests/test_holdout_guard.py",
+        "status": 0,
+        "expectedLegacyMigrationDifference": false
+      },
+      {
+        "name": "tests/test_engine.mjs",
+        "status": 0,
+        "expectedLegacyMigrationDifference": false
+      },
+      {
+        "name": "tools/evaluate.mjs",
+        "status": 0,
+        "expectedLegacyMigrationDifference": false
+      },
+      {
+        "name": "tests/test_robustness.mjs",
+        "status": 0,
+        "expectedLegacyMigrationDifference": false
+      },
+      {
+        "name": "tools/evaluate.mjs tests/robustness.csv reports/robustness.json",
+        "status": 0,
+        "expectedLegacyMigrationDifference": false
+      },
+      {
+        "name": "tools/fuzzy_clean_check.mjs",
+        "status": 0,
+        "expectedLegacyMigrationDifference": false
+      },
+      {
+        "name": "tests/legacy_regression.mjs",
+        "status": 1,
+        "expectedLegacyMigrationDifference": true
+      },
+      {
+        "name": "tests/legacy_dialogue.mjs",
+        "status": 1,
+        "expectedLegacyMigrationDifference": true
+      }
+    ]
+  },
+  "counts": {
+    "commands": 14,
+    "synonyms": 563,
+    "aliases": 1195,
+    "followups": 115,
+    "fuzzyConfig": 3,
+    "units": 20,
+    "temporal": 37
+  },
+  "fuzzyCleanControl": {
+    "total": 830,
+    "preserved": 830,
+    "note": "Clean command contracts + negative refusal controls; excludes intentional positive-typo conversations."
+  },
+  "blindHoldout": {
+    "status": "NOT_RUN",
+    "independentCorpusProvided": false,
+    "accuracy": null,
+    "reason": "No independent reviewer-owned blind holdout was supplied. Empty template and guard tests do not establish generalisation. Current questions are developer-known regression.",
+    "nextStep": "Freeze runtime before reviewer corpus; seal manifest; evaluate with --require-holdout. Retire set after any tuning based on its output."
+  },
+  "browser": {
+    "dom": {
+      "passed": 24,
+      "failed": 0
+    },
+    "http": {
+      "passed": 0,
+      "failed": 1
+    },
+    "httpSetupErrors": [
+      "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8765/demo.html\nCall log:\n  - navigating to \"http://127.0.0.1:8765/demo.html\", waiting until \"load\"\n"
+    ]
+  },
+  "minilmAB": {
+    "executed": true,
+    "corpus": "robustness.csv",
+    "splits": [
+      "regression"
+    ],
+    "independent": false,
+    "tokenParity": {
+      "fixtureCount": 39,
+      "tokenMatches": 39,
+      "maxEmbeddingDifference": 0,
+      "warmupMs": 30
+    },
+    "fullParameters": "Baseline full gold fields are not all observable; primary full-command metrics are not a spurious 0% intrinsic MiniLM claim.",
+    "report": "reports/ab_results.json"
+  },
+  "limitations": [
+    "Developer-known synthetic/regression tests, not independent natural-language accuracy",
+    "No live bank Tableau/SSO/SharePoint/RLS/CSP/security validation",
+    "HTTP browser navigation blocked by environment administrator; no bypass",
+    "No total native/WASM peak memory or bank cold-network loading measurement",
+    "No non-AI governance exemption or universal MiniLM superiority claim"
+  ]
+}

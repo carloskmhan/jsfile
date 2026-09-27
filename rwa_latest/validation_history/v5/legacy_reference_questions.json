@@ -1,0 +1,362 @@
+{
+  "note": "Existing labelled questions, used during development. Generic entity questions are given explicit selectedEntity context. No MiniLM inference run.",
+  "cases": [
+    {
+      "question": "Explain the reasons behind this client movement",
+      "expected": "GROUP_ROOT_CAUSE",
+      "actual": "GROUP_ROOT_CAUSE",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Could you summarize why the total RWA changed?",
+      "expected": "GROUP_ROOT_CAUSE",
+      "actual": "GROUP_ROOT_CAUSE",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "What explains the sudden rise in group RWA?",
+      "expected": "GROUP_ROOT_CAUSE",
+      "actual": "GROUP_ROOT_CAUSE",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Which risk factor had the greatest impact?",
+      "expected": "MAIN_DRIVER",
+      "actual": "MAIN_DRIVER",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Tell me the primary driver behind the movement",
+      "expected": "MAIN_DRIVER",
+      "actual": "MAIN_DRIVER",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "What is the dominant cause of the change?",
+      "expected": "MAIN_DRIVER",
+      "actual": "MAIN_DRIVER",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "How much of the net change is attributable to foreign exchange?",
+      "expected": "DRIVER_CONTRIBUTION",
+      "actual": "DRIVER_CONTRIBUTION",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Give me the amount contributed by EAD",
+      "expected": "DRIVER_CONTRIBUTION",
+      "actual": "DRIVER_CONTRIBUTION",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "What percentage of the increase came from CG?",
+      "expected": "DRIVER_CONTRIBUTION",
+      "actual": "DRIVER_CONTRIBUTION",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Was rating deterioration responsible for the jump?",
+      "expected": "DRIVER_CHECK",
+      "actual": "DRIVER_CHECK",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Did exposure growth cause the movement?",
+      "expected": "DRIVER_CHECK",
+      "actual": "DRIVER_CHECK",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Was currency the main reason for the increase?",
+      "expected": "DRIVER_CHECK",
+      "actual": "DRIVER_CHECK",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Which subsidiary contributed the biggest increase?",
+      "expected": "TOP_ENTITY",
+      "actual": "TOP_ENTITY",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "List the leading entity contributors",
+      "expected": "TOP_ENTITY",
+      "actual": "TOP_ENTITY",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Which affiliate accounts for the largest RWA jump?",
+      "expected": "TOP_ENTITY",
+      "actual": "TOP_ENTITY",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "What share did ABC Finance contribute?",
+      "expected": "ENTITY_CONTRIBUTION",
+      "actual": "ENTITY_CONTRIBUTION",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06",
+        "selectedEntity": "ABC Electronics"
+      }
+    },
+    {
+      "question": "How much of the movement came from ABC Electronics?",
+      "expected": "ENTITY_CONTRIBUTION",
+      "actual": "ENTITY_CONTRIBUTION",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06",
+        "selectedEntity": "ABC Electronics"
+      }
+    },
+    {
+      "question": "Give the contribution of this subsidiary",
+      "expected": "ENTITY_CONTRIBUTION",
+      "actual": "ENTITY_CONTRIBUTION",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06",
+        "selectedEntity": "ABC Electronics"
+      }
+    },
+    {
+      "question": "Explain the drivers within ABC Electronics",
+      "expected": "ENTITY_DRIVER",
+      "actual": "ENTITY_DRIVER",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06",
+        "selectedEntity": "ABC Electronics"
+      }
+    },
+    {
+      "question": "What caused the RWA change at ABC Finance?",
+      "expected": "ENTITY_DRIVER",
+      "actual": "ENTITY_DRIVER",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06",
+        "selectedEntity": "ABC Electronics"
+      }
+    },
+    {
+      "question": "Why did this subsidiary have a jump?",
+      "expected": "ENTITY_DRIVER",
+      "actual": "ENTITY_DRIVER",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06",
+        "selectedEntity": "ABC Electronics"
+      }
+    },
+    {
+      "question": "Was most of the jump concentrated in a single subsidiary?",
+      "expected": "CONCENTRATION",
+      "actual": "CONCENTRATION",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Did many entities contribute or just one?",
+      "expected": "CONCENTRATION",
+      "actual": "CONCENTRATION",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Is this movement spread across affiliates?",
+      "expected": "CONCENTRATION",
+      "actual": "CONCENTRATION",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Identify the month with the largest positive change",
+      "expected": "PEAK_MONTH",
+      "actual": "PEAK_MONTH",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "In which month did the sharpest jump occur?",
+      "expected": "PEAK_MONTH",
+      "actual": "PEAK_MONTH",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "When was the biggest monthly RWA increase?",
+      "expected": "PEAK_MONTH",
+      "actual": "PEAK_MONTH",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Describe the pattern over the past three months",
+      "expected": "TREND",
+      "actual": "TREND",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Is the RWA rise continuing month after month?",
+      "expected": "TREND",
+      "actual": "TREND",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Show the direction of RWA over time",
+      "expected": "TREND",
+      "actual": "TREND",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Rank the client groups by their RWA increase",
+      "expected": "TOP_CLIENTS",
+      "actual": "TOP_CLIENTS",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "List the groups responsible for the largest jumps",
+      "expected": "TOP_CLIENTS",
+      "actual": "TOP_CLIENTS",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Which clients were the biggest contributors?",
+      "expected": "TOP_CLIENTS",
+      "actual": "TOP_CLIENTS",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "How unusual is the change compared with peers?",
+      "expected": "COMPARE",
+      "actual": "COMPARE",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Benchmark this client against other groups",
+      "expected": "COMPARE",
+      "actual": "COMPARE",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Is the client an outlier relative to its peers?",
+      "expected": "COMPARE",
+      "actual": "COMPARE",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Does the sum of drivers match the net change?",
+      "expected": "DATA_QUALITY",
+      "actual": "DATA_QUALITY",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "How large is the unexplained part of the increase?",
+      "expected": "DATA_QUALITY",
+      "actual": "DATA_QUALITY",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    },
+    {
+      "question": "Check whether the attribution reconciles",
+      "expected": "DATA_QUALITY",
+      "actual": "DATA_QUALITY",
+      "context": {
+        "selectedClientGroup": "ABC GROUP",
+        "selectedMonth": "2026-06"
+      }
+    }
+  ]
+}

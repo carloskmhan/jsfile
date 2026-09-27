@@ -1,0 +1,40 @@
+{
+  "modified": [
+    "rule_manager.py",
+    "local_manager/index.html",
+    "local_manager_tests/dom_fixture.py",
+    "LOCAL_RULE_MANAGER.md",
+    "COMMANDS.md",
+    "MANAGER_BUILD_INFO.json"
+  ],
+  "added": [
+    "capability_manager.py",
+    "local_manager/advanced.html",
+    "local_manager/simple.js",
+    "local_manager/simple_logic.js",
+    "local_manager/simple.css",
+    "SIMPLE_RULE_MANAGER.md",
+    "SIMPLE_MANAGER_CHANGELOG.md",
+    "simple_manager_tests/test_capabilities.py",
+    "simple_manager_tests/dom_harness.py",
+    "simple_manager_tests/browser_http_attempt.py",
+    "simple_manager_tests/run_all.py",
+    "simple_manager_tests/http_workflow.py",
+    "simple_manager_tests/browser_logic.py",
+    "simple_manager_tests/browser_workflow.py"
+  ],
+  "noneOfTheseIncluded": [
+    "rules/*.csv",
+    "command_patterns.txt",
+    "tableau_config.txt",
+    "app.js",
+    "rwa_engine.js",
+    "semantic/*.js",
+    "demo.html",
+    "tableau_adapter.js",
+    "group_catalog.js",
+    "local_manager/manager.js",
+    "local_manager/manager.css",
+    "local_manager/test_lab.js"
+  ]
+}

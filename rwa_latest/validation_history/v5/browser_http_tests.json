@@ -1,0 +1,16 @@
+{
+  "suite": "Chromium http smoke test",
+  "mode": "http",
+  "limitations": "DOM mode uses bundled identical app modules and synthetic assets in an in-memory document. HTTP/module loading, file navigation, server CSP, Tableau, SSO and SharePoint are not certified. No browser policy bypass.",
+  "passed": 0,
+  "failed": 1,
+  "requests": [],
+  "pageErrors": [],
+  "tests": [
+    {
+      "test": "Browser setup/navigation",
+      "passed": false,
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8765/demo.html\nCall log:\n  - navigating to \"http://127.0.0.1:8765/demo.html\", waiting until \"load\"\n"
+    }
+  ]
+}

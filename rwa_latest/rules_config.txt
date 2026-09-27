@@ -1,0 +1,4 @@
+{
+  "version": "6.0.0",
+  "description": "No customer aliases are stored here. Names/IDs are read from the authenticated Tableau catalog."
+}

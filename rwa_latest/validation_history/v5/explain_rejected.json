@@ -1,0 +1,427 @@
+{
+  "ok": false,
+  "status": "unsupported",
+  "code": "UNSUPPORTED_EXPRESSION",
+  "message": "Uninterpreted words: jully. No calculation ran. Add a reviewed synonym/pattern or rephrase.",
+  "choices": [],
+  "trace": [
+    "semantic-5.0.0-review",
+    "UNSUPPORTED_EXPRESSION"
+  ],
+  "explain": {
+    "pipelineVersion": "5.0.0-review",
+    "input": "Explain Samsng RWA in Jully",
+    "normalization": "explain samsng rwa in jully",
+    "matches": [
+      {
+        "phrase": "samsung",
+        "concept": "GROUP",
+        "id": "CG0001",
+        "name": "SAMSUNG GROUP",
+        "start": 8,
+        "end": 15
+      },
+      {
+        "phrase": "explain",
+        "concept": "ROOT",
+        "weight": 1,
+        "source": {
+          "file": "synonyms.csv",
+          "line": 11
+        },
+        "start": 0,
+        "end": 7
+      },
+      {
+        "phrase": "rwa",
+        "concept": "RWA",
+        "weight": 1,
+        "source": {
+          "file": "synonyms.csv",
+          "line": 174
+        },
+        "start": 16,
+        "end": 19
+      }
+    ],
+    "semanticFeatures": {
+      "ROOT": 1,
+      "RWA": 1,
+      "RWA_DRIVER": 1
+    },
+    "candidates": [
+      {
+        "effectiveMinMargin": 0.08,
+        "commandId": "RWA_DRIVER",
+        "intent": "DRIVER_ANALYSIS",
+        "action": "GROUP_ROOT_CAUSE",
+        "score": 1,
+        "positive": 85,
+        "penalty": 0,
+        "maximum": 85,
+        "primary": 1,
+        "components": [
+          {
+            "component": "intent",
+            "features": [
+              "RWA_DRIVER",
+              "MOVEMENT_AMOUNT_REQUEST"
+            ],
+            "strength": 1,
+            "weight": 40,
+            "points": 40
+          },
+          {
+            "component": "metric",
+            "features": [
+              "RWA"
+            ],
+            "strength": 1,
+            "weight": 20,
+            "source": "query",
+            "points": 20
+          },
+          {
+            "component": "scope",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "subject",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "period",
+            "strength": 1,
+            "weight": 5,
+            "points": 5
+          },
+          {
+            "component": "modifier",
+            "strength": 0,
+            "weight": 0,
+            "points": 0
+          }
+        ],
+        "contradictions": [],
+        "grammar": {
+          "grammar": "MOVEMENT_REPORT",
+          "valid": true,
+          "errors": []
+        },
+        "validation": {
+          "valid": true,
+          "missing": [],
+          "forbidden": [],
+          "errors": []
+        }
+      },
+      {
+        "effectiveMinMargin": 0.08,
+        "commandId": "CONCENTRATION",
+        "intent": "CONCENTRATION",
+        "action": "CONCENTRATION",
+        "score": 0.5294117647058824,
+        "positive": 45,
+        "penalty": 0,
+        "maximum": 85,
+        "primary": 0,
+        "components": [
+          {
+            "component": "intent",
+            "features": [
+              "CONCENTRATION_REQUEST"
+            ],
+            "strength": 0,
+            "weight": 40,
+            "points": 0
+          },
+          {
+            "component": "metric",
+            "features": [
+              "RWA"
+            ],
+            "strength": 1,
+            "weight": 20,
+            "source": "query",
+            "points": 20
+          },
+          {
+            "component": "scope",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "subject",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "period",
+            "strength": 1,
+            "weight": 5,
+            "points": 5
+          },
+          {
+            "component": "modifier",
+            "strength": 0,
+            "weight": 0,
+            "points": 0
+          }
+        ],
+        "contradictions": [],
+        "grammar": {
+          "grammar": "CONCENTRATION",
+          "valid": true,
+          "errors": []
+        },
+        "validation": {
+          "valid": true,
+          "missing": [],
+          "forbidden": [],
+          "errors": []
+        }
+      },
+      {
+        "effectiveMinMargin": 0.08,
+        "commandId": "DRIVER_AMOUNT",
+        "intent": "DRIVER_CONTRIBUTION",
+        "action": "DRIVER_CONTRIBUTION",
+        "score": 0.5294117647058824,
+        "positive": 45,
+        "penalty": 0,
+        "maximum": 85,
+        "primary": 0,
+        "components": [
+          {
+            "component": "intent",
+            "features": [
+              "DRIVER_AMOUNT"
+            ],
+            "strength": 0,
+            "weight": 40,
+            "points": 0
+          },
+          {
+            "component": "metric",
+            "features": [
+              "RWA"
+            ],
+            "strength": 1,
+            "weight": 20,
+            "source": "query",
+            "points": 20
+          },
+          {
+            "component": "scope",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "subject",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "period",
+            "strength": 1,
+            "weight": 5,
+            "points": 5
+          },
+          {
+            "component": "modifier",
+            "strength": 0,
+            "weight": 0,
+            "points": 0
+          }
+        ],
+        "contradictions": [],
+        "grammar": {
+          "grammar": "DRIVER_AMOUNT",
+          "valid": false,
+          "errors": [
+            {
+              "code": "MISSING_REQUIRED_SLOT",
+              "message": "Name the attributed driver."
+            }
+          ]
+        },
+        "validation": {
+          "valid": false,
+          "missing": [
+            "driver"
+          ],
+          "forbidden": [],
+          "errors": [
+            {
+              "code": "MISSING_REQUIRED_SLOT",
+              "message": "Name the attributed driver."
+            },
+            {
+              "code": "MISSING_REQUIRED_SLOT",
+              "message": "Missing required parameter(s): driver."
+            }
+          ]
+        }
+      }
+    ],
+    "constraints": [
+      {
+        "commandId": "RWA_DRIVER",
+        "valid": true,
+        "missing": [],
+        "forbidden": [],
+        "errors": []
+      },
+      {
+        "commandId": "CONCENTRATION",
+        "valid": true,
+        "missing": [],
+        "forbidden": [],
+        "errors": []
+      },
+      {
+        "commandId": "DRIVER_AMOUNT",
+        "valid": false,
+        "missing": [
+          "driver"
+        ],
+        "forbidden": [],
+        "errors": [
+          {
+            "code": "MISSING_REQUIRED_SLOT",
+            "message": "Name the attributed driver."
+          },
+          {
+            "code": "MISSING_REQUIRED_SLOT",
+            "message": "Missing required parameter(s): driver."
+          }
+        ]
+      }
+    ],
+    "contextPatch": null,
+    "phraseResolution": {
+      "policy": "identity-protected, leftmost-longest non-overlapping phrase; equal-span ambiguity is never guessed",
+      "matches": [
+        {
+          "phrase": "explain",
+          "concept": "ROOT",
+          "start": 0,
+          "end": 7
+        },
+        {
+          "phrase": "rwa",
+          "concept": "RWA",
+          "start": 15,
+          "end": 18
+        }
+      ]
+    },
+    "fuzzy": {
+      "text": "explain samsung rwa in jully",
+      "attempts": [
+        {
+          "input": "samsng",
+          "candidate": "samsung",
+          "canonical": "CG0001",
+          "category": "entity",
+          "similarity": 0.8571428571428572,
+          "distance": 1,
+          "source": {
+            "file": "aliases.csv",
+            "line": 4
+          },
+          "threshold": 0.83,
+          "start": 8,
+          "end": 14,
+          "candidates": [
+            {
+              "category": "entity",
+              "candidate": "samsung",
+              "canonical": "CG0001",
+              "key": "GROUP:CG0001",
+              "source": {
+                "file": "aliases.csv",
+                "line": 4
+              },
+              "distance": 1,
+              "similarity": 0.8571428571428572,
+              "qualifies": true,
+              "threshold": 0.83
+            }
+          ],
+          "accepted": true,
+          "reason": "TYPO_RECOVERY_ONLY"
+        },
+        {
+          "input": "jully",
+          "accepted": false,
+          "reason": "DATE_LIKE_TOKEN",
+          "start": 22,
+          "end": 27
+        }
+      ],
+      "corrections": [
+        {
+          "input": "samsng",
+          "candidate": "samsung",
+          "canonical": "CG0001",
+          "category": "entity",
+          "similarity": 0.8571428571428572,
+          "distance": 1,
+          "source": {
+            "file": "aliases.csv",
+            "line": 4
+          },
+          "threshold": 0.83,
+          "start": 8,
+          "end": 14,
+          "candidates": [
+            {
+              "category": "entity",
+              "candidate": "samsung",
+              "canonical": "CG0001",
+              "key": "GROUP:CG0001",
+              "source": {
+                "file": "aliases.csv",
+                "line": 4
+              },
+              "distance": 1,
+              "similarity": 0.8571428571428572,
+              "qualifies": true,
+              "threshold": 0.83
+            }
+          ],
+          "accepted": true,
+          "reason": "TYPO_RECOVERY_ONLY"
+        }
+      ],
+      "error": null
+    },
+    "correctedText": "explain samsung rwa in jully",
+    "temporalAnchor": {
+      "month": "2026-06",
+      "source": "TABLEAU_CONTEXT"
+    },
+    "numbers": [],
+    "temporal": {
+      "anchor": "2026-06",
+      "spans": [],
+      "period": null
+    },
+    "normalizedSemantics": "CG0001 ROOT RWA",
+    "unknownTokens": [
+      "jully"
+    ],
+    "decision": "UNSUPPORTED_EXPRESSION",
+    "failureCategory": "UNSUPPORTED",
+    "latencyMs": 34.806157999999996
+  }
+}

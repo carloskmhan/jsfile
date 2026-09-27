@@ -1,0 +1,2 @@
+# Optional browser/A-B development only. Not a web runtime or compiler dependency.
+playwright==1.57.0

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RWA Rule Workbench</title><link rel="stylesheet" href="/manager.css">
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-mark">R</div><div><strong>RWA</strong><span>RULE WORKBENCH</span></div></div>
+  <div class="local-badge"><span class="status-dot"></span> LOCALHOST · NO ML</div>
+  <div class="nav-label">RULE SOURCES</div><nav id="file-nav" aria-label="Rule files"></nav>
+  <div class="side-note"><strong>CSV is the source of truth.</strong><p>Edit in the browser → existing Python compiler → command_patterns.txt</p><p>Previews and question tests do not change source files.</p></div>
+  <div class="side-bottom" id="project-label"></div>
+</aside>
+<main>
+<header class="topbar"><div><div class="eyebrow">DETERMINISTIC · REVIEWABLE · LOCAL</div><h1>Advanced rule workbench</h1><p><a href="/">← Back to capabilities</a></p><p>A local rule manager powered by your existing RWA engine</p></div><div class="top-actions"><span class="pill" id="dirty-badge">Saved version</span><button id="reload" class="quiet">Reload from disk</button></div></header>
+<div class="summary-grid">
+ <div class="summary"><span>Managed rules</span><strong id="rule-count">—</strong><small>CSV rule rows</small></div>
+ <div class="summary"><span>Current draft</span><strong id="changes-count">0</strong><small>Modified files</small></div>
+ <div class="summary"><span>Compiler</span><strong class="small">Existing Python compiler</strong><small>No training or external APIs</small></div>
+ <div class="summary"><span>Generated file</span><strong id="artifact-status" class="small">Checking</strong><small id="revision-label">—</small></div>
+</div>
+<div id="notice" class="notice" role="status" aria-live="polite">Loading the project.</div>
+<div class="workflow"><div class="tabs" role="tablist"><button id="tab-edit" class="tab active" role="tab" aria-selected="true">01 Edit rules</button><button id="tab-test" class="tab" role="tab" aria-selected="false">02 Test questions</button><button id="tab-backup" class="tab" role="tab" aria-selected="false">03 Backups</button></div><div class="actions"><button id="validate" class="secondary server-button">Validate & build draft</button><button id="save" class="primary server-button" disabled>Save CSVs & rebuild</button></div></div>
+<section id="panel-edit" class="panel">
+ <div class="section-heading"><div><h2 id="file-title">Expressions & synonyms</h2><p id="file-description"></p></div><code id="file-path">rules/synonyms.csv</code></div>
+ <div class="toolbar"><label class="search"><span>Search</span><input id="search" type="search" placeholder="Expression, concept, name, ID…" autocomplete="off"></label><label class="toggle"><input id="enabled-only" type="checkbox">Enabled only</label><div class="grow"></div><button id="csv-import" class="quiet">Import CSV</button><button id="csv-export" class="quiet">Export CSV</button><button id="add-row" class="secondary">＋ Add rule</button><input id="csv-file" type="file" accept=".csv,text/csv" hidden></div>
+ <div class="table-wrap"><table id="rule-table"><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div>
+ <div class="pagination"><span id="page-summary"></span><div><button id="previous" class="quiet">Previous</button><span id="page-label"></span><button id="next" class="quiet">Next</button></div></div>
+ <div class="hint"><strong>New expressions</strong><span>Example: <code>ROOT</code> + <code>take me through</code>. Do not hard-code company names or months into complete questions. Rules can be disabled instead of deleted.</span></div>
+</section>
+<section id="panel-test" class="panel" hidden>
+ <div class="section-heading"><div><h2>Test with the actual engine</h2><p>Runs the existing semantic / RwaQaEngine modules, not a separate parser. No connection to live Tableau.</p></div><span class="pill">LOCAL TEST DATA</span></div>
+ <div class="test-controls"><label>Rule version<select id="test-source"><option value="draft">Validated draft (may be unsaved)</option><option value="saved">Saved version on disk</option></select></label><label>Default group<select id="test-group"></select></label><label>Reference month<input id="test-month" type="month" value="2026-07"></label><button id="new-conversation" class="quiet">Reset test conversation</button></div>
+ <div class="test-layout"><div class="test-compose"><label for="question">Question or follow-up sequence (one question per line)</label><textarea id="question" rows="5">Why did Samsung's RWA increase in July?</textarea><div class="actions"><button id="parse" class="primary server-button">Check interpretation</button><button id="execute" class="secondary" disabled>Run sample & update context</button></div><button id="sequence" class="quiet full-width server-button">Run all lines as a sample conversation</button><div class="hint compact"><span><strong>Check interpretation</strong> does not change context. After a successful sample calculation, try <code>How about Toyota?</code>.</span></div><div id="conversation" class="conversation" aria-live="polite"></div><details><summary>Current test context</summary><pre id="test-state">{}</pre></details></div>
+ <div class="test-results"><div id="parse-badge" class="result-title">Interpretation results will appear here.</div><div id="plan-grid" class="plan-grid"></div><div id="parse-message" class="parse-message"></div><div id="sample-answer" class="sample-answer" hidden></div><details><summary>Top-K scores · matched phrases · fuzzy · constraints · full result</summary><pre id="explain"></pre></details></div></div>
+ <div class="regression"><div><h3>Local regression checks</h3><p>The built-in checks are development examples, not evidence of independent accuracy or superiority to MiniLM.</p></div><div class="actions"><button id="run-checks" class="secondary server-button">Run checks</button><button id="import-checks" class="quiet">Import test JSON</button><button id="export-checks" class="quiet">Download result JSON</button></div><input id="checks-file" type="file" accept=".json" hidden><pre id="checks-result">Not run yet.</pre></div>
+ <details class="data-details"><summary>Test data & privacy</summary><p id="dataset-label"></p><p>Select an approved local CSV (JSON-column format) or a JSON rows array. The file is read only in this browser tab and is not uploaded to the Python server. Questions and conversations are not saved automatically.</p><input id="test-data" type="file" accept=".csv,.json,.txt"><button id="reset-data" class="quiet">Restore default local data</button></details>
+</section>
+<section id="panel-backup" class="panel" hidden>
+ <div class="section-heading"><div><h2>Save history & restore</h2><p>Before each save, CSVs and the generated file are backed up in the local .rule_manager/backups folder.</p></div><button id="refresh-backups" class="quiet">Refresh list</button></div>
+ <div class="hint"><span><strong>Restore</strong> recompiles and saves the CSVs from before the selected save. The current files are backed up first. It does not grant internal approval or deploy remotely.</span></div><div id="backup-list"></div>
+</section>
+<section class="build-area"><div class="build-bar"><span id="build-status">The draft has not been validated yet.</span><button id="download-artifact" class="quiet">Download saved command_patterns.txt</button></div><details id="build-details"><summary>Compiler log & change summary</summary><pre id="build-log"></pre></details></section>
+<footer>Local, single-user tool · Internal review and deployment approval required · Press Ctrl+C in the terminal to stop the Python server</footer>
+</main></div>
+<dialog id="edit-dialog"><form id="edit-form"><div class="dialog-header"><div><div class="eyebrow" id="edit-file"></div><h2 id="edit-title">Edit rule</h2></div><button type="button" id="close-edit" class="quiet" aria-label="Close">✕</button></div><p class="muted">CSV column values are preserved as text. Changes apply only to the browser draft until saved.</p><div id="edit-fields" class="edit-fields"></div><div class="dialog-footer"><button type="button" id="cancel-edit" class="quiet">Cancel</button><button type="submit" class="primary">Apply to draft</button></div></form></dialog>
+<script type="module" src="/manager.js"></script>
+</body></html>

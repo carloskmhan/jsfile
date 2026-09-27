@@ -1,0 +1,107 @@
+{
+  "suite": "Chromium dom smoke test",
+  "mode": "dom",
+  "limitations": "DOM mode uses bundled identical app modules and synthetic assets in an in-memory document. HTTP/module loading, file navigation, server CSP, Tableau, SSO and SharePoint are not certified. No browser policy bypass.",
+  "passed": 24,
+  "failed": 0,
+  "requests": [],
+  "pageErrors": [],
+  "tests": [
+    {
+      "test": "Bundled app initializes in-memory with generated rules",
+      "passed": true
+    },
+    {
+      "test": "Preview shows July before financial execution",
+      "passed": true
+    },
+    {
+      "test": "Confirmed Samsung July shows recorded decrease",
+      "passed": true
+    },
+    {
+      "test": "Toyota follow-up reloads data and keeps July",
+      "passed": true
+    },
+    {
+      "test": "Missing August returns no data instead of Samsung/Toyota prior values",
+      "passed": true
+    },
+    {
+      "test": "Unsupported query has no execution button",
+      "passed": true
+    },
+    {
+      "test": "Portfolio ranking operates with original provider",
+      "passed": true
+    },
+    {
+      "test": "Portfolio result-set threshold patch",
+      "passed": true
+    },
+    {
+      "test": "Rank reference and Toyota both freshly fetched",
+      "passed": true
+    },
+    {
+      "test": "Cancel displays no calculation",
+      "passed": true
+    },
+    {
+      "test": "New chat clears follow-up state",
+      "passed": true
+    },
+    {
+      "test": "Opt-in debug exposes original text, matches and top-K scores",
+      "passed": true
+    },
+    {
+      "test": "Typo compare reaches actual preview",
+      "passed": true
+    },
+    {
+      "test": "Typo comparison executes both groups",
+      "passed": true
+    },
+    {
+      "test": "Entity typo resolves before data provider lookup",
+      "passed": true
+    },
+    {
+      "test": "Accepted fuzzy evidence remains available only in debug",
+      "passed": true
+    },
+    {
+      "test": "Word Top N and canonical amount reach the live preview path",
+      "passed": true
+    },
+    {
+      "test": "Misspelled date is rejected, never auto-corrected",
+      "passed": true
+    },
+    {
+      "test": "Misspelled unit is rejected, never auto-corrected",
+      "passed": true
+    },
+    {
+      "test": "No unexpected requests in synthetic fixture",
+      "passed": true
+    },
+    {
+      "test": "No model/runtime assets requested",
+      "passed": true
+    },
+    {
+      "test": "Normal standalone hides all parser debug by default",
+      "passed": true
+    },
+    {
+      "test": "Second in-memory standalone document initializes with CSP hashes",
+      "passed": true
+    },
+    {
+      "test": "No browser JavaScript errors",
+      "passed": true
+    }
+  ]
+}

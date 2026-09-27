@@ -1,0 +1,121 @@
+{
+  "version": "1.0.1-en-review",
+  "files": {
+    "rule_manager.py": "733baeb8638fe9e28af3ffada3c441f48a91e5c83ad559541e13f3b2b3a9b749",
+    "local_manager/index.html": "7157dbd2b93dd5cb5f2a3f7c54126600e342086b5b8842118e65c24ece3e9a51",
+    "local_manager/manager.js": "e922d4daae56adf6f5550aa8bc6e438f885f8ec66607a5729ee0396ddbe580a8",
+    "local_manager/test_lab.js": "3663360701bf57d20a7af862d51ba8b2a376c05a307b82bd570317fbb7d050ae",
+    "local_manager/manager.css": "6afe931d79b68a618dccf52a96233ba0b2ecbd014c140767ca5c47aca77d52c1",
+    "LOCAL_RULE_MANAGER.md": "02a4b2a2c56a49afdcba0498768f135cd7d52800f8cfd0bf1c34244b16b3a1ab",
+    "START_HERE.md": "cd163f6e45abd5c8730265c7948b4a30d121b62301a24177bba9d325e2738705",
+    "start_rule_manager.bat": "7d81e6d21e5e78ec63304cce35282a073821e5e1142572fb14e1286bd4d62e5f",
+    "start_rule_manager.command": "7874d8b436b189531c4e74d49434495cee552835552d03c0d1f79e558e69f64b",
+    "local_manager_tests/browser_dom.py": "bdb89a81bdb5362479ca4909efd19fa9b2a9c9f280be7c6bebdc4d98cb5825ef",
+    "local_manager_tests/browser_smoke.py": "2612cc3f3945510a9e11cee3169b66551663a2dcd88b43e64f63b022685cde20"
+  },
+  "validation": {
+    "managerVersion": "1.0.1-en-review",
+    "backendTests": {
+      "tests": 40,
+      "passed": 40,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 14.516196284000017
+    },
+    "browserDomChecks": {
+      "tests": 25,
+      "passed": 25,
+      "errors": [],
+      "mode": "Isolated Chromium DOM with actual manager and engine JavaScript, precomputed compiler fixtures and mock API. Not browser-to-server integration."
+    },
+    "pythonSyntax": "PASS",
+    "javascriptSyntax": "PASS: manager.js and test_lab.js",
+    "koreanUiTextScan": "No Korean characters remain in manager UI/server display strings or the two translated manager manuals. User data and existing notes are intentionally unchanged.",
+    "serverLogicAst": "Unchanged except display metadata and version string",
+    "preservedFiles": [
+      "app.js",
+      "bootstrap.js",
+      "build_command_patterns.py",
+      "command_patterns.txt",
+      "csv_adapter.js",
+      "demo.html",
+      "loading_screen.css",
+      "loading_screen.js",
+      "local_manager/manager.css",
+      "rule_client.js",
+      "rules/aliases.csv",
+      "rules/commands.csv",
+      "rules/followups.csv",
+      "rules/fuzzy_config.csv",
+      "rules/settings.csv",
+      "rules/synonyms.csv",
+      "rules/temporal.csv",
+      "rules/units.csv",
+      "rules_config.txt",
+      "rwa_engine.js",
+      "rwa_sample_data.txt",
+      "semantic/diagnostics.js",
+      "semantic/dictionary.js",
+      "semantic/engine.js",
+      "semantic/features.js",
+      "semantic/followups.js",
+      "semantic/fuzzy.js",
+      "semantic/grammar.js",
+      "semantic/lexical.js",
+      "semantic/numbers.js",
+      "semantic/periods.js",
+      "semantic/registry.js",
+      "semantic/relations.js",
+      "semantic/routing.js",
+      "semantic/scoring.js",
+      "semantic/slots.js",
+      "semantic/text.js",
+      "semantic/validation.js",
+      "styles.css",
+      "tableau_adapter.js",
+      "tableau_config.txt",
+      "tableau_sample.csv",
+      "tools/compiler_extensions.py",
+      "tools/rule_schema.py"
+    ],
+    "browserHttp": "Not rerun for this text-only patch. Original environment reported a policy block. Actual loopback HTTP API covered separately by Python tests.",
+    "realBankIntegration": "Not tested; manager does not connect to live Tableau",
+    "independentSecurityValidation": "Not performed",
+    "historicalReports": "Old local_manager_reports files are not included or replaced by this patch. Current translation checks are summarized here."
+  },
+  "language": "en",
+  "changeScope": "English presentation text and manager documentation only; rule CSVs, compiler, generated artifact, semantic/RWA logic, Tableau configuration and application UI remain unchanged.",
+  "previousReleaseValidation": {
+    "managerVersion": "1.0.0-review",
+    "base": "Full v5 source + v5.0.2 web loading-screen patch, all original parser/calculation/compiler/CSV/UI files preserved",
+    "runtimeRequirements": "Python 3.10+ standard library and a browser; no Node/pip/ML needed to use manager",
+    "backendTests": {
+      "passed": 40,
+      "tests": 40,
+      "seconds": 38.141804985000135
+    },
+    "browserDomChecks": {
+      "passed": 25,
+      "tests": 25
+    },
+    "browserHttp": "Attempted but blocked by environment administrator policy. No bypass. Server HTTP tested separately using Python.",
+    "engineUiCompilerCsvPreservationChecks": 41,
+    "realBankIntegration": "Not tested; manager deliberately does not connect to live Tableau",
+    "securityStatus": "Local single-user development/review tool, not a certified multi-user production admin service",
+    "environment": {
+      "python": "3.13.5",
+      "platform": "Linux"
+    },
+    "additiveFiles": [
+      "rule_manager.py",
+      "local_manager/index.html",
+      "local_manager/manager.js",
+      "local_manager/test_lab.js",
+      "local_manager/manager.css",
+      "LOCAL_RULE_MANAGER.md",
+      "START_HERE.md",
+      "start_rule_manager.bat",
+      "start_rule_manager.command"
+    ]
+  }
+}

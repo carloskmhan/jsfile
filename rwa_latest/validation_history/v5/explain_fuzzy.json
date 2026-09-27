@@ -1,0 +1,571 @@
+{
+  "ok": true,
+  "plan": {
+    "action": "COMPARE",
+    "commandId": "COMPARE",
+    "semanticIntent": "COMPARE",
+    "group": "SAMSUNG GROUP",
+    "groupId": "CG0001",
+    "entity": null,
+    "entityId": null,
+    "groups": [
+      "SAMSUNG GROUP",
+      "TOYOTA GROUP"
+    ],
+    "entities": [],
+    "comparisonIds": [
+      "CG0001",
+      "CG0004"
+    ],
+    "dimension": null,
+    "metric": "CHANGE",
+    "direction": "AUTO",
+    "topN": 5,
+    "driver": null,
+    "period": {
+      "mode": "month",
+      "month": "2026-07"
+    },
+    "excludedDrivers": [],
+    "excludedEntities": [],
+    "excludedEntityIds": [],
+    "excludedGroups": [],
+    "excludedGroupIds": [],
+    "condition": null,
+    "checkMode": "CONTRIBUTES",
+    "concise": false,
+    "candidateEntities": [],
+    "candidateEntityIds": [],
+    "candidateGroups": [],
+    "candidateGroupIds": [],
+    "anchorMonth": "2026-07",
+    "peer": false,
+    "negatedCheck": false,
+    "trace": [
+      "semantic-5.0.0-review",
+      "command:COMPARE"
+    ],
+    "ruleConfidence": 1,
+    "margin": 0.9411764705882353,
+    "scoreMeaning": "manual rule-fit; not probability",
+    "contextNotes": [],
+    "semantic": {
+      "intent": "COMPARE",
+      "metric": "RWA",
+      "entity": "CG0001",
+      "entities": [
+        "CG0001",
+        "CG0004"
+      ],
+      "period": {
+        "mode": "month",
+        "month": "2026-07"
+      },
+      "direction": "AUTO",
+      "scope": "GROUP",
+      "ranking": false,
+      "topN": 5,
+      "comparison": null,
+      "driver": null,
+      "filter": null,
+      "modifier": {
+        "excludedDrivers": [],
+        "excludedEntities": [],
+        "excludedGroups": []
+      },
+      "aggregation": null,
+      "rankingMetric": "CHANGE",
+      "threshold": null,
+      "unit": null
+    }
+  },
+  "explain": {
+    "pipelineVersion": "5.0.0-review",
+    "input": "comapre Samsung and Toyota in July",
+    "normalization": "comapre samsung and toyota in july",
+    "matches": [
+      {
+        "phrase": "samsung",
+        "concept": "GROUP",
+        "id": "CG0001",
+        "name": "SAMSUNG GROUP",
+        "start": 8,
+        "end": 15
+      },
+      {
+        "phrase": "toyota",
+        "concept": "GROUP",
+        "id": "CG0004",
+        "name": "TOYOTA GROUP",
+        "start": 20,
+        "end": 26
+      },
+      {
+        "phrase": "compare",
+        "concept": "COMPARE",
+        "weight": 1,
+        "source": {
+          "file": "synonyms.csv",
+          "line": 106
+        },
+        "start": 0,
+        "end": 7
+      },
+      {
+        "phrase": "and",
+        "concept": "FOLLOWUP",
+        "weight": 1,
+        "source": {
+          "file": "synonyms.csv",
+          "line": 369
+        },
+        "start": 16,
+        "end": 19
+      }
+    ],
+    "semanticFeatures": {
+      "COMPARE": 1,
+      "FOLLOWUP": 1,
+      "COMPARE_REQUEST": 1,
+      "TWO_SUBJECTS": 1,
+      "HAS_PERIOD": 1
+    },
+    "candidates": [
+      {
+        "effectiveMinMargin": 0.08,
+        "commandId": "COMPARE",
+        "intent": "COMPARE",
+        "action": "COMPARE",
+        "score": 1,
+        "positive": 85,
+        "penalty": 0,
+        "maximum": 85,
+        "primary": 1,
+        "components": [
+          {
+            "component": "intent",
+            "features": [
+              "COMPARE_REQUEST"
+            ],
+            "strength": 1,
+            "weight": 40,
+            "points": 40
+          },
+          {
+            "component": "metric",
+            "features": [
+              "RWA"
+            ],
+            "strength": 1,
+            "weight": 20,
+            "source": "domain-default",
+            "points": 20
+          },
+          {
+            "component": "scope",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "subject",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "period",
+            "strength": 1,
+            "weight": 5,
+            "points": 5
+          },
+          {
+            "component": "modifier",
+            "strength": 0,
+            "weight": 0,
+            "points": 0
+          }
+        ],
+        "contradictions": [],
+        "grammar": {
+          "grammar": "COMPARISON",
+          "valid": true,
+          "errors": []
+        },
+        "validation": {
+          "valid": true,
+          "missing": [],
+          "forbidden": [],
+          "errors": []
+        }
+      },
+      {
+        "effectiveMinMargin": 0.08,
+        "commandId": "CONCENTRATION",
+        "intent": "CONCENTRATION",
+        "action": "CONCENTRATION",
+        "score": 0.058823529411764705,
+        "positive": 45,
+        "penalty": -40,
+        "maximum": 85,
+        "primary": 0,
+        "components": [
+          {
+            "component": "intent",
+            "features": [
+              "CONCENTRATION_REQUEST"
+            ],
+            "strength": 0,
+            "weight": 40,
+            "points": 0
+          },
+          {
+            "component": "metric",
+            "features": [
+              "RWA"
+            ],
+            "strength": 1,
+            "weight": 20,
+            "source": "domain-default",
+            "points": 20
+          },
+          {
+            "component": "scope",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "subject",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "period",
+            "strength": 1,
+            "weight": 5,
+            "points": 5
+          },
+          {
+            "component": "modifier",
+            "strength": 0,
+            "weight": 0,
+            "points": 0
+          }
+        ],
+        "contradictions": [
+          {
+            "feature": "COMPARE_REQUEST",
+            "strength": 1,
+            "points": -40
+          }
+        ],
+        "grammar": {
+          "grammar": "CONCENTRATION",
+          "valid": true,
+          "errors": []
+        },
+        "validation": {
+          "valid": false,
+          "missing": [],
+          "forbidden": [],
+          "errors": [
+            {
+              "code": "AMBIGUOUS_COMMAND",
+              "message": "Multiple named subjects require an explicit comparison, not a single-subject report."
+            }
+          ]
+        }
+      },
+      {
+        "effectiveMinMargin": 0.08,
+        "commandId": "DRIVER_AMOUNT",
+        "intent": "DRIVER_CONTRIBUTION",
+        "action": "DRIVER_CONTRIBUTION",
+        "score": 0.058823529411764705,
+        "positive": 45,
+        "penalty": -40,
+        "maximum": 85,
+        "primary": 0,
+        "components": [
+          {
+            "component": "intent",
+            "features": [
+              "DRIVER_AMOUNT"
+            ],
+            "strength": 0,
+            "weight": 40,
+            "points": 0
+          },
+          {
+            "component": "metric",
+            "features": [
+              "RWA"
+            ],
+            "strength": 1,
+            "weight": 20,
+            "source": "domain-default",
+            "points": 20
+          },
+          {
+            "component": "scope",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "subject",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "period",
+            "strength": 1,
+            "weight": 5,
+            "points": 5
+          },
+          {
+            "component": "modifier",
+            "strength": 0,
+            "weight": 0,
+            "points": 0
+          }
+        ],
+        "contradictions": [
+          {
+            "feature": "COMPARE_REQUEST",
+            "strength": 1,
+            "points": -40
+          }
+        ],
+        "grammar": {
+          "grammar": "DRIVER_AMOUNT",
+          "valid": false,
+          "errors": [
+            {
+              "code": "MISSING_REQUIRED_SLOT",
+              "message": "Name the attributed driver."
+            }
+          ]
+        },
+        "validation": {
+          "valid": false,
+          "missing": [
+            "driver"
+          ],
+          "forbidden": [],
+          "errors": [
+            {
+              "code": "MISSING_REQUIRED_SLOT",
+              "message": "Name the attributed driver."
+            },
+            {
+              "code": "MISSING_REQUIRED_SLOT",
+              "message": "Missing required parameter(s): driver."
+            },
+            {
+              "code": "AMBIGUOUS_COMMAND",
+              "message": "Multiple named subjects require an explicit comparison, not a single-subject report."
+            }
+          ]
+        }
+      }
+    ],
+    "constraints": [
+      {
+        "commandId": "COMPARE",
+        "valid": true,
+        "missing": [],
+        "forbidden": [],
+        "errors": []
+      },
+      {
+        "commandId": "CONCENTRATION",
+        "valid": false,
+        "missing": [],
+        "forbidden": [],
+        "errors": [
+          {
+            "code": "AMBIGUOUS_COMMAND",
+            "message": "Multiple named subjects require an explicit comparison, not a single-subject report."
+          }
+        ]
+      },
+      {
+        "commandId": "DRIVER_AMOUNT",
+        "valid": false,
+        "missing": [
+          "driver"
+        ],
+        "forbidden": [],
+        "errors": [
+          {
+            "code": "MISSING_REQUIRED_SLOT",
+            "message": "Name the attributed driver."
+          },
+          {
+            "code": "MISSING_REQUIRED_SLOT",
+            "message": "Missing required parameter(s): driver."
+          },
+          {
+            "code": "AMBIGUOUS_COMMAND",
+            "message": "Multiple named subjects require an explicit comparison, not a single-subject report."
+          }
+        ]
+      }
+    ],
+    "contextPatch": null,
+    "phraseResolution": {
+      "policy": "identity-protected, leftmost-longest non-overlapping phrase; equal-span ambiguity is never guessed",
+      "matches": [
+        {
+          "phrase": "and",
+          "concept": "FOLLOWUP",
+          "start": 16,
+          "end": 19
+        }
+      ]
+    },
+    "fuzzy": {
+      "text": "compare samsung and toyota in july",
+      "attempts": [
+        {
+          "input": "comapre",
+          "candidate": "compare",
+          "canonical": "COMPARE",
+          "category": "semantic_word",
+          "similarity": 0.8571428571428572,
+          "distance": 1,
+          "source": {
+            "file": "synonyms.csv",
+            "line": 106
+          },
+          "threshold": 0.8,
+          "start": 0,
+          "end": 7,
+          "candidates": [
+            {
+              "category": "semantic_word",
+              "candidate": "compare",
+              "canonical": "COMPARE",
+              "key": "concept:COMPARE",
+              "source": {
+                "file": "synonyms.csv",
+                "line": 106
+              },
+              "distance": 1,
+              "similarity": 0.8571428571428572,
+              "qualifies": true,
+              "threshold": 0.8
+            }
+          ],
+          "accepted": true,
+          "reason": "TYPO_RECOVERY_ONLY"
+        }
+      ],
+      "corrections": [
+        {
+          "input": "comapre",
+          "candidate": "compare",
+          "canonical": "COMPARE",
+          "category": "semantic_word",
+          "similarity": 0.8571428571428572,
+          "distance": 1,
+          "source": {
+            "file": "synonyms.csv",
+            "line": 106
+          },
+          "threshold": 0.8,
+          "start": 0,
+          "end": 7,
+          "candidates": [
+            {
+              "category": "semantic_word",
+              "candidate": "compare",
+              "canonical": "COMPARE",
+              "key": "concept:COMPARE",
+              "source": {
+                "file": "synonyms.csv",
+                "line": 106
+              },
+              "distance": 1,
+              "similarity": 0.8571428571428572,
+              "qualifies": true,
+              "threshold": 0.8
+            }
+          ],
+          "accepted": true,
+          "reason": "TYPO_RECOVERY_ONLY"
+        }
+      ],
+      "error": null,
+      "validatedCommand": true
+    },
+    "correctedText": "compare samsung and toyota in july",
+    "temporalAnchor": {
+      "month": "2026-06",
+      "source": "TABLEAU_CONTEXT"
+    },
+    "numbers": [],
+    "temporal": {
+      "anchor": "2026-06",
+      "spans": [
+        {
+          "start": 30,
+          "end": 34,
+          "text": "july",
+          "raw": "july",
+          "kind": "period",
+          "month": "2026-07",
+          "source": {
+            "file": "temporal.csv",
+            "line": 14
+          }
+        }
+      ],
+      "period": {
+        "mode": "month",
+        "month": "2026-07"
+      }
+    },
+    "normalizedSemantics": "CG0001 CG0004 COMPARE FOLLOWUP",
+    "unknownTokens": [],
+    "slots": {
+      "intent": "COMPARE",
+      "metric": "RWA",
+      "entity": "CG0001",
+      "entities": [
+        "CG0001",
+        "CG0004"
+      ],
+      "period": {
+        "mode": "month",
+        "month": "2026-07"
+      },
+      "direction": "AUTO",
+      "scope": "GROUP",
+      "ranking": false,
+      "topN": 5,
+      "comparison": null,
+      "driver": null,
+      "filter": null,
+      "modifier": {
+        "excludedDrivers": [],
+        "excludedEntities": [],
+        "excludedGroups": []
+      },
+      "aggregation": null,
+      "rankingMetric": "CHANGE",
+      "threshold": null,
+      "unit": null
+    },
+    "decision": "ACCEPT",
+    "latencyMs": 39.44268699999999
+  },
+  "trace": [
+    "semantic-5.0.0-review",
+    "command:COMPARE"
+  ]
+}

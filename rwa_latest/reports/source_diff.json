@@ -1,0 +1,737 @@
+{
+  "baseline": "Combined v5 full source + v5.0.2 wave loading patch + English local workbench",
+  "files": [
+    {
+      "file": "ACCEPTANCE.md",
+      "status": "changed",
+      "oldSha256": "20efc9cc03b728658cf1930d3a22460321a0d6e99960be5b071b20f741c07973",
+      "newSha256": "d33606c982ff27dd17d275fdd41bff2053f3b3999d4b94f12966ec60e8b7d08f"
+    },
+    {
+      "file": "ARCHITECTURE.md",
+      "status": "changed",
+      "oldSha256": "5526575baa1ce277f216f8b5dc0372a79f153bbc77b6867980bfbfccd97939f5",
+      "newSha256": "0d14a88e55b84fddb62a74b30c96767c411f223e754af3935ecb8597e0ae8d04"
+    },
+    {
+      "file": "BENCHMARK.md",
+      "status": "changed",
+      "oldSha256": "ffc9674d39b22df5a372a9c961a193b7ace263cd799a615925e4d912d1fd57e2",
+      "newSha256": "af63125e4f5ee07a96e6a4c72b6691a27204f1d4d05186fcbab8d645244aa76b"
+    },
+    {
+      "file": "BUILD_INFO.json",
+      "status": "changed",
+      "oldSha256": "2205d27b0bd36cdb630e22226c6c96696f24b6b1a494c88d60da020f5e5c52b3",
+      "newSha256": "a3cd33bdaa58c3be71c44692968c57c82e78ed7fbb206d712eea9c12c30f1e8c"
+    },
+    {
+      "file": "CISO_SECURITY.md",
+      "status": "changed",
+      "oldSha256": "40a657a4d1549816be292f3332e73037e6ac10200ad11d91a15e957254ddf524",
+      "newSha256": "8aa2eadf7db356106a7a6044ef734b5655be1afb6b69cbfe49bc51c056e3f471"
+    },
+    {
+      "file": "COMMANDS.md",
+      "status": "changed",
+      "oldSha256": "6311f2c6e2938759eb8dceaab413d19cc490f18263970e0a72ebdd9f91539cb6",
+      "newSha256": "6de2716185352dcf8f2ed16d18b727d6d626e8f37a30754d6915043e2e17db58"
+    },
+    {
+      "file": "DEPLOYMENT_REVIEW.md",
+      "status": "changed",
+      "oldSha256": "f1f7b89a5a2546366922ac1d848c9e17437cda1334e7b6913e012d6b064353dc",
+      "newSha256": "e56a6bcdd7c1821c06392cd4605a12074401c7ec28ef576e424a2d9deeefdf38"
+    },
+    {
+      "file": "LOCAL_RULE_MANAGER.md",
+      "status": "changed",
+      "oldSha256": "02a4b2a2c56a49afdcba0498768f135cd7d52800f8cfd0bf1c34244b16b3a1ab",
+      "newSha256": "7108e03e2fface4e7664451335fc9081c7a72d7eaf53d7ab89312155ecb6c50a"
+    },
+    {
+      "file": "MANAGER_BUILD_INFO.json",
+      "status": "changed",
+      "oldSha256": "6b5fe7f7c760a3c2ec2e0a4fd5188f955dc6c52a73543e38ff1b474520ea6152",
+      "newSha256": "0cc0483580375d7b1f10a217fa878961d72787f07b51956d41f7bb734fcd1f28"
+    },
+    {
+      "file": "MIGRATION.md",
+      "status": "changed",
+      "oldSha256": "db517c0f5f0abc2aabd67dba0e4343df39d5986f67623cfa22e9ffb4dbd5583f",
+      "newSha256": "2746a869efd501a20eb75b042d49ea1f3bb62b59574038b9b092c14cbd18fdf8"
+    },
+    {
+      "file": "PATCH_LOADING_SCREEN.md",
+      "status": "unchanged",
+      "oldSha256": "6cdec10160420351a08f64fdc0a0fff95d5b621deeac0b81032067acfd0ff272",
+      "newSha256": "6cdec10160420351a08f64fdc0a0fff95d5b621deeac0b81032067acfd0ff272"
+    },
+    {
+      "file": "PATCH_WAVE_DOTS.md",
+      "status": "unchanged",
+      "oldSha256": "da6adcf7b212637af514a8d8f8fd8e3c09c1f86fa1e142d259084020ed9f71d8",
+      "newSha256": "da6adcf7b212637af514a8d8f8fd8e3c09c1f86fa1e142d259084020ed9f71d8"
+    },
+    {
+      "file": "README.md",
+      "status": "changed",
+      "oldSha256": "77ec6c2206769c4387f723a01f85d81927895f4735dee78a1f33ec2f9fc65acf",
+      "newSha256": "5b7181db3b59859ed5be9dc9bb43657c83727c90a9cda7611187fedf8028ec98"
+    },
+    {
+      "file": "SHA256SUMS.txt",
+      "status": "unchanged",
+      "oldSha256": "e6c0394a1eec07cfb49c8b223470db6f56e8585ebaeb5a4ff6bbd1c925f261d2",
+      "newSha256": "e6c0394a1eec07cfb49c8b223470db6f56e8585ebaeb5a4ff6bbd1c925f261d2"
+    },
+    {
+      "file": "START_HERE.md",
+      "status": "changed",
+      "oldSha256": "cd163f6e45abd5c8730265c7948b4a30d121b62301a24177bba9d325e2738705",
+      "newSha256": "7dafee85a8a45f5c0ada70475e95c90408675ac24f5694d1329473795aa256fe"
+    },
+    {
+      "file": "TABLEAU_SETUP.md",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "9cadb46966d1d12eb97c3c03dc3e6ddfab10b7802f15503b922e0f9d4ca2a7b4"
+    },
+    {
+      "file": "WEB_ONLY.txt",
+      "status": "changed",
+      "oldSha256": "085f42fd19d5d335bfbdefa741bdcaba56fda3464f7f5fa576e1626281bc28f3",
+      "newSha256": "2851e869c3a2c07bd4963afde74d526094aaf7621741ccd1f47f45c9917525ac"
+    },
+    {
+      "file": "app.js",
+      "status": "changed",
+      "oldSha256": "ea889a96c19b3094d363ee7838fe55c2f1ac73ef9dbf13efc5b4aa1e9bfc42b4",
+      "newSha256": "3726a44ec737dca5ceab0d765879e0ad02c9dbc4136ce9d3377e12683469df76"
+    },
+    {
+      "file": "bootstrap.js",
+      "status": "changed",
+      "oldSha256": "631b1df713fe158a46d2371baded03c05d6f51f131e249008c302cc04d894a37",
+      "newSha256": "78903181702fbab3a144dcfd8788ac98edd2728797e65bf55c86e6c5bdc28a60"
+    },
+    {
+      "file": "build_command_patterns.py",
+      "status": "changed",
+      "oldSha256": "e9d9a252ceefffb6fa16c0854a0ef7dad64c4bcb2bd0c5a1f35f0f611bbc6ce8",
+      "newSha256": "70c22103260482fee5ffd156a57f98817180c8250f6ba0a7be944651978a19eb"
+    },
+    {
+      "file": "catalog_ui.css",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "fbb852c682d40f9fd96be4e5bbb7611fa5d103fe4e57ef116d8b1710f558e00f"
+    },
+    {
+      "file": "command_patterns.txt",
+      "status": "changed",
+      "oldSha256": "280ea061b836044fde33f7ad70956e1d2e17b1d958dd942cc26a0931cb5cbaab",
+      "newSha256": "998dc85ec49e815a9481ee8e900c4341f092ccf37c7b5db54e9d033814986799"
+    },
+    {
+      "file": "commands_editor.html",
+      "status": "changed",
+      "oldSha256": "70d9a90c6644555e4db7956fa4c0375d08530941cf001e16cb38f6bb2abf749b",
+      "newSha256": "7b000e47ba43db3defebb2d3a90123ea927a5d7aecf4cf5799159e0aee5c7a2b"
+    },
+    {
+      "file": "csv_adapter.js",
+      "status": "changed",
+      "oldSha256": "400855faf8afa2df1ab19f8e3b81b8851429d35ce2bb67c8a8ac9a26c5e97e67",
+      "newSha256": "c2e3a4b9fa2998d23ae0de76b998d89f319f1854a9667512e519306e7d5a9387"
+    },
+    {
+      "file": "data_builder/README.md",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "a8dd2a5cd7af7e780ef7e89c7d5c35fb7e8cee25642f6155db8cc008049055d5"
+    },
+    {
+      "file": "data_builder/build_tableau_csv.py",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "ae66777b36c2bafc6ce0edef8476a67d8af85c6d5b0984ee960a425bd95889d3"
+    },
+    {
+      "file": "data_builder/data_mapping.example.json",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "d68b78e1fc9e8fdb0ba9a48cb25b007e72222278a97a15a69b35f0d18f5ad76a"
+    },
+    {
+      "file": "demo.html",
+      "status": "changed",
+      "oldSha256": "7598850cd412d74393907c363b46ed1c653acde1d003c542504806835b8d3543",
+      "newSha256": "e1ba31ea6381971fd744123cd27a7a1889f4c077dc4869b1817c163126ff3ff8"
+    },
+    {
+      "file": "driver_catalog.js",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "06e0af0f5ab53e784e31737a1819575610f1fb548a9d551929668d24f413ca8d"
+    },
+    {
+      "file": "group_catalog.js",
+      "status": "changed",
+      "oldSha256": "23bb6cf75973602144018f1f709e8b60ce55d9512cd2f0be3e9fd92de7d738e7",
+      "newSha256": "461457f9018f446bd6834cb159567ef792d598a7b7666a9ad5a6df31e47875be"
+    },
+    {
+      "file": "loading_screen.css",
+      "status": "unchanged",
+      "oldSha256": "3727ef8b53332044c055c1483b307ceee215c84d9205472d9db32f4344d87d09",
+      "newSha256": "3727ef8b53332044c055c1483b307ceee215c84d9205472d9db32f4344d87d09"
+    },
+    {
+      "file": "loading_screen.js",
+      "status": "unchanged",
+      "oldSha256": "a2b6409fa4b9d5044e3aa4076da3d27bc1b668541ccbfda36e1afa047acac959",
+      "newSha256": "a2b6409fa4b9d5044e3aa4076da3d27bc1b668541ccbfda36e1afa047acac959"
+    },
+    {
+      "file": "local_manager/index.html",
+      "status": "unchanged",
+      "oldSha256": "7157dbd2b93dd5cb5f2a3f7c54126600e342086b5b8842118e65c24ece3e9a51",
+      "newSha256": "7157dbd2b93dd5cb5f2a3f7c54126600e342086b5b8842118e65c24ece3e9a51"
+    },
+    {
+      "file": "local_manager/manager.css",
+      "status": "unchanged",
+      "oldSha256": "6afe931d79b68a618dccf52a96233ba0b2ecbd014c140767ca5c47aca77d52c1",
+      "newSha256": "6afe931d79b68a618dccf52a96233ba0b2ecbd014c140767ca5c47aca77d52c1"
+    },
+    {
+      "file": "local_manager/manager.js",
+      "status": "changed",
+      "oldSha256": "e922d4daae56adf6f5550aa8bc6e438f885f8ec66607a5729ee0396ddbe580a8",
+      "newSha256": "e24f3eda45cfac01e5463607eff39bb408d3d9dbf3b61e7961fbf1f194331105"
+    },
+    {
+      "file": "local_manager/test_lab.js",
+      "status": "changed",
+      "oldSha256": "3663360701bf57d20a7af862d51ba8b2a376c05a307b82bd570317fbb7d050ae",
+      "newSha256": "89d65592d67f2dfea798f308f9b99e1083be50029f0e8b5b1cb727ceb718b5b5"
+    },
+    {
+      "file": "local_manager_tests/browser_dom.py",
+      "status": "changed",
+      "oldSha256": "bdb89a81bdb5362479ca4909efd19fa9b2a9c9f280be7c6bebdc4d98cb5825ef",
+      "newSha256": "483e29a688911ddc6a535dbcb02e11aa4426791016ec702dfe2b5b64f913463c"
+    },
+    {
+      "file": "local_manager_tests/browser_smoke.py",
+      "status": "changed",
+      "oldSha256": "2612cc3f3945510a9e11cee3169b66551663a2dcd88b43e64f63b022685cde20",
+      "newSha256": "21140af528186802ec1065899c76f25ba1d07e5c396c34acec15f03d7a78da59"
+    },
+    {
+      "file": "local_manager_tests/dom_fixture.py",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "55501169d06ec0e4708f8f865ff9575d0e1caeea5d2b8468d6df09be4b6b5ada"
+    },
+    {
+      "file": "local_manager_tests/run_report.py",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "5bca0529bd32412f52d111336a81a281340315660ac71bd73fcf01bd6e657b9d"
+    },
+    {
+      "file": "local_manager_tests/test_manager.py",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "6102ab2072869bd679671fd0eeff3dc71f7e576689a9b4142d40f8a6aeb78224"
+    },
+    {
+      "file": "local_manager_tests/test_manager_v5_original.txt",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "cc63acdfbf9c774d2d681755e7daca6db291bbd58f608cd75ee81aa85aff0607"
+    },
+    {
+      "file": "network.js",
+      "status": "unchanged",
+      "oldSha256": "e9dc933a0cd6407cf7aae19d54563cf129602e1c051a9c34732c8d73e2f0d3a3",
+      "newSha256": "e9dc933a0cd6407cf7aae19d54563cf129602e1c051a9c34732c8d73e2f0d3a3"
+    },
+    {
+      "file": "package.json",
+      "status": "changed",
+      "oldSha256": "afa8ab21cd0c45dde9fa3b0483a4b284d5a22cc9ff63c7c3869204a52856a911",
+      "newSha256": "86ebaa9bc14de5fcda3b716130cd95027bab6cb1c1639a7a3dba8a839a88cd0a"
+    },
+    {
+      "file": "requirements-dev.txt",
+      "status": "unchanged",
+      "oldSha256": "19619a44c085eb584159057b4fe2b677a6863731d55959bd6e153dd320853a16",
+      "newSha256": "19619a44c085eb584159057b4fe2b677a6863731d55959bd6e153dd320853a16"
+    },
+    {
+      "file": "rule_client.js",
+      "status": "changed",
+      "oldSha256": "4ec1b4008f6ea1e4f275163855565fac49d0bea3e4398081451bb8e21433bbb7",
+      "newSha256": "1dbeca0f7f147b0fdcfdcb1222ef57cb686cff5f933fd8e4c56e5244c6f2d58a"
+    },
+    {
+      "file": "rule_manager.py",
+      "status": "changed",
+      "oldSha256": "733baeb8638fe9e28af3ffada3c441f48a91e5c83ad559541e13f3b2b3a9b749",
+      "newSha256": "bd43910984499364040605d1b1316bef27b3cdce43ecc0d0765882406c550af2"
+    },
+    {
+      "file": "rule_parser.js",
+      "status": "unchanged",
+      "oldSha256": "f3fb70c08bbdfdf6467dfc26c2a096692acf6043ca84bd3d6401a2efd3c560e9",
+      "newSha256": "f3fb70c08bbdfdf6467dfc26c2a096692acf6043ca84bd3d6401a2efd3c560e9"
+    },
+    {
+      "file": "rules/aliases.csv",
+      "status": "removed",
+      "oldSha256": "520c88337c232a69ada0e60e2e0fbf7b011c6c2a460ca2ecbe085c32a0db6e7c",
+      "newSha256": null
+    },
+    {
+      "file": "rules/commands.csv",
+      "status": "unchanged",
+      "oldSha256": "e34265c9e1a577f6e99859044680cd35ce0602e8689badafe8482aee0766b497",
+      "newSha256": "e34265c9e1a577f6e99859044680cd35ce0602e8689badafe8482aee0766b497"
+    },
+    {
+      "file": "rules/followups.csv",
+      "status": "unchanged",
+      "oldSha256": "7b4020a8e953b330615b4fac7e3e77bbd0bafefb99519119c16dec3f86693bb8",
+      "newSha256": "7b4020a8e953b330615b4fac7e3e77bbd0bafefb99519119c16dec3f86693bb8"
+    },
+    {
+      "file": "rules/fuzzy_config.csv",
+      "status": "unchanged",
+      "oldSha256": "30542439faebdbae9864fe5bb5cae031e6b6bbb81078b3a591d50697f15ca791",
+      "newSha256": "30542439faebdbae9864fe5bb5cae031e6b6bbb81078b3a591d50697f15ca791"
+    },
+    {
+      "file": "rules/settings.csv",
+      "status": "unchanged",
+      "oldSha256": "1db72a4325b03f8241eab104fb85bc463a4f78b28c56dc71f0a06be17adb4d4c",
+      "newSha256": "1db72a4325b03f8241eab104fb85bc463a4f78b28c56dc71f0a06be17adb4d4c"
+    },
+    {
+      "file": "rules/synonyms.csv",
+      "status": "unchanged",
+      "oldSha256": "a5875d12b69242ccaf3d2ec0bea52fec56991ca7212d421065555aa2cace0b08",
+      "newSha256": "a5875d12b69242ccaf3d2ec0bea52fec56991ca7212d421065555aa2cace0b08"
+    },
+    {
+      "file": "rules/temporal.csv",
+      "status": "unchanged",
+      "oldSha256": "b164491c6e44b0a0fb911966c54c93ea4eb67cadef3e09ebfb9612fd18c6c2a2",
+      "newSha256": "b164491c6e44b0a0fb911966c54c93ea4eb67cadef3e09ebfb9612fd18c6c2a2"
+    },
+    {
+      "file": "rules/units.csv",
+      "status": "unchanged",
+      "oldSha256": "02817e4cfa9fe033d21d1fa9e5e769ac35622196a91133f39db96cfbcf279018",
+      "newSha256": "02817e4cfa9fe033d21d1fa9e5e769ac35622196a91133f39db96cfbcf279018"
+    },
+    {
+      "file": "rules_config.txt",
+      "status": "changed",
+      "oldSha256": "64d847a9fef10589226cfc8434f6e11e9a287a64cc6c7f5afc95e438ad61b45c",
+      "newSha256": "844f1bb319938fb46b4a907ab74c27268ae46d08a76ddc419028e6043ed40a98"
+    },
+    {
+      "file": "rwa_engine.js",
+      "status": "changed",
+      "oldSha256": "dc4dc81ba0f6c685102bf962ecfeba3657e2814c8223a8d4858c41192fa3c0d9",
+      "newSha256": "4a10e977e4bb431fb11976611de507f6f8189bf541edaf878387ee7d371bebf8"
+    },
+    {
+      "file": "rwa_sample_data.txt",
+      "status": "unchanged",
+      "oldSha256": "ff165d2596112c9e8bcd4605035d49cf3ea19464c9f01ad6976de822f391baad",
+      "newSha256": "ff165d2596112c9e8bcd4605035d49cf3ea19464c9f01ad6976de822f391baad"
+    },
+    {
+      "file": "semantic/diagnostics.js",
+      "status": "unchanged",
+      "oldSha256": "e48ff3f6d3ee8e2aa777fc54a4927f33013fceafea290a3a44d1705aace28181",
+      "newSha256": "e48ff3f6d3ee8e2aa777fc54a4927f33013fceafea290a3a44d1705aace28181"
+    },
+    {
+      "file": "semantic/dictionary.js",
+      "status": "changed",
+      "oldSha256": "4cb619d0cd950027c6b2901942e1ada9c7d4b9d8fb456157c46c19159a7622df",
+      "newSha256": "8c3f7d1b99b140f6b6f0d96ca5d6f6154b888deafd32d9666cbd85ec5fefa991"
+    },
+    {
+      "file": "semantic/engine.js",
+      "status": "changed",
+      "oldSha256": "f2b5fefe991a8f83876673e3e69ffb77dfb3e942f2726c0fa0c2c76611749307",
+      "newSha256": "835349db4d197f4599e6142c81a181e000cb04d86f48aba8da26839ee10fb5b2"
+    },
+    {
+      "file": "semantic/features.js",
+      "status": "unchanged",
+      "oldSha256": "f0414f2ea1e2d13f0b0b418d4d9466171ad1d8481e069a74ff71f184786190d3",
+      "newSha256": "f0414f2ea1e2d13f0b0b418d4d9466171ad1d8481e069a74ff71f184786190d3"
+    },
+    {
+      "file": "semantic/followups.js",
+      "status": "changed",
+      "oldSha256": "a590374be0182e98fbc150b97832e39d2229a2f057b6e00aad23466568541dce",
+      "newSha256": "5f34430bf999d0a22c6ebc0566a3c7b3414d4e12baeaf3f2af3c10c114140f67"
+    },
+    {
+      "file": "semantic/fuzzy.js",
+      "status": "changed",
+      "oldSha256": "e6d7cb86138b5fce2ccaef73b784a9112483e6fe3b755a925f722f1b89d54801",
+      "newSha256": "6173ddfde4b5569d45cf70a892c59092a5e9ba54a958b7302cab6fc774d550ca"
+    },
+    {
+      "file": "semantic/grammar.js",
+      "status": "unchanged",
+      "oldSha256": "561496b6a9335c4ec10221545ed681cdbb74c5f09414a603b28f642e29caedf8",
+      "newSha256": "561496b6a9335c4ec10221545ed681cdbb74c5f09414a603b28f642e29caedf8"
+    },
+    {
+      "file": "semantic/lexical.js",
+      "status": "unchanged",
+      "oldSha256": "8a5c4a47d3eb243397c601fcc4892303a9844984ecf99838e515b5e1d2737358",
+      "newSha256": "8a5c4a47d3eb243397c601fcc4892303a9844984ecf99838e515b5e1d2737358"
+    },
+    {
+      "file": "semantic/numbers.js",
+      "status": "unchanged",
+      "oldSha256": "1893bdc2c97ad34e363ccb5df1ea1a8d15b1003c94713942d17f6379bd8f32e9",
+      "newSha256": "1893bdc2c97ad34e363ccb5df1ea1a8d15b1003c94713942d17f6379bd8f32e9"
+    },
+    {
+      "file": "semantic/periods.js",
+      "status": "unchanged",
+      "oldSha256": "3206616a6b0d44b3fea2f25561538b98267d2ade9bae0c76a9d6b52286ec5837",
+      "newSha256": "3206616a6b0d44b3fea2f25561538b98267d2ade9bae0c76a9d6b52286ec5837"
+    },
+    {
+      "file": "semantic/registry.js",
+      "status": "changed",
+      "oldSha256": "467347c51b2005bb38be04fc70d80b06ee0e76727f932c540ebc2b5d0546407d",
+      "newSha256": "5ef7b437fcaf8ced642ab32364d83ab71e3709cf9ebcbcd864ce647154835f4c"
+    },
+    {
+      "file": "semantic/relations.js",
+      "status": "changed",
+      "oldSha256": "83294dc2fa5655d40f210c6bf6fa53dcb0e106803c667632ce03f985f59a30f5",
+      "newSha256": "f85ef038453c5e1ad8bd1ae3e7f3399777e5bf4fd5fecc2fe939743c058db9ec"
+    },
+    {
+      "file": "semantic/routing.js",
+      "status": "changed",
+      "oldSha256": "07a466b28d661e47907aaa7221946bdc32c9b05dfe9895e693130997074d4ed3",
+      "newSha256": "285fd115b9dbd253ce1f548d53a36d7157955f58324617538aff0b2d1f02ee14"
+    },
+    {
+      "file": "semantic/scoring.js",
+      "status": "unchanged",
+      "oldSha256": "543e326f3af2d390b781d12fe2cabd7c6968cfba7ed7ceb378090d16c5e0dfc4",
+      "newSha256": "543e326f3af2d390b781d12fe2cabd7c6968cfba7ed7ceb378090d16c5e0dfc4"
+    },
+    {
+      "file": "semantic/slots.js",
+      "status": "changed",
+      "oldSha256": "17a375292ad66caeb810273ceb8abce5ff3b1dab2ab8af31466e293a3375a5c5",
+      "newSha256": "ebeb289d45088207cb185b56e458974c1c9bd5e9b93f0e919de6009383445b92"
+    },
+    {
+      "file": "semantic/text.js",
+      "status": "unchanged",
+      "oldSha256": "85e342fef356304b10148693a09e67a0099a4f80698e77d38261d15c5b37cb94",
+      "newSha256": "85e342fef356304b10148693a09e67a0099a4f80698e77d38261d15c5b37cb94"
+    },
+    {
+      "file": "semantic/validation.js",
+      "status": "changed",
+      "oldSha256": "7f68ee426cdbcef57b77b846ba4320787941e3ac9864d08f09b87fe3c73a3245",
+      "newSha256": "73667c3107cb0c34b652d589f93c89a2f225eefd20dd2b83d02a021319fc3d41"
+    },
+    {
+      "file": "serve.mjs",
+      "status": "unchanged",
+      "oldSha256": "eb4cadca5ffff88038b04bd801ca53bec9b00282929eacb03cc4556a9cb0ba12",
+      "newSha256": "eb4cadca5ffff88038b04bd801ca53bec9b00282929eacb03cc4556a9cb0ba12"
+    },
+    {
+      "file": "standalone_demo.html",
+      "status": "changed",
+      "oldSha256": "7ae80eecc364a826d26115f4515324b06ce0136612449e0023ec131cb1596911",
+      "newSha256": "df7a6f3733c7cdf0d93d706ad3ec472faad684c86fd88d7f4f07b99a5565cff3"
+    },
+    {
+      "file": "start_rule_manager.bat",
+      "status": "unchanged",
+      "oldSha256": "7d81e6d21e5e78ec63304cce35282a073821e5e1142572fb14e1286bd4d62e5f",
+      "newSha256": "7d81e6d21e5e78ec63304cce35282a073821e5e1142572fb14e1286bd4d62e5f"
+    },
+    {
+      "file": "start_rule_manager.command",
+      "status": "unchanged",
+      "oldSha256": "7874d8b436b189531c4e74d49434495cee552835552d03c0d1f79e558e69f64b",
+      "newSha256": "7874d8b436b189531c4e74d49434495cee552835552d03c0d1f79e558e69f64b"
+    },
+    {
+      "file": "styles.css",
+      "status": "unchanged",
+      "oldSha256": "387acaa40fd5dc7e3cc25c243219344e46d0d103b79141ec36c5322bc31fb7e0",
+      "newSha256": "387acaa40fd5dc7e3cc25c243219344e46d0d103b79141ec36c5322bc31fb7e0"
+    },
+    {
+      "file": "tableau_adapter.js",
+      "status": "changed",
+      "oldSha256": "717e0f026df3fb409563adc5230c5fd19e391f63ed65bc10810ff87063196072",
+      "newSha256": "7313a7221d8a13528547792bf0838048138d7166a70f905e96bdb02b75c19f8f"
+    },
+    {
+      "file": "tableau_config.live.example.txt",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "03565246c389eca4e8836ddcb76300f6ff9b177b68988203cdc8b72311be4f39"
+    },
+    {
+      "file": "tableau_config.txt",
+      "status": "changed",
+      "oldSha256": "252fc21906449be3b56553bbb1d25b7d25010c0465c89684981a7d08ff939191",
+      "newSha256": "2f655646a618b514c88d1bb9a9dd85c8611940f0fb55132c5c36cce4f76f3060"
+    },
+    {
+      "file": "tableau_sample.csv",
+      "status": "unchanged",
+      "oldSha256": "231e897e26db02d9e5f66cba36dd8da935eea9326424fa03b62f3aac96e9f1cc",
+      "newSha256": "231e897e26db02d9e5f66cba36dd8da935eea9326424fa03b62f3aac96e9f1cc"
+    },
+    {
+      "file": "tests/ab_smoke.csv",
+      "status": "unchanged",
+      "oldSha256": "3e9faf2cc37c5bc52f7fd50edd874f2ddc26e5c9c89177300917271485c212cd",
+      "newSha256": "3e9faf2cc37c5bc52f7fd50edd874f2ddc26e5c9c89177300917271485c212cd"
+    },
+    {
+      "file": "tests/browser_connected.py",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "36caad9baf39cba6df94ebe9e8885c6f66a0ad0785fc1bdb487e4275c9e2c7c9"
+    },
+    {
+      "file": "tests/browser_tableau_mock.py",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "a89f3375d9b52d2c8d6c79d0e52777df36e1d8cc1cd9fe06b60e06a4a43e7a38"
+    },
+    {
+      "file": "tests/browser_test.py",
+      "status": "unchanged",
+      "oldSha256": "1aedfeafd8a6360dfe9975598f8ff65d43c903401bb088871e192ccbe9e3d6b6",
+      "newSha256": "1aedfeafd8a6360dfe9975598f8ff65d43c903401bb088871e192ccbe9e3d6b6"
+    },
+    {
+      "file": "tests/builder_integration.mjs",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "5cd1879dc945a084130c7534b7e38e49c17e4e915b7965994215c4daa4f897ba"
+    },
+    {
+      "file": "tests/connected_tableau.mjs",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "69be77c37b0a243e9bb3299dfe571902aa962abe3a4d7a6423b115e4c907b026"
+    },
+    {
+      "file": "tests/create_corpus.py",
+      "status": "unchanged",
+      "oldSha256": "e8328ee1c892e644031617061feef877f8bb2faa24154eeaa6fa1596a0790042",
+      "newSha256": "e8328ee1c892e644031617061feef877f8bb2faa24154eeaa6fa1596a0790042"
+    },
+    {
+      "file": "tests/create_robustness.py",
+      "status": "unchanged",
+      "oldSha256": "594e26524b24ad3d507d96e7736feca580a5b916133f8322f8979f93d9b59cdf",
+      "newSha256": "594e26524b24ad3d507d96e7736feca580a5b916133f8322f8979f93d9b59cdf"
+    },
+    {
+      "file": "tests/dialogue_application_cases.json",
+      "status": "unchanged",
+      "oldSha256": "6f1c90f969b24f32170f917b9d472af698b7a8e57942a1e2def154806edfd0a8",
+      "newSha256": "6f1c90f969b24f32170f917b9d472af698b7a8e57942a1e2def154806edfd0a8"
+    },
+    {
+      "file": "tests/fixture.json",
+      "status": "unchanged",
+      "oldSha256": "0d5e2061385030f0bb2dea47cdf2c5823816d181a5965bd105d60dee7a9c734c",
+      "newSha256": "0d5e2061385030f0bb2dea47cdf2c5823816d181a5965bd105d60dee7a9c734c"
+    },
+    {
+      "file": "tests/holdout_template.csv",
+      "status": "unchanged",
+      "oldSha256": "823c598d0f3ab67480023c4b1d828938655b99d994f6b3df01802df3a18f4ffc",
+      "newSha256": "823c598d0f3ab67480023c4b1d828938655b99d994f6b3df01802df3a18f4ffc"
+    },
+    {
+      "file": "tests/legacy_dialogue.mjs",
+      "status": "unchanged",
+      "oldSha256": "f5bff8ae1e1c89fb0a27b1df77e9ba299e3380dd33df0fa6156d9146f0bdc412",
+      "newSha256": "f5bff8ae1e1c89fb0a27b1df77e9ba299e3380dd33df0fa6156d9146f0bdc412"
+    },
+    {
+      "file": "tests/legacy_regression.mjs",
+      "status": "unchanged",
+      "oldSha256": "e72842d8963f56c4284eb43b6393a2f667539d7aff06c0c9daaeefe59f502671",
+      "newSha256": "e72842d8963f56c4284eb43b6393a2f667539d7aff06c0c9daaeefe59f502671"
+    },
+    {
+      "file": "tests/questions.csv",
+      "status": "unchanged",
+      "oldSha256": "c6d1da5f900093438d7cc3511f12948c63e62035eb3868fddab5b018bf6eef4e",
+      "newSha256": "c6d1da5f900093438d7cc3511f12948c63e62035eb3868fddab5b018bf6eef4e"
+    },
+    {
+      "file": "tests/reference_questions.csv",
+      "status": "unchanged",
+      "oldSha256": "f2fcbd6848d7069b3b08070961b44878ae6cc77e72c6dfdd95f6578e29e77730",
+      "newSha256": "f2fcbd6848d7069b3b08070961b44878ae6cc77e72c6dfdd95f6578e29e77730"
+    },
+    {
+      "file": "tests/robustness.csv",
+      "status": "unchanged",
+      "oldSha256": "b081dc30c7f3f35db5cd46e19b90d50a9c6aa2df517d74b2eea152cd0d12ffa9",
+      "newSha256": "b081dc30c7f3f35db5cd46e19b90d50a9c6aa2df517d74b2eea152cd0d12ffa9"
+    },
+    {
+      "file": "tests/run_all.mjs",
+      "status": "changed",
+      "oldSha256": "dc4d27cab2569a3cfd16c536f05ece7a461c9920c0e85fbf890ed0637f993d98",
+      "newSha256": "24dd8514bd3df02a558913878d970eb2d3216ebbc84a57599bc1de482073c2a7"
+    },
+    {
+      "file": "tests/rwa_entities_monthly.csv",
+      "status": "unchanged",
+      "oldSha256": "12eda7405f4b3c2afe5c4a8392f47106d08e18d82ac37965e7a3753359b111af",
+      "newSha256": "12eda7405f4b3c2afe5c4a8392f47106d08e18d82ac37965e7a3753359b111af"
+    },
+    {
+      "file": "tests/rwa_groups_monthly.csv",
+      "status": "unchanged",
+      "oldSha256": "ba0cf7c31bda322df04b67a71259c65a539c1bdaf554b6f3116edbaaedafdd9b",
+      "newSha256": "ba0cf7c31bda322df04b67a71259c65a539c1bdaf554b6f3116edbaaedafdd9b"
+    },
+    {
+      "file": "tests/sample_question_checks.csv",
+      "status": "unchanged",
+      "oldSha256": "8ae2682c2546080dea83cda2ef40dcbdddb5a160bd88f5be4030bc5dbacfd802",
+      "newSha256": "8ae2682c2546080dea83cda2ef40dcbdddb5a160bd88f5be4030bc5dbacfd802"
+    },
+    {
+      "file": "tests/test_builder_integration.py",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "3a116db4f53ac08b679fcd9c9ac972a0f8c3b9a92b76d08ea1aaf5ebc2136302"
+    },
+    {
+      "file": "tests/test_compiler.py",
+      "status": "changed",
+      "oldSha256": "187746b32172f6038fe440b4ee9f29a6db2611756a67f31e8b1967afd77da610",
+      "newSha256": "c21451db6a68f2517a2a678b51c2d3e286e78f35beadecdde43e2c1f72bae440"
+    },
+    {
+      "file": "tests/test_compiler_v5_original.txt",
+      "status": "added",
+      "oldSha256": null,
+      "newSha256": "187746b32172f6038fe440b4ee9f29a6db2611756a67f31e8b1967afd77da610"
+    },
+    {
+      "file": "tests/test_engine.mjs",
+      "status": "changed",
+      "oldSha256": "23787eb498b3ba851addb6a2982257c645177530ebe543b5a7a350532d7b06d5",
+      "newSha256": "e9cd17126c4f9a2cfd4cc431ecaf5d1180568344dc1116096df6d09a71d5b2d8"
+    },
+    {
+      "file": "tests/test_holdout_guard.py",
+      "status": "unchanged",
+      "oldSha256": "9cbe16e955f6c4bc0f64874c1ce1fa8863fd812bc23fb7ae1caf965c2ba7d8b9",
+      "newSha256": "9cbe16e955f6c4bc0f64874c1ce1fa8863fd812bc23fb7ae1caf965c2ba7d8b9"
+    },
+    {
+      "file": "tests/test_robustness.mjs",
+      "status": "changed",
+      "oldSha256": "f8288b83d06661f58eeed5fce132ccb0068d0dbe5ed110b3a5f09ab2b429dd8d",
+      "newSha256": "3e350dba249a3e66b540211b92ca73e0a4e2cf11864921d4a02dcdbeef645ace"
+    },
+    {
+      "file": "tools/ab_minilm.py",
+      "status": "unchanged",
+      "oldSha256": "f5d98af64a0f46d7e64775203d781100963d13058b992dfa79b780effecb8541",
+      "newSha256": "f5d98af64a0f46d7e64775203d781100963d13058b992dfa79b780effecb8541"
+    },
+    {
+      "file": "tools/build_release.py",
+      "status": "changed",
+      "oldSha256": "e57250593322d242b3b9e73bffcdb5ea5df82316730613137f6fe99a10939927",
+      "newSha256": "cd8146cda8831e9d937741d58b3d7c013ea5cc64cfde37b2a3cc4885bd8d0e94"
+    },
+    {
+      "file": "tools/build_standalone.py",
+      "status": "changed",
+      "oldSha256": "5aab9e74a7111ab966c007322809edef4b22c45cd6fcdf035e56cc54ebb5bd4d",
+      "newSha256": "50afa193b426a0a0c46da1b73be35a690c792cc20b3137f5903ff3f20733dc42"
+    },
+    {
+      "file": "tools/compiler_extensions.py",
+      "status": "unchanged",
+      "oldSha256": "c1be5bdcbe10a50283c2cac1920c7379f6c40b1bbbf376046809b9b65d662cdd",
+      "newSha256": "c1be5bdcbe10a50283c2cac1920c7379f6c40b1bbbf376046809b9b65d662cdd"
+    },
+    {
+      "file": "tools/evaluate.mjs",
+      "status": "unchanged",
+      "oldSha256": "185d505aaf5c7987ae67f2d709aee62e57ef361d16dbd3fa913a370d53c4c796",
+      "newSha256": "185d505aaf5c7987ae67f2d709aee62e57ef361d16dbd3fa913a370d53c4c796"
+    },
+    {
+      "file": "tools/explain.mjs",
+      "status": "unchanged",
+      "oldSha256": "28fbffb3f2117be1aeb355be31380d8a4327ce1a21f50006c91e837a90ca8578",
+      "newSha256": "28fbffb3f2117be1aeb355be31380d8a4327ce1a21f50006c91e837a90ca8578"
+    },
+    {
+      "file": "tools/failure_analysis.mjs",
+      "status": "unchanged",
+      "oldSha256": "d7c1b594575166e52e04a2cf637ee56ded73c3867c302857dd7adadf76f7dedb",
+      "newSha256": "d7c1b594575166e52e04a2cf637ee56ded73c3867c302857dd7adadf76f7dedb"
+    },
+    {
+      "file": "tools/fuzzy_clean_check.mjs",
+      "status": "unchanged",
+      "oldSha256": "dd7a4bec058459a6bd73f633b64cdec83598891bea04e1d1522cadb8debdcab4",
+      "newSha256": "dd7a4bec058459a6bd73f633b64cdec83598891bea04e1d1522cadb8debdcab4"
+    },
+    {
+      "file": "tools/holdout_guard.py",
+      "status": "unchanged",
+      "oldSha256": "ccab47c080fe6f3c5d3e3dfa5d30aa6bdbbacd5fa9d5a9b11066630c4e839802",
+      "newSha256": "ccab47c080fe6f3c5d3e3dfa5d30aa6bdbbacd5fa9d5a9b11066630c4e839802"
+    },
+    {
+      "file": "tools/rule_schema.py",
+      "status": "changed",
+      "oldSha256": "e2b1d352fba5541d7c8896ba620ec118ca19455f3546f1c6029ec9cb9d86be71",
+      "newSha256": "ec3641ee8a376e4ad041b8084c7060c216cb94c0d13933d9ca2d2f284e456026"
+    },
+    {
+      "file": "tools/score_ab.mjs",
+      "status": "unchanged",
+      "oldSha256": "2cd1d37665440e8ed51a1be0100531fa1c94fbbe03e3c29d7692f1c1c7f8b34b",
+      "newSha256": "2cd1d37665440e8ed51a1be0100531fa1c94fbbe03e3c29d7692f1c1c7f8b34b"
+    }
+  ]
+}

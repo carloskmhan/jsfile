@@ -1,0 +1,212 @@
+{
+  "baseline": "v6 full + latest SSO/large-batch, for-name and contributor/comparison-note patches as previously supplied",
+  "scope": "Manager UX modifications only; untouched executable language CSVs, compiler and production runtime",
+  "files": [
+    {
+      "file": "build_command_patterns.py",
+      "unchanged": true,
+      "sha256": "70c22103260482fee5ffd156a57f98817180c8250f6ba0a7be944651978a19eb"
+    },
+    {
+      "file": "command_patterns.txt",
+      "unchanged": true,
+      "sha256": "998dc85ec49e815a9481ee8e900c4341f092ccf37c7b5db54e9d033814986799"
+    },
+    {
+      "file": "rule_client.js",
+      "unchanged": true,
+      "sha256": "1dbeca0f7f147b0fdcfdcb1222ef57cb686cff5f933fd8e4c56e5244c6f2d58a"
+    },
+    {
+      "file": "rwa_engine.js",
+      "unchanged": true,
+      "sha256": "a15b9bdec2d6b71042b74c78d1e7df412c68790ee2a436a90a11d30d0689f210"
+    },
+    {
+      "file": "tableau_adapter.js",
+      "unchanged": true,
+      "sha256": "786c26787b8b7d529ba50b3cbc65155efd6f2d2d7b876cfd72a047e89dd56b5b"
+    },
+    {
+      "file": "group_catalog.js",
+      "unchanged": true,
+      "sha256": "9fdfbb74cb95a7f85b05636f8a1500ab0c0f9ce70dec163b69808c55b5a9e266"
+    },
+    {
+      "file": "app.js",
+      "unchanged": true,
+      "sha256": "b3cfb3cc6c71cddb481d1cac00598168c3b0f67cdf306143cef83fbcc362f177"
+    },
+    {
+      "file": "demo.html",
+      "unchanged": true,
+      "sha256": "27bbb0b2fdfd881d8677a911bc996413a00971dc92481fbd5fc61ae7a4dceaa6"
+    },
+    {
+      "file": "loading_screen.js",
+      "unchanged": true,
+      "sha256": "316d0d13c48d03f626080246f2036a2c48c3d741a58060906f0ecfd268188ac8"
+    },
+    {
+      "file": "loading_screen.css",
+      "unchanged": true,
+      "sha256": "135329f121d4c3ead68368fcc7901b30d9a2e8ee148e2413e7b32d489f278c13"
+    },
+    {
+      "file": "bootstrap.js",
+      "unchanged": true,
+      "sha256": "b81c6f4e05ace843c526b76ee2ce550bc13953527771cfe9a9248ff985767080"
+    },
+    {
+      "file": "tableau_config.txt",
+      "unchanged": true,
+      "sha256": "2f655646a618b514c88d1bb9a9dd85c8611940f0fb55132c5c36cce4f76f3060"
+    },
+    {
+      "file": "local_manager/test_lab.js",
+      "unchanged": true,
+      "sha256": "89d65592d67f2dfea798f308f9b99e1083be50029f0e8b5b1cb727ceb718b5b5"
+    },
+    {
+      "file": "local_manager/manager.js",
+      "unchanged": true,
+      "sha256": "e24f3eda45cfac01e5463607eff39bb408d3d9dbf3b61e7961fbf1f194331105"
+    },
+    {
+      "file": "local_manager/manager.css",
+      "unchanged": true,
+      "sha256": "6afe931d79b68a618dccf52a96233ba0b2ecbd014c140767ca5c47aca77d52c1"
+    },
+    {
+      "file": "semantic/lexical.js",
+      "unchanged": true,
+      "sha256": "8a5c4a47d3eb243397c601fcc4892303a9844984ecf99838e515b5e1d2737358"
+    },
+    {
+      "file": "semantic/relations.js",
+      "unchanged": true,
+      "sha256": "f85ef038453c5e1ad8bd1ae3e7f3399777e5bf4fd5fecc2fe939743c058db9ec"
+    },
+    {
+      "file": "semantic/routing.js",
+      "unchanged": true,
+      "sha256": "285fd115b9dbd253ce1f548d53a36d7157955f58324617538aff0b2d1f02ee14"
+    },
+    {
+      "file": "semantic/scoring.js",
+      "unchanged": true,
+      "sha256": "543e326f3af2d390b781d12fe2cabd7c6968cfba7ed7ceb378090d16c5e0dfc4"
+    },
+    {
+      "file": "semantic/engine.js",
+      "unchanged": true,
+      "sha256": "835349db4d197f4599e6142c81a181e000cb04d86f48aba8da26839ee10fb5b2"
+    },
+    {
+      "file": "semantic/slots.js",
+      "unchanged": true,
+      "sha256": "ebeb289d45088207cb185b56e458974c1c9bd5e9b93f0e919de6009383445b92"
+    },
+    {
+      "file": "semantic/text.js",
+      "unchanged": true,
+      "sha256": "85e342fef356304b10148693a09e67a0099a4f80698e77d38261d15c5b37cb94"
+    },
+    {
+      "file": "semantic/features.js",
+      "unchanged": true,
+      "sha256": "f0414f2ea1e2d13f0b0b418d4d9466171ad1d8481e069a74ff71f184786190d3"
+    },
+    {
+      "file": "semantic/periods.js",
+      "unchanged": true,
+      "sha256": "3206616a6b0d44b3fea2f25561538b98267d2ade9bae0c76a9d6b52286ec5837"
+    },
+    {
+      "file": "semantic/numbers.js",
+      "unchanged": true,
+      "sha256": "1893bdc2c97ad34e363ccb5df1ea1a8d15b1003c94713942d17f6379bd8f32e9"
+    },
+    {
+      "file": "semantic/grammar.js",
+      "unchanged": true,
+      "sha256": "561496b6a9335c4ec10221545ed681cdbb74c5f09414a603b28f642e29caedf8"
+    },
+    {
+      "file": "semantic/registry.js",
+      "unchanged": true,
+      "sha256": "5ef7b437fcaf8ced642ab32364d83ab71e3709cf9ebcbcd864ce647154835f4c"
+    },
+    {
+      "file": "semantic/validation.js",
+      "unchanged": true,
+      "sha256": "73667c3107cb0c34b652d589f93c89a2f225eefd20dd2b83d02a021319fc3d41"
+    },
+    {
+      "file": "semantic/diagnostics.js",
+      "unchanged": true,
+      "sha256": "e48ff3f6d3ee8e2aa777fc54a4927f33013fceafea290a3a44d1705aace28181"
+    },
+    {
+      "file": "semantic/fuzzy.js",
+      "unchanged": true,
+      "sha256": "6173ddfde4b5569d45cf70a892c59092a5e9ba54a958b7302cab6fc774d550ca"
+    },
+    {
+      "file": "semantic/followups.js",
+      "unchanged": true,
+      "sha256": "5f34430bf999d0a22c6ebc0566a3c7b3414d4e12baeaf3f2af3c10c114140f67"
+    },
+    {
+      "file": "semantic/dictionary.js",
+      "unchanged": true,
+      "sha256": "8c3f7d1b99b140f6b6f0d96ca5d6f6154b888deafd32d9666cbd85ec5fefa991"
+    },
+    {
+      "file": "rules/synonyms.csv",
+      "unchanged": true,
+      "sha256": "a5875d12b69242ccaf3d2ec0bea52fec56991ca7212d421065555aa2cace0b08"
+    },
+    {
+      "file": "rules/followups.csv",
+      "unchanged": true,
+      "sha256": "7b4020a8e953b330615b4fac7e3e77bbd0bafefb99519119c16dec3f86693bb8"
+    },
+    {
+      "file": "rules/units.csv",
+      "unchanged": true,
+      "sha256": "02817e4cfa9fe033d21d1fa9e5e769ac35622196a91133f39db96cfbcf279018"
+    },
+    {
+      "file": "rules/fuzzy_config.csv",
+      "unchanged": true,
+      "sha256": "30542439faebdbae9864fe5bb5cae031e6b6bbb81078b3a591d50697f15ca791"
+    },
+    {
+      "file": "rules/settings.csv",
+      "unchanged": true,
+      "sha256": "1db72a4325b03f8241eab104fb85bc463a4f78b28c56dc71f0a06be17adb4d4c"
+    },
+    {
+      "file": "rules/temporal.csv",
+      "unchanged": true,
+      "sha256": "b164491c6e44b0a0fb911966c54c93ea4eb67cadef3e09ebfb9612fd18c6c2a2"
+    },
+    {
+      "file": "rules/commands.csv",
+      "unchanged": true,
+      "sha256": "e34265c9e1a577f6e99859044680cd35ce0602e8689badafe8482aee0766b497"
+    },
+    {
+      "file": "tools/rule_schema.py",
+      "unchanged": true,
+      "sha256": "ec3641ee8a376e4ad041b8084c7060c216cb94c0d13933d9ca2d2f284e456026"
+    },
+    {
+      "file": "tools/compiler_extensions.py",
+      "unchanged": true,
+      "sha256": "c1be5bdcbe10a50283c2cac1920c7379f6c40b1bbbf376046809b9b65d662cdd"
+    }
+  ],
+  "allUnchanged": true
+}

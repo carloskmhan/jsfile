@@ -1,0 +1,512 @@
+{
+  "source": "robustness.json",
+  "corpusSha256": "b081dc30c7f3f35db5cd46e19b90d50a9c6aa2df517d74b2eea152cd0d12ffa9",
+  "failedCases": 0,
+  "failureLayers": {},
+  "failures": [],
+  "rejections": [
+    {
+      "id": "V5_0008",
+      "expected": true,
+      "code": "AMBIGUOUS_COMPARISON",
+      "layer": "RELATION",
+      "hints": []
+    },
+    {
+      "id": "V5_0009",
+      "expected": true,
+      "code": "UNSUPPORTED_NEGATIVE_PREMISE",
+      "layer": "NEGATION",
+      "hints": []
+    },
+    {
+      "id": "V5_0014",
+      "expected": true,
+      "code": "AMBIGUOUS_COMMAND",
+      "layer": "AMBIGUITY",
+      "hints": []
+    },
+    {
+      "id": "V5_0019",
+      "expected": true,
+      "code": "UNSUPPORTED_MODIFIER",
+      "layer": "UNSUPPORTED",
+      "hints": []
+    },
+    {
+      "id": "V5_0084",
+      "expected": true,
+      "code": "INVALID_NUMBER",
+      "layer": "NUMBER",
+      "hints": []
+    },
+    {
+      "id": "V5_0085",
+      "expected": true,
+      "code": "INVALID_NUMBER",
+      "layer": "NUMBER",
+      "hints": []
+    },
+    {
+      "id": "V5_0086",
+      "expected": true,
+      "code": "INVALID_UNIT",
+      "layer": "UNIT",
+      "hints": []
+    },
+    {
+      "id": "V5_0087",
+      "expected": true,
+      "code": "INVALID_UNIT",
+      "layer": "UNIT",
+      "hints": []
+    },
+    {
+      "id": "V5_0088",
+      "expected": true,
+      "code": "INVALID_UNIT",
+      "layer": "UNIT",
+      "hints": []
+    },
+    {
+      "id": "V5_0089",
+      "expected": true,
+      "code": "UNSAFE_NUMBER",
+      "layer": "NUMBER",
+      "hints": []
+    },
+    {
+      "id": "V5_0090",
+      "expected": true,
+      "code": "UNSUPPORTED_MODIFIER",
+      "layer": "UNSUPPORTED",
+      "hints": []
+    },
+    {
+      "id": "V5_0091",
+      "expected": true,
+      "code": "INVALID_UNIT",
+      "layer": "UNIT",
+      "hints": []
+    },
+    {
+      "id": "V5_0092",
+      "expected": true,
+      "code": "INVALID_NUMBER",
+      "layer": "NUMBER",
+      "hints": []
+    },
+    {
+      "id": "V5_0093",
+      "expected": true,
+      "code": "INVALID_UNIT",
+      "layer": "UNIT",
+      "hints": [
+        "FUZZY"
+      ]
+    },
+    {
+      "id": "V5_0094",
+      "expected": true,
+      "code": "MISSING_UNIT",
+      "layer": "UNIT",
+      "hints": [
+        "TEMPORAL"
+      ]
+    },
+    {
+      "id": "V5_0095",
+      "expected": true,
+      "code": "INVALID_UNIT",
+      "layer": "UNIT",
+      "hints": []
+    },
+    {
+      "id": "V5_0101",
+      "expected": true,
+      "code": "INVALID_NUMBER",
+      "layer": "NUMBER",
+      "hints": []
+    },
+    {
+      "id": "V5_0102",
+      "expected": true,
+      "code": "INVALID_NUMBER",
+      "layer": "NUMBER",
+      "hints": []
+    },
+    {
+      "id": "V5_0103",
+      "expected": true,
+      "code": "INVALID_NUMBER",
+      "layer": "NUMBER",
+      "hints": []
+    },
+    {
+      "id": "V5_0104",
+      "expected": true,
+      "code": "INVALID_NUMBER",
+      "layer": "NUMBER",
+      "hints": []
+    },
+    {
+      "id": "V5_0105",
+      "expected": true,
+      "code": "INVALID_NUMBER",
+      "layer": "NUMBER",
+      "hints": []
+    },
+    {
+      "id": "V5_0106",
+      "expected": true,
+      "code": "UNSUPPORTED_EXPRESSION",
+      "layer": "UNSUPPORTED",
+      "hints": [
+        "FUZZY"
+      ]
+    },
+    {
+      "id": "V5_0129",
+      "expected": true,
+      "code": "UNSUPPORTED_EXPRESSION",
+      "layer": "UNSUPPORTED",
+      "hints": [
+        "TEMPORAL"
+      ]
+    },
+    {
+      "id": "V5_0130",
+      "expected": true,
+      "code": "INVALID_PERIOD",
+      "layer": "TEMPORAL",
+      "hints": []
+    },
+    {
+      "id": "V5_0131",
+      "expected": true,
+      "code": "INVALID_PERIOD",
+      "layer": "TEMPORAL",
+      "hints": []
+    },
+    {
+      "id": "V5_0132",
+      "expected": true,
+      "code": "INVALID_PERIOD",
+      "layer": "TEMPORAL",
+      "hints": []
+    },
+    {
+      "id": "V5_0133",
+      "expected": true,
+      "code": "INVALID_PERIOD",
+      "layer": "TEMPORAL",
+      "hints": []
+    },
+    {
+      "id": "V5_0134",
+      "expected": true,
+      "code": "AMBIGUOUS_PERIOD",
+      "layer": "TEMPORAL",
+      "hints": []
+    },
+    {
+      "id": "V5_0135",
+      "expected": true,
+      "code": "AMBIGUOUS_PERIOD",
+      "layer": "TEMPORAL",
+      "hints": []
+    },
+    {
+      "id": "V5_0136",
+      "expected": true,
+      "code": "AMBIGUOUS_PERIOD",
+      "layer": "TEMPORAL",
+      "hints": []
+    },
+    {
+      "id": "V5_0137",
+      "expected": true,
+      "code": "AMBIGUOUS_PERIOD",
+      "layer": "TEMPORAL",
+      "hints": []
+    },
+    {
+      "id": "V5_0138",
+      "expected": true,
+      "code": "AMBIGUOUS_PERIOD",
+      "layer": "TEMPORAL",
+      "hints": []
+    },
+    {
+      "id": "V5_0139",
+      "expected": true,
+      "code": "INVALID_PERIOD",
+      "layer": "TEMPORAL",
+      "hints": [
+        "TEMPORAL"
+      ]
+    },
+    {
+      "id": "V5_0140",
+      "expected": true,
+      "code": "INVALID_PERIOD",
+      "layer": "TEMPORAL",
+      "hints": [
+        "TEMPORAL"
+      ]
+    },
+    {
+      "id": "V5_0158",
+      "expected": true,
+      "code": "LOW_CONFIDENCE",
+      "layer": "AMBIGUITY",
+      "hints": []
+    },
+    {
+      "id": "V5_0159",
+      "expected": true,
+      "code": "AMBIGUOUS_COMPARISON",
+      "layer": "RELATION",
+      "hints": []
+    },
+    {
+      "id": "V5_0160",
+      "expected": true,
+      "code": "UNSUPPORTED_EXPRESSION",
+      "layer": "UNSUPPORTED",
+      "hints": [
+        "FUZZY"
+      ]
+    },
+    {
+      "id": "V5_0161",
+      "expected": true,
+      "code": "UNSUPPORTED_EXPRESSION",
+      "layer": "UNSUPPORTED",
+      "hints": [
+        "TEMPORAL"
+      ]
+    },
+    {
+      "id": "V5_0162",
+      "expected": true,
+      "code": "UNSUPPORTED_EXPRESSION",
+      "layer": "UNSUPPORTED",
+      "hints": [
+        "FUZZY"
+      ]
+    },
+    {
+      "id": "V5_0163",
+      "expected": true,
+      "code": "MISSING_UNIT",
+      "layer": "UNIT",
+      "hints": [
+        "TEMPORAL"
+      ]
+    },
+    {
+      "id": "V5_0164",
+      "expected": true,
+      "code": "UNSUPPORTED_EXPRESSION",
+      "layer": "UNSUPPORTED",
+      "hints": [
+        "TEMPORAL"
+      ]
+    },
+    {
+      "id": "V5_0165",
+      "expected": true,
+      "code": "UNSUPPORTED_EXPRESSION",
+      "layer": "UNSUPPORTED",
+      "hints": [
+        "FUZZY"
+      ]
+    },
+    {
+      "id": "V5_0166",
+      "expected": true,
+      "code": "UNSUPPORTED_EXPRESSION",
+      "layer": "UNSUPPORTED",
+      "hints": []
+    },
+    {
+      "id": "V5_0167",
+      "expected": true,
+      "code": "UNSUPPORTED_EXPRESSION",
+      "layer": "UNSUPPORTED",
+      "hints": [
+        "TEMPORAL"
+      ]
+    },
+    {
+      "id": "V5_0168",
+      "expected": true,
+      "code": "UNSUPPORTED_INTENT",
+      "layer": "UNSUPPORTED",
+      "hints": [
+        "TEMPORAL"
+      ]
+    },
+    {
+      "id": "V5_0169",
+      "expected": true,
+      "code": "UNSUPPORTED_QUERY",
+      "layer": "UNSUPPORTED",
+      "hints": []
+    },
+    {
+      "id": "V5_0170",
+      "expected": true,
+      "code": "UNSUPPORTED_MODIFIER",
+      "layer": "UNSUPPORTED",
+      "hints": []
+    },
+    {
+      "id": "V5_0171",
+      "expected": true,
+      "code": "MISSING_UNIT",
+      "layer": "UNIT",
+      "hints": [
+        "FUZZY"
+      ]
+    },
+    {
+      "id": "V5_0172",
+      "expected": true,
+      "code": "INVALID_UNIT",
+      "layer": "UNIT",
+      "hints": []
+    },
+    {
+      "id": "V5_0173",
+      "expected": true,
+      "code": "UNSUPPORTED_EXPRESSION",
+      "layer": "UNSUPPORTED",
+      "hints": [
+        "FUZZY"
+      ]
+    },
+    {
+      "id": "V5_0174",
+      "expected": true,
+      "code": "UNSUPPORTED_EXPRESSION",
+      "layer": "UNSUPPORTED",
+      "hints": [
+        "TEMPORAL"
+      ]
+    },
+    {
+      "id": "V5_0175",
+      "expected": true,
+      "code": "UNSUPPORTED_QUERY",
+      "layer": "UNSUPPORTED",
+      "hints": [
+        "TEMPORAL"
+      ]
+    },
+    {
+      "id": "V5_0176",
+      "expected": true,
+      "code": "INVALID_PERIOD",
+      "layer": "TEMPORAL",
+      "hints": []
+    },
+    {
+      "id": "V5_0177",
+      "expected": true,
+      "code": "UNSUPPORTED_INTENT",
+      "layer": "UNSUPPORTED",
+      "hints": []
+    },
+    {
+      "id": "V5_0178",
+      "expected": true,
+      "code": "UNSUPPORTED_QUERY",
+      "layer": "UNSUPPORTED",
+      "hints": []
+    },
+    {
+      "id": "V5_0179",
+      "expected": true,
+      "code": "UNSUPPORTED_QUERY",
+      "layer": "UNSUPPORTED",
+      "hints": []
+    },
+    {
+      "id": "V5_0180",
+      "expected": true,
+      "code": "UNSUPPORTED_MODIFIER",
+      "layer": "UNSUPPORTED",
+      "hints": []
+    },
+    {
+      "id": "V5_0181",
+      "expected": true,
+      "code": "UNSUPPORTED_MODIFIER",
+      "layer": "UNSUPPORTED",
+      "hints": []
+    },
+    {
+      "id": "V5_0182",
+      "expected": true,
+      "code": "UNSUPPORTED_QUERY",
+      "layer": "UNSUPPORTED",
+      "hints": []
+    },
+    {
+      "id": "V5_0183",
+      "expected": true,
+      "code": "AMBIGUOUS_COMPARISON",
+      "layer": "RELATION",
+      "hints": []
+    },
+    {
+      "id": "V5_0184",
+      "expected": true,
+      "code": "UNSUPPORTED_MODIFIER",
+      "layer": "UNSUPPORTED",
+      "hints": []
+    },
+    {
+      "id": "V5_0185",
+      "expected": true,
+      "code": "AMBIGUOUS_DIRECTION",
+      "layer": "AMBIGUITY",
+      "hints": []
+    },
+    {
+      "id": "V5_0186",
+      "expected": true,
+      "code": "UNSUPPORTED_MODIFIER",
+      "layer": "UNSUPPORTED",
+      "hints": [
+        "FUZZY"
+      ]
+    },
+    {
+      "id": "V5_0187",
+      "expected": true,
+      "code": "UNSUPPORTED_QUERY",
+      "layer": "UNSUPPORTED",
+      "hints": []
+    },
+    {
+      "id": "V5_0188",
+      "expected": true,
+      "code": "UNSUPPORTED_COMPARISON",
+      "layer": "RELATION",
+      "hints": []
+    },
+    {
+      "id": "V5_0215",
+      "expected": true,
+      "code": "UNSUPPORTED_EXPRESSION",
+      "layer": "UNSUPPORTED",
+      "hints": [
+        "TEMPORAL"
+      ]
+    }
+  ],
+  "note": "Expected refusal is not a failed parse test. Hints identify possible investigation layers, not independently proven root causes."
+}

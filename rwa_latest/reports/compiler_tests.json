@@ -1,0 +1,219 @@
+{
+  "suite": "CSV compiler safety regression",
+  "passed": 53,
+  "failed": 0,
+  "cases": [
+    {
+      "test": "duplicate command",
+      "passed": true
+    },
+    {
+      "test": "unknown concept",
+      "passed": true
+    },
+    {
+      "test": "missing field",
+      "passed": true
+    },
+    {
+      "test": "unknown slot",
+      "passed": true
+    },
+    {
+      "test": "forbidden overlap",
+      "passed": true
+    },
+    {
+      "test": "NaN score",
+      "passed": true
+    },
+    {
+      "test": "Infinity score",
+      "passed": true
+    },
+    {
+      "test": "negative weight",
+      "passed": true
+    },
+    {
+      "test": "positive contradiction",
+      "passed": true
+    },
+    {
+      "test": "invalid confidence",
+      "passed": true
+    },
+    {
+      "test": "invalid margin",
+      "passed": true
+    },
+    {
+      "test": "unknown response",
+      "passed": true
+    },
+    {
+      "test": "duplicate phrase",
+      "passed": true
+    },
+    {
+      "test": "conflicting phrase",
+      "passed": true
+    },
+    {
+      "test": "invalid synonym weight",
+      "passed": true
+    },
+    {
+      "test": "unknown synonym concept",
+      "passed": true
+    },
+    {
+      "test": "invalid regex",
+      "passed": true
+    },
+    {
+      "test": "follow-up malformed",
+      "passed": true
+    },
+    {
+      "test": "follow-up raw regex",
+      "passed": true
+    },
+    {
+      "test": "unknown follow-up slot",
+      "passed": true
+    },
+    {
+      "test": "missing follow-up capture",
+      "passed": true
+    },
+    {
+      "test": "duplicate follow-up",
+      "passed": true
+    },
+    {
+      "test": "broken command reference",
+      "passed": true
+    },
+    {
+      "test": "unknown patch",
+      "passed": true
+    },
+    {
+      "test": "result inheritance forbidden",
+      "passed": true
+    },
+    {
+      "test": "unknown-token bypass forbidden",
+      "passed": true
+    },
+    {
+      "test": "duplicate settings",
+      "passed": true
+    },
+    {
+      "test": "unknown grammar",
+      "passed": true
+    },
+    {
+      "test": "mismatched grammar",
+      "passed": true
+    },
+    {
+      "test": "fuzzy NaN",
+      "passed": true
+    },
+    {
+      "test": "fuzzy >1",
+      "passed": true
+    },
+    {
+      "test": "fuzzy low threshold",
+      "passed": true
+    },
+    {
+      "test": "unsafe short-token length",
+      "passed": true
+    },
+    {
+      "test": "unsafe margin",
+      "passed": true
+    },
+    {
+      "test": "fractional edit distance",
+      "passed": true
+    },
+    {
+      "test": "unsafe short-token class",
+      "passed": true
+    },
+    {
+      "test": "unknown fuzzy category",
+      "passed": true
+    },
+    {
+      "test": "duplicate fuzzy category",
+      "passed": true
+    },
+    {
+      "test": "invalid unit kind",
+      "passed": true
+    },
+    {
+      "test": "invalid multiplier zero",
+      "passed": true
+    },
+    {
+      "test": "invalid standard multiplier",
+      "passed": true
+    },
+    {
+      "test": "unit kind mismatch",
+      "passed": true
+    },
+    {
+      "test": "duplicate unit",
+      "passed": true
+    },
+    {
+      "test": "regex in unit",
+      "passed": true
+    },
+    {
+      "test": "unknown temporal kind",
+      "passed": true
+    },
+    {
+      "test": "wrong July month",
+      "passed": true
+    },
+    {
+      "test": "month 13",
+      "passed": true
+    },
+    {
+      "test": "duplicate temporal",
+      "passed": true
+    },
+    {
+      "test": "regex temporal",
+      "passed": true
+    },
+    {
+      "test": "byte-identical rebuilds",
+      "passed": true
+    },
+    {
+      "test": "check mode does not write",
+      "passed": true
+    },
+    {
+      "test": "no customer records in compiled artifact",
+      "passed": true
+    },
+    {
+      "test": "populated legacy alias source fails without replacing output",
+      "passed": true
+    }
+  ]
+}

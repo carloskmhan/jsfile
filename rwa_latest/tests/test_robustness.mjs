@@ -1,0 +1,64 @@
+/** Direct production-module and accounting checks, not a separate prototype. */
+import fs from 'node:fs';import assert from 'node:assert/strict';
+import {RwaQaEngine} from '../rwa_engine.js';import {RuleClient} from '../rule_client.js';
+import {parseRuleText,validateRegistry} from '../semantic/registry.js';import {Dictionary,identityCatalog,PhraseIndex} from '../semantic/dictionary.js';
+import {editDistance} from '../semantic/fuzzy.js';import {prepareLexical} from '../semantic/lexical.js';
+import {parseScalar,parseNumbers,unitLiteral} from '../semantic/numbers.js';import {parsePeriods} from '../semantic/periods.js';
+import {planDataRequest} from '../semantic/routing.js';import {loadFixtures} from '../tools/evaluate.mjs';
+const read=n=>fs.readFileSync(new URL('../'+n,import.meta.url),'utf8');
+const reg=parseRuleText(read('command_patterns.txt')),cat=JSON.parse(read('rwa_sample_data.txt')),data=loadFixtures(),ctx={selectedClientGroup:'SAMSUNG GROUP',selectedMonth:'2026-07'};
+const options={...data,commandPatterns:reg,semanticCatalog:cat,portfolioComplete:true},engine=(extra={})=>new RwaQaEngine(data.rows,{...options,...extra}),tests=[];
+function test(name,layer,fn){try{fn();tests.push({name,layer,pass:true});}catch(e){tests.push({name,layer,pass:false,error:e.stack});}}
+const parsed=(q,e=engine())=>e.parseQuestion(q,ctx);
+function accepted(q){let r=parsed(q);assert.equal(r.ok,true,q+': '+r.message);return r;}
+const dict=new Dictionary(reg,identityCatalog(data.rows,cat,{registry:reg}));
+test('OSA transposition has unit distance','FUZZY',()=>{assert.equal(editDistance('comapre','compare'),1);assert.equal(editDistance('increse','increase'),1);assert.equal(editDistance('decrese','decrease'),1);});
+for(const [q,canonical] of [['comapre Samsung and Toyota','COMPARE'],['Why did Samsung RWA increse?','INCREASE'],['Why did Samsung RWA decrese?','DECREASE'],['Why did Samsng RWA increase?','CG0001']])test(q,'FUZZY',()=>{const p=accepted(q);assert.ok(p.explain.fuzzy.corrections.some(c=>c.canonical===canonical));assert.equal(p.explain.fuzzy.validatedCommand,true);assert.equal(p.explain.input,q);});
+test('Clean aliases, words, numbers never edited','FUZZY',()=>{let p=accepted('Compare Samsung and Toyota in July');assert.equal(p.explain.fuzzy.corrections.length,0);});
+test('Dates are not corrected','TEMPORAL',()=>{let p=parsed('Explain Samsung in Jully');assert.equal(p.ok,false);assert.ok(p.explain.fuzzy.attempts.some(a=>a.reason==='DATE_LIKE_TOKEN'));});
+test('Amounts are not corrected','UNIT',()=>{let p=parsed('Show groups above 25 milloin');assert.equal(p.ok,false);assert.equal(p.explain.fuzzy.corrections.length,0);});
+test('Short tokens are not corrected','FUZZY',()=>{assert.equal(parsed('Explain Sam RWA').ok,false);});
+test('Fuzzy cannot be sole command evidence','CONSTRAINT',()=>{assert.equal(parsed('explan').ok,false);});
+test('Routing recovers the group before loading its data','ENTITY',()=>{let r=planDataRequest('How about Samsng?',cat,reg,{action:'GROUP_ROOT_CAUSE',groupId:'CG0004'},ctx);assert.equal(r.ok,true);assert.deepEqual(r.groupIds,['CG0001']);});
+test('Routing recovers compare before loading both groups','RELATION',()=>{const r=planDataRequest('comapre Samsung and Toyota',cat,reg,{},ctx);assert.deepEqual(r.groupIds,['CG0001','CG0004']);});
+test('Routing does not treat excluded group as sole data target','RELATION',()=>{const r=planDataRequest('Show groups excluding Samsung',cat,reg,{},ctx);assert.equal(r.portfolio,true);assert.deepEqual(r.groupIds,[]);});
+test('Ambiguous typo never chooses alphabetically first runtime name','AMBIGUITY',()=>{
+ const c={groups:[...cat.groups,{client_group_id:'D1',client_group_name:'Deltax'},{client_group_id:'D2',client_group_name:'Deltay'}],entities:cat.entities};
+ const d=new Dictionary(reg,identityCatalog([],c,{registry:reg}));const x=prepareLexical('explain deltaz rwa',d);assert.equal(x.error.code,'AMBIGUOUS_ENTITY');assert.equal(x.fuzzy.attempts.find(a=>a.input==='deltaz').accepted,false);
+});
+test('Unbound CSV alias is rejected before it can manufacture a group','ENTITY',()=>{
+ const r=JSON.parse(JSON.stringify(reg));r.aliases.push({kind:'GROUP',canonical_id:'NO_SUCH_ID',canonical_name:'Moonlight',parent_id:'',alias:'moonlight',enabled:true});
+ assert.throws(()=>validateRegistry(r),/must not contain customer aliases/);assert.equal(engine().parseQuestion('Explain Moonlght RWA',ctx).ok,false);
+});
+test('Disabled entity fuzzy is respected','FUZZY',()=>{const r=JSON.parse(JSON.stringify(reg));r.fuzzyConfig.find(x=>x.category==='entity').enabled=false;assert.equal(parsed('Explain Samsng RWA',engine({commandPatterns:r})).ok,false);});
+test('Exact runtime name collision stays ambiguous before fuzzy','AMBIGUITY',()=>{
+ const c={groups:[...cat.groups,{client_group_id:'DUP',client_group_name:'SAMSUNG GROUP'}],entities:cat.entities};
+ const p=parsed('Explain SAMSUNG GROUP',engine({semanticCatalog:c}));assert.equal(p.code,'AMBIGUOUS_ENTITY');assert.equal(p.explain.fuzzy.corrections.length,0);
+});
+for(const [phrase,concept] of [['what drove','ROOT'],['went up','INCREASE'],['went down','DECREASE'],['greater than or equal to','GTE'],['no more than','LTE'],['other than','EXCLUDE']])test('Longest phrase '+phrase,'PHRASE',()=>{const hits=dict.resolve(phrase).matches;assert.equal(hits.length,1);assert.equal(hits[0].text,phrase);assert.equal(hits[0].concept,concept);});
+test('Overlapping phrases have deterministic leftmost-longest precedence','PHRASE',()=>{const i=new PhraseIndex([{phrase:'what drove',concept:'A'},{phrase:'drove rwa up',concept:'B'}]);assert.deepEqual(i.match('what drove rwa up').map(h=>h.text),['what drove']);});
+for(const [raw,want] of [['10',10],['ten',10],['twenty-five',25],['25,000,000',25000000],['1.5',1.5]])test('Scalar '+raw,'NUMBER',()=>assert.equal(parseScalar(raw),want));
+for(const [raw,unit,want,kind] of [['25','m',25000000,'absolute'],['25','mn',25000000,'absolute'],['25','million',25000000,'absolute'],['1.5','bn',1500000000,'absolute'],['10','%',.1,'ratio'],['25','bps',.0025,'ratio']])test('Unit '+raw+unit,'UNIT',()=>{const x=unitLiteral(raw,unit,reg);assert.equal(x.canonicalValue,want);assert.equal(x.unit,kind);});
+test('25m and 25,000,000 execute identical ranking','NUMBER',()=>{const e=engine();const a=e.answer('Show groups above 25m in June',ctx),b=e.answer('Show groups above 25,000,000 in June',ctx);assert.ok(a.ok&&b.ok);assert.deepEqual(a.result.items,b.result.items);});
+test('Positive threshold still works when portfolio net is negative','NUMBER',()=>{const e=engine();e.setRows(data.rows.filter(x=>['SAMSUNG GROUP','TOYOTA GROUP','HYUNDAI MOTOR GROUP','APPLE GROUP'].includes(x.client_group)));const r=e.answer('Show groups above 25m',ctx);assert.ok(r.ok,r.answer);assert.deepEqual(r.result.items.map(x=>x.clientGroup),['HYUNDAI MOTOR GROUP','APPLE GROUP']);});
+test('Below threshold does not hide negative signed movements','NUMBER',()=>{const e=engine();e.setRows(data.rows.filter(x=>['SAMSUNG GROUP','TOYOTA GROUP','HYUNDAI MOTOR GROUP','APPLE GROUP'].includes(x.client_group)));const r=e.answer('Show groups below 25m',ctx);assert.ok(r.ok,r.answer);assert.deepEqual(r.result.items.map(x=>x.clientGroup),['TOYOTA GROUP','SAMSUNG GROUP']);});
+test('10% and 1000bps execute identical growth ranking','UNIT',()=>{const e=engine();const a=e.answer('Show groups by percentage increase above 10% in June',ctx),b=e.answer('Show groups by percentage increase above 1000bps in June',ctx);assert.ok(a.ok&&b.ok);assert.deepEqual(a.result.items,b.result.items);});
+test('Numeric 12m threshold is not a 12-month window','TEMPORAL',()=>{const p=accepted('Show groups above 12m');assert.equal(p.plan.condition.canonicalValue,12000000);assert.deepEqual(p.plan.period,{mode:'month',month:'2026-07'});});
+test('Bare 12m ranking condition remains money','NUMBER',()=>{const p=accepted('Show groups over 12m');assert.equal(p.plan.condition.canonicalValue,12000000);assert.equal(p.plan.condition.unit,'absolute');});
+test('Bare 12m reporting period is temporal','TEMPORAL',()=>{const p=accepted('Show Samsung trend over 12m');assert.deepEqual(p.plan.period,{mode:'window',start:'2025-08',end:'2026-07'});});
+test('Relative quarter uses Tableau/report anchor','TEMPORAL',()=>{const p=accepted('Explain Samsung last quarter');assert.deepEqual(p.plan.period,{mode:'window',start:'2026-04',end:'2026-06'});assert.equal(p.explain.temporalAnchor.source,'TABLEAU_CONTEXT');});
+test('Relative follow-up uses committed analysis, not stale screen','CONTEXT',()=>{const e=engine();assert.ok(e.answer('Explain Samsung in June',ctx).ok);let p=e.parseQuestion('How about last month?',ctx);assert.deepEqual(p.plan.period,{mode:'month',month:'2026-05'});assert.equal(p.explain.temporalAnchor.source,'LAST_EXECUTED_ANALYSIS');});
+test('Samsung→Toyota→August recalculates every value','CONTEXT',()=>{const e=engine();assert.equal(e.answer('Explain Samsung in July',ctx).result.change,-120);assert.equal(e.answer('How about Toyota?',ctx).result.change,-30);assert.equal(e.answer('And August?',ctx).result.change,70);assert.equal(e.state.result,undefined);});
+test('Unknown typo does not mutate committed state','CONTEXT',()=>{const e=engine();e.answer('Explain Samsung in July',ctx);const before=JSON.stringify(e.state);assert.equal(e.answer('How about XToytaXYZ?',ctx).ok,false);assert.equal(JSON.stringify(e.state),before);});
+test('Data error does not mutate state or reuse previous figures','CONTEXT',()=>{const e=engine();e.answer('Explain Samsung in July',ctx);const before=JSON.stringify(e.state);const r=e.answer('And September?',ctx);assert.equal(r.ok,false);assert.equal(r.status,'data_error');assert.equal(JSON.stringify(e.state),before);});
+test('Directional question receives actual negative sign','INTENT',()=>{const e=engine();const r=e.answer('Did Samsung RWA increase?',ctx);assert.equal(r.plan.action,'MOVEMENT_CHECK');assert.equal(r.result.predicate.matches,false);assert.match(r.answer,/No\./);});
+test('Negative yes/no proposition is labelled','NEGATION',()=>{const r=engine().answer("Didn't Samsung RWA increase?",ctx);assert.equal(r.result.predicate.matches,true);assert.match(r.answer,/did not increase/);});
+test('Why did not is not silently changed to why did','NEGATION',()=>assert.equal(parsed("Why didn't Samsung RWA increase?").ok,false));
+test('Numeric exclusion uses logical complement including boundary','NEGATION',()=>{const p=accepted('Show top 10 excluding groups below 25m');assert.equal(p.plan.condition.op,'GTE');assert.equal(p.plan.condition.negated,true);});
+test('Foreign group exclusion cannot be ignored','RELATION',()=>assert.equal(parsed('Show top 10 Samsung entities above 25m excluding Toyota').ok,false));
+test('No mutable ML artifacts in registry','CONSTRAINT',()=>{assert.ok(Object.isFrozen(reg));assert.equal(reg.generated,true);assert.equal(reg.schemaVersion,5);assert.ok(reg.fuzzyConfig.every(c=>!('learnedWeights' in c)));});
+test('Invisible format control rejected','NORMALIZATION',()=>assert.equal(parsed('explain samsung\u200b not july').code,'INVALID_INPUT'));
+test('Deterministic command does not depend on diagnostic timing','CONSTRAINT',()=>{const a=accepted('comapre Samsung and Toyota'),b=accepted('comapre Samsung and Toyota');assert.deepEqual(a.plan,b.plan);});
+const report={suite:'v6 direct production-path safeguards; 3 CSV identity fixtures migrated to runtime catalog/forbidden artifact expectations',passed:tests.filter(t=>t.pass).length,failed:tests.filter(t=>!t.pass).length,tests};
+fs.writeFileSync(new URL('../reports/robustness_units.json',import.meta.url),JSON.stringify(report,null,2));
+console.log(JSON.stringify({...report,tests:tests.filter(t=>!t.pass)},null,2));process.exitCode=report.failed?1:0;

@@ -1,0 +1,9 @@
+/** Classify observed mismatches; expected refusals are listed separately from failures. */
+import fs from 'node:fs';import path from 'node:path';import {ROOT} from './evaluate.mjs';
+const [input=path.join(ROOT,'reports/robustness.json'),output=path.join(ROOT,'reports/failure_analysis.json')]=process.argv.slice(2);
+const report=JSON.parse(fs.readFileSync(input,'utf8'));
+function layer(field){if(/action/.test(field))return 'INTENT';if(/period/.test(field))return 'TEMPORAL';if(/unit|metric/.test(field))return 'UNIT';if(/threshold|top_n/.test(field))return 'NUMBER';if(/comparison/.test(field))return 'RELATION';if(/excluded|negated|check_mode/.test(field))return 'NEGATION';if(/candidate/.test(field))return 'CONTEXT';if(/entity|group/.test(field))return 'ENTITY';return 'SLOT';}
+const failures=(report.results||[]).filter(r=>!r.correct).map(r=>({id:r.id,question:r.question,code:r.code,layers:[...new Set([r.failureCategory,...r.checks.filter(c=>!c.correct).map(c=>layer(c.field))].filter(Boolean))],mismatches:r.checks.filter(c=>!c.correct),fuzzy:r.fuzzy,diagnostic:r.diagnostic}));
+const rejections=(report.results||[]).filter(r=>!r.accepted).map(r=>({id:r.id,expected:r.expected_status!=='ACCEPT',code:r.code,layer:r.failureCategory,hints:[...new Set((r.fuzzy?.attempts||[]).filter(a=>!a.accepted).map(a=>/DATE|TEMPORAL/.test(a.reason)?'TEMPORAL':/NUMBER|UNIT/.test(a.reason)?'NUMBER/UNIT':'FUZZY'))]}));
+const counts={};for(const f of failures)for(const l of f.layers)counts[l]=(counts[l]||0)+1;
+fs.writeFileSync(output,JSON.stringify({source:path.basename(input),corpusSha256:report.corpusSha256,failedCases:failures.length,failureLayers:counts,failures,rejections,note:'Expected refusal is not a failed parse test. Hints identify possible investigation layers, not independently proven root causes.'},null,2));console.log({failedCases:failures.length,refusals:rejections.length,output});

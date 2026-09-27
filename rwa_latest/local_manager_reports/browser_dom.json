@@ -1,0 +1,132 @@
+{
+  "kind": "Isolated Chromium DOM. Real engine/manager JS; mocked fetch/API with precomputed real compiler fixtures. Actual browser HTTP blocked by administrator; Python HTTP tested separately.",
+  "checks": [
+    {
+      "name": "Isolated DOM uses real JS modules and precomputed compiler fixtures",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Original engine modules loaded",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "Seven CSV sources; no customer master editing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Unregistered expression initially rejected",
+      "passed": true,
+      "detail": "UNSUPPORTED_EXPRESSION · Not executed"
+    },
+    {
+      "name": "Draft-only row add",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Existing compiler validates draft",
+      "passed": true,
+      "detail": "Validation passed. Test questions with the draft, or confirm and save the CSVs and generated file."
+    },
+    {
+      "name": "Edited phrase reaches original engine",
+      "passed": true,
+      "detail": "manual rule-fit; not probability"
+    },
+    {
+      "name": "Correct group and month",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Parse alone does not commit conversation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Sample calculation commits state",
+      "passed": true,
+      "detail": "SAMPLE RESULT\nSAMSUNG GROUP's RWA decreased by $120m in 2026-07 (1.0%).\nSamsung Electronics was the largest same-direction entity contributor at -$80m (66.7% of gross same-direction entity movement).\nWithin Samsung Electronics, the main attributed driver was Maturity at -$30m.\nThe largest attributed driver in the direction of the net movement was Maturity at -$70m.\nOther same-direction drivers: CG -$40m, EAD -$20m.\nOffsets: FX +$10m."
+    },
+    {
+      "name": "Follow-up changes group and keeps July",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Fresh Toyota answer",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Next period patch",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Missing period does not commit",
+      "passed": true,
+      "detail": "NO SUCCESSFUL EXECUTION\nNo data for 2026-08 in this scope. Missing months were not replaced or treated as zero."
+    },
+    {
+      "name": "Twelve regression checks",
+      "passed": true,
+      "detail": "12/12 PASS · 0 FAIL\nDeveloper-authored smoke checks, NOT independent validation\n\nPASS  ROOT  Why did Samsung's RWA increase in July?\nPASS  TYPO  Why did Samsng RWA increse in July?\nPASS  GROUP_RANK  Show top ten groups with RWA above 25 million in June\nPASS  ENTITY_RANK  Top 3 entities excluding FX in June\nPASS  COMPARE  Compare Samsung and Toyota in July\nPASS  FORECAST  Predict Samsung RWA next year.\nPASS  OUT_OF_SCOPE  Tell me a joke.\nPASS  SHARE_PRICE  What is Samsung's share price?\nPASS  DATE_TYPO  Why did Samsung RWA increase in Jully?\nPASS  TURN_1  Why did Samsung's RWA increase in July?\nPASS  TURN_2  How about Toyota?\nPASS  TURN_3  And August?"
+    },
+    {
+      "name": "Explicit local save",
+      "passed": true,
+      "detail": "Saved. Backup ID: 20260926T064943Z-202d8d18b1e6\nTo update the web app, deploy the generated command_patterns.txt through your approved process and reload."
+    },
+    {
+      "name": "Save button invokes commit API contract",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Backup is visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Restore recompiled source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Search filters table",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Disable via form",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Conflict shown and save disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Mobile document has no horizontal overflow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No JS errors",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "No network requests in the isolated fixture",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "passed": 25,
+  "errors": []
+}

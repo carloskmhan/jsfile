@@ -1,0 +1,192 @@
+/* 6.0.5-signin: existing wave dots and slide-up; one live Tableau iframe
+ * is shown inside the startup cover, then retained inside a hidden container.
+ */
+#rwa-loading-screen { display: none; }
+#rwa-loading-screen[hidden] { display: none !important; }
+html.rwa-splash-active body { overflow: hidden; }
+html.rwa-splash-active #rwa-loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #fafbf9;
+  color: #23372f;
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  transition: transform 720ms cubic-bezier(.76, 0, .24, 1);
+  will-change: transform;
+}
+/* Keep the title and indicator centred as one group, not two grid rows. */
+#rwa-loading-screen .rwa-loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  min-width: 0;
+  flex: 0 0 auto;
+  margin-block: auto;
+}
+#rwa-loading-screen .rwa-loading-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 50px;
+  height: 18px;
+  color: inherit;
+}
+#rwa-loading-screen .rwa-loading-dot {
+  display: block;
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .35;
+}
+html.rwa-splash-active #rwa-loading-screen .rwa-loading-dot {
+  animation: rwa-loading-wave 1.4s ease-in-out infinite;
+}
+html.rwa-splash-active #rwa-loading-screen .rwa-loading-dot:nth-child(2) {
+  animation-delay: .16s;
+}
+html.rwa-splash-active #rwa-loading-screen .rwa-loading-dot:nth-child(3) {
+  animation-delay: .32s;
+}
+@keyframes rwa-loading-wave {
+  0%, 60%, 100% { transform: translateY(0); opacity: .35; }
+  30% { transform: translateY(-5px); opacity: 1; }
+}
+#rwa-loading-title {
+  display: block;
+  max-width: 100%;
+  font-family: inherit;
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 550;
+  line-height: 1.2;
+  letter-spacing: -.035em;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+html.rwa-splash-active body > header,
+html.rwa-splash-active body > main,
+html.rwa-splash-active body > footer {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 480ms ease;
+}
+html.rwa-splash-active.rwa-splash-exiting #rwa-loading-screen {
+  transform: translate3d(0, -100%, 0);
+}
+html.rwa-splash-active.rwa-splash-exiting body > header,
+html.rwa-splash-active.rwa-splash-exiting body > main,
+html.rwa-splash-active.rwa-splash-exiting body > footer {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.rwa-splash-active #rwa-loading-screen .rwa-loading-dot {
+    animation: none;
+    transform: none;
+    opacity: .7;
+  }
+  html.rwa-splash-active #rwa-loading-screen {
+    transition: opacity 120ms linear;
+    will-change: opacity;
+  }
+  html.rwa-splash-active.rwa-splash-exiting #rwa-loading-screen {
+    transform: none;
+    opacity: 0;
+  }
+  html.rwa-splash-active body > header,
+  html.rwa-splash-active body > main,
+  html.rwa-splash-active body > footer { transition: opacity 120ms linear; }
+}
+
+/* Pending query (v6 UI patch). Reuses the exact splash wave keyframes,
+ * timing and stagger; the 5-second startup controller is unchanged.
+ * Nodes exist only while app.js is waiting for the query's data/preview.
+ */
+.message .rwa-query-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  vertical-align: middle;
+}
+.message .rwa-query-loading-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.message .rwa-query-loading-dots {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 50px;
+  gap: 7px;
+  width: 50px;
+  height: 18px;
+  color: inherit;
+}
+.message .rwa-query-loading-dot {
+  display: block;
+  flex: 0 0 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .35;
+  animation: rwa-loading-wave 1.4s ease-in-out infinite;
+}
+.message .rwa-query-loading-dot:nth-child(2) { animation-delay: .16s; }
+.message .rwa-query-loading-dot:nth-child(3) { animation-delay: .32s; }
+@media (prefers-reduced-motion: reduce) {
+  .message .rwa-query-loading-dot {
+    animation: none;
+    transform: none;
+    opacity: .7;
+  }
+}
+
+/* Authentication is genuinely interactive: there is no overlay on the iframe.
+ * Do not set inert on this container while the user is signing in.
+ */
+#rwa-loading-message {
+  margin: 0; max-width: 720px; font-size: 14px; line-height: 1.5;
+  text-align: center; color: #526259; overflow-wrap: anywhere;
+}
+#tableau-panel.rwa-signin-panel {
+  box-sizing: border-box; width: min(100%, 900px); flex-shrink: 0;
+  border: 1px solid #dce3dd; border-radius: 14px;
+  background: #fff; box-shadow: 0 8px 32px rgb(35 55 47 / 6%);
+  overflow: hidden; text-align: left;
+}
+#tableau-panel[hidden] { display: none !important; }
+.rwa-signin-heading { padding: 16px 20px 12px; border-bottom: 1px solid #edf0ec; }
+.rwa-signin-heading h2 { margin: 0 0 6px; font-size: 16px; line-height: 1.4; }
+.rwa-signin-heading p { margin: 0; font-size: 13px; line-height: 1.5; color: #526259; }
+.rwa-signin-panel #tableau-host { width: 100%; min-height: 420px; }
+#rwa-loading-error {
+  width: min(100%, 760px); box-sizing: border-box; padding: 14px 18px;
+  border: 1px solid #dbb7b7; border-radius: 10px; background: #fff5f4;
+  color: #782d2d; font-size: 14px; line-height: 1.5; white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+#rwa-loading-error[hidden], #rwa-loading-retry[hidden], #reconnect-tableau[hidden] { display: none !important; }
+#rwa-loading-retry { font: inherit; cursor: pointer; }
+html[data-rwa-loading-state="failed"] #rwa-loading-screen .rwa-loading-dot {
+  animation: none; transform: none; opacity: .3;
+}
+@media (max-width: 600px) {
+  html.rwa-splash-active #rwa-loading-screen { padding: 20px 12px; }
+  #rwa-loading-screen .rwa-loading-content { gap: 12px; }
+  .rwa-signin-heading { padding: 12px; }
+  #tableau-panel.rwa-signin-panel { border-radius: 10px; }
+}

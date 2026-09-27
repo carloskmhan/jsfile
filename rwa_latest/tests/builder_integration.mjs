@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';
+import {parseCsv,expandCsvRows} from '../csv_adapter.js';import {indexRowsToCatalog,catalogWithClients} from '../group_catalog.js';import {tableauRowToClient} from '../tableau_adapter.js';import {RwaQaEngine} from '../rwa_engine.js';
+const registry=JSON.parse(fs.readFileSync(new URL('../command_patterns.txt',import.meta.url),'utf8').replace(/^(?:#[^\n]*\n)+/,''));
+const raw=parseCsv(fs.readFileSync(process.argv[2],'utf8')),cat=indexRowsToCatalog(raw),fields={id:'client_group_id',name:'client_group_name',location:'group_location',json:'json_data'};
+const clients=raw.map(r=>tableauRowToClient(r,cat.groups.find(g=>g.client_group_id===r.client_group_id),fields));const d=expandCsvRows(clients),catalog=catalogWithClients(cat,clients),e=new RwaQaEngine(d.rows,{commandPatterns:registry,semanticCatalog:catalog,portfolioComplete:true});let checks=[];
+function c(name,fn){fn();checks.push({name,pass:true});}
+c('Two groups with the same display name survive',()=>assert.equal(clients.length,2));
+c('Leading-zero IDs preserved',()=>assert.deepEqual(cat.groups.map(g=>g.client_group_id),['00001','00002']));
+const a=e.answer('Explain 00001 in July 2026');
+c('ID-level report succeeds',()=>assert.equal(a.ok,true,a.answer));
+c('Current balance counted once per LEID',()=>assert.equal(a.result.rwa_curr,300));
+c('Driver pairs de-duplicated upstream, distinct amounts summed',()=>assert.equal(a.result.change,60));
+c('Derived comparison previous balance preserved',()=>assert.equal(a.result.rwa_prev,240));
+c('Derived provenance not dropped',()=>assert.equal(a.result.derivedPreviousRows,2));
+c('Derived basis explicitly labelled, not observed prior month',()=>assert.match(a.answer,/NOT an independently observed/));
+c('Repeated client names retain two LEID contributions',()=>assert.deepEqual(new Set(a.result.entityRanking.items.map(i=>i.entityId)),new Set(['001','002'])));
+c('No unique-name rejection on duplicate groups',()=>assert.equal(e.parseQuestion('Explain ACME GROUP in July 2026').code,'AMBIGUOUS_ENTITY'));
+const b=e.answer('How about 00002?');c('Follow-up selects second ID fresh data',()=>{assert.equal(b.ok,true,b.answer);assert.equal(b.plan.groupId,'00002');assert.equal(b.result.rwa_curr,400);assert.equal(b.result.change,50);});
+const x=e.answer('How much came from EAD Increase (STD)?',{selectedClientGroupId:'00002',selectedMonth:'2026-07'});c('Arbitrary detail label recognises and calculates',()=>{assert.equal(x.ok,true,x.answer);assert.equal(x.result.checkedDriver.impact,40);});
+const report={scope:'Unmodified v1.0.8 builder actual execution + generated CSV + v6 JS adapters and arithmetic; synthetic data, no bank data.',passed:checks.length,failed:0,checks};fs.writeFileSync(new URL('../reports/builder_integration.json',import.meta.url),JSON.stringify(report,null,2));console.log(JSON.stringify({passed:checks.length,failed:0}));

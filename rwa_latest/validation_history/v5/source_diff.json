@@ -1,0 +1,324 @@
+{
+  "baseline": "Original complete rwa_semantic_tableau_v4 source",
+  "baselineAvailable": true,
+  "files": [
+    {
+      "file": "ACCEPTANCE.md",
+      "originalSha256": "0b26f41d9001bdca3a610f4225ba5a0fc42e4486675d98d4e44d5550790017ad",
+      "currentSha256": "20efc9cc03b728658cf1930d3a22460321a0d6e99960be5b071b20f741c07973",
+      "unchanged": false
+    },
+    {
+      "file": "ARCHITECTURE.md",
+      "originalSha256": "2744959485af11f5d254021ad3096b278abf3149bfbe6cfe9b7bb9801eaf6e10",
+      "currentSha256": "5526575baa1ce277f216f8b5dc0372a79f153bbc77b6867980bfbfccd97939f5",
+      "unchanged": false
+    },
+    {
+      "file": "BENCHMARK.md",
+      "originalSha256": "987c4cb2830b3c5e21357fa54b149d7a40ea906a41bb77dcc8531623a2006be9",
+      "currentSha256": "ffc9674d39b22df5a372a9c961a193b7ace263cd799a615925e4d912d1fd57e2",
+      "unchanged": false
+    },
+    {
+      "file": "CISO_SECURITY.md",
+      "originalSha256": "f35a57248512425a115e97524dd26268c0f78b665d3964b46d7562d81d4f4c7c",
+      "currentSha256": "40a657a4d1549816be292f3332e73037e6ac10200ad11d91a15e957254ddf524",
+      "unchanged": false
+    },
+    {
+      "file": "COMMANDS.md",
+      "originalSha256": "c36412ef18720eddecf8f1d25257d9ff3f6ee0052ebc311abb52aa25c25ad5d5",
+      "currentSha256": "6311f2c6e2938759eb8dceaab413d19cc490f18263970e0a72ebdd9f91539cb6",
+      "unchanged": false
+    },
+    {
+      "file": "DEPLOYMENT_REVIEW.md",
+      "originalSha256": "1d2653c7bd307d863bcca0594508a165b450682c18bf6981e3f5e1f6bc92e2ca",
+      "currentSha256": "f1f7b89a5a2546366922ac1d848c9e17437cda1334e7b6913e012d6b064353dc",
+      "unchanged": false
+    },
+    {
+      "file": "MIGRATION.md",
+      "originalSha256": "9f184eddc13cb6ea70f35c736fc1a371f60af7eed9c6fa38b5048aa5ce9a13f0",
+      "currentSha256": "db517c0f5f0abc2aabd67dba0e4343df39d5986f67623cfa22e9ffb4dbd5583f",
+      "unchanged": false
+    },
+    {
+      "file": "README.md",
+      "originalSha256": "8fdada017a2f804b8f13f352cf0105ef984ac7d050dd5334758273270887a92b",
+      "currentSha256": "c238ed5950ed65829a2c209f2f635c233b562e638a591d73e419c979fae966c4",
+      "unchanged": false
+    },
+    {
+      "file": "app.js",
+      "originalSha256": "15dedd260c08b6d1c6437e11ba31044035622491c4b24cb4a895a7803620a1fb",
+      "currentSha256": "ea889a96c19b3094d363ee7838fe55c2f1ac73ef9dbf13efc5b4aa1e9bfc42b4",
+      "unchanged": false
+    },
+    {
+      "file": "bootstrap.js",
+      "originalSha256": "c65e0e1168c76856b690a700cdd0ecc5871b66cac0b0a07ff9893e3f1e8cb954",
+      "currentSha256": "c65e0e1168c76856b690a700cdd0ecc5871b66cac0b0a07ff9893e3f1e8cb954",
+      "unchanged": true
+    },
+    {
+      "file": "build_command_patterns.py",
+      "originalSha256": "826f91b365947ca0606f8fd399931a057df10d749615dc6692dfdbe2c4b25ed1",
+      "currentSha256": "e9d9a252ceefffb6fa16c0854a0ef7dad64c4bcb2bd0c5a1f35f0f611bbc6ce8",
+      "unchanged": false
+    },
+    {
+      "file": "command_patterns.txt",
+      "originalSha256": "f6086ccf10d0672850d3ff6b1f0fa322de04fb23ce816fbbdea90f5330deac8a",
+      "currentSha256": "280ea061b836044fde33f7ad70956e1d2e17b1d958dd942cc26a0931cb5cbaab",
+      "unchanged": false
+    },
+    {
+      "file": "commands_editor.html",
+      "originalSha256": "70d9a90c6644555e4db7956fa4c0375d08530941cf001e16cb38f6bb2abf749b",
+      "currentSha256": "70d9a90c6644555e4db7956fa4c0375d08530941cf001e16cb38f6bb2abf749b",
+      "unchanged": true
+    },
+    {
+      "file": "csv_adapter.js",
+      "originalSha256": "400855faf8afa2df1ab19f8e3b81b8851429d35ce2bb67c8a8ac9a26c5e97e67",
+      "currentSha256": "400855faf8afa2df1ab19f8e3b81b8851429d35ce2bb67c8a8ac9a26c5e97e67",
+      "unchanged": true
+    },
+    {
+      "file": "demo.html",
+      "originalSha256": "d51d3d30df0bdf0262955b21165ee31805d5679f5e271f555b08162529a5a712",
+      "currentSha256": "d51d3d30df0bdf0262955b21165ee31805d5679f5e271f555b08162529a5a712",
+      "unchanged": true
+    },
+    {
+      "file": "group_catalog.js",
+      "originalSha256": "23bb6cf75973602144018f1f709e8b60ce55d9512cd2f0be3e9fd92de7d738e7",
+      "currentSha256": "23bb6cf75973602144018f1f709e8b60ce55d9512cd2f0be3e9fd92de7d738e7",
+      "unchanged": true
+    },
+    {
+      "file": "network.js",
+      "originalSha256": "e9dc933a0cd6407cf7aae19d54563cf129602e1c051a9c34732c8d73e2f0d3a3",
+      "currentSha256": "e9dc933a0cd6407cf7aae19d54563cf129602e1c051a9c34732c8d73e2f0d3a3",
+      "unchanged": true
+    },
+    {
+      "file": "package.json",
+      "originalSha256": "afa8ab21cd0c45dde9fa3b0483a4b284d5a22cc9ff63c7c3869204a52856a911",
+      "currentSha256": "afa8ab21cd0c45dde9fa3b0483a4b284d5a22cc9ff63c7c3869204a52856a911",
+      "unchanged": true
+    },
+    {
+      "file": "requirements-dev.txt",
+      "originalSha256": "19619a44c085eb584159057b4fe2b677a6863731d55959bd6e153dd320853a16",
+      "currentSha256": "19619a44c085eb584159057b4fe2b677a6863731d55959bd6e153dd320853a16",
+      "unchanged": true
+    },
+    {
+      "file": "rule_client.js",
+      "originalSha256": "4ec1b4008f6ea1e4f275163855565fac49d0bea3e4398081451bb8e21433bbb7",
+      "currentSha256": "4ec1b4008f6ea1e4f275163855565fac49d0bea3e4398081451bb8e21433bbb7",
+      "unchanged": true
+    },
+    {
+      "file": "rule_parser.js",
+      "originalSha256": "f3fb70c08bbdfdf6467dfc26c2a096692acf6043ca84bd3d6401a2efd3c560e9",
+      "currentSha256": "f3fb70c08bbdfdf6467dfc26c2a096692acf6043ca84bd3d6401a2efd3c560e9",
+      "unchanged": true
+    },
+    {
+      "file": "rules/aliases.csv",
+      "originalSha256": "520c88337c232a69ada0e60e2e0fbf7b011c6c2a460ca2ecbe085c32a0db6e7c",
+      "currentSha256": "520c88337c232a69ada0e60e2e0fbf7b011c6c2a460ca2ecbe085c32a0db6e7c",
+      "unchanged": true
+    },
+    {
+      "file": "rules/commands.csv",
+      "originalSha256": "32f338c405fbd76f279a5d2b94dd78f35d1eaeeb3b262627d4e5bd3b91f34eb5",
+      "currentSha256": "e34265c9e1a577f6e99859044680cd35ce0602e8689badafe8482aee0766b497",
+      "unchanged": false
+    },
+    {
+      "file": "rules/followups.csv",
+      "originalSha256": "7b4020a8e953b330615b4fac7e3e77bbd0bafefb99519119c16dec3f86693bb8",
+      "currentSha256": "7b4020a8e953b330615b4fac7e3e77bbd0bafefb99519119c16dec3f86693bb8",
+      "unchanged": true
+    },
+    {
+      "file": "rules/settings.csv",
+      "originalSha256": "1db72a4325b03f8241eab104fb85bc463a4f78b28c56dc71f0a06be17adb4d4c",
+      "currentSha256": "1db72a4325b03f8241eab104fb85bc463a4f78b28c56dc71f0a06be17adb4d4c",
+      "unchanged": true
+    },
+    {
+      "file": "rules/synonyms.csv",
+      "originalSha256": "43f69986f03a419412644a80959d377e5878863546263806f344fa418cbfc445",
+      "currentSha256": "a5875d12b69242ccaf3d2ec0bea52fec56991ca7212d421065555aa2cace0b08",
+      "unchanged": false
+    },
+    {
+      "file": "rules_config.txt",
+      "originalSha256": "64d847a9fef10589226cfc8434f6e11e9a287a64cc6c7f5afc95e438ad61b45c",
+      "currentSha256": "64d847a9fef10589226cfc8434f6e11e9a287a64cc6c7f5afc95e438ad61b45c",
+      "unchanged": true
+    },
+    {
+      "file": "rwa_engine.js",
+      "originalSha256": "2b2790437e5430dcce60c7d4b9366a9b0014f4345a5b353fc812222475a15810",
+      "currentSha256": "dc4dc81ba0f6c685102bf962ecfeba3657e2814c8223a8d4858c41192fa3c0d9",
+      "unchanged": false
+    },
+    {
+      "file": "rwa_sample_data.txt",
+      "originalSha256": "ff165d2596112c9e8bcd4605035d49cf3ea19464c9f01ad6976de822f391baad",
+      "currentSha256": "ff165d2596112c9e8bcd4605035d49cf3ea19464c9f01ad6976de822f391baad",
+      "unchanged": true
+    },
+    {
+      "file": "semantic/dictionary.js",
+      "originalSha256": "4cb619d0cd950027c6b2901942e1ada9c7d4b9d8fb456157c46c19159a7622df",
+      "currentSha256": "4cb619d0cd950027c6b2901942e1ada9c7d4b9d8fb456157c46c19159a7622df",
+      "unchanged": true
+    },
+    {
+      "file": "semantic/engine.js",
+      "originalSha256": "911ca7a7ec616a4588d3084c01fbadfc4d67f61d722cebc371bd407563bf4e4f",
+      "currentSha256": "f2b5fefe991a8f83876673e3e69ffb77dfb3e942f2726c0fa0c2c76611749307",
+      "unchanged": false
+    },
+    {
+      "file": "semantic/features.js",
+      "originalSha256": "6c124b15e77c36f0eba184212656469b714d495c44ca184fb4d0ecc34f2e4dae",
+      "currentSha256": "f0414f2ea1e2d13f0b0b418d4d9466171ad1d8481e069a74ff71f184786190d3",
+      "unchanged": false
+    },
+    {
+      "file": "semantic/followups.js",
+      "originalSha256": "9895bccd9c25ab6f3dcac2ac4d3709f7f56b36b281e4a23f7c094e0a2278fce1",
+      "currentSha256": "a590374be0182e98fbc150b97832e39d2229a2f057b6e00aad23466568541dce",
+      "unchanged": false
+    },
+    {
+      "file": "semantic/periods.js",
+      "originalSha256": "123accd6e7e28b7469638ab6118f02170aab44e71a40f573a9b5485a7026c86e",
+      "currentSha256": "3206616a6b0d44b3fea2f25561538b98267d2ade9bae0c76a9d6b52286ec5837",
+      "unchanged": false
+    },
+    {
+      "file": "semantic/registry.js",
+      "originalSha256": "46e8f47a9a78c90504a2e233a1015d7203bb11ba6d816048e85852e3367c70d4",
+      "currentSha256": "467347c51b2005bb38be04fc70d80b06ee0e76727f932c540ebc2b5d0546407d",
+      "unchanged": false
+    },
+    {
+      "file": "semantic/relations.js",
+      "originalSha256": "1f8a0738c0cddd30fc22a2d3ca11a9f0f60897e5cebcfd76db94c264a813230b",
+      "currentSha256": "83294dc2fa5655d40f210c6bf6fa53dcb0e106803c667632ce03f985f59a30f5",
+      "unchanged": false
+    },
+    {
+      "file": "semantic/routing.js",
+      "originalSha256": "819f29a304f41bd7b1952da8e1477999dd2556cca98a85efe6ae6a3121edec91",
+      "currentSha256": "07a466b28d661e47907aaa7221946bdc32c9b05dfe9895e693130997074d4ed3",
+      "unchanged": false
+    },
+    {
+      "file": "semantic/scoring.js",
+      "originalSha256": "543e326f3af2d390b781d12fe2cabd7c6968cfba7ed7ceb378090d16c5e0dfc4",
+      "currentSha256": "543e326f3af2d390b781d12fe2cabd7c6968cfba7ed7ceb378090d16c5e0dfc4",
+      "unchanged": true
+    },
+    {
+      "file": "semantic/slots.js",
+      "originalSha256": "5968386dab1699ed61883772173182a2ae1fae4652a5db01d48d0466802c8d7b",
+      "currentSha256": "17a375292ad66caeb810273ceb8abce5ff3b1dab2ab8af31466e293a3375a5c5",
+      "unchanged": false
+    },
+    {
+      "file": "semantic/text.js",
+      "originalSha256": "78bf47ee06823780d78f7caae1ded882865d76295d9ce1dcd32bf8a8b74e024f",
+      "currentSha256": "85e342fef356304b10148693a09e67a0099a4f80698e77d38261d15c5b37cb94",
+      "unchanged": false
+    },
+    {
+      "file": "semantic/validation.js",
+      "originalSha256": "382bcd5b1e61851862d054b81334ba7c510ee0983b3732444580fbaa50aebdf4",
+      "currentSha256": "7f68ee426cdbcef57b77b846ba4320787941e3ac9864d08f09b87fe3c73a3245",
+      "unchanged": false
+    },
+    {
+      "file": "serve.mjs",
+      "originalSha256": "eb4cadca5ffff88038b04bd801ca53bec9b00282929eacb03cc4556a9cb0ba12",
+      "currentSha256": "eb4cadca5ffff88038b04bd801ca53bec9b00282929eacb03cc4556a9cb0ba12",
+      "unchanged": true
+    },
+    {
+      "file": "styles.css",
+      "originalSha256": "387acaa40fd5dc7e3cc25c243219344e46d0d103b79141ec36c5322bc31fb7e0",
+      "currentSha256": "387acaa40fd5dc7e3cc25c243219344e46d0d103b79141ec36c5322bc31fb7e0",
+      "unchanged": true
+    },
+    {
+      "file": "tableau_adapter.js",
+      "originalSha256": "717e0f026df3fb409563adc5230c5fd19e391f63ed65bc10810ff87063196072",
+      "currentSha256": "717e0f026df3fb409563adc5230c5fd19e391f63ed65bc10810ff87063196072",
+      "unchanged": true
+    },
+    {
+      "file": "tableau_config.txt",
+      "originalSha256": "252fc21906449be3b56553bbb1d25b7d25010c0465c89684981a7d08ff939191",
+      "currentSha256": "252fc21906449be3b56553bbb1d25b7d25010c0465c89684981a7d08ff939191",
+      "unchanged": true
+    },
+    {
+      "file": "tableau_sample.csv",
+      "originalSha256": "231e897e26db02d9e5f66cba36dd8da935eea9326424fa03b62f3aac96e9f1cc",
+      "currentSha256": "231e897e26db02d9e5f66cba36dd8da935eea9326424fa03b62f3aac96e9f1cc",
+      "unchanged": true
+    },
+    {
+      "file": "tools/ab_minilm.py",
+      "originalSha256": "900db6b68595085bea309348b0053a8fc36c68dc120b1f2c5c900fa3ea5150e0",
+      "currentSha256": "f5d98af64a0f46d7e64775203d781100963d13058b992dfa79b780effecb8541",
+      "unchanged": false
+    },
+    {
+      "file": "tools/build_release.py",
+      "originalSha256": "0f6cc12e4a51fdea1795183e272f4805944d89826b12ddfbee030ba49eee1919",
+      "currentSha256": "e57250593322d242b3b9e73bffcdb5ea5df82316730613137f6fe99a10939927",
+      "unchanged": false
+    },
+    {
+      "file": "tools/build_standalone.py",
+      "originalSha256": "5afb0110a4eaa5a29a7e4f72a7a451d441cf9fd08f07bbe73de417b1e08e7551",
+      "currentSha256": "5aab9e74a7111ab966c007322809edef4b22c45cd6fcdf035e56cc54ebb5bd4d",
+      "unchanged": false
+    },
+    {
+      "file": "tools/evaluate.mjs",
+      "originalSha256": "478e3bdb58dd720007055588fa0755d2bbd9d56c93b6f5665ed198a740e27e1c",
+      "currentSha256": "185d505aaf5c7987ae67f2d709aee62e57ef361d16dbd3fa913a370d53c4c796",
+      "unchanged": false
+    },
+    {
+      "file": "tools/explain.mjs",
+      "originalSha256": "28fbffb3f2117be1aeb355be31380d8a4327ce1a21f50006c91e837a90ca8578",
+      "currentSha256": "28fbffb3f2117be1aeb355be31380d8a4327ce1a21f50006c91e837a90ca8578",
+      "unchanged": true
+    },
+    {
+      "file": "tools/rule_schema.py",
+      "originalSha256": "2a2f6930764665c5f7652df5340d7dce1bccbb773dc08c88986b131e4829042d",
+      "currentSha256": "e2b1d352fba5541d7c8896ba620ec118ca19455f3546f1c6029ec9cb9d86be71",
+      "unchanged": false
+    },
+    {
+      "file": "tools/score_ab.mjs",
+      "originalSha256": "b8aba0e11d8af659bbc3cb07860feded4c0d33ba27e0085cd22c588d474988c2",
+      "currentSha256": "2cd1d37665440e8ed51a1be0100531fa1c94fbbe03e3c29d7692f1c1c7f8b34b",
+      "unchanged": false
+    }
+  ]
+}

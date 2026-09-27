@@ -1,0 +1,90 @@
+{
+  "managerVersion": "2.0.0-simple-review",
+  "createdUTC": "2026-09-27T11:08:49.870771+00:00",
+  "scope": "Local rule-management UX extension; no production parser/compiler/engine changes",
+  "runtimePreserved": {
+    "files": 41,
+    "unchanged": true
+  },
+  "tests": {
+    "capabilityBackend": {
+      "passed": 36,
+      "failed": 0
+    },
+    "actualPythonSubprocessHttp": {
+      "passed": 29,
+      "failed": 0
+    },
+    "browserWizardRealCompilerBinding": {
+      "passed": 39,
+      "failed": 0
+    },
+    "browserSuggestionAndSafety": {
+      "passed": 110,
+      "failed": 0
+    },
+    "originalAdvancedBrowser": {
+      "passed": 25,
+      "failed": 0
+    },
+    "existingManagerBackendHttp": {
+      "passed": 40,
+      "failed": 0
+    },
+    "existingCompiler": {
+      "passed": 53,
+      "failed": 0
+    },
+    "existingConnectionMocks": {
+      "passed": 84,
+      "failed": 0
+    },
+    "existingDirectSafeguards": {
+      "passed": 55,
+      "failed": 0
+    },
+    "existingQuestionRegression": {
+      "passed": 851,
+      "failed": 0
+    },
+    "installedPatchSmoke": {
+      "passed": 7,
+      "failed": 0
+    }
+  },
+  "originalRunner": {
+    "suites": 8,
+    "passed": 7,
+    "inheritedFailureSuites": 1,
+    "newFailureSuites": 0,
+    "details": "REGRESSION_NOTES.md; unchanged expected warning text already fails before this update"
+  },
+  "browserLocalhostNavigation": {
+    "scope": "Actual rule_manager.py and browser localhost navigation",
+    "policyBypassed": false,
+    "status": "BLOCKED_BY_ENVIRONMENT",
+    "serverHttpResponded": true,
+    "reason": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:51883/",
+    "fullBrowserHttpWorkflowValidated": false
+  },
+  "limitations": [
+    "No real bank Tableau/SSO/RLS/production security validation",
+    "No independent recognition benchmark or five-minute user study",
+    "Wizard extends existing operations; new calculations/semantic concepts still require reviewed source work",
+    "One safe new request-prefix phrase per example; protected names/numbers/dates/conditions are not swallowed",
+    "Per-capability measure/number/period choices are validation expectations, not hidden runtime overrides",
+    "Browser check token is review evidence, not a security or approval boundary",
+    "Save is local and does not deploy to the bank site or rebuild standalone HTML",
+    "Multi-file publication is journaled with rollback; only individual replacements are OS-atomic"
+  ],
+  "customerAliases": "Not reintroduced; current v6 runtime identities remain Tableau-owned",
+  "optionalManagementCsvs": [
+    "rules/capabilities.csv",
+    "rules/capability_examples.csv"
+  ],
+  "environment": {
+    "python": "3.13.5",
+    "node": "v22.16.0",
+    "chromium": "Chromium 144.0.7559.96 built on Debian GNU/Linux 13 (trixie)"
+  }
+}

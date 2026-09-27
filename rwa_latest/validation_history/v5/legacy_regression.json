@@ -1,0 +1,737 @@
+{
+  "generatedAt": "2026-09-24T07:01:45.810Z",
+  "suite": "Local regression, not a MiniLM parity or blind accuracy estimate",
+  "passed": 180,
+  "failed": 1,
+  "referenceQuestionCases": 39,
+  "referenceQuestionMatches": 39,
+  "originalGroupMonthChecks": 1162,
+  "originalEntityMonthRows": 4634,
+  "outcomes": [
+    {
+      "name": "Original sample: 100 groups / 4634 entity-months",
+      "status": "pass"
+    },
+    {
+      "name": "Every original group/month closing/opening balance and residual matches reference CSV",
+      "status": "pass"
+    },
+    {
+      "name": "Every original flat entity/month agrees with the JSON payload",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0005",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0006",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0007",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0008",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0009",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0010",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0011",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0012",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0013",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0014",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0015",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0016",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0017",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0018",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0019",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0020",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0021",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0022",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0023",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0024",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0025",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0026",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0027",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0028",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0029",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0030",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0031",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0032",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0033",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0034",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0035",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0036",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0037",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0038",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0039",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0040",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0041",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0042",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0043",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0044",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0045",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0046",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0047",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0048",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0049",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0050",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0051",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0052",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0053",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0054",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0055",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0056",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0057",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0058",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0059",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0060",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0061",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0062",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0063",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0064",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0065",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0066",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0067",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0068",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0069",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0070",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0071",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0072",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0073",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0074",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0075",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0076",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0077",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0078",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0079",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0080",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0081",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0082",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0083",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0084",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0085",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0086",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0087",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0088",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0089",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0090",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0091",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0092",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0093",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0094",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0095",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0096",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0097",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0098",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0099",
+      "status": "pass"
+    },
+    {
+      "name": "Original scenario CG0100",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Explain the reasons behind this client movement",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Could you summarize why the total RWA changed?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: What explains the sudden rise in group RWA?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Which risk factor had the greatest impact?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Tell me the primary driver behind the movement",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: What is the dominant cause of the change?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: How much of the net change is attributable to foreign exchange?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Give me the amount contributed by EAD",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: What percentage of the increase came from CG?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Was rating deterioration responsible for the jump?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Did exposure growth cause the movement?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Was currency the main reason for the increase?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Which subsidiary contributed the biggest increase?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: List the leading entity contributors",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Which affiliate accounts for the largest RWA jump?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: What share did ABC Finance contribute?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: How much of the movement came from ABC Electronics?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Give the contribution of this subsidiary",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Explain the drivers within ABC Electronics",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: What caused the RWA change at ABC Finance?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Why did this subsidiary have a jump?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Was most of the jump concentrated in a single subsidiary?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Did many entities contribute or just one?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Is this movement spread across affiliates?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Identify the month with the largest positive change",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: In which month did the sharpest jump occur?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: When was the biggest monthly RWA increase?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Describe the pattern over the past three months",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Is the RWA rise continuing month after month?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Show the direction of RWA over time",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Rank the client groups by their RWA increase",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: List the groups responsible for the largest jumps",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Which clients were the biggest contributors?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: How unusual is the change compared with peers?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Benchmark this client against other groups",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Is the client an outlier relative to its peers?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Does the sum of drivers match the net change?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: How large is the unexplained part of the increase?",
+      "status": "pass"
+    },
+    {
+      "name": "Original labelled intent: Check whether the attribution reconciles",
+      "status": "pass"
+    },
+    {
+      "name": "Multi-turn: entity -> remove FX -> other entity -> compare two",
+      "status": "pass"
+    },
+    {
+      "name": "Explicit month overrides screen month",
+      "status": "pass"
+    },
+    {
+      "name": "Previous month is calendar arithmetic, not previous available row",
+      "status": "pass"
+    },
+    {
+      "name": "Full group clears previous entity",
+      "status": "pass"
+    },
+    {
+      "name": "Group change clears exclusions",
+      "status": "pass"
+    },
+    {
+      "name": "Entity name implies its group",
+      "status": "pass"
+    },
+    {
+      "name": "Rank by CG attribution",
+      "status": "pass"
+    },
+    {
+      "name": "Top N word parser",
+      "status": "pass"
+    },
+    {
+      "name": "Top10 groups, actual portfolio scope",
+      "status": "pass"
+    },
+    {
+      "name": "Entity amount threshold",
+      "status": "pass"
+    },
+    {
+      "name": "Driver exclusions persist and can be restored",
+      "status": "pass"
+    },
+    {
+      "name": "Named entity exclusion",
+      "status": "pass"
+    },
+    {
+      "name": "Two month comparison",
+      "status": "pass"
+    },
+    {
+      "name": "Peak balance differs from peak change",
+      "status": "pass"
+    },
+    {
+      "name": "Negative movement selects negative driver",
+      "status": "pass"
+    },
+    {
+      "name": "Driver contributes versus largest are different",
+      "status": "pass"
+    },
+    {
+      "name": "Negated rhetorical question",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /^Yes/. Input:\n\n'Checking the positive proposition about CG: Yes. CG was a largest same-direction driver (+$620m). The largest attributed driver in the direction of the net movement was CG at +$620m.'\n\n    at file:///mnt/data/rwa_semantic_tableau_v5/tests/legacy_regression.mjs:36:54\n    at test (file:///mnt/data/rwa_semantic_tableau_v5/tests/legacy_regression.mjs:9:40)\n    at file:///mnt/data/rwa_semantic_tableau_v5/tests/legacy_regression.mjs:36:7"
+    },
+    {
+      "name": "Missing month fails closed",
+      "status": "pass"
+    },
+    {
+      "name": "Partial window fails closed",
+      "status": "pass"
+    },
+    {
+      "name": "Unknown extra condition cannot be silently dropped",
+      "status": "pass"
+    },
+    {
+      "name": "Unknown client cannot fall back to current client",
+      "status": "pass"
+    },
+    {
+      "name": "Unsupported prediction rejected",
+      "status": "pass"
+    },
+    {
+      "name": "Unsupported causal rating evidence rejected",
+      "status": "pass"
+    },
+    {
+      "name": "No runtime code or HTML evaluation",
+      "status": "pass"
+    },
+    {
+      "name": "Finite numeric input validation",
+      "status": "pass"
+    },
+    {
+      "name": "Forbidden prototype keys rejected",
+      "status": "pass"
+    },
+    {
+      "name": "Duplicate undeclared grain rejected",
+      "status": "pass"
+    },
+    {
+      "name": "Granular entity records aggregated before ranking",
+      "status": "pass"
+    },
+    {
+      "name": "Product detail ranking",
+      "status": "pass"
+    },
+    {
+      "name": "Missing product detail rejected, not guessed",
+      "status": "pass"
+    },
+    {
+      "name": "Zero baseline: percentage unavailable",
+      "status": "pass"
+    },
+    {
+      "name": "Zero net movement: no concentration label",
+      "status": "pass"
+    },
+    {
+      "name": "Offsets: concentration uses gross, not 900% net share",
+      "status": "pass"
+    },
+    {
+      "name": "Row residuals cannot cancel into a false reconciliation pass",
+      "status": "pass"
+    },
+    {
+      "name": "Missing excluded driver requires explicit zero",
+      "status": "pass"
+    },
+    {
+      "name": "Balance exclusion is not misrepresented as RWA recalculation",
+      "status": "pass"
+    },
+    {
+      "name": "Single-group scope cannot report portfolio ranks",
+      "status": "pass"
+    },
+    {
+      "name": "Data refresh failure invalidates facade",
+      "status": "pass"
+    },
+    {
+      "name": "Data refresh retains explicit conversation state",
+      "status": "pass"
+    },
+    {
+      "name": "Tableau mock filter uses group ID and parses original JSON",
+      "status": "pass"
+    },
+    {
+      "name": "Tableau truncated rows are rejected",
+      "status": "pass"
+    },
+    {
+      "name": "Tableau wrong group response is rejected",
+      "status": "pass"
+    },
+    {
+      "name": "Tableau missing column is rejected",
+      "status": "pass"
+    }
+  ]
+}

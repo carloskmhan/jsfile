@@ -1,0 +1,680 @@
+{
+  "ok": true,
+  "plan": {
+    "action": "TOP_CLIENTS",
+    "commandId": "TOP_GROUPS",
+    "semanticIntent": "RANKING",
+    "group": null,
+    "groupId": null,
+    "entity": null,
+    "entityId": null,
+    "groups": [],
+    "entities": [],
+    "comparisonIds": [],
+    "dimension": "GROUP",
+    "metric": "BALANCE",
+    "direction": "AUTO",
+    "topN": 10,
+    "driver": null,
+    "period": {
+      "mode": "month",
+      "month": "2026-07"
+    },
+    "excludedDrivers": [],
+    "excludedEntities": [],
+    "excludedEntityIds": [],
+    "excludedGroups": [],
+    "excludedGroupIds": [],
+    "condition": {
+      "inputValue": 25,
+      "canonicalValue": 25000000,
+      "unit": "absolute",
+      "displayUnit": "million",
+      "multiplier": 1000000,
+      "currency": "USD",
+      "source": {
+        "file": "units.csv",
+        "line": 8
+      },
+      "kind": "threshold",
+      "raw": "above 25 million",
+      "text": "above 25 million",
+      "start": 29,
+      "end": 45,
+      "operatorPhrase": "above",
+      "op": "GT",
+      "negated": false,
+      "negationSpan": null,
+      "value": 25,
+      "metric": "BALANCE",
+      "executorUnit": "USDm",
+      "isBps": false
+    },
+    "checkMode": "CONTRIBUTES",
+    "concise": false,
+    "candidateEntities": [],
+    "candidateEntityIds": [],
+    "candidateGroups": [],
+    "candidateGroupIds": [],
+    "anchorMonth": "2026-07",
+    "peer": false,
+    "negatedCheck": false,
+    "trace": [
+      "semantic-5.0.0-review",
+      "command:TOP_GROUPS"
+    ],
+    "ruleConfidence": 1,
+    "margin": 0.8888888888888888,
+    "scoreMeaning": "manual rule-fit; not probability",
+    "contextNotes": [],
+    "semantic": {
+      "intent": "RANKING",
+      "metric": "RWA",
+      "entity": null,
+      "entities": [],
+      "period": {
+        "mode": "month",
+        "month": "2026-07"
+      },
+      "direction": "AUTO",
+      "scope": "PORTFOLIO",
+      "ranking": true,
+      "topN": 10,
+      "comparison": null,
+      "driver": null,
+      "filter": {
+        "inputValue": 25,
+        "canonicalValue": 25000000,
+        "unit": "absolute",
+        "displayUnit": "million",
+        "multiplier": 1000000,
+        "currency": "USD",
+        "source": {
+          "file": "units.csv",
+          "line": 8
+        },
+        "kind": "threshold",
+        "raw": "above 25 million",
+        "text": "above 25 million",
+        "start": 29,
+        "end": 45,
+        "operatorPhrase": "above",
+        "op": "GT",
+        "negated": false,
+        "negationSpan": null,
+        "value": 25,
+        "metric": "BALANCE",
+        "executorUnit": "USDm",
+        "isBps": false
+      },
+      "modifier": {
+        "excludedDrivers": [],
+        "excludedEntities": [],
+        "excludedGroups": []
+      },
+      "aggregation": "GROUP",
+      "rankingMetric": "BALANCE",
+      "threshold": {
+        "value": 25000000,
+        "unit": "absolute",
+        "operator": "GT",
+        "raw": "above 25 million",
+        "executorValue": 25,
+        "executorUnit": "USDm"
+      },
+      "unit": "absolute"
+    }
+  },
+  "explain": {
+    "pipelineVersion": "5.0.0-review",
+    "input": "Show top ten groups with RWA above 25 million in July",
+    "normalization": "show top ten groups with rwa above 25 million in july",
+    "matches": [
+      {
+        "phrase": "show",
+        "concept": "RANK",
+        "weight": 1,
+        "source": {
+          "file": "synonyms.csv",
+          "line": 560
+        },
+        "start": 0,
+        "end": 4
+      },
+      {
+        "phrase": "top",
+        "concept": "RANK",
+        "weight": 1,
+        "source": {
+          "file": "synonyms.csv",
+          "line": 91
+        },
+        "start": 5,
+        "end": 8
+      },
+      {
+        "phrase": "groups",
+        "concept": "GROUP",
+        "weight": 1,
+        "source": {
+          "file": "synonyms.csv",
+          "line": 254
+        },
+        "start": 13,
+        "end": 19
+      },
+      {
+        "phrase": "rwa",
+        "concept": "RWA",
+        "weight": 1,
+        "source": {
+          "file": "synonyms.csv",
+          "line": 174
+        },
+        "start": 25,
+        "end": 28
+      },
+      {
+        "phrase": "above",
+        "concept": "GT",
+        "weight": 1,
+        "source": {
+          "file": "synonyms.csv",
+          "line": 300
+        },
+        "start": 29,
+        "end": 34
+      }
+    ],
+    "semanticFeatures": {
+      "RANK": 1,
+      "GROUP": 1,
+      "RWA": 1,
+      "GT": 1,
+      "RANK_GROUP": 1,
+      "HAS_PERIOD": 1,
+      "HAS_MODIFIER": 1
+    },
+    "candidates": [
+      {
+        "effectiveMinMargin": 0.08,
+        "commandId": "TOP_GROUPS",
+        "intent": "RANKING",
+        "action": "TOP_CLIENTS",
+        "score": 1,
+        "positive": 90,
+        "penalty": 0,
+        "maximum": 90,
+        "primary": 1,
+        "components": [
+          {
+            "component": "intent",
+            "features": [
+              "RANK_GROUP"
+            ],
+            "strength": 1,
+            "weight": 40,
+            "points": 40
+          },
+          {
+            "component": "metric",
+            "features": [
+              "RWA"
+            ],
+            "strength": 1,
+            "weight": 20,
+            "source": "query",
+            "points": 20
+          },
+          {
+            "component": "scope",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "subject",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "period",
+            "strength": 1,
+            "weight": 5,
+            "points": 5
+          },
+          {
+            "component": "modifier",
+            "strength": 1,
+            "weight": 5,
+            "points": 5
+          }
+        ],
+        "contradictions": [],
+        "grammar": {
+          "grammar": "RANKING",
+          "valid": true,
+          "errors": []
+        },
+        "validation": {
+          "valid": true,
+          "missing": [],
+          "forbidden": [],
+          "errors": []
+        }
+      },
+      {
+        "effectiveMinMargin": 0.08,
+        "commandId": "COMPARE",
+        "intent": "COMPARE",
+        "action": "COMPARE",
+        "score": 0.1111111111111111,
+        "positive": 50,
+        "penalty": -40,
+        "maximum": 90,
+        "primary": 0,
+        "components": [
+          {
+            "component": "intent",
+            "features": [
+              "COMPARE_REQUEST"
+            ],
+            "strength": 0,
+            "weight": 40,
+            "points": 0
+          },
+          {
+            "component": "metric",
+            "features": [
+              "RWA"
+            ],
+            "strength": 1,
+            "weight": 20,
+            "source": "query",
+            "points": 20
+          },
+          {
+            "component": "scope",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "subject",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "period",
+            "strength": 1,
+            "weight": 5,
+            "points": 5
+          },
+          {
+            "component": "modifier",
+            "strength": 1,
+            "weight": 5,
+            "points": 5
+          }
+        ],
+        "contradictions": [
+          {
+            "feature": "RANK_GROUP",
+            "strength": 1,
+            "points": -40
+          }
+        ],
+        "grammar": {
+          "grammar": "COMPARISON",
+          "valid": false,
+          "errors": [
+            {
+              "code": "AMBIGUOUS_COMPARISON",
+              "message": "Specify two comparison targets or two periods."
+            }
+          ]
+        },
+        "validation": {
+          "valid": false,
+          "missing": [
+            "comparison"
+          ],
+          "forbidden": [],
+          "errors": [
+            {
+              "code": "AMBIGUOUS_COMPARISON",
+              "message": "Specify two comparison targets or two periods."
+            },
+            {
+              "code": "UNSUPPORTED_MODIFIER",
+              "message": "The CSV command definition does not allow: filter."
+            },
+            {
+              "code": "MISSING_REQUIRED_SLOT",
+              "message": "Missing required parameter(s): comparison."
+            },
+            {
+              "code": "UNSUPPORTED_MODIFIER",
+              "message": "Threshold filters apply to rankings only."
+            }
+          ]
+        }
+      },
+      {
+        "effectiveMinMargin": 0.08,
+        "commandId": "CONCENTRATION",
+        "intent": "CONCENTRATION",
+        "action": "CONCENTRATION",
+        "score": 0.1111111111111111,
+        "positive": 50,
+        "penalty": -40,
+        "maximum": 90,
+        "primary": 0,
+        "components": [
+          {
+            "component": "intent",
+            "features": [
+              "CONCENTRATION_REQUEST"
+            ],
+            "strength": 0,
+            "weight": 40,
+            "points": 0
+          },
+          {
+            "component": "metric",
+            "features": [
+              "RWA"
+            ],
+            "strength": 1,
+            "weight": 20,
+            "source": "query",
+            "points": 20
+          },
+          {
+            "component": "scope",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "subject",
+            "strength": 1,
+            "weight": 10,
+            "points": 10
+          },
+          {
+            "component": "period",
+            "strength": 1,
+            "weight": 5,
+            "points": 5
+          },
+          {
+            "component": "modifier",
+            "strength": 1,
+            "weight": 5,
+            "points": 5
+          }
+        ],
+        "contradictions": [
+          {
+            "feature": "RANK_GROUP",
+            "strength": 1,
+            "points": -40
+          }
+        ],
+        "grammar": {
+          "grammar": "CONCENTRATION",
+          "valid": true,
+          "errors": []
+        },
+        "validation": {
+          "valid": false,
+          "missing": [],
+          "forbidden": [],
+          "errors": [
+            {
+              "code": "UNSUPPORTED_MODIFIER",
+              "message": "The CSV command definition does not allow: filter."
+            },
+            {
+              "code": "UNSUPPORTED_MODIFIER",
+              "message": "Threshold filters apply to rankings only."
+            }
+          ]
+        }
+      }
+    ],
+    "constraints": [
+      {
+        "commandId": "TOP_GROUPS",
+        "valid": true,
+        "missing": [],
+        "forbidden": [],
+        "errors": []
+      },
+      {
+        "commandId": "COMPARE",
+        "valid": false,
+        "missing": [
+          "comparison"
+        ],
+        "forbidden": [],
+        "errors": [
+          {
+            "code": "AMBIGUOUS_COMPARISON",
+            "message": "Specify two comparison targets or two periods."
+          },
+          {
+            "code": "UNSUPPORTED_MODIFIER",
+            "message": "The CSV command definition does not allow: filter."
+          },
+          {
+            "code": "MISSING_REQUIRED_SLOT",
+            "message": "Missing required parameter(s): comparison."
+          },
+          {
+            "code": "UNSUPPORTED_MODIFIER",
+            "message": "Threshold filters apply to rankings only."
+          }
+        ]
+      },
+      {
+        "commandId": "CONCENTRATION",
+        "valid": false,
+        "missing": [],
+        "forbidden": [],
+        "errors": [
+          {
+            "code": "UNSUPPORTED_MODIFIER",
+            "message": "The CSV command definition does not allow: filter."
+          },
+          {
+            "code": "UNSUPPORTED_MODIFIER",
+            "message": "Threshold filters apply to rankings only."
+          }
+        ]
+      }
+    ],
+    "contextPatch": null,
+    "phraseResolution": {
+      "policy": "identity-protected, leftmost-longest non-overlapping phrase; equal-span ambiguity is never guessed",
+      "matches": [
+        {
+          "phrase": "show",
+          "concept": "RANK",
+          "start": 0,
+          "end": 4
+        },
+        {
+          "phrase": "top",
+          "concept": "RANK",
+          "start": 5,
+          "end": 8
+        },
+        {
+          "phrase": "groups",
+          "concept": "GROUP",
+          "start": 13,
+          "end": 19
+        },
+        {
+          "phrase": "rwa",
+          "concept": "RWA",
+          "start": 25,
+          "end": 28
+        },
+        {
+          "phrase": "above",
+          "concept": "GT",
+          "start": 29,
+          "end": 34
+        }
+      ]
+    },
+    "fuzzy": {
+      "text": "show top ten groups with rwa above 25 million in july",
+      "attempts": [
+        {
+          "input": "ten",
+          "accepted": false,
+          "reason": "SHORT_TOKEN_FORBIDDEN",
+          "start": 9,
+          "end": 12
+        }
+      ],
+      "corrections": [],
+      "error": null,
+      "validatedCommand": true
+    },
+    "correctedText": "show top ten groups with rwa above 25 million in july",
+    "temporalAnchor": {
+      "month": "2026-06",
+      "source": "TABLEAU_CONTEXT"
+    },
+    "numbers": [
+      {
+        "kind": "n",
+        "text": "ten",
+        "raw": "ten",
+        "start": 9,
+        "end": 12,
+        "value": 10,
+        "canonicalValue": 10,
+        "unit": "count"
+      },
+      {
+        "inputValue": 25,
+        "canonicalValue": 25000000,
+        "unit": "absolute",
+        "displayUnit": "million",
+        "multiplier": 1000000,
+        "currency": "USD",
+        "source": {
+          "file": "units.csv",
+          "line": 8
+        },
+        "kind": "threshold",
+        "raw": "above 25 million",
+        "text": "above 25 million",
+        "start": 29,
+        "end": 45,
+        "operatorPhrase": "above",
+        "op": "GT",
+        "negated": false,
+        "negationSpan": null,
+        "value": 25,
+        "metric": "CHANGE",
+        "executorUnit": "USDm",
+        "isBps": false
+      }
+    ],
+    "temporal": {
+      "anchor": "2026-06",
+      "spans": [
+        {
+          "start": 49,
+          "end": 53,
+          "text": "july",
+          "raw": "july",
+          "kind": "period",
+          "month": "2026-07",
+          "source": {
+            "file": "temporal.csv",
+            "line": 14
+          }
+        }
+      ],
+      "period": {
+        "mode": "month",
+        "month": "2026-07"
+      }
+    },
+    "normalizedSemantics": "RANK RANK GROUP RWA GT",
+    "unknownTokens": [],
+    "slots": {
+      "intent": "RANKING",
+      "metric": "RWA",
+      "entity": null,
+      "entities": [],
+      "period": {
+        "mode": "month",
+        "month": "2026-07"
+      },
+      "direction": "AUTO",
+      "scope": "PORTFOLIO",
+      "ranking": true,
+      "topN": 10,
+      "comparison": null,
+      "driver": null,
+      "filter": {
+        "inputValue": 25,
+        "canonicalValue": 25000000,
+        "unit": "absolute",
+        "displayUnit": "million",
+        "multiplier": 1000000,
+        "currency": "USD",
+        "source": {
+          "file": "units.csv",
+          "line": 8
+        },
+        "kind": "threshold",
+        "raw": "above 25 million",
+        "text": "above 25 million",
+        "start": 29,
+        "end": 45,
+        "operatorPhrase": "above",
+        "op": "GT",
+        "negated": false,
+        "negationSpan": null,
+        "value": 25,
+        "metric": "BALANCE",
+        "executorUnit": "USDm",
+        "isBps": false
+      },
+      "modifier": {
+        "excludedDrivers": [],
+        "excludedEntities": [],
+        "excludedGroups": []
+      },
+      "aggregation": "GROUP",
+      "rankingMetric": "BALANCE",
+      "threshold": {
+        "value": 25000000,
+        "unit": "absolute",
+        "operator": "GT",
+        "raw": "above 25 million",
+        "executorValue": 25,
+        "executorUnit": "USDm"
+      },
+      "unit": "absolute"
+    },
+    "decision": "ACCEPT",
+    "latencyMs": 34.22453100000001
+  },
+  "trace": [
+    "semantic-5.0.0-review",
+    "command:TOP_GROUPS"
+  ]
+}

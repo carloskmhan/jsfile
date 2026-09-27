@@ -1,0 +1,73 @@
+{
+  "scope": "Synthetic real application UI tests. No bank Tableau/SSO.",
+  "http": {
+    "pass": false,
+    "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:43295/demo.html\nCall log:\n  - navigating to \"http://127.0.0.1:43295/demo.html\", waiting until \"load\"\n",
+    "note": "No policy bypass. Testing identical synthetic standalone modules with in-memory DOM separately."
+  },
+  "checks": [
+    {
+      "name": "Three wave dots",
+      "pass": true
+    },
+    {
+      "name": "5-second splash configuration preserved",
+      "pass": true
+    },
+    {
+      "name": "No horizontal overflow desktop",
+      "pass": true
+    },
+    {
+      "name": "Rule artifact has no aliases in compiled runtime",
+      "pass": true
+    },
+    {
+      "name": "Samsung July data from sample-generated runtime index",
+      "pass": true
+    },
+    {
+      "name": "Toyota group follow-up preserves July",
+      "pass": true
+    },
+    {
+      "name": "August resolves but unavailable data does not fall back",
+      "pass": true
+    },
+    {
+      "name": "Can return to explicit June Samsung after missing data",
+      "pass": true
+    },
+    {
+      "name": "Comparison preview shows IDs and cancel works",
+      "pass": true
+    },
+    {
+      "name": "Ranking displays client names and handles existing state",
+      "pass": true
+    },
+    {
+      "name": "Group search filters displayed options by name",
+      "pass": true
+    },
+    {
+      "name": "Group search by ID",
+      "pass": true
+    },
+    {
+      "name": "New chat clears history without re-showing splash",
+      "pass": true
+    },
+    {
+      "name": "Unsupported request cannot produce confirmation",
+      "pass": true
+    },
+    {
+      "name": "No horizontal overflow mobile",
+      "pass": true
+    }
+  ],
+  "browserErrors": [],
+  "passed": 15,
+  "failed": 0
+}

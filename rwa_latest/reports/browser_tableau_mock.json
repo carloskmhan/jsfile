@@ -1,0 +1,63 @@
+{
+  "scope": "Full app.js/provider/parser/calculator path in Chromium DOM with mock Tableau v2 sheets. No actual SDK, HTTP/SSO/permissions validation.",
+  "passed": 11,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Live app path initialises names only from separate mocked index",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Same-name distinct group IDs prompt clarification",
+      "pass": true,
+      "detail": "RWA Analytics\nThis name matches multiple IDs. Specify one of: GROUP CG0001 (SAMSUNG GROUP); GROUP CG9999 (SAMSUNG GROUP)\nWhy no calculation ran"
+    },
+    {
+      "name": "Ambiguous request does not load financial data",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Unique group ID executes separate detail worksheet",
+      "pass": true,
+      "detail": "RWA Analytics\nSAMSUNG GROUP's RWA decreased by $120m in 2026-07 (1.0%).\nSamsung Electronics was the largest same-direction entity contributor at -$80m (66.7% of gross same-direction entity movement).\nWithin Samsung Electronics, the main attributed driver was Maturity at -$30m.\nThe largest attributed driver in the direction of the net movement was Maturity at -$70m.\nOther same-direction drivers: CG -$40m, EAD -$20m.\nOffsets: FX +$10m.\nExecuted command & calculation evidence"
+    },
+    {
+      "name": "Only selected ID was applied to detail",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Follow-up uses fresh Toyota query, July inherited",
+      "pass": true,
+      "detail": "RWA Analytics\nTOYOTA GROUP's RWA decreased by $30m in 2026-07 (0.4%).\nToyota Motor was the largest same-direction entity contributor at -$20m (66.7% of gross same-direction entity movement).\nWithin Toyota Motor, the main attributed driver was Maturity at -$20m.\nThe largest attributed driver in the direction of the net movement was Maturity at -$40m.\nOther same-direction drivers: EAD -$10m.\nOffsets: FX +$20m.\nExecuted command & calculation evidence"
+    },
+    {
+      "name": "Toyota detail fetched rather than Samsung result copied",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Same-name groups compare separately by IDs",
+      "pass": true,
+      "detail": "RWA Analytics\nSAMSUNG GROUP [CG0001]: RWA movement +$1.24bn; closing balance $12.20bn; main attributed driver CG +$620m. SAMSUNG GROUP [CG9999]: RWA movement +$1.24bn; closing balance $12.20bn; main attributed driver CG +$620m.\nFirst minus second: $0m in movement; $0m in closing balance.\nExecuted command & calculation evidence"
+    },
+    {
+      "name": "External scope change invalidates context",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Removed ID cannot execute",
+      "pass": true,
+      "detail": "RWA Analytics\nNo answer produced: Available groups changed. Review the new scope and submit the request again.\nWhy no calculation ran"
+    },
+    {
+      "name": "No JavaScript exceptions",
+      "pass": true,
+      "detail": "[]"
+    }
+  ],
+  "errors": []
+}

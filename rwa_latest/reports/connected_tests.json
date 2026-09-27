@@ -1,0 +1,434 @@
+{
+  "version": "6.0.0-review",
+  "scope": "Developer-authored synthetic Node tests using existing engine and Tableau v2-shaped mocks. Not live Tableau/SSO/RLS or independent validation.",
+  "passed": 84,
+  "failed": 0,
+  "total": 84,
+  "scale": {
+    "indexBuildMs": 323.779961,
+    "firstRouteMs": 2400.624524,
+    "cachedRouteMs": 0.32481300000017654
+  },
+  "cases": [
+    {
+      "name": "Compiled artifact has zero customer aliases",
+      "pass": true,
+      "ms": 0.04966200000000498
+    },
+    {
+      "name": "Different group IDs with same display survive",
+      "pass": true,
+      "ms": 0.022919000000001688
+    },
+    {
+      "name": "Same group ID repeated in index deduplicates",
+      "pass": true,
+      "ms": 0.07477200000000295
+    },
+    {
+      "name": "Same ID name variants preserved, deterministic selection",
+      "pass": true,
+      "ms": 0.6991200000000006
+    },
+    {
+      "name": "Numeric group ID rejected to prevent losing zeros",
+      "pass": true,
+      "ms": 0.2838610000000017
+    },
+    {
+      "name": "Blank group name rejected",
+      "pass": true,
+      "ms": 0.038469999999996674
+    },
+    {
+      "name": "Index row cap enforced",
+      "pass": true,
+      "ms": 0.024971000000000743
+    },
+    {
+      "name": "Name-only duplicate groups cannot resolve",
+      "pass": true,
+      "ms": 0.05544400000000138
+    },
+    {
+      "name": "Exact ID lookup preserved",
+      "pass": true,
+      "ms": 0.010027999999998372
+    },
+    {
+      "name": "Same client name, two LEIDs survive adapter",
+      "pass": true,
+      "ms": 0.023837999999997805
+    },
+    {
+      "name": "Duplicate outer group ID rejected",
+      "pass": true,
+      "ms": 0.0760749999999959
+    },
+    {
+      "name": "Duplicate exact LEID-month grain rejected",
+      "pass": true,
+      "ms": 1.7957470000000058
+    },
+    {
+      "name": "Attributes and derived source survive both adapters",
+      "pass": true,
+      "ms": 0.03537500000000193
+    },
+    {
+      "name": "Current attributes preserved without inventing prev fields",
+      "pass": true,
+      "ms": 0.022030000000000882
+    },
+    {
+      "name": "Root report uses only selected ID, two same-name clients not merged",
+      "pass": true,
+      "ms": 47.275351
+    },
+    {
+      "name": "Derived RWA warning and no independent reconciliation claim",
+      "pass": true,
+      "ms": 8.760550999999992
+    },
+    {
+      "name": "Negative derived previous allowed, percentage undefined",
+      "pass": true,
+      "ms": 4.555039000000008
+    },
+    {
+      "name": "Negative raw previous still rejected",
+      "pass": true,
+      "ms": 0.10726099999999406
+    },
+    {
+      "name": "Same-name groups by IDs compare separate values",
+      "pass": true,
+      "ms": 7.321720999999997
+    },
+    {
+      "name": "Same-name bare group query is ambiguous, not silently selected",
+      "pass": true,
+      "ms": 2.2923409999999933
+    },
+    {
+      "name": "Same-name bare client query is ambiguous, not aggregated",
+      "pass": true,
+      "ms": 2.8060920000000067
+    },
+    {
+      "name": "Exact LEID targets one of duplicate display names",
+      "pass": true,
+      "ms": 5.394578000000024
+    },
+    {
+      "name": "Two duplicate client display names compare by LEID",
+      "pass": true,
+      "ms": 7.263109999999983
+    },
+    {
+      "name": "Excluding one duplicate group ID does not remove other group",
+      "pass": true,
+      "ms": 8.18533099999999
+    },
+    {
+      "name": "Excluding one duplicate client ID leaves other LEID",
+      "pass": true,
+      "ms": 6.466725999999994
+    },
+    {
+      "name": "Top group rank IDs retained in conversation",
+      "pass": true,
+      "ms": 4.060284000000024
+    },
+    {
+      "name": "Ranked client follow-up resolves same-name LEID",
+      "pass": true,
+      "ms": 6.073354000000023
+    },
+    {
+      "name": "Group+period follow-up changes IDs, fresh values",
+      "pass": true,
+      "ms": 8.347601999999995
+    },
+    {
+      "name": "Unknown ID cannot execute",
+      "pass": true,
+      "ms": 4.427112999999991
+    },
+    {
+      "name": "No static SEC alias invented",
+      "pass": true,
+      "ms": 4.291460000000001
+    },
+    {
+      "name": "Dynamic long driver contribution sums exact labels",
+      "pass": true,
+      "ms": 3.94612699999999
+    },
+    {
+      "name": "Dynamic label Increase not mistaken for direction",
+      "pass": true,
+      "ms": 3.1356210000000146
+    },
+    {
+      "name": "Dynamic label numbers/date words protected",
+      "pass": true,
+      "ms": 4.014276999999993
+    },
+    {
+      "name": "Dynamic label with OR remains one driver",
+      "pass": true,
+      "ms": 3.6150189999999895
+    },
+    {
+      "name": "New arbitrary detail driver requires no compilation",
+      "pass": true,
+      "ms": 3.0495190000000036
+    },
+    {
+      "name": "EAD family not inferred from detail text",
+      "pass": true,
+      "ms": 3.9204640000000097
+    },
+    {
+      "name": "Missing driver value not silently zero for exclusion",
+      "pass": true,
+      "ms": 3.3068879999999865
+    },
+    {
+      "name": "Explicit approved family mapping supports amount",
+      "pass": true,
+      "ms": 3.5951769999999783
+    },
+    {
+      "name": "Explicit family exclusion subtracts leaves once",
+      "pass": true,
+      "ms": 3.5337030000000027
+    },
+    {
+      "name": "Parent amount mixed with leaf details rejected",
+      "pass": true,
+      "ms": 0.14000400000000468
+    },
+    {
+      "name": "Runtime family main/sole check safely rejected",
+      "pass": true,
+      "ms": 3.1687340000000006
+    },
+    {
+      "name": "Unsupported forecast not forced to a report",
+      "pass": true,
+      "ms": 2.210109000000017
+    },
+    {
+      "name": "Cancelled preview does not change successful state",
+      "pass": true,
+      "ms": 10.517349999999993
+    },
+    {
+      "name": "Invalidated data cannot confirm previous preview",
+      "pass": true,
+      "ms": 4.121931999999987
+    },
+    {
+      "name": "Data route requests only named group ID",
+      "pass": true,
+      "ms": 4.635908000000001
+    },
+    {
+      "name": "Data route comparison includes both IDs",
+      "pass": true,
+      "ms": 0.27416499999998223
+    },
+    {
+      "name": "Data route typo recovers only known runtime identity",
+      "pass": true,
+      "ms": 2.04262700000001
+    },
+    {
+      "name": "Data route does not use unknown compiled aliases",
+      "pass": true,
+      "ms": 2.1749229999999784
+    },
+    {
+      "name": "Provider initialises index without any detailed financial read",
+      "pass": true,
+      "ms": 7.626202999999975
+    },
+    {
+      "name": "Provider filters by raw group ID and loads one JSON",
+      "pass": true,
+      "ms": 4.823509999999999
+    },
+    {
+      "name": "Provider can compare distinct IDs with same names",
+      "pass": true,
+      "ms": 3.415020000000027
+    },
+    {
+      "name": "Provider rejects ID absent from authorised index before filter",
+      "pass": true,
+      "ms": 1.8902759999999716
+    },
+    {
+      "name": "Data ID filter narrowing index is detected",
+      "pass": true,
+      "ms": 2.061040999999989
+    },
+    {
+      "name": "Permission/index change invalidates revision",
+      "pass": true,
+      "ms": 1.8583409999999958
+    },
+    {
+      "name": "Confirmation verifies index scope again",
+      "pass": true,
+      "ms": 2.1222119999999904
+    },
+    {
+      "name": "External parameter change during filter aborts read",
+      "pass": true,
+      "ms": 1.5531700000000228
+    },
+    {
+      "name": "Foreign sheet/field filter change invalidates context",
+      "pass": true,
+      "ms": 1.4319090000000188
+    },
+    {
+      "name": "Tab switch invalidates context",
+      "pass": true,
+      "ms": 2.09439500000002
+    },
+    {
+      "name": "No silent fallback after detail failure",
+      "pass": true,
+      "ms": 1.560547999999983
+    },
+    {
+      "name": "No static catalog fallback after index failure",
+      "pass": true,
+      "ms": 1.4154169999999908
+    },
+    {
+      "name": "Index truncated flag aborts initialisation",
+      "pass": true,
+      "ms": 1.3441779999999994
+    },
+    {
+      "name": "Index reported count mismatch aborts",
+      "pass": true,
+      "ms": 1.2573429999999917
+    },
+    {
+      "name": "Index must not include JSON data field",
+      "pass": true,
+      "ms": 1.3983739999999898
+    },
+    {
+      "name": "Index missing name field rejected",
+      "pass": true,
+      "ms": 1.3938469999999938
+    },
+    {
+      "name": "Missing index sheet in dashboard rejects",
+      "pass": true,
+      "ms": 1.2577290000000403
+    },
+    {
+      "name": "Standalone Tableau worksheet URL rejects",
+      "pass": true,
+      "ms": 1.2147829999999544
+    },
+    {
+      "name": "Detail truncated flag aborts",
+      "pass": true,
+      "ms": 1.5724010000000135
+    },
+    {
+      "name": "Missing detail group never returns partial report",
+      "pass": true,
+      "ms": 1.6126049999999736
+    },
+    {
+      "name": "Unexpected detail ID rejected",
+      "pass": true,
+      "ms": 1.4165040000000317
+    },
+    {
+      "name": "Duplicate outer group JSON rejected",
+      "pass": true,
+      "ms": 1.4838170000000446
+    },
+    {
+      "name": "Wrong filter values rejected even if summary looks correct",
+      "pass": true,
+      "ms": 2.799088999999981
+    },
+    {
+      "name": "Per-group JSON byte cap enforced",
+      "pass": true,
+      "ms": 1.515609999999981
+    },
+    {
+      "name": "Combined JSON cap enforced",
+      "pass": true,
+      "ms": 1.3945360000000164
+    },
+    {
+      "name": "Malformed JSON is not displayed as a report",
+      "pass": true,
+      "ms": 1.9287049999999795
+    },
+    {
+      "name": "Metadata unit mismatch fails rather than converting",
+      "pass": true,
+      "ms": 0.17992900000001555
+    },
+    {
+      "name": "Portfolio disabled by default in live mode",
+      "pass": true,
+      "ms": 2.058222999999998
+    },
+    {
+      "name": "Approved portfolio reads explicit index IDs; never clears security filters",
+      "pass": true,
+      "ms": 1.6737549999999715
+    },
+    {
+      "name": "Portfolio bound rejected; no truncated top-N",
+      "pass": true,
+      "ms": 1.3153410000000463
+    },
+    {
+      "name": "Timed-out provider is poisoned; late data cannot execute",
+      "pass": true,
+      "ms": 147.893908
+    },
+    {
+      "name": "Two concurrent detail requests serialize filter/read pairs",
+      "pass": true,
+      "ms": 12.317368999999985
+    },
+    {
+      "name": "Closed provider cannot reuse data",
+      "pass": true,
+      "ms": 1.3064239999999927
+    },
+    {
+      "name": "Empty authorised index is valid, no fallback population",
+      "pass": true,
+      "ms": 1.4973789999999667
+    },
+    {
+      "name": "Initial custom view load retried without disabling validation",
+      "pass": true,
+      "ms": 22.004579999999976
+    },
+    {
+      "name": "50,001 index rows no financial JSON initial download (mock)",
+      "pass": true,
+      "ms": 2738.4428580000003
+    }
+  ]
+}

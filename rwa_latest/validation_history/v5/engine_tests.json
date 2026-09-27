@@ -1,0 +1,199 @@
+{
+  "suite": "Semantic safety, context transactions, routing and unchanged Tableau adapter regression",
+  "passed": 48,
+  "failed": 0,
+  "results": [
+    {
+      "test": "Exact Samsung → Toyota → August patches and new data",
+      "passed": true
+    },
+    {
+      "test": "July decrease reported despite increase wording",
+      "passed": true
+    },
+    {
+      "test": "State has only identity references, never financial values",
+      "passed": true
+    },
+    {
+      "test": "Alias canonical source: disabled short alias no longer taken from catalog",
+      "passed": true
+    },
+    {
+      "test": "Runtime alias collision is ambiguous rather than first-match",
+      "passed": true
+    },
+    {
+      "test": "Entity exact boundary: SEC does not match second",
+      "passed": true
+    },
+    {
+      "test": "Same-score candidates are not arbitrarily selected",
+      "passed": true
+    },
+    {
+      "test": "Weakly weighted known synonym below minimum cannot execute",
+      "passed": true
+    },
+    {
+      "test": "Conflicting intentions receive penalty and rejection",
+      "passed": true
+    },
+    {
+      "test": "Known metric does not bypass forecast rejection",
+      "passed": true
+    },
+    {
+      "test": "Unknown modifiers not silently discarded",
+      "passed": true
+    },
+    {
+      "test": "Subject excluded from portfolio not selected as the requested group",
+      "passed": true
+    },
+    {
+      "test": "NOT named group is an exclusion",
+      "passed": true
+    },
+    {
+      "test": "Negated month rejected",
+      "passed": true
+    },
+    {
+      "test": "Not only is not interpreted as sole-driver check",
+      "passed": true
+    },
+    {
+      "test": "Rhetorical negative check is labelled as a positive proposition",
+      "passed": true
+    },
+    {
+      "test": "Compare first ranked group with Toyota resolves IDs and reload plan",
+      "passed": true
+    },
+    {
+      "test": "Cross-group follow-up request loads Toyota rather than Samsung",
+      "passed": true
+    },
+    {
+      "test": "Only-those portfolio patch performs portfolio refresh",
+      "passed": true
+    },
+    {
+      "test": "Explicit period supersedes screen and prior period",
+      "passed": true
+    },
+    {
+      "test": "Complete new question resets previous exclusions",
+      "passed": true
+    },
+    {
+      "test": "Follow-up preserves FX basis across group, not facts",
+      "passed": true
+    },
+    {
+      "test": "Numeric filter kept only as user parameter; subset IDs have no values",
+      "passed": true
+    },
+    {
+      "test": "Rank set rerun by percentage",
+      "passed": true
+    },
+    {
+      "test": "Last rank cannot wrap around or repeat last value",
+      "passed": true
+    },
+    {
+      "test": "Month change invalidates stale ranking references",
+      "passed": true
+    },
+    {
+      "test": "Comparison-to-offsets without month is ambiguous, not arbitrary latest month",
+      "passed": true
+    },
+    {
+      "test": "Missing period data is not replaced and does not mutate state",
+      "passed": true
+    },
+    {
+      "test": "Preview only, no state commit until confirm",
+      "passed": true
+    },
+    {
+      "test": "Cancel does not become context",
+      "passed": true
+    },
+    {
+      "test": "Old preview token does not consume the latest preview",
+      "passed": true
+    },
+    {
+      "test": "Failed refresh prevents stale execution",
+      "passed": true
+    },
+    {
+      "test": "Refreshed single group respects state but no stale group amounts",
+      "passed": true
+    },
+    {
+      "test": "Confidence details list at least three candidates and source trace",
+      "passed": true
+    },
+    {
+      "test": "Conflicting alias is rejected before data fetch routing",
+      "passed": true
+    },
+    {
+      "test": "Malformed generated artifact rejected",
+      "passed": true
+    },
+    {
+      "test": "Runtime registry cannot be modified after validation",
+      "passed": true
+    },
+    {
+      "test": "Longest phrase: percentage increase is not mistaken for balance",
+      "passed": true
+    },
+    {
+      "test": "Boundary name includes a month without stealing query date",
+      "passed": true
+    },
+    {
+      "test": "Same group and legal entity IDs are not conflated",
+      "passed": true
+    },
+    {
+      "test": "Group mismatch not repaired by guessing",
+      "passed": true
+    },
+    {
+      "test": "Percent-of-change driver query uses attribution share, not percent ranking",
+      "passed": true
+    },
+    {
+      "test": "Decline threshold magnitude cannot be silently treated as signed positive delta",
+      "passed": true
+    },
+    {
+      "test": "Absolute-change thresholds are rejected until their magnitude basis is implemented",
+      "passed": true
+    },
+    {
+      "test": "A dollar/million threshold cannot be applied to another configured currency unit",
+      "passed": true
+    },
+    {
+      "test": "Original Tableau API uses ID filter and preserves JSON contract",
+      "passed": true
+    },
+    {
+      "test": "Truncated Tableau response fails",
+      "passed": true
+    },
+    {
+      "test": "Wrong-group Tableau response fails",
+      "passed": true
+    }
+  ]
+}

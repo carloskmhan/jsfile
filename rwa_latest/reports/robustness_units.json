@@ -1,0 +1,282 @@
+{
+  "suite": "v6 direct production-path safeguards; 3 CSV identity fixtures migrated to runtime catalog/forbidden artifact expectations",
+  "passed": 55,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "OSA transposition has unit distance",
+      "layer": "FUZZY",
+      "pass": true
+    },
+    {
+      "name": "comapre Samsung and Toyota",
+      "layer": "FUZZY",
+      "pass": true
+    },
+    {
+      "name": "Why did Samsung RWA increse?",
+      "layer": "FUZZY",
+      "pass": true
+    },
+    {
+      "name": "Why did Samsung RWA decrese?",
+      "layer": "FUZZY",
+      "pass": true
+    },
+    {
+      "name": "Why did Samsng RWA increase?",
+      "layer": "FUZZY",
+      "pass": true
+    },
+    {
+      "name": "Clean aliases, words, numbers never edited",
+      "layer": "FUZZY",
+      "pass": true
+    },
+    {
+      "name": "Dates are not corrected",
+      "layer": "TEMPORAL",
+      "pass": true
+    },
+    {
+      "name": "Amounts are not corrected",
+      "layer": "UNIT",
+      "pass": true
+    },
+    {
+      "name": "Short tokens are not corrected",
+      "layer": "FUZZY",
+      "pass": true
+    },
+    {
+      "name": "Fuzzy cannot be sole command evidence",
+      "layer": "CONSTRAINT",
+      "pass": true
+    },
+    {
+      "name": "Routing recovers the group before loading its data",
+      "layer": "ENTITY",
+      "pass": true
+    },
+    {
+      "name": "Routing recovers compare before loading both groups",
+      "layer": "RELATION",
+      "pass": true
+    },
+    {
+      "name": "Routing does not treat excluded group as sole data target",
+      "layer": "RELATION",
+      "pass": true
+    },
+    {
+      "name": "Ambiguous typo never chooses alphabetically first runtime name",
+      "layer": "AMBIGUITY",
+      "pass": true
+    },
+    {
+      "name": "Unbound CSV alias is rejected before it can manufacture a group",
+      "layer": "ENTITY",
+      "pass": true
+    },
+    {
+      "name": "Disabled entity fuzzy is respected",
+      "layer": "FUZZY",
+      "pass": true
+    },
+    {
+      "name": "Exact runtime name collision stays ambiguous before fuzzy",
+      "layer": "AMBIGUITY",
+      "pass": true
+    },
+    {
+      "name": "Longest phrase what drove",
+      "layer": "PHRASE",
+      "pass": true
+    },
+    {
+      "name": "Longest phrase went up",
+      "layer": "PHRASE",
+      "pass": true
+    },
+    {
+      "name": "Longest phrase went down",
+      "layer": "PHRASE",
+      "pass": true
+    },
+    {
+      "name": "Longest phrase greater than or equal to",
+      "layer": "PHRASE",
+      "pass": true
+    },
+    {
+      "name": "Longest phrase no more than",
+      "layer": "PHRASE",
+      "pass": true
+    },
+    {
+      "name": "Longest phrase other than",
+      "layer": "PHRASE",
+      "pass": true
+    },
+    {
+      "name": "Overlapping phrases have deterministic leftmost-longest precedence",
+      "layer": "PHRASE",
+      "pass": true
+    },
+    {
+      "name": "Scalar 10",
+      "layer": "NUMBER",
+      "pass": true
+    },
+    {
+      "name": "Scalar ten",
+      "layer": "NUMBER",
+      "pass": true
+    },
+    {
+      "name": "Scalar twenty-five",
+      "layer": "NUMBER",
+      "pass": true
+    },
+    {
+      "name": "Scalar 25,000,000",
+      "layer": "NUMBER",
+      "pass": true
+    },
+    {
+      "name": "Scalar 1.5",
+      "layer": "NUMBER",
+      "pass": true
+    },
+    {
+      "name": "Unit 25m",
+      "layer": "UNIT",
+      "pass": true
+    },
+    {
+      "name": "Unit 25mn",
+      "layer": "UNIT",
+      "pass": true
+    },
+    {
+      "name": "Unit 25million",
+      "layer": "UNIT",
+      "pass": true
+    },
+    {
+      "name": "Unit 1.5bn",
+      "layer": "UNIT",
+      "pass": true
+    },
+    {
+      "name": "Unit 10%",
+      "layer": "UNIT",
+      "pass": true
+    },
+    {
+      "name": "Unit 25bps",
+      "layer": "UNIT",
+      "pass": true
+    },
+    {
+      "name": "25m and 25,000,000 execute identical ranking",
+      "layer": "NUMBER",
+      "pass": true
+    },
+    {
+      "name": "Positive threshold still works when portfolio net is negative",
+      "layer": "NUMBER",
+      "pass": true
+    },
+    {
+      "name": "Below threshold does not hide negative signed movements",
+      "layer": "NUMBER",
+      "pass": true
+    },
+    {
+      "name": "10% and 1000bps execute identical growth ranking",
+      "layer": "UNIT",
+      "pass": true
+    },
+    {
+      "name": "Numeric 12m threshold is not a 12-month window",
+      "layer": "TEMPORAL",
+      "pass": true
+    },
+    {
+      "name": "Bare 12m ranking condition remains money",
+      "layer": "NUMBER",
+      "pass": true
+    },
+    {
+      "name": "Bare 12m reporting period is temporal",
+      "layer": "TEMPORAL",
+      "pass": true
+    },
+    {
+      "name": "Relative quarter uses Tableau/report anchor",
+      "layer": "TEMPORAL",
+      "pass": true
+    },
+    {
+      "name": "Relative follow-up uses committed analysis, not stale screen",
+      "layer": "CONTEXT",
+      "pass": true
+    },
+    {
+      "name": "Samsung→Toyota→August recalculates every value",
+      "layer": "CONTEXT",
+      "pass": true
+    },
+    {
+      "name": "Unknown typo does not mutate committed state",
+      "layer": "CONTEXT",
+      "pass": true
+    },
+    {
+      "name": "Data error does not mutate state or reuse previous figures",
+      "layer": "CONTEXT",
+      "pass": true
+    },
+    {
+      "name": "Directional question receives actual negative sign",
+      "layer": "INTENT",
+      "pass": true
+    },
+    {
+      "name": "Negative yes/no proposition is labelled",
+      "layer": "NEGATION",
+      "pass": true
+    },
+    {
+      "name": "Why did not is not silently changed to why did",
+      "layer": "NEGATION",
+      "pass": true
+    },
+    {
+      "name": "Numeric exclusion uses logical complement including boundary",
+      "layer": "NEGATION",
+      "pass": true
+    },
+    {
+      "name": "Foreign group exclusion cannot be ignored",
+      "layer": "RELATION",
+      "pass": true
+    },
+    {
+      "name": "No mutable ML artifacts in registry",
+      "layer": "CONSTRAINT",
+      "pass": true
+    },
+    {
+      "name": "Invisible format control rejected",
+      "layer": "NORMALIZATION",
+      "pass": true
+    },
+    {
+      "name": "Deterministic command does not depend on diagnostic timing",
+      "layer": "CONSTRAINT",
+      "pass": true
+    }
+  ]
+}

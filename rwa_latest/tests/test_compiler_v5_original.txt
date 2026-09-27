@@ -1,0 +1,103 @@
+"""Adversarial compiler validation, reproducibility and failed-build atomicity checks."""
+from pathlib import Path
+import csv, hashlib, json, shutil, subprocess, sys, tempfile, time
+ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT))
+from build_command_patterns import compile_rules, BuildError
+
+def edit(root,name,fn):
+    path=root/name
+    with path.open(encoding='utf-8-sig',newline='') as f:r=csv.DictReader(f);h=r.fieldnames;rows=list(r)
+    fn(rows)
+    with path.open('w',encoding='utf-8-sig',newline='') as f:w=csv.DictWriter(f,fieldnames=h);w.writeheader();w.writerows(rows)
+
+def main():
+ results=[]
+ def test(name,fn):
+    try:fn();results.append({'test':name,'passed':True})
+    except Exception as e:results.append({'test':name,'passed':False,'error':str(e)})
+ def invalid(file,fn,needle):
+    with tempfile.TemporaryDirectory() as d:
+        rules=Path(d)/'rules';shutil.copytree(ROOT/'rules',rules);out=Path(d)/'command_patterns.txt';out.write_bytes(b'PREVIOUS APPROVED FILE\n')
+        edit(rules,file,fn)
+        proc=subprocess.run([sys.executable,str(ROOT/'build_command_patterns.py'),'--rules-dir',str(rules),'--out',str(out)],capture_output=True,text=True)
+        assert proc.returncode==1,proc.stdout
+        assert needle.lower() in proc.stderr.lower(),proc.stderr
+        assert out.read_bytes()==b'PREVIOUS APPROVED FILE\n','Failure replaced the previous file'
+        assert not list(out.parent.glob('*.tmp')),'Temporary artifact leaked'
+ def setfirst(k,v):return lambda rows:rows[0].__setitem__(k,v)
+ cases=[
+  ('duplicate command','commands.csv',lambda r:r.append(dict(r[0])),'duplicate command ID'),
+  ('unknown concept','commands.csv',setfirst('primary_features','FAKE_CONCEPT'),'unknown concept'),
+  ('missing field','commands.csv',setfirst('intent',''),'missing required field'),
+  ('unknown slot','commands.csv',setfirst('required_slots','foobar'),'unknown slot'),
+  ('forbidden overlap','commands.csv',setfirst('forbidden_slots','subject'),'overlap'),
+  ('NaN score','commands.csv',setfirst('intent_weight','NaN'),'finite'),
+  ('Infinity score','commands.csv',setfirst('metric_weight','Infinity'),'finite'),
+  ('negative weight','commands.csv',setfirst('subject_weight','-1'),'finite'),
+  ('positive contradiction','commands.csv',setfirst('contradiction_weight','1'),'finite'),
+  ('invalid confidence','commands.csv',setfirst('min_confidence','1.1'),'finite'),
+  ('invalid margin','commands.csv',setfirst('min_margin','-0.1'),'finite'),
+  ('unknown response','commands.csv',setfirst('response_template','SCRIPT'),'unknown action'),
+  ('duplicate phrase','synonyms.csv',lambda r:r.append(dict(r[0])),'duplicated/conflicting'),
+  ('conflicting phrase','synonyms.csv',lambda r:r.append({**r[0],'concept':'DECREASE'}),'duplicated/conflicting'),
+  ('invalid synonym weight','synonyms.csv',setfirst('weight','1.2'),'finite'),
+  ('unknown synonym concept','synonyms.csv',setfirst('concept','UNKNOWN'),'unknown concept'),
+  ('invalid regex','synonyms.csv',setfirst('phrase','(a+)+'),'regex expressions'),
+  ('duplicate alias','aliases.csv',lambda r:r.append(dict(r[0])),'duplicate alias'),
+  ('alias collision','aliases.csv',lambda r:r.append({**r[0],'canonical_id':'OTHER','canonical_name':'OTHER GROUP'}),'alias collision'),
+  ('unknown parent','aliases.csv',lambda r:next(x for x in r if x['kind']=='ENTITY').__setitem__('parent_id','MISSING'),'unknown parent'),
+  ('canonical name collision','aliases.csv',lambda r:r.append({**r[0],'canonical_id':'OTHER','canonical_name':'SAMSUNG GROUP','alias':'different alias'}),'canonical ID/name'),
+  ('follow-up malformed','followups.csv',setfirst('pattern','how about {scope'),'invalid follow-up'),
+  ('follow-up raw regex','followups.csv',setfirst('pattern','how about (?<scope>.*)'),'invalid follow-up'),
+  ('unknown follow-up slot','followups.csv',setfirst('pattern','how about {secret}'),'unknown follow-up slot'),
+  ('missing follow-up capture','followups.csv',setfirst('pattern','how about'),'patch needs'),
+  ('duplicate follow-up','followups.csv',lambda r:r.append({**r[0],'rule_id':'DUP'}),'duplicate/conflicting'),
+  ('broken command reference','followups.csv',setfirst('command_id','MISSING'),'broken command reference'),
+  ('unknown patch','followups.csv',setfirst('patch_type','EXECUTE_SCRIPT'),'unknown patch'),
+  ('result inheritance forbidden','settings.csv',lambda r:next(x for x in r if x['key']=='inherit.result').__setitem__('value','inherit'),'invalid inheritance'),
+  ('unknown-token bypass forbidden','settings.csv',lambda r:next(x for x in r if x['key']=='unknown_token_limit').__setitem__('value','5'),'finite'),
+  ('duplicate settings','settings.csv',lambda r:r.append(dict(r[0])),'duplicate setting'),
+  ('spreadsheet formula rejected','aliases.csv',setfirst('alias','=HYPERLINK("https://example.invalid")'),'formula-like')
+ ]
+ cases += [
+  ('unknown grammar','commands.csv',setfirst('grammar','SQL'),'invalid command grammar'),
+  ('mismatched grammar','commands.csv',setfirst('grammar','COMPARISON'),'invalid command grammar'),
+  ('fuzzy NaN','fuzzy_config.csv',setfirst('threshold','NaN'),'finite'),
+  ('fuzzy >1','fuzzy_config.csv',setfirst('threshold','1.1'),'finite'),
+  ('fuzzy low threshold','fuzzy_config.csv',setfirst('threshold','.5'),'unsafe fuzzy'),
+  ('unsafe short-token length','fuzzy_config.csv',setfirst('min_length','3'),'unsafe fuzzy'),
+  ('unsafe margin','fuzzy_config.csv',setfirst('min_margin','0'),'unsafe fuzzy'),
+  ('fractional edit distance','fuzzy_config.csv',setfirst('max_edits','1.5'),'integer'),
+  ('unsafe short-token class','fuzzy_config.csv',lambda r:r[2].__setitem__('enabled','true'),'unsafe short-token'),
+  ('unknown fuzzy category','fuzzy_config.csv',setfirst('category','date'),'category'),
+  ('duplicate fuzzy category','fuzzy_config.csv',lambda r:r.append(dict(r[0])),'duplicate fuzzy'),
+  ('invalid unit kind','units.csv',setfirst('kind','METRIC'),'invalid unit'),
+  ('invalid multiplier zero','units.csv',setfirst('multiplier','0'),'finite'),
+  ('invalid standard multiplier','units.csv',lambda r:next(x for x in r if x['phrase']=='million').__setitem__('multiplier','1000'),'invalid number multiplier'),
+  ('unit kind mismatch','units.csv',setfirst('kind','ratio'),'disagree'),
+  ('duplicate unit','units.csv',lambda r:r.append(dict(r[0])),'duplicate unit'),
+  ('regex in unit','units.csv',setfirst('phrase','(m+)'),'invalid'),
+  ('unknown temporal kind','temporal.csv',setfirst('kind','GUESS_MONTH'),'invalid temporal'),
+  ('wrong July month','temporal.csv',lambda r:next(x for x in r if x['phrase']=='july').__setitem__('value','8'),'invalid temporal month'),
+  ('month 13','temporal.csv',setfirst('value','13'),'finite'),
+  ('duplicate temporal','temporal.csv',lambda r:r.append(dict(r[0])),'duplicate temporal'),
+  ('regex temporal','temporal.csv',setfirst('phrase','jul(y)?'),'invalid'),
+ ]
+ for name,file,fn,needle in cases:test(name,lambda file=file,fn=fn,needle=needle:invalid(file,fn,needle))
+ def reproducible():
+    with tempfile.TemporaryDirectory() as d:
+      a=Path(d)/'a.txt';b=Path(d)/'b.txt'
+      for out in [a,b]:subprocess.run([sys.executable,str(ROOT/'build_command_patterns.py'),'--out',str(out)],check=True,capture_output=True)
+      assert a.read_bytes()==b.read_bytes()
+ test('byte-identical rebuilds',reproducible)
+ def check_mode():
+    with tempfile.TemporaryDirectory() as d:
+      out=Path(d)/'x.txt';subprocess.run([sys.executable,str(ROOT/'build_command_patterns.py'),'--out',str(out),'--check'],check=True,capture_output=True);assert not out.exists()
+ test('check mode does not write',check_mode)
+ report={'suite':'CSV compiler safety regression','passed':sum(r['passed'] for r in results),'failed':sum(not r['passed'] for r in results),'cases':results}
+ (ROOT/'reports/compiler_tests.json').write_text(json.dumps(report,indent=2));print(json.dumps({k:v for k,v in report.items() if k!='cases'}))
+ for r in results:
+    if not r['passed']:print(r)
+ return int(report['failed']>0)
+if __name__=='__main__':raise SystemExit(main())
