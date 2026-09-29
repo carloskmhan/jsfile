@@ -16,7 +16,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def fixture(root):
     for p in ['build_command_patterns.py','rule_parser.js','rwa_engine.js','csv_adapter.js','group_catalog.js',
-              'tableau_adapter.js','network.js','driver_catalog.js','command_patterns.txt','tableau_sample.csv','rwa_sample_data.txt','rules_config.txt']:
+              'tableau_adapter.js','network.js','driver_catalog.js','historical_peaks.js','command_patterns.txt','tableau_sample.csv','rwa_sample_data.txt','rules_config.txt']:
         shutil.copy2(ROOT/p,root/p)
     for p in ['rules','tools','semantic']: shutil.copytree(ROOT/p,root/p,ignore=shutil.ignore_patterns('__pycache__'))
 

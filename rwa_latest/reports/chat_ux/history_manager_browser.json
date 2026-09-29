@@ -1,0 +1,43 @@
+{
+  "scope": "Actual current browser parser and Python compiler/transactions through test-only in-memory binding; not localhost HTTP or bank SSO.",
+  "passed": 9,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Historical ranking is present as a capability card",
+      "passed": true
+    },
+    {
+      "name": "New detail options use human-readable high/low choices",
+      "passed": true
+    },
+    {
+      "name": "New expression validates with the actual engine",
+      "passed": true
+    },
+    {
+      "name": "Review explains selected month and amount basis",
+      "passed": true
+    },
+    {
+      "name": "Save publishes the phrase in canonical CSV",
+      "passed": true
+    },
+    {
+      "name": "Saved generic wording preserves the explicit lowest selection",
+      "passed": true
+    },
+    {
+      "name": "Local calculation succeeds",
+      "passed": true
+    },
+    {
+      "name": "Edit reuses wizard and validates lowest wording",
+      "passed": true
+    },
+    {
+      "name": "Delete cleans owned phrase but retains underlying report",
+      "passed": true
+    }
+  ]
+}

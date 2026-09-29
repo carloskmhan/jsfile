@@ -76,7 +76,7 @@ const PATCH_HANDLERS={
   REPLACE_SCOPE(p,e){
     const item=e.c.scope?.value;if(!item)throw new Error('A named group/entity is required.');
     if(p.action==='COMPARE')throw new Error('Specify which comparison subject to replace, or submit a new comparison.');
-    if(p.action==='TOP_CLIENTS')throw new Error('Choose an explicit group report after a portfolio ranking, or compare ranked groups.');
+    if(['TOP_CLIENTS','HISTORICAL_GROUP_PEAK'].includes(p.action))throw new Error('Choose an explicit group report after a portfolio ranking, or compare ranked groups.');
     const old=p.groupId;setSubject(p,item);
     if(old!==p.groupId){
       p.candidateEntities=[];p.candidateEntityIds=[];p.candidateGroups=[];p.candidateGroupIds=[];
@@ -103,7 +103,7 @@ const PATCH_HANDLERS={
   },
   RERANK_SET(p,e){candidatesFromReferences(p,e.state);p.driver=e.c.driver?.value||null;p.metric='CHANGE';},
   SET_METRIC(p,e){candidatesFromReferences(p,e.state);p.metric=e.c.metric?.value||'PERCENT';p.driver=null;p.direction='UP';},
-  SET_LIMIT(p,e){p.topN=e.c.n.value;if(!['TOP_CLIENTS','TOP_ENTITY'].includes(p.action))throw new Error('Top N applies to a ranking.');},
+  SET_LIMIT(p,e){p.topN=e.c.n.value;if(!['TOP_CLIENTS','TOP_ENTITY','HISTORICAL_GROUP_PEAK'].includes(p.action))throw new Error('Top N applies to a ranking.');},
   SET_STYLE(p,e){p.concise=!/detail/.test(e.text);},
   GROUP_LEVEL(p){p.entity=null;p.entityId=null;p.entities=[];if(['ENTITY_DRIVER','ENTITY_CONTRIBUTION'].includes(p.action))p.action='GROUP_ROOT_CAUSE';},
   CHANGE_COMMAND(p,e){
@@ -119,6 +119,8 @@ export function projectContext({patch,state,context,slots,relations,identities,r
     if(patch.error)return patch;
     if(!state.action)return{error:'This follow-up needs a successfully executed report first. Pending previews and failed requests are not context.',code:'MISSING_CONTEXT'};
     Object.assign(p,planOnly(state));
+    if(state.action==='HISTORICAL_GROUP_PEAK'&&!['REPLACE_PERIOD','SET_LIMIT','SET_STYLE','REPEAT','EXCLUDE','INCLUDE','CLEAR_EXCLUSIONS'].includes(patch.rule.patch_type))
+      return {code:'UNSUPPORTED_CONTEXT',error:'After a historical peak ranking, specify the group ID and peak month in a new question. This follow-up is not yet supported for historical extrema.'};
     const handler=PATCH_HANDLERS[patch.rule.patch_type];
     try{if(!handler)throw new Error('Unsupported context patch.');handler(p,{patch,state,c:patch.captures,settings:registry.settings,registry,identities,text,notes});}
     catch(e){return{error:e.message,code:'AMBIGUOUS_CONTEXT'};}

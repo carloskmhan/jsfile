@@ -1,0 +1,27 @@
+{
+  "checks": [
+    {
+      "name": "Negative basis paragraph is absent from ordinary message",
+      "passed": true
+    },
+    {
+      "name": "Calculation notes exist and start collapsed",
+      "passed": true
+    },
+    {
+      "name": "Exact original diagnostic remains in details",
+      "passed": true
+    },
+    {
+      "name": "Diagnostic is available when expanded",
+      "passed": true
+    },
+    {
+      "name": "Disabled animation setting shows full answer immediately",
+      "passed": true
+    }
+  ],
+  "passed": 5,
+  "failed": 0,
+  "scope": "Synthetic modified fixture, real app UI; not bank data."
+}

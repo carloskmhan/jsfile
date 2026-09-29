@@ -23,12 +23,19 @@
     <button id="rwa-loading-retry" type="button" hidden>Reload and try again</button>
   </div>
 </div>
-<header><h1>RWA Reports <span class="badge">No ML</span></h1><button id="newchat">New chat</button></header>
-<main><div id="status" role="status">Loading validated CSV rule artifact…</div><progress id="progress"></progress>
+<header><h1>RWA Reports <span class="badge">No ML</span></h1><div class="rwa-header-actions"><button id="examples-toggle" type="button" aria-controls="example-panel" aria-expanded="false">Examples</button><button id="newchat">New chat</button></div></header>
+<main class="rwa-chat-layout">
+<aside id="example-panel" class="rwa-example-panel" aria-labelledby="example-heading">
+  <div class="rwa-example-heading"><h2 id="example-heading">Try a question</h2><button id="examples-close" type="button" aria-label="Close examples">×</button></div>
+  <p>Click to fill the message box, then press Send. Group questions use your selected group; otherwise the engine asks you to choose one.</p>
+  <div id="example-list"></div>
+  <p class="rwa-example-footnote">20 examples · Existing reports only. Add new wording in the rule manager.</p>
+</aside>
+<div id="status" role="status">Loading validated CSV rule artifact…</div><progress id="progress"></progress>
 <div id="welcome"><div class="subtle">DETERMINISTIC RWA REPORTS · NO MACHINE LEARNING</div><h2>What changed in your portfolio?</h2><p>Choose a report or type a supported command. Review the parameters before execution.</p><p class="subtle">Use an available group name or its system ID, then ask a follow-up.</p></div>
 <div id="history" role="log" aria-label="Conversation" aria-live="polite"></div></main>
 <footer><details id="settings"><summary>Optional context & data</summary><button id="reconnect-tableau" type="button" hidden>Reconnect to Tableau (reload page)</button><p><a href="commands_editor.html" target="_blank" rel="noopener">CSV rule maintenance</a></p><label class="catalog-search">Search available groups <input id="group-search" type="search" autocomplete="off" placeholder="Name or system group ID"></label><div class="catalog-toolbar"><span id="catalog-count" class="subtle"></span><button id="refresh-catalog" type="button">Refresh index</button></div><div class="controls"><label>Client group<select id="group"></select></label><label>Entity<select id="entity"></select></label><label>Month<select id="month"></select></label></div><p class="subtle">Changing context starts a new conversation. USD million.</p></details>
-<div class="composer"><div class="shortcuts"><button data-question="What was the main driver?">Main driver</button><button data-question="Top 10 entities">Top entities</button><button data-question="Top 10 groups">Top groups</button><button data-question="Do the drivers reconcile?">Reconciliation</button><button data-question="Show the last 3 months trend">Trend</button></div>
+<div class="composer"><div class="rwa-latest-row"><button id="jump-latest" type="button" hidden>↓ Latest message</button></div><div class="shortcuts"><button data-question="What was the main driver?">Main driver</button><button data-question="Top 10 entities">Top entities</button><button data-question="Top 10 groups">Top groups</button><button data-question="Do the drivers reconcile?">Reconciliation</button><button data-question="Show the last 3 months trend">Trend</button></div>
 <form id="form"><div class="inputbox"><textarea maxlength="1000" id="question" rows="1" aria-label="Message" placeholder="e.g. Explain the RWA movement for a group ID in July" disabled></textarea><button id="ask" type="submit" aria-label="Send message" title="Send" disabled>↑</button></div></form>
 <div id="context">No client selected · Name a client in your question</div><div class="subtle">Enter to send · Shift+Enter for a new line · Session memory only · No trained model · Governance review required.</div></div></footer>
 <!-- Presentation-only pending-query indicator; used by app.js. -->

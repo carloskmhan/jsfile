@@ -29,8 +29,8 @@ export function planDataRequest(question,catalog,registry,state={},context={}){
     }else if(/\b(the two|both|them)\b/.test(text))ids.push(...(state.comparisonSubjects||[]).map(x=>x.kind==='GROUP'?x.id:x.parentId));
     else if(/\b(it|that)\b/.test(text)&&state.groupId)ids.push(state.groupId);
   }
-  const inheritedPortfolio=state.action==='TOP_CLIENTS'&&!subjects.length&&!comparing&&/^(only|same|and|what about|how about|rank those|sort those|which of those|exclude|include|clear|top \d+ instead)/.test(text);
-  const portfolio=(!!lex.concepts.RANK&&!!lex.concepts.GROUP||!!lex.concepts.RANK_GROUP)&&!comparing||/\b(peers?|benchmark|portfolio|other groups)\b/.test(text)||inheritedPortfolio;
+  const inheritedPortfolio=['TOP_CLIENTS','HISTORICAL_GROUP_PEAK'].includes(state.action)&&!subjects.length&&!comparing&&/^(only|same|and|what about|how about|rank those|sort those|which of those|exclude|include|clear|top \d+ instead|again|repeat|brief|in detail|in one)/.test(text);
+  const portfolio=(!!lex.concepts.RANK&&!!lex.concepts.GROUP||!!lex.concepts.RANK_GROUP||!!lex.concepts.HISTORICAL_GROUP_REQUEST||!!(lex.concepts.HISTORICAL_HIGH||lex.concepts.HISTORICAL_LOW)&&!!lex.concepts.GROUP)&&!comparing||/\b(peers?|benchmark|portfolio|other groups)\b/.test(text)||inheritedPortfolio;
   if(!ids.length&&!portfolio){
     let selected;try{selected=resolveCatalogGroup(context.selectedClientGroupId||context.selectedClientGroup,catalog);}catch(e){return{ok:false,code:'AMBIGUOUS_ENTITY',message:e.message};}
     const id=selected?.client_group_id||state.groupId;if(id)ids=[id];

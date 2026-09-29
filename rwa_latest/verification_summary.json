@@ -1,0 +1,176 @@
+{
+  "release": "6.0.12-history-percent-review / 6.0.11-chat-ux",
+  "base_repository": "carloskmhan/jsfile",
+  "base_folder": "rwa_latest",
+  "base_commit": "bfd51962a6a760c0bafd161b0bdbc2c478a8bb00",
+  "tests": {
+    "existing_question_parse_regression": {
+      "passed": 626,
+      "total": 626
+    },
+    "existing_robustness_parse_regression": {
+      "passed": 225,
+      "total": 225,
+      "note": "159 accepted plans; 147 sample calculations answered, 12 correctly blocked for missing fixture data. Parse accuracy is not data availability."
+    },
+    "existing_compiler": {
+      "passed": 53,
+      "total": 53
+    },
+    "existing_provider_mock": {
+      "passed": 84,
+      "total": 84
+    },
+    "existing_number_unit_fuzzy_safeguards": {
+      "passed": 55,
+      "total": 55
+    },
+    "existing_local_manager_and_simple_manager_backend": {
+      "passed": 76,
+      "total": 76,
+      "evidence": "manager_regression.log"
+    },
+    "existing_wizard_browser": {
+      "passed": 39,
+      "total": 39,
+      "scope": "Actual browser code and Python transaction/compiler via test-only direct binding, not browser HTTP"
+    },
+    "existing_wizard_logic_safety": {
+      "passed": 110,
+      "total": 110
+    },
+    "historical_math_parser_and_warning_display": {
+      "passed": 42,
+      "total": 42,
+      "evidence": "reports/chat_ux/peak_checks.json"
+    },
+    "new_browser_ui": {
+      "passed": 30,
+      "total": 30,
+      "evidence": "reports/chat_ux/browser_chat_report.json"
+    },
+    "negative_note_browser": {
+      "passed": 5,
+      "total": 5,
+      "evidence": "reports/chat_ux/notes_browser.json"
+    },
+    "historical_card_wizard_browser": {
+      "passed": 9,
+      "total": 9,
+      "evidence": "reports/chat_ux/history_manager_browser.json"
+    },
+    "csv_migration": {
+      "passed": 9,
+      "total": 9,
+      "evidence": "tests/test_peak_installation.py"
+    },
+    "sidebar_example_parsing": {
+      "passed": 20,
+      "total": 20,
+      "evidence": "reports/chat_ux/examples_checks.json"
+    },
+    "real_loopback_http": {
+      "passed": 4,
+      "total": 4,
+      "evidence": "reports/chat_ux/localhost_check.json"
+    },
+    "javascript_python_syntax": {
+      "passed": 29,
+      "total": 29,
+      "evidence": "reports/chat_ux/syntax.json"
+    },
+    "synthetic_9228_group_history": {
+      "passed": true,
+      "scope": "36,912 synthetic in-memory entity-month rows; no Tableau/network benchmark",
+      "evidence": "reports/chat_ux/synthetic_scale.json"
+    }
+  },
+  "limitations": [
+    "Actual Chromium navigation to localhost returned ERR_BLOCKED_BY_ADMINISTRATOR. No policy bypass. Browser UI evidence uses in-memory HTML with actual code and synthetic data; Python HTTP checks are separate.",
+    "No real bank Tableau, SSO, RLS, internal server, or live customer data was tested.",
+    "The existing full runner has one inherited builder-integration text assertion requiring a previously removed long comparison-basis warning; it fails before and after this change. It was not deleted or weakened.",
+    "Historical extrema use only eligible observed/report-supplied monthly bases, not missing or builder-derived prior balances; coverage is explicitly reported.",
+    "Historical group report initially does not support driver/entity exclusions, amount/percentage threshold filters, mixed two-subject comparisons or ambiguous result-reference follow-ups. Rejected rather than ignored.",
+    "The existing complete-response, JSON-size, row-count, batching and request timeouts remain in force.",
+    "Historical rank calculation uses per-month group membership, not a constant-client cohort.",
+    "Tests are developer-known synthetic/regression evidence, not independent blind accuracy or bank approval."
+  ],
+  "preservation": {
+    "tableau_adapter.js": {
+      "unchanged": true,
+      "sha256": "786c26787b8b7d529ba50b3cbc65155efd6f2d2d7b876cfd72a047e89dd56b5b"
+    },
+    "group_catalog.js": {
+      "unchanged": true,
+      "sha256": "9fdfbb74cb95a7f85b05636f8a1500ab0c0f9ce70dec163b69808c55b5a9e266"
+    },
+    "semantic/dictionary.js": {
+      "unchanged": true,
+      "sha256": "2e164d30a2aeede72a0629de437b42307671439fc2fb3b57d50e56a7ee2f76ee"
+    },
+    "rule_client.js": {
+      "unchanged": true,
+      "sha256": "1dbeca0f7f147b0fdcfdcb1222ef57cb686cff5f933fd8e4c56e5244c6f2d58a"
+    },
+    "csv_adapter.js": {
+      "unchanged": true,
+      "sha256": "c2e3a4b9fa2998d23ae0de76b998d89f319f1854a9667512e519306e7d5a9387"
+    },
+    "driver_catalog.js": {
+      "unchanged": true,
+      "sha256": "06e0af0f5ab53e784e31737a1819575610f1fb548a9d551929668d24f413ca8d"
+    },
+    "bootstrap.js": {
+      "unchanged": true,
+      "sha256": "b81c6f4e05ace843c526b76ee2ce550bc13953527771cfe9a9248ff985767080"
+    },
+    "loading_screen.js": {
+      "unchanged": true,
+      "sha256": "316d0d13c48d03f626080246f2036a2c48c3d741a58060906f0ecfd268188ac8"
+    },
+    "styles.css": {
+      "unchanged": true,
+      "sha256": "387acaa40fd5dc7e3cc25c243219344e46d0d103b79141ec36c5322bc31fb7e0"
+    },
+    "tableau_config.txt": {
+      "unchanged": true,
+      "sha256": "2f655646a618b514c88d1bb9a9dd85c8611940f0fb55132c5c36cce4f76f3060"
+    },
+    "rules_config.txt": {
+      "unchanged": true,
+      "sha256": "844f1bb319938fb46b4a907ab74c27268ae46d08a76ddc419028e6043ed40a98"
+    },
+    "build_command_patterns.py": {
+      "unchanged": true,
+      "sha256": "70c22103260482fee5ffd156a57f98817180c8250f6ba0a7be944651978a19eb"
+    },
+    "rules/settings.csv": {
+      "unchanged": true,
+      "sha256": "1db72a4325b03f8241eab104fb85bc463a4f78b28c56dc71f0a06be17adb4d4c"
+    },
+    "rules/followups.csv": {
+      "unchanged": true,
+      "sha256": "7b4020a8e953b330615b4fac7e3e77bbd0bafefb99519119c16dec3f86693bb8"
+    },
+    "rules/temporal.csv": {
+      "unchanged": true,
+      "sha256": "b164491c6e44b0a0fb911966c54c93ea4eb67cadef3e09ebfb9612fd18c6c2a2"
+    },
+    "rules/units.csv": {
+      "unchanged": true,
+      "sha256": "02817e4cfa9fe033d21d1fa9e5e769ac35622196a91133f39db96cfbcf279018"
+    },
+    "rules/fuzzy_config.csv": {
+      "unchanged": true,
+      "sha256": "30542439faebdbae9864fe5bb5cae031e6b6bbb81078b3a591d50697f15ca791"
+    }
+  },
+  "root_rule_tables_or_generated_artifact_bundled": false,
+  "migration": "install_historical_peak.py reads existing canonical rules, validates with the existing compiler and commits through existing backup/journal/rollback; it adds vocabulary/one action and a contradiction feature without replacing user tables or lowering thresholds.",
+  "delivered_zip_fresh_install": {
+    "passed": true,
+    "evidence": "reports/chat_ux/delivered_patch_install.json",
+    "custom_phrase_preserved": "take me through"
+  },
+  "github_write_this_update": false
+}

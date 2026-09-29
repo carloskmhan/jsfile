@@ -1,0 +1,19 @@
+﻿key,value,notes
+top_k,3,Manual runtime policy / limit; never estimated from questions.
+max_query_chars,1000,Manual runtime policy / limit; never estimated from questions.
+max_top_n,50,Manual runtime policy / limit; never estimated from questions.
+default_top_n,5,Manual runtime policy / limit; never estimated from questions.
+default_window_months,3,Manual runtime policy / limit; never estimated from questions.
+max_window_months,120,Manual runtime policy / limit; never estimated from questions.
+unknown_token_limit,0,Manual runtime policy / limit; never estimated from questions.
+default_margin,0.08,Manual runtime policy / limit; never estimated from questions.
+inherit.intent,inherit,Manual runtime policy / limit; never estimated from questions.
+inherit.metric,inherit,Manual runtime policy / limit; never estimated from questions.
+inherit.scope,replace,Manual runtime policy / limit; never estimated from questions.
+inherit.period,inherit,Manual runtime policy / limit; never estimated from questions.
+inherit.entity,replace,Manual runtime policy / limit; never estimated from questions.
+inherit.filter,conditional,Manual runtime policy / limit; never estimated from questions.
+inherit.direction,reevaluate,Manual runtime policy / limit; never estimated from questions.
+inherit.result,never,Manual runtime policy / limit; never estimated from questions.
+inherit.excluded_drivers,inherit,Manual runtime policy / limit; never estimated from questions.
+inherit.result_references,basis_bound,Manual runtime policy / limit; never estimated from questions.

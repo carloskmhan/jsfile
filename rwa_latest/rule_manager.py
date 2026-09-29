@@ -37,7 +37,7 @@ MAX_FILE = 4_000_000
 MAX_CELL = 8000
 MAX_DRAFTS = 5
 DRAFT_TTL = 1800
-RUNTIME_ROOT = ('rule_parser.js', 'rwa_engine.js', 'csv_adapter.js', 'group_catalog.js', 'tableau_adapter.js', 'network.js', 'driver_catalog.js')
+RUNTIME_ROOT = ('rule_parser.js', 'rwa_engine.js', 'csv_adapter.js', 'group_catalog.js', 'tableau_adapter.js', 'network.js', 'driver_catalog.js', 'historical_peaks.js')
 META = {
  'synonyms.csv': ('Expressions & synonyms', 'Map new expressions to existing concepts such as ROOT and INCREASE.', ['concept','phrase','weight','enabled']),
  'followups.csv': ('Follow-ups', 'Define which slots to update from the last successful analysis.', ['rule_id','pattern','patch_type','target_slot','enabled']),

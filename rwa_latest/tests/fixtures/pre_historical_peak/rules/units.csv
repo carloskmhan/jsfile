@@ -1,0 +1,21 @@
+﻿phrase,kind,multiplier,enabled,notes
+usd,absolute,1,true,Canonical base-unit scale; never fuzzy.
+k,absolute,1000,true,Canonical base-unit scale; never fuzzy.
+thousand,absolute,1000,true,Canonical base-unit scale; never fuzzy.
+thousands,absolute,1000,true,Canonical base-unit scale; never fuzzy.
+m,absolute,1000000,true,Canonical base-unit scale; never fuzzy.
+mn,absolute,1000000,true,Canonical base-unit scale; never fuzzy.
+million,absolute,1000000,true,Canonical base-unit scale; never fuzzy.
+millions,absolute,1000000,true,Canonical base-unit scale; never fuzzy.
+usdm,absolute,1000000,true,Canonical base-unit scale; never fuzzy.
+bn,absolute,1000000000,true,Canonical base-unit scale; never fuzzy.
+b,absolute,1000000000,true,Canonical base-unit scale; never fuzzy.
+billion,absolute,1000000000,true,Canonical base-unit scale; never fuzzy.
+billions,absolute,1000000000,true,Canonical base-unit scale; never fuzzy.
+%,ratio,0.01,true,Canonical base-unit scale; never fuzzy.
+percent,ratio,0.01,true,Canonical base-unit scale; never fuzzy.
+percentage,ratio,0.01,true,Canonical base-unit scale; never fuzzy.
+bps,ratio,0.0001,true,Canonical base-unit scale; never fuzzy.
+bp,ratio,0.0001,true,Canonical base-unit scale; never fuzzy.
+basis point,ratio,0.0001,true,Canonical base-unit scale; never fuzzy.
+basis points,ratio,0.0001,true,Canonical base-unit scale; never fuzzy.

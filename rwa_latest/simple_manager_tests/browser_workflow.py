@@ -42,7 +42,7 @@ with tempfile.TemporaryDirectory(prefix='rwa-simple-ui-') as td:
    page.locator('article.capability').filter(has=page.locator('h3',has_text=title)).locator('.delete-button').click();page.click('#confirm-delete');page.wait_for_function("() => !document.querySelector('#delete-dialog').open",timeout=40000);wait_home()
   try:
    page.set_content(make_html(ROOT));wait_home()
-   mark('Home lists current capabilities',page.locator('.capability').count()==19)
+   mark('Home lists current capabilities',page.locator('.capability').count()==20)
    mark('Default home hides implementation fields',not any(w in page.locator('#home').inner_text() for w in ['required_slots','primary_features','min_confidence','grammar ID','synonyms.csv']))
    mark('Opening manager does not rewrite CSVs',before==backend.w.read_bytes_map())
    page.screenshot(path=str(REPORT/'01_home.png'),full_page=True)

@@ -6,8 +6,8 @@ import {norm,tokenize,overlaps} from '/engine/semantic/text.js';
 import {extractSlots} from '/engine/semantic/slots.js';
 import {GRAMMAR_GLUE} from '/engine/semantic/validation.js';
 const copy=x=>JSON.parse(JSON.stringify(x));
-const supportedMeasures={increase:['CHANGE','UP','RWA increase'],decrease:['CHANGE','DOWN','RWA decrease'],highest:['BALANCE','UP','Total RWA'],lowest:['BALANCE','DOWN','Total RWA'],percentage:['PERCENT','UP','Percentage increase'],question:[null,null,'As stated in the question']};
-export const FIELD_ACTIONS={GROUP_ROOT_CAUSE:'Explain RWA movement',ENTITY_DRIVER:'Explain an entity’s RWA movement',MAIN_DRIVER:'Show main contributing drivers',DRIVER_CONTRIBUTION:'Show driver contribution',DRIVER_CHECK:'Check a driver',ENTITY_CONTRIBUTION:'Show entity contribution',TOP_CLIENTS:'Rank client groups',TOP_ENTITY:'Rank entities',COMPARE:'Compare',TREND:'Show history',PEAK_MONTH:'Find the largest month or balance',OFFSETS:'Show offsets',DATA_QUALITY:'Check driver totals',CONCENTRATION:'Check entity concentration',MOVEMENT_CHECK:'Check RWA direction'};
+const supportedMeasures={peak_high:['PERCENT','UP','Highest monthly percentage change'],peak_low:['PERCENT','DOWN','Lowest monthly percentage change'],increase:['CHANGE','UP','RWA increase'],decrease:['CHANGE','DOWN','RWA decrease'],highest:['BALANCE','UP','Total RWA'],lowest:['BALANCE','DOWN','Total RWA'],percentage:['PERCENT','UP','Percentage increase'],question:[null,null,'As stated in the question']};
+export const FIELD_ACTIONS={HISTORICAL_GROUP_PEAK:'Rank groups by historical monthly percentage peaks',GROUP_ROOT_CAUSE:'Explain RWA movement',ENTITY_DRIVER:'Explain an entity’s RWA movement',MAIN_DRIVER:'Show main contributing drivers',DRIVER_CONTRIBUTION:'Show driver contribution',DRIVER_CHECK:'Check a driver',ENTITY_CONTRIBUTION:'Show entity contribution',TOP_CLIENTS:'Rank client groups',TOP_ENTITY:'Rank entities',COMPARE:'Compare',TREND:'Show history',PEAK_MONTH:'Find the largest month or balance',OFFSETS:'Show offsets',DATA_QUALITY:'Check driver totals',CONCENTRATION:'Check entity concentration',MOVEMENT_CHECK:'Check RWA direction'};
 
 export function interpretationMessage(parsed){
  if(parsed.ok)return 'Check that this matches what you intended.';
@@ -25,15 +25,16 @@ export function defaultContext(lab){const gs=lab.groups(),id=gs.find(g=>/samsung
 export function friendlyPeriod(p){if(!p)return 'Not specified';if(p.mode==='month')return new Date(p.month+'-01T12:00:00Z').toLocaleString('en',{month:'long',year:'numeric',timeZone:'UTC'});if(p.mode==='comparison')return p.months.map(m=>friendlyPeriod({mode:'month',month:m})).join(' versus ');if(p.mode==='window')return friendlyPeriod({mode:'month',month:p.start})+' to '+friendlyPeriod({mode:'month',month:p.end});return 'Available history through '+friendlyPeriod({mode:'month',month:p.end});}
 export function humanPlan(parsed,query=''){
  if(!parsed?.ok)return [];
- const p=parsed.plan,ranking=['TOP_CLIENTS','TOP_ENTITY'].includes(p.action),out=[];
+ const p=parsed.plan,ranking=['TOP_CLIENTS','TOP_ENTITY','HISTORICAL_GROUP_PEAK'].includes(p.action),out=[];
  out.push(['Report',FIELD_ACTIONS[p.action]||'Supported RWA report']);
- out.push(['Target',p.groups?.length?p.groups.join(' versus '):ranking&&p.action==='TOP_CLIENTS'?'Client groups':p.entities?.length?p.entities.join(' versus '):p.entity||p.group||'Available groups']);
+ out.push(['Target',p.groups?.length?p.groups.join(' versus '):ranking&&['TOP_CLIENTS','HISTORICAL_GROUP_PEAK'].includes(p.action)?'Client groups':p.entities?.length?p.entities.join(' versus '):p.entity||p.group||'Available groups']);
  if(p.entity&&p.group)out.push(['Client group',p.group]);
  out.push(['Measure',p.metric==='BALANCE'?'Total RWA':p.metric==='PERCENT'?'Percentage change':p.direction==='UP'?'RWA increase':p.direction==='DOWN'?'RWA decrease':'RWA movement']);
  if(ranking){out.push(['Order',p.direction==='DOWN'?(p.metric==='BALANCE'?'Lowest first':'Largest decreases first'):p.direction==='ABSOLUTE'?'Largest absolute changes first':p.direction==='AUTO'?'Automatic direction (resolved from data)':'Highest first']);out.push(['Number',String(p.topN)]);}
  let label=friendlyPeriod(p.period);if(/\b(last|previous) month\b/i.test(query))label='Previous month · '+label;
  if(/\b(current|this) month\b/i.test(query))label='Current analysis month · '+label;
  out.push(['Period',label]);
+ if(p.action==='HISTORICAL_GROUP_PEAK'){out.push(['Selection',p.direction==='DOWN'?'Minimum eligible monthly percentage per group':'Maximum eligible monthly percentage per group']);out.push(['Amount shown','Change in that selected month, not cumulative']);out.push(['Previous balance','Observed / explicitly reported only; never builder-derived']);}
  if(p.driver)out.push(['Driver',p.driver]);
  const excluded=[...(p.excludedDrivers||[]),...(p.excludedEntities||[]),...(p.excludedGroups||[])];if(excluded.length)out.push(['Excluding',excluded.join(', ')]);
  if(p.condition)out.push(['Filter',({GT:'Above',GTE:'At least',LT:'Below',LTE:'At most'}[p.condition.op]||p.condition.op)+' '+p.condition.value+(p.condition.metric==='PERCENT'?'%':' USD million')]);
@@ -52,7 +53,8 @@ export function friendlyError(err){
 }
 export function suggestion(recipe,d){
  const n=d.exampleNumber||10;let q;
- if(recipe.detail==='ranking'){
+ if(recipe.detail==='historical_ranking'){const low=d.measure==='peak_low';q=(d.numberMode==='default'?'Rank':'Show top '+n)+' groups by '+(low?'lowest':'highest')+' monthly percentage change';}
+ else if(recipe.detail==='ranking'){
    const target=recipe.key==='rank_groups'?'groups':'entities';
    const metric={increase:'by RWA increase',decrease:'by RWA decrease',highest:'by higher RWA balance',lowest:'by lower RWA balance',percentage:'by percentage increase',question:'by RWA movement'}[d.measure]||'by RWA increase';
    q=d.numberMode==='default'?`Rank ${target} ${metric}`:`Show top ${n} ${target} ${metric}`;
@@ -60,7 +62,8 @@ export function suggestion(recipe,d){
  else if(recipe.key==='direction_check')q='Did Samsung RWA '+(d.measure==='decrease'?'decrease':'increase');
  else if(recipe.key==='history')q='Show Samsung trend';
  else q=recipe.example.replace(/\?$/,'').replace(/ in July$/,'');
- if(recipe.detail==='ranking'||['movement','simple','history'].includes(recipe.detail)){
+ if(recipe.detail==='historical_ranking'){q+=d.periodMode==='last3'?' over the last 3 months':' over all history';}
+ else if(recipe.detail==='ranking'||['movement','simple','history'].includes(recipe.detail)){
    const per={previous:' in last month',current:' in this month',last3:' over the last 3 months',context:'',question:' in July'}[d.periodMode]??'';
    q+=per;
  }
@@ -80,11 +83,11 @@ export function checkMeaning(parsed,recipe,d,query,context,defaultN){
  if(recipe.patch){if(parsed.explain?.contextPatch?.type&&parsed.explain.contextPatch.type!==recipe.patch)return 'This follow-up updates a different part of the previous report.';return null;}
  if(!intendedAction(recipe,p))return 'The engine understands this as “'+(FIELD_ACTIONS[p.action]||'a different report')+'”, not “'+recipe.title+'”.';
  const [metric,direction]=supportedMeasures[d.measure]||[];
- if(['ranking','movement'].includes(recipe.detail)){
+ if(['ranking','movement','historical_ranking'].includes(recipe.detail)){
   if(metric&&p.metric!==metric)return 'The question asks for a different measure. Make “total RWA”, “increase” or “decrease” explicit.';
   if(direction&&(p.direction!==direction))return 'The direction does not match. Say increase or decrease explicitly.';
  }
- if(recipe.detail==='ranking'){
+ if(['ranking','historical_ranking'].includes(recipe.detail)){
    if(d.numberMode==='default'&&p.topN!==defaultN)return 'This example supplies a number. Remove it to use the engine default ('+defaultN+').';
    if(d.numberMode==='question'&&!(parsed.explain?.numbers||[]).some(x=>x.role==='topN'||x.kind==='integer'||x.unit==='count')&&!/\b(?:top|first|largest|biggest|highest|lowest)\s+(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|twenty)\b/i.test(query)){
      // The parser's typed top slot is checked below; ordinary numeric phrases are not guessed.
@@ -92,6 +95,7 @@ export function checkMeaning(parsed,recipe,d,query,context,defaultN){
      if(!/\b\d+\b|\b(one|two|three|four|five|six|seven|eight|nine|ten|twenty)\b/i.test(normalized))return 'Include a number in this example, or choose the default number.';
    }
  }
+ if(d.periodMode==='history'&&p.period?.mode!=='history')return 'Ask for all history explicitly in the example.';
  if(recipe.key==='compare_periods'&&p.period?.mode!=='comparison')return 'Name two periods to compare, for example June and July.';
  if(recipe.key==='compare_groups'&&p.groups?.length!==2)return 'Name two client groups to compare.';
  if(d.periodMode==='previous'){

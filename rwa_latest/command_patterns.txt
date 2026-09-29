@@ -9,8 +9,8 @@
   "generated": true,
   "scoreMeaning": "manually weighted rule-fit, not a probability",
   "sourceSha256": {
-    "commands.csv": "e34265c9e1a577f6e99859044680cd35ce0602e8689badafe8482aee0766b497",
-    "synonyms.csv": "a5875d12b69242ccaf3d2ec0bea52fec56991ca7212d421065555aa2cace0b08",
+    "commands.csv": "1cb22cf0715f79b4df2e9c998a9a5600703c3e071b46e94155a39c8da1962b6a",
+    "synonyms.csv": "457553b29eb473a676834285b87ad2ee8d9303c35ef29379a732b595d8a677ee",
     "followups.csv": "7b4020a8e953b330615b4fac7e3e77bbd0bafefb99519119c16dec3f86693bb8",
     "settings.csv": "1db72a4325b03f8241eab104fb85bc463a4f78b28c56dc71f0a06be17adb4d4c",
     "fuzzy_config.csv": "30542439faebdbae9864fe5bb5cae031e6b6bbb81078b3a591d50697f15ca791",
@@ -62,6 +62,10 @@
     "HAS_MODIFIER",
     "HAS_PERIOD",
     "HELP",
+    "HISTORICAL_GROUP_REQUEST",
+    "HISTORICAL_HIGH",
+    "HISTORICAL_LOW",
+    "HISTORY_SCOPE",
     "INCLUDE",
     "INCREASE",
     "LESS",
@@ -161,7 +165,8 @@
         "CONCENTRATION_REQUEST",
         "PEAK_REQUEST",
         "TREND_REQUEST",
-        "MOVEMENT_CHECK_REQUEST"
+        "MOVEMENT_CHECK_REQUEST",
+        "HISTORICAL_GROUP_REQUEST"
       ],
       "required_slots": [
         "metric",
@@ -209,7 +214,8 @@
         "RANK_ENTITY",
         "DRIVER_CHECK_REQUEST",
         "DRIVER_AMOUNT",
-        "MOVEMENT_CHECK_REQUEST"
+        "MOVEMENT_CHECK_REQUEST",
+        "HISTORICAL_GROUP_REQUEST"
       ],
       "required_slots": [
         "metric",
@@ -256,7 +262,8 @@
         "DRIVER_CHECK_REQUEST",
         "RANK_GROUP",
         "RANK_ENTITY",
-        "MOVEMENT_CHECK_REQUEST"
+        "MOVEMENT_CHECK_REQUEST",
+        "HISTORICAL_GROUP_REQUEST"
       ],
       "required_slots": [
         "metric",
@@ -302,7 +309,8 @@
         "COMPARE_REQUEST",
         "RANK_GROUP",
         "RANK_ENTITY",
-        "MOVEMENT_CHECK_REQUEST"
+        "MOVEMENT_CHECK_REQUEST",
+        "HISTORICAL_GROUP_REQUEST"
       ],
       "required_slots": [
         "metric",
@@ -351,7 +359,8 @@
         "RANK_GROUP",
         "RANK_ENTITY",
         "DRIVER_AMOUNT",
-        "MOVEMENT_CHECK_REQUEST"
+        "MOVEMENT_CHECK_REQUEST",
+        "HISTORICAL_GROUP_REQUEST"
       ],
       "required_slots": [
         "metric",
@@ -396,7 +405,8 @@
         "COMPARE_REQUEST",
         "RANK_ENTITY",
         "RWA_DRIVER",
-        "MOVEMENT_CHECK_REQUEST"
+        "MOVEMENT_CHECK_REQUEST",
+        "HISTORICAL_GROUP_REQUEST"
       ],
       "required_slots": [
         "metric",
@@ -444,7 +454,8 @@
       "contradiction_features": [
         "COMPARE_REQUEST",
         "RANK_GROUP",
-        "MOVEMENT_CHECK_REQUEST"
+        "MOVEMENT_CHECK_REQUEST",
+        "HISTORICAL_GROUP_REQUEST"
       ],
       "required_slots": [
         "metric",
@@ -495,7 +506,8 @@
         "RWA_DRIVER",
         "RANK_GROUP",
         "RANK_ENTITY",
-        "MOVEMENT_CHECK_REQUEST"
+        "MOVEMENT_CHECK_REQUEST",
+        "HISTORICAL_GROUP_REQUEST"
       ],
       "required_slots": [
         "metric",
@@ -543,7 +555,8 @@
         "RANK_GROUP",
         "RANK_ENTITY",
         "PEAK_REQUEST",
-        "MOVEMENT_CHECK_REQUEST"
+        "MOVEMENT_CHECK_REQUEST",
+        "HISTORICAL_GROUP_REQUEST"
       ],
       "required_slots": [
         "metric",
@@ -589,7 +602,8 @@
         "RANK_GROUP",
         "RANK_ENTITY",
         "TREND_REQUEST",
-        "MOVEMENT_CHECK_REQUEST"
+        "MOVEMENT_CHECK_REQUEST",
+        "HISTORICAL_GROUP_REQUEST"
       ],
       "required_slots": [
         "metric",
@@ -635,7 +649,8 @@
         "COMPARE_REQUEST",
         "RANK_GROUP",
         "RANK_ENTITY",
-        "MOVEMENT_CHECK_REQUEST"
+        "MOVEMENT_CHECK_REQUEST",
+        "HISTORICAL_GROUP_REQUEST"
       ],
       "required_slots": [
         "metric",
@@ -680,7 +695,8 @@
         "COMPARE_REQUEST",
         "RANK_GROUP",
         "RANK_ENTITY",
-        "MOVEMENT_CHECK_REQUEST"
+        "MOVEMENT_CHECK_REQUEST",
+        "HISTORICAL_GROUP_REQUEST"
       ],
       "required_slots": [
         "metric",
@@ -725,7 +741,8 @@
         "COMPARE_REQUEST",
         "RANK_GROUP",
         "RANK_ENTITY",
-        "MOVEMENT_CHECK_REQUEST"
+        "MOVEMENT_CHECK_REQUEST",
+        "HISTORICAL_GROUP_REQUEST"
       ],
       "required_slots": [
         "metric",
@@ -774,7 +791,8 @@
         "DRIVER_CHECK_REQUEST",
         "MAIN_DRIVER_REQUEST",
         "TREND_REQUEST",
-        "PEAK_REQUEST"
+        "PEAK_REQUEST",
+        "HISTORICAL_GROUP_REQUEST"
       ],
       "required_slots": [
         "metric",
@@ -803,6 +821,57 @@
       "source": {
         "file": "commands.csv",
         "line": 15
+      }
+    },
+    {
+      "command_id": "HISTORICAL_PEAK_GROUPS",
+      "intent": "HISTORICAL_PERCENT_RANKING",
+      "action": "HISTORICAL_GROUP_PEAK",
+      "response_template": "HISTORICAL_GROUP_PEAK",
+      "scope": "PORTFOLIO",
+      "grammar": "HISTORICAL_RANKING",
+      "primary_features": [
+        "HISTORICAL_GROUP_REQUEST"
+      ],
+      "supporting_features": [],
+      "contradiction_features": [
+        "COMPARE_REQUEST",
+        "RANK_ENTITY",
+        "RWA_DRIVER",
+        "MAIN_DRIVER_REQUEST",
+        "TREND_REQUEST",
+        "MOVEMENT_CHECK_REQUEST",
+        "BALANCE",
+        "ABSOLUTE"
+      ],
+      "required_slots": [
+        "metric",
+        "topN"
+      ],
+      "optional_slots": [
+        "period",
+        "direction",
+        "exclusions",
+        "candidateSet",
+        "concise"
+      ],
+      "forbidden_slots": [
+        "forecast"
+      ],
+      "intent_weight": 40.0,
+      "metric_weight": 20.0,
+      "scope_weight": 10.0,
+      "subject_weight": 10.0,
+      "period_weight": 5.0,
+      "modifier_weight": 5.0,
+      "contradiction_weight": -40.0,
+      "min_confidence": 0.72,
+      "min_margin": 0.08,
+      "enabled": true,
+      "notes": "Monthly percentage extrema per group; show selected month and monthly amount. Separate reviewed executor, not cumulative RWA.",
+      "source": {
+        "file": "commands.csv",
+        "line": 16
       }
     }
   ],
@@ -6999,6 +7068,369 @@
         "file": "synonyms.csv",
         "line": 564
       }
+    },
+    {
+      "concept": "HISTORICAL_HIGH",
+      "phrase": "highest monthly percentage change",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 565
+      }
+    },
+    {
+      "concept": "HISTORICAL_HIGH",
+      "phrase": "highest monthly percentage increase",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 566
+      }
+    },
+    {
+      "concept": "HISTORICAL_HIGH",
+      "phrase": "maximum monthly percentage change",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 567
+      }
+    },
+    {
+      "concept": "HISTORICAL_HIGH",
+      "phrase": "peak monthly percentage change",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 568
+      }
+    },
+    {
+      "concept": "HISTORICAL_HIGH",
+      "phrase": "peak monthly percentage increase",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 569
+      }
+    },
+    {
+      "concept": "HISTORICAL_HIGH",
+      "phrase": "highest month on month percentage change",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 570
+      }
+    },
+    {
+      "concept": "HISTORICAL_HIGH",
+      "phrase": "highest month-on-month percentage change",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 571
+      }
+    },
+    {
+      "concept": "HISTORICAL_HIGH",
+      "phrase": "highest mom percentage change",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 572
+      }
+    },
+    {
+      "concept": "HISTORICAL_HIGH",
+      "phrase": "peak rwa increase",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 573
+      }
+    },
+    {
+      "concept": "HISTORICAL_LOW",
+      "phrase": "lowest monthly percentage change",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 574
+      }
+    },
+    {
+      "concept": "HISTORICAL_LOW",
+      "phrase": "lowest monthly percentage increase",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 575
+      }
+    },
+    {
+      "concept": "HISTORICAL_LOW",
+      "phrase": "minimum monthly percentage change",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 576
+      }
+    },
+    {
+      "concept": "HISTORICAL_LOW",
+      "phrase": "lowest month on month percentage change",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 577
+      }
+    },
+    {
+      "concept": "HISTORICAL_LOW",
+      "phrase": "lowest month-on-month percentage change",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 578
+      }
+    },
+    {
+      "concept": "HISTORICAL_LOW",
+      "phrase": "lowest mom percentage change",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 579
+      }
+    },
+    {
+      "concept": "HISTORICAL_LOW",
+      "phrase": "trough monthly percentage change",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 580
+      }
+    },
+    {
+      "concept": "HISTORY_SCOPE",
+      "phrase": "all history",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 581
+      }
+    },
+    {
+      "concept": "HISTORY_SCOPE",
+      "phrase": "all available history",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 582
+      }
+    },
+    {
+      "concept": "HISTORY_SCOPE",
+      "phrase": "entire history",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 583
+      }
+    },
+    {
+      "concept": "HISTORY_SCOPE",
+      "phrase": "full history",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 584
+      }
+    },
+    {
+      "concept": "HISTORY_SCOPE",
+      "phrase": "whole history",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 585
+      }
+    },
+    {
+      "concept": "HISTORY_SCOPE",
+      "phrase": "the entire period",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 586
+      }
+    },
+    {
+      "concept": "HISTORY_SCOPE",
+      "phrase": "over all history",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 587
+      }
+    },
+    {
+      "concept": "HISTORY_SCOPE",
+      "phrase": "over all available history",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 588
+      }
+    },
+    {
+      "concept": "HISTORY_SCOPE",
+      "phrase": "across all history",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 589
+      }
+    },
+    {
+      "concept": "HISTORY_SCOPE",
+      "phrase": "over the entire period",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 590
+      }
+    },
+    {
+      "concept": "HISTORY_SCOPE",
+      "phrase": "over full history",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 591
+      }
+    },
+    {
+      "concept": "HISTORY_SCOPE",
+      "phrase": "over entire history",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 592
+      }
+    },
+    {
+      "concept": "HISTORY_SCOPE",
+      "phrase": "across the entire period",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 593
+      }
+    },
+    {
+      "concept": "PERCENT",
+      "phrase": "monthly percentage change",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 594
+      }
+    },
+    {
+      "concept": "PERCENT",
+      "phrase": "monthly percentage increase",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 595
+      }
+    },
+    {
+      "concept": "PERCENT",
+      "phrase": "mom percentage change",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 596
+      }
+    },
+    {
+      "concept": "PERCENT",
+      "phrase": "month on month percentage change",
+      "weight": 1.0,
+      "enabled": true,
+      "notes": "Reviewed historical percentage report vocabulary.",
+      "source": {
+        "file": "synonyms.csv",
+        "line": 597
+      }
     }
   ],
   "aliases": [],
@@ -9201,6 +9633,7 @@
     "DRIVER_AMOUNT",
     "DRIVER_CHECK",
     "ENTITY_AMOUNT",
+    "HISTORICAL_RANKING",
     "HISTORY",
     "MAIN_DRIVER",
     "MOVEMENT_CHECK",
@@ -9676,13 +10109,53 @@
       "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
     },
     {
+      "a": "peak",
+      "b": "peak monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "peak",
+      "b": "peak monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "peak",
+      "b": "peak rwa increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
       "a": "highest month",
       "b": "highest",
       "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
     },
     {
+      "a": "highest month",
+      "b": "highest month on month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
       "a": "lowest month",
       "b": "lowest",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "lowest month",
+      "b": "lowest month on month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "trough",
+      "b": "trough monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "maximum",
+      "b": "maximum monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "minimum",
+      "b": "minimum monthly percentage change",
       "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
     },
     {
@@ -9801,6 +10274,11 @@
       "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
     },
     {
+      "a": "rwa",
+      "b": "peak rwa increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
       "a": "increase",
       "b": "percentage increase",
       "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
@@ -9808,6 +10286,31 @@
     {
       "a": "increase",
       "b": "sudden increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "increase",
+      "b": "highest monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "increase",
+      "b": "peak monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "increase",
+      "b": "peak rwa increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "increase",
+      "b": "lowest monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "increase",
+      "b": "monthly percentage increase",
       "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
     },
     {
@@ -9921,8 +10424,198 @@
       "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
     },
     {
+      "a": "percentage",
+      "b": "highest monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "highest monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "maximum monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "peak monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "peak monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "highest month on month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "highest month-on-month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "highest mom percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "lowest monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "lowest monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "minimum monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "lowest month on month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "lowest month-on-month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "lowest mom percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "trough monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "mom percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage",
+      "b": "month on month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
       "a": "percentage change",
       "b": "change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage change",
+      "b": "highest monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage change",
+      "b": "maximum monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage change",
+      "b": "peak monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage change",
+      "b": "highest month on month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage change",
+      "b": "highest month-on-month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage change",
+      "b": "highest mom percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage change",
+      "b": "lowest monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage change",
+      "b": "minimum monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage change",
+      "b": "lowest month on month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage change",
+      "b": "lowest month-on-month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage change",
+      "b": "lowest mom percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage change",
+      "b": "trough monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage change",
+      "b": "monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage change",
+      "b": "mom percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage change",
+      "b": "month on month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage increase",
+      "b": "highest monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage increase",
+      "b": "peak monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage increase",
+      "b": "lowest monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "percentage increase",
+      "b": "monthly percentage increase",
       "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
     },
     {
@@ -10113,6 +10806,31 @@
     {
       "a": "more than",
       "b": "no more than",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "over",
+      "b": "over all history",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "over",
+      "b": "over all available history",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "over",
+      "b": "over the entire period",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "over",
+      "b": "over full history",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "over",
+      "b": "over entire history",
       "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
     },
     {
@@ -10431,8 +11149,188 @@
       "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
     },
     {
+      "a": "change",
+      "b": "highest monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "change",
+      "b": "maximum monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "change",
+      "b": "peak monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "change",
+      "b": "highest month on month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "change",
+      "b": "highest month-on-month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "change",
+      "b": "highest mom percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "change",
+      "b": "lowest monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "change",
+      "b": "minimum monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "change",
+      "b": "lowest month on month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "change",
+      "b": "lowest month-on-month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "change",
+      "b": "lowest mom percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "change",
+      "b": "trough monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "change",
+      "b": "monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "change",
+      "b": "mom percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "change",
+      "b": "month on month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "monthly",
+      "b": "highest monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "monthly",
+      "b": "highest monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "monthly",
+      "b": "maximum monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "monthly",
+      "b": "peak monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "monthly",
+      "b": "peak monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "monthly",
+      "b": "lowest monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "monthly",
+      "b": "lowest monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "monthly",
+      "b": "minimum monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "monthly",
+      "b": "trough monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "monthly",
+      "b": "monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "monthly",
+      "b": "monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
       "a": "part",
       "b": "how large is the unexplained part",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "highest",
+      "b": "highest monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "highest",
+      "b": "highest monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "highest",
+      "b": "highest month on month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "highest",
+      "b": "highest month-on-month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "highest",
+      "b": "highest mom percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "lowest",
+      "b": "lowest monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "lowest",
+      "b": "lowest monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "lowest",
+      "b": "lowest month on month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "lowest",
+      "b": "lowest month-on-month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "lowest",
+      "b": "lowest mom percentage change",
       "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
     },
     {
@@ -10453,6 +11351,106 @@
     {
       "a": "show us",
       "b": "show",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "highest monthly percentage change",
+      "b": "monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "highest monthly percentage increase",
+      "b": "monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "maximum monthly percentage change",
+      "b": "monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "peak monthly percentage change",
+      "b": "monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "peak monthly percentage increase",
+      "b": "monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "highest month on month percentage change",
+      "b": "month on month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "highest mom percentage change",
+      "b": "mom percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "lowest monthly percentage change",
+      "b": "monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "lowest monthly percentage increase",
+      "b": "monthly percentage increase",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "minimum monthly percentage change",
+      "b": "monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "lowest month on month percentage change",
+      "b": "month on month percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "lowest mom percentage change",
+      "b": "mom percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "trough monthly percentage change",
+      "b": "monthly percentage change",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "all history",
+      "b": "over all history",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "all history",
+      "b": "across all history",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "all available history",
+      "b": "over all available history",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "entire history",
+      "b": "over entire history",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "full history",
+      "b": "over full history",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "the entire period",
+      "b": "over the entire period",
+      "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
+    },
+    {
+      "a": "the entire period",
+      "b": "across the entire period",
       "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
     }
   ]

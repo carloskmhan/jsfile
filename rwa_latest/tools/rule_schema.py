@@ -59,3 +59,8 @@ SETTINGS['max_fuzzy_unmatched_tokens'] = (int,12,1,24)
 
 # v6: customer identities are runtime data, not human-managed language rules.
 HEADERS.pop('aliases.csv', None)
+
+# 6.0.12: explicit historical monthly percentage extreme report.
+ACTIONS.add('HISTORICAL_GROUP_PEAK')
+CONCEPTS.update({'HISTORICAL_HIGH','HISTORICAL_LOW','HISTORY_SCOPE','HISTORICAL_GROUP_REQUEST'})
+GRAMMARS.add('HISTORICAL_RANKING')
