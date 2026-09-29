@@ -190,3 +190,50 @@ html[data-rwa-loading-state="failed"] #rwa-loading-screen .rwa-loading-dot {
   .rwa-signin-heading { padding: 12px; }
   #tableau-panel.rwa-signin-panel { border-radius: 10px; }
 }
+
+/* 6.0.10-report-ui: indeterminate Run report feedback; no timing/data changes. */
+.plan-preview .confirm-report {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55em;
+  min-inline-size: 9.5em;
+  vertical-align: middle;
+}
+.plan-preview .confirm-report.is-running:disabled {
+  opacity: 1; /* The pending state is not the washed-out idle-disabled state. */
+  cursor: progress;
+  background: var(--rwa-run-button-background, #174e73);
+  border-color: var(--rwa-run-button-background, #174e73);
+  color: var(--rwa-run-button-foreground, #fff);
+}
+.plan-preview .rwa-report-spinner {
+  box-sizing: border-box;
+  display: inline-block;
+  flex: 0 0 1em;
+  inline-size: 1em;
+  block-size: 1em;
+  border: 2px solid currentColor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  animation: rwa-report-spin .75s linear infinite;
+  will-change: transform;
+}
+.plan-preview .rwa-report-status {
+  display: inline-block;
+  margin: .5em 0 .5em .7em;
+  max-inline-size: 100%;
+  font-size: .875em;
+  line-height: 1.5;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+.plan-preview .rwa-report-status[hidden] { display: none; }
+@keyframes rwa-report-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .plan-preview .rwa-report-spinner { animation: none; will-change: auto; }
+}
+@media (max-width: 600px) {
+  .plan-preview .rwa-report-status { display: block; margin-inline-start: 0; }
+  .plan-preview .rwa-report-status[hidden] { display: none; }
+}

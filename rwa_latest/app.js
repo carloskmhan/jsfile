@@ -115,6 +115,35 @@ export async function main(config){
    if([...$('month').options].some(o=>o.value===oldMonth))$('month').value=oldMonth;
    context(r.conversationContext);
  }
+ // 6.0.10-report-ui: no image/font/network dependency for this pending state.
+ function setReportButtonRunning(button,running,idleLabel='Run report'){
+   button.classList.toggle('is-running',running);
+   if(running){
+     button.setAttribute('aria-busy','true');
+     const icon=document.createElement('span');icon.className='rwa-report-spinner';
+     icon.setAttribute('aria-hidden','true');
+     const label=document.createElement('span');label.textContent='Running\u2026';
+     button.replaceChildren(icon,label);
+   }else{
+     button.removeAttribute('aria-busy');button.textContent=idleLabel;
+   }
+ }
+ function reportPaintOpportunity(){
+   // Two frames give the browser a paint opportunity before synchronous work.
+   // The fallback is bounded for hidden/throttled tabs; no artificial hold time.
+   return new Promise(resolve=>{
+     let frame=null,timer=null,done=false;
+     const finish=()=>{
+       if(done)return;done=true;clearTimeout(timer);
+       if(frame!==null&&typeof cancelAnimationFrame==='function')cancelAnimationFrame(frame);
+       resolve();
+     };
+     timer=setTimeout(finish,80);
+     if(typeof requestAnimationFrame==='function'&&document.visibilityState!=='hidden')
+       frame=requestAnimationFrame(()=>{frame=requestAnimationFrame(finish);});
+     else{clearTimeout(timer);timer=setTimeout(finish,0);}
+   });
+ }
  function preview(a,r){
    results(a,r);if(r.status!=='preview')return;
    const requestEpoch=epoch,sourceVersion=provider.version,fields=document.createElement('div');fields.className='plan-preview';
@@ -135,18 +164,40 @@ export async function main(config){
    if(metadata.rows.some(row=>row.attributes?.rwa_prev_source?.startsWith('derived_')))f['Comparison basis']='Builder-derived previous RWA, not independently observed prior-month balance';
    for(const [k,v]of Object.entries(f)){const row=document.createElement('div');row.textContent=k+': '+v;fields.append(row);}
    const run=document.createElement('button'),cancel=document.createElement('button');run.textContent='Run report';cancel.textContent='Cancel';run.type=cancel.type='button';run.className='confirm-report';cancel.className='cancel-report';
+   // Presentation patch: keep one-shot confirmation and scope checks unchanged.
+   const runStatus=document.createElement('span');runStatus.className='rwa-report-status';
+   runStatus.setAttribute('role','status');runStatus.setAttribute('aria-live','polite');
+   runStatus.setAttribute('aria-atomic','true');runStatus.hidden=true;
    run.onclick=async()=>{
-     if(busy)return;busy=true;controls();run.disabled=cancel.disabled=true;
+     if(busy||!ready||run.dataset.finished)return;
+     busy=true;controls();run.disabled=cancel.disabled=true;
+     setReportButtonRunning(run,true);runStatus.hidden=false;
+     runStatus.textContent='Checking authorised Tableau scope...';
+     let completed=false;
      try{
+       // Let the pending button paint even if the provider resolves immediately.
+       await reportPaintOpportunity();
        if(requestEpoch!==epoch||sourceVersion!==provider.version)throw new Error('Source scope changed. Submit the request again.');
        await provider.verifyCatalog(); // Names/IDs still available before confirming this snapshot.
        if(requestEpoch!==epoch||sourceVersion!==provider.version)throw new Error('The authorised catalog changed after preview. Submit again.');
-       const out=client.confirm(r.previewToken);a.replaceChildren(a.firstChild,a.querySelector('.message'));results(a,out);accepted(out);
+       runStatus.textContent='Calculating report...';
+       await reportPaintOpportunity();
+       // The extra rendering opportunity must never weaken stale-preview checks.
+       if(requestEpoch!==epoch||sourceVersion!==provider.version)throw new Error('The authorised catalog changed before calculation. Submit again.');
+       const out=client.confirm(r.previewToken);
+       a.replaceChildren(a.firstChild,a.querySelector('.message'));results(a,out);accepted(out);
+       completed=out.ok===true;
      }catch(e){client.invalidate();offerReconnect();a.querySelector('.message').textContent='No report produced: '+formatRuntimeError(e,{stage:'CONFIRM_REPORT'});}
-     finally{run.dataset.finished=cancel.dataset.finished='true';busy=false;controls();}
+     finally{
+       // Clear motion on success AND failure. Failed/consumed previews stay inert.
+       setReportButtonRunning(run,false,completed?'Completed':'Not run');
+       runStatus.textContent='';runStatus.hidden=true;
+       run.dataset.finished=cancel.dataset.finished='true';
+       run.disabled=cancel.disabled=true;busy=false;controls();
+     }
    };
    cancel.onclick=()=>{client.cancel();run.dataset.finished=cancel.dataset.finished='true';run.disabled=cancel.disabled=true;a.querySelector('.message').textContent='Cancelled. No report calculation ran.';};
-   fields.append(run,cancel);a.insertBefore(fields,a.querySelector('details'));
+   fields.append(run,cancel,runStatus);a.insertBefore(fields,a.querySelector('details'));
  }
  function updateQueryProgress(p){
    if(!loadingArticle||!busy||!p||p.phase!=='active')return;
