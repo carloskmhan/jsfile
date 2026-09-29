@@ -1,0 +1,37 @@
+[
+  {
+    "path": "app.js",
+    "before": "b3cfb3cc6c71cddb481d1cac00598168c3b0f67cdf306143cef83fbcc362f177",
+    "after": "16a363b858a86a0d2ce2fc2e52ebd0a43c05501643397dfb83b91c01dacce1ce",
+    "edits": [
+      [117,117," // 6.0.10-report-ui: no image/font/network dependency for this pending state.\n function setReportButtonRunning(button,running,idleLabel='Run report'){\n   button.classList.toggle('is-running',running);\n   if(running){\n     button.setAttribute('aria-busy','true');\n     const icon=document.createElement('span');icon.className='rwa-report-spinner';\n     icon.setAttribute('aria-hidden','true');\n     const label=document.createElement('span');label.textContent='Running\\u2026';\n     button.replaceChildren(icon,label);\n   }else{\n     button.removeAttribute('aria-busy');button.textContent=idleLabel;\n   }\n }\n function reportPaintOpportunity(){\n   // Two frames give the browser a paint opportunity before synchronous work.\n   // The fallback is bounded for hidden/throttled tabs; no artificial hold time.\n   return new Promise(resolve=>{\n     let frame=null,timer=null,done=false;\n     const finish=()=>{\n       if(done)return;done=true;clearTimeout(timer);\n       if(frame!==null&&typeof cancelAnimationFrame==='function')cancelAnimationFrame(frame);\n       resolve();\n     };\n     timer=setTimeout(finish,80);\n     if(typeof requestAnimationFrame==='function'&&document.visibilityState!=='hidden')\n       frame=requestAnimationFrame(()=>{frame=requestAnimationFrame(finish);});\n     else{clearTimeout(timer);timer=setTimeout(finish,0);}\n   });\n }\n"],
+      [137,137,"   // Presentation patch: keep one-shot confirmation and scope checks unchanged.\n   const runStatus=document.createElement('span');runStatus.className='rwa-report-status';\n   runStatus.setAttribute('role','status');runStatus.setAttribute('aria-live','polite');\n   runStatus.setAttribute('aria-atomic','true');runStatus.hidden=true;\n"],
+      [138,139,"     if(busy||!ready||run.dataset.finished)return;\n     busy=true;controls();run.disabled=cancel.disabled=true;\n     setReportButtonRunning(run,true);runStatus.hidden=false;\n     runStatus.textContent='Checking authorised Tableau scope...';\n     let completed=false;\n"],
+      [140,140,"       // Let the pending button paint even if the provider resolves immediately.\n       await reportPaintOpportunity();\n"],
+      [143,144,"       runStatus.textContent='Calculating report...';\n       await reportPaintOpportunity();\n       // The extra rendering opportunity must never weaken stale-preview checks.\n       if(requestEpoch!==epoch||sourceVersion!==provider.version)throw new Error('The authorised catalog changed before calculation. Submit again.');\n       const out=client.confirm(r.previewToken);\n       a.replaceChildren(a.firstChild,a.querySelector('.message'));results(a,out);accepted(out);\n       completed=out.ok===true;\n"],
+      [145,146,"     finally{\n       // Clear motion on success AND failure. Failed/consumed previews stay inert.\n       setReportButtonRunning(run,false,completed?'Completed':'Not run');\n       runStatus.textContent='';runStatus.hidden=true;\n       run.dataset.finished=cancel.dataset.finished='true';\n       run.disabled=cancel.disabled=true;busy=false;controls();\n     }\n"],
+      [148,149,"   fields.append(run,cancel,runStatus);a.insertBefore(fields,a.querySelector('details'));\n"]
+    ]
+  },
+  {
+    "path": "loading_screen.css",
+    "before": "135329f121d4c3ead68368fcc7901b30d9a2e8ee148e2413e7b32d489f278c13",
+    "after": "e2124b63694de8cb9ea7fc3547a9fba50c35cd235a55c45acddac9e7cf098047",
+    "edits": [[192,192,"\n/* 6.0.10-report-ui: indeterminate Run report feedback; no timing/data changes. */\n.plan-preview .confirm-report {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: .55em;\n  min-inline-size: 9.5em;\n  vertical-align: middle;\n}\n.plan-preview .confirm-report.is-running:disabled {\n  opacity: 1; /* The pending state is not the washed-out idle-disabled state. */\n  cursor: progress;\n  background: var(--rwa-run-button-background, #174e73);\n  border-color: var(--rwa-run-button-background, #174e73);\n  color: var(--rwa-run-button-foreground, #fff);\n}\n.plan-preview .rwa-report-spinner {\n  box-sizing: border-box;\n  display: inline-block;\n  flex: 0 0 1em;\n  inline-size: 1em;\n  block-size: 1em;\n  border: 2px solid currentColor;\n  border-inline-end-color: transparent;\n  border-radius: 50%;\n  animation: rwa-report-spin .75s linear infinite;\n  will-change: transform;\n}\n.plan-preview .rwa-report-status {\n  display: inline-block;\n  margin: .5em 0 .5em .7em;\n  max-inline-size: 100%;\n  font-size: .875em;\n  line-height: 1.5;\n  vertical-align: middle;\n  overflow-wrap: anywhere;\n}\n.plan-preview .rwa-report-status[hidden] { display: none; }\n@keyframes rwa-report-spin { to { transform: rotate(360deg); } }\n@media (prefers-reduced-motion: reduce) {\n  .plan-preview .rwa-report-spinner { animation: none; will-change: auto; }\n}\n@media (max-width: 600px) {\n  .plan-preview .rwa-report-status { display: block; margin-inline-start: 0; }\n  .plan-preview .rwa-report-status[hidden] { display: none; }\n}\n"]]
+  },
+  {
+    "path": "rwa_engine.js",
+    "before": "a15b9bdec2d6b71042b74c78d1e7df412c68790ee2a436a90a11d30d0689f210",
+    "after": "bbe20fdd33522bc29c2ebfc917204bb8a3c9a83f40b523e3a9b3c50861b505e3",
+    "edits": [
+      [189,190,"  // 6.0.10-report-ui: show the existing system ID, never infer one from a name.\n  const groupIdText=x=>x.id===undefined||x.id===null||x.id===''?'Not provided':String(x.id);\n  const rankLabel=(r,x)=>r.dimension==='GROUP'?`${x.name} [Group ID: ${groupIdText(x)}]`:(x.displayName||x.name);\n  const rankText=(r)=>r.items.map(x=>`${x.rank}. ${rankLabel(r,x)}: ${p.metric==='PERCENT'?x.value.toFixed(1)+'%':this.amt(x.value)}${p.driver?' attributed to '+p.driver:''}`).join('\\n');\n"],
+      [198,199,"   const valueColumn=p.driver?p.driver+' ('+unit+')':p.metric+' ('+unit+')';\n   table=result.dimension==='GROUP'\n     ?{columns:['Rank','Group ID','Group name',valueColumn],rows:result.items.map(x=>[x.rank,groupIdText(x),x.name,Number(x.value.toFixed(3))])}\n     :{columns:['Rank','Name',valueColumn],rows:result.items.map(x=>[x.rank,x.displayName||x.name,Number(x.value.toFixed(3))])};\n"]
+    ]
+  },
+  {
+    "path": "semantic/dictionary.js",
+    "before": "8c3f7d1b99b140f6b6f0d96ca5d6f6154b888deafd32d9666cbd85ec5fefa991",
+    "after": "2e164d30a2aeede72a0629de437b42307671439fc2fb3b57d50e56a7ee2f76ee",
+    "edits": [[68,68,"    // Patch 6.0.9-phrase-ownership: an enabled, exact multi-word rule owns\n    // its span before a weak name fragment does. For example, registered\n    // \"take me through\" must not turn \"take\" into TAKE HOME ELECTRONICS.\n    // Keep IDs (100), full names (80), base names (60) and multi-word aliases\n    // (40) protected. Only contained low-priority fragments (20) are shadowed;\n    // the same fragment outside this phrase is still resolved normally.\n    // No stop-word blacklist, guessed phrase, threshold change or token skip.\n    const isFragment=h=>h.entries.every(e=>e.priority===20);\n    const rulePhrases=this.conceptIndex.match(text,hits.filter(h=>!isFragment(h)))\n      .filter(h=>tokenize(h.text).length>1);\n    hits=hits.filter(h=>!isFragment(h)||!rulePhrases.some(p=>p.start<=h.start&&h.end<=p.end));\n"]]
+  }
+]
