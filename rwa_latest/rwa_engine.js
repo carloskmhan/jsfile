@@ -1,3 +1,4 @@
+import {rankHistoricalGroupPeaks} from './historical_peaks.js';
 import {isDerivedPrevious} from './csv_adapter.js';
 import {driverSelection} from './driver_catalog.js';
 import {commitState} from './semantic/followups.js';
@@ -7,6 +8,8 @@ const clone=x=>JSON.parse(JSON.stringify(x));
 // Patch 6.0.8-basis-note-display: keep methodology in evidence, not a repeated
 // ordinary-chat warning. Actual data-quality warnings are NEVER suppressed.
 const DERIVED_PREVIOUS_INFO = 'Comparison basis: previous RWA is derived as current RWA minus deduplicated reported driver impacts; it is NOT an independently observed prior-month balance. Raw prev_* fields were ignored upstream. Reconciliation is algebraic, not independent verification.';
+// 6.0.11: presentation only; original negative-basis warning stays in warnings.
+const NEGATIVE_DERIVED_INFO='A negative derived comparison basis exists. It is not a negative reported RWA balance; check the driver bridge. Percentage change is unavailable when the aggregate basis is not positive.';
 export class RwaQaEngine {
  constructor(rows=[],options={}) {
   if(rows===null&&Array.isArray(options)){rows=options;options=arguments[2]||{};} // legacy deterministic call shape only
@@ -78,7 +81,7 @@ export class RwaQaEngine {
   const main=aligned[0]||null;
   const derivedPreviousRows=rows.filter(isDerivedPrevious).length;
   if(derivedPreviousRows)warnings.push(DERIVED_PREVIOUS_INFO);
-  if(rows.some(r=>isDerivedPrevious(r)&&r.rwa_prev<0))warnings.push('A negative derived comparison basis exists. It is not a negative reported RWA balance; check the driver bridge. Percentage change is unavailable when the aggregate basis is not positive.');
+  if(rows.some(r=>isDerivedPrevious(r)&&r.rwa_prev<0))warnings.push(NEGATIVE_DERIVED_INFO);
   const continuityIssues=monthly.slice(1).filter((m,i)=>Math.abs(m.prev-monthly[i].curr)>tolerance).map(m=>m.month);
   if(continuityIssues.length)warnings.push('Opening/closing balances are discontinuous at '+continuityIssues.join(', ')+'. Window movement is the sum of reported monthly movements, not an endpoint bridge.');
   const membership=new Map();for(const r of rows){const k=(r.client_group_id||r.client_group)+'/'+(r.entity_id||r.entity);if(!membership.has(k))membership.set(k,new Set());membership.get(k).add(r.month);}
@@ -181,7 +184,7 @@ export class RwaQaEngine {
   };
  }
  execute(p){
-  if(!p.group&&!['TOP_CLIENTS','COMPARE'].includes(p.action))throw new Error('Select a client group before this report.');
+  if(!p.group&&!['TOP_CLIENTS','COMPARE','HISTORICAL_GROUP_PEAK'].includes(p.action))throw new Error('Select a client group before this report.');
   if(p.period.mode==='comparison'&&(p.entities.length>1||p.groups.length>1))throw new Error('Compare two periods or two subjects, not both in one report.');
   if(p.driver&&p.action==='COMPARE')throw new Error('Driver-filtered comparison is not implemented. Use contribution reports for each subject.');
   if(p.metric==='BALANCE'&&p.excludedDrivers.length)throw new Error('Driver attribution cannot be subtracted from an RWA balance as a substitute for recalculation. Ask for the movement excluding those drivers.');
@@ -191,7 +194,17 @@ export class RwaQaEngine {
   const groupIdText=x=>x.id===undefined||x.id===null||x.id===''?'Not provided':String(x.id);
   const rankLabel=(r,x)=>r.dimension==='GROUP'?`${x.name} [Group ID: ${groupIdText(x)}]`:(x.displayName||x.name);
   const rankText=(r)=>r.items.map(x=>`${x.rank}. ${rankLabel(r,x)}: ${p.metric==='PERCENT'?x.value.toFixed(1)+'%':this.amt(x.value)}${p.driver?' attributed to '+p.driver:''}`).join('\n');
-  if(p.action==='TOP_CLIENTS'||p.action==='TOP_ENTITY'){
+  if(p.action==='HISTORICAL_GROUP_PEAK'){
+    result=rankHistoricalGroupPeaks(this,p);
+    const low=p.direction==='DOWN';
+    parts.push(`Top ${result.items.length} groups by ${low?'lowest':'highest'} monthly RWA percentage change over ${result.start} to ${result.end}. One ${low?'minimum':'maximum'} month per group; amounts are that month's change, not cumulative change.`);
+    parts.push(result.items.length?result.items.map(x=>`${x.rank}. ${x.name} [Group ID: ${x.groupId}] - ${x.month}: ${this.pct(x.rate)}; RWA change ${this.amt(x.change)}.`).join('\n'):'No group has a calculable monthly percentage change in the requested history.');
+    parts.push('Basis: observed prior-month group closing RWA where available; otherwise explicitly reported previous RWA. Builder-derived previous balances are not used for this percentage report. Lowest means signed percentage change, including decreases.');
+    parts.push(`Coverage: ${result.eligible} / ${result.loaded} groups have at least one eligible month; ${result.completeGroups} have eligible values for every month in the window. ${result.skippedMonthCount} group-months could not be evaluated. Peaks are over the eligible observed months only.`);
+    if(result.items.some(x=>x.tiedMonths.length>1))parts.push('Equal peak percentages within a group: the latest tied month is displayed; all tied months are retained in the result details.');
+    warnings.push(...result.warnings);
+    table={columns:['Rank','Group ID','Group name','Peak month','MoM change (%)','RWA change (USDm)'],rows:result.items.map(x=>[x.rank,x.groupId,x.name,x.month,Number((100*x.rate).toFixed(3)),Number(x.change.toFixed(3))])};
+  }else if(p.action==='TOP_CLIENTS'||p.action==='TOP_ENTITY'){
    if(p.action==='TOP_CLIENTS'&&!this.options.portfolioComplete)throw new Error('Portfolio ranking requires a fresh authorised portfolio response. A single-group response cannot be presented as a portfolio ranking.');
    result=this.ranking({...p,group:p.action==='TOP_CLIENTS'?null:p.group,groupId:p.action==='TOP_CLIENTS'?null:p.groupId,entity:p.action==='TOP_CLIENTS'?null:p.entity,entityId:p.action==='TOP_CLIENTS'?null:p.entityId},p.action==='TOP_CLIENTS'?'GROUP':p.dimension||'ENTITY');
    parts.push(`Top ${result.items.length} ${result.dimension.toLowerCase()} contributors for ${when}${p.group?' in '+p.group:''}, ranked by ${p.driver?p.driver+' attribution':p.metric==='BALANCE'?'closing RWA balance':p.metric==='PERCENT'?'percentage change':'RWA movement'}:`);
@@ -283,13 +296,18 @@ export class RwaQaEngine {
   // Preserve the full warnings contract, aggregate metadata and reconciliation
   // report so this remains a display-only change, not a different RWA basis.
   const methodologyNotes=notes.filter(note=>note===DERIVED_PREVIOUS_INFO);
-  const displayWarnings=notes.filter(note=>note!==DERIVED_PREVIOUS_INFO);
+  // Monetary movement/balance reports do not need this long routine paragraph.
+  // Percentage and reconciliation requests retain it visibly. No negative basis
+  // is set to zero and no row is dropped; all original diagnostics are retained.
+  const basisSensitive=p.metric==='PERCENT'||p.condition?.metric==='PERCENT'||p.action==='DATA_QUALITY';
+  const detailNotes=basisSensitive?[]:notes.filter(note=>note===NEGATIVE_DERIVED_INFO);
+  const displayWarnings=notes.filter(note=>note!==DERIVED_PREVIOUS_INFO&&!detailNotes.includes(note));
   let narrative=p.concise?parts.filter(Boolean).slice(0,p.excludedDrivers.length||p.excludedEntities.length?3:2).join(' '):parts.filter(Boolean).join('\n');
   // A percentage based on a constructed opening balance must still be labelled.
   // Contribution shares use net movement, not prior balance, and are unaffected.
   if(methodologyNotes.length&&(p.metric==='PERCENT'||p.condition?.metric==='PERCENT'))
    narrative+='\nPercentage basis: derived previous RWA, not an observed prior-month balance.';
-  return {result,table,answer:narrative+(displayWarnings.length?'\n\nChecks: '+displayWarnings.join(' '):''),warnings:notes,displayWarnings,methodologyNotes};
+  return {result,table,answer:narrative+(displayWarnings.length?'\n\nChecks: '+displayWarnings.join(' '):''),warnings:notes,displayWarnings,methodologyNotes,detailNotes};
  }
  answer(question,context={}){
   const parsed=this.parseQuestion(question,context);

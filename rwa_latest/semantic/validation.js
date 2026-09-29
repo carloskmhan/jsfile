@@ -24,7 +24,7 @@ const exists={
   scope:p=>!!(p.group||p.dimension==='GROUP'),forecast:()=>false,
   filter:p=>!!p.condition,threshold:p=>!!p.condition,exclusions:p=>p.excludedDrivers.length+p.excludedEntities.length+p.excludedGroups.length>0,
   candidateSet:p=>p.candidateEntities.length+p.candidateGroups.length>0,modifier:()=>true,aggregation:p=>!!p.dimension,concise:()=>true,
-  unit:p=>!!p.condition?.unit,direction:p=>!!p.direction,ranking:p=>['TOP_CLIENTS','TOP_ENTITY'].includes(p.action),periodComparison:p=>p.period.mode==='comparison',rankReference:()=>true,query:()=>true
+  unit:p=>!!p.condition?.unit,direction:p=>!!p.direction,ranking:p=>['TOP_CLIENTS','TOP_ENTITY','HISTORICAL_GROUP_PEAK'].includes(p.action),periodComparison:p=>p.period.mode==='comparison',rankReference:()=>true,query:()=>true
 };
 export function validateConstraints(p,command,slots,relations,settings){
   const missing=command.required_slots.filter(k=>!exists[k]?.(p));
@@ -58,10 +58,10 @@ export function validateConstraints(p,command,slots,relations,settings){
   if(p.condition&&p.condition.metric!=='BALANCE'&&['DOWN','ABSOLUTE'].includes(p.direction))errors.push({code:'UNSUPPORTED_MODIFIER',message:'Decline/absolute-magnitude threshold semantics are not implemented. Request that ranking without a threshold.'});
   if(p.condition&&!['TOP_CLIENTS','TOP_ENTITY'].includes(p.action))errors.push({code:'UNSUPPORTED_MODIFIER',message:'Threshold filters apply to rankings only.'});
   if(['PRODUCT','LOCATION'].includes(p.dimension)&&p.action!=='TOP_ENTITY')errors.push({code:'UNSUPPORTED_MODIFIER',message:'Product/location detail is available as a contributor ranking, not an implicit filter.'});
-  if(p.excludedGroups.length&&p.action!=='TOP_CLIENTS')errors.push({code:'UNSUPPORTED_MODIFIER',message:'Group exclusions apply only to portfolio group rankings; they cannot silently filter an unrelated group from a single-group report.'});
+  if(p.excludedGroups.length&&!['TOP_CLIENTS','HISTORICAL_GROUP_PEAK'].includes(p.action))errors.push({code:'UNSUPPORTED_MODIFIER',message:'Group exclusions apply only to portfolio group rankings; they cannot silently filter an unrelated group from a single-group report.'});
   if(relations.excluded.some(x=>x.kind==='ENTITY'&&p.groupId&&x.parentId!==p.groupId)&&p.action!=='TOP_CLIENTS'&&!p.groups.length)errors.push({code:'AMBIGUOUS_ENTITY',message:'An excluded entity belongs to a different group from the report scope.'});
   if((p.excludedGroupIds?.length?p.excludedGroupIds.includes(p.groupId):p.excludedGroups.includes(p.group))&&p.action!=='TOP_CLIENTS')errors.push({code:'CONTRADICTORY_MODIFIER',message:'The requested group is also excluded.'});
-  if(slots.metricExplicit&&p.metric==='PERCENT'&&!['TOP_CLIENTS','TOP_ENTITY','PEAK_MONTH','COMPARE','GROUP_ROOT_CAUSE','ENTITY_DRIVER'].includes(p.action))errors.push({code:'UNSUPPORTED_MODIFIER',message:'This report does not support that explicit metric.'});
+  if(slots.metricExplicit&&p.metric==='PERCENT'&&!['TOP_CLIENTS','TOP_ENTITY','HISTORICAL_GROUP_PEAK','PEAK_MONTH','COMPARE','GROUP_ROOT_CAUSE','ENTITY_DRIVER'].includes(p.action))errors.push({code:'UNSUPPORTED_MODIFIER',message:'This report does not support that explicit metric.'});
   if(p.period.mode==='window'){try{monthRange(p.period.start,p.period.end,settings.max_window_months);}catch(e){errors.push({code:'INVALID_PERIOD',message:e.message});}}
   return {valid:errors.length===0,missing,forbidden,errors};
 }

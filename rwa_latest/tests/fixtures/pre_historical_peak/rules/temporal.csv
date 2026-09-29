@@ -1,0 +1,38 @@
+﻿phrase,kind,value,enabled,notes
+jan,MONTH,1,true,Explicit calendar month; no fuzzy.
+january,MONTH,1,true,Explicit calendar month; no fuzzy.
+feb,MONTH,2,true,Explicit calendar month; no fuzzy.
+february,MONTH,2,true,Explicit calendar month; no fuzzy.
+mar,MONTH,3,true,Explicit calendar month; no fuzzy.
+march,MONTH,3,true,Explicit calendar month; no fuzzy.
+apr,MONTH,4,true,Explicit calendar month; no fuzzy.
+april,MONTH,4,true,Explicit calendar month; no fuzzy.
+may,MONTH,5,true,Explicit calendar month; no fuzzy.
+jun,MONTH,6,true,Explicit calendar month; no fuzzy.
+june,MONTH,6,true,Explicit calendar month; no fuzzy.
+jul,MONTH,7,true,Explicit calendar month; no fuzzy.
+july,MONTH,7,true,Explicit calendar month; no fuzzy.
+aug,MONTH,8,true,Explicit calendar month; no fuzzy.
+august,MONTH,8,true,Explicit calendar month; no fuzzy.
+sep,MONTH,9,true,Explicit calendar month; no fuzzy.
+sept,MONTH,9,true,Explicit calendar month; no fuzzy.
+september,MONTH,9,true,Explicit calendar month; no fuzzy.
+oct,MONTH,10,true,Explicit calendar month; no fuzzy.
+october,MONTH,10,true,Explicit calendar month; no fuzzy.
+nov,MONTH,11,true,Explicit calendar month; no fuzzy.
+november,MONTH,11,true,Explicit calendar month; no fuzzy.
+dec,MONTH,12,true,Explicit calendar month; no fuzzy.
+december,MONTH,12,true,Explicit calendar month; no fuzzy.
+last month,RELATIVE_MONTH,-1,true,"Anchor is analysis/Tableau period, never system date."
+previous month,RELATIVE_MONTH,-1,true,"Anchor is analysis/Tableau period, never system date."
+prior month,RELATIVE_MONTH,-1,true,"Anchor is analysis/Tableau period, never system date."
+this month,RELATIVE_MONTH,0,true,"Anchor is analysis/Tableau period, never system date."
+current month,RELATIVE_MONTH,0,true,"Anchor is analysis/Tableau period, never system date."
+latest month,RELATIVE_MONTH,0,true,"Anchor is analysis/Tableau period, never system date."
+last quarter,RELATIVE_QUARTER,-1,true,"Anchor is analysis/Tableau period, never system date."
+previous quarter,RELATIVE_QUARTER,-1,true,"Anchor is analysis/Tableau period, never system date."
+prior quarter,RELATIVE_QUARTER,-1,true,"Anchor is analysis/Tableau period, never system date."
+this quarter,RELATIVE_QUARTER,0,true,"Anchor is analysis/Tableau period, never system date."
+current quarter,RELATIVE_QUARTER,0,true,"Anchor is analysis/Tableau period, never system date."
+ytd,YTD,0,true,"Anchor is analysis/Tableau period, never system date."
+year to date,YTD,0,true,"Anchor is analysis/Tableau period, never system date."

@@ -1,0 +1,8 @@
+{
+  "scope": "Local synthetic in-memory ranking only; no Tableau/SSO/network or production performance guarantee",
+  "groups": 9228,
+  "entity_month_rows": 36912,
+  "returned": 10,
+  "elapsedMs": 627.640235,
+  "passed": true
+}

@@ -3,7 +3,7 @@ export function parseRuleText(text) {
   const clean=String(text).replace(/^\uFEFF/,'').replace(/^(?:#[^\n]*\n)+/,'');
   return validateRegistry(JSON.parse(clean));
 }
-const ACTIONS = new Set('GROUP_ROOT_CAUSE ENTITY_DRIVER MAIN_DRIVER DRIVER_CONTRIBUTION DRIVER_CHECK ENTITY_CONTRIBUTION TOP_ENTITY TOP_CLIENTS COMPARE CONCENTRATION DATA_QUALITY OFFSETS TREND PEAK_MONTH MOVEMENT_CHECK'.split(' '));
+const ACTIONS = new Set('GROUP_ROOT_CAUSE ENTITY_DRIVER MAIN_DRIVER DRIVER_CONTRIBUTION DRIVER_CHECK ENTITY_CONTRIBUTION TOP_ENTITY TOP_CLIENTS COMPARE CONCENTRATION DATA_QUALITY OFFSETS TREND PEAK_MONTH MOVEMENT_CHECK HISTORICAL_GROUP_PEAK'.split(' '));
 const checked=new WeakSet();
 export function validateRegistry(r) {
   if (checked.has(r)) return r;

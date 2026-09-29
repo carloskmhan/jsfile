@@ -1,0 +1,24 @@
+{
+  "http_checks": [
+    {
+      "name": "Actual localhost manager/bootstrap",
+      "passed": true
+    },
+    {
+      "name": "/api/capabilities",
+      "passed": true
+    },
+    {
+      "name": "/engine/historical_peaks.js",
+      "passed": true
+    },
+    {
+      "name": "/simple.js",
+      "passed": true
+    }
+  ],
+  "browser": {
+    "status": "not_verified",
+    "reason": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8779/\nCall log:\n  - navigating to \"http://127.0.0.1:8779/\", waiting until \"networkidle\"\n"
+  }
+}

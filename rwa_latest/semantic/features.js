@@ -10,6 +10,11 @@ export function semanticFeatures(lex,slots,relations,patch=null){
   if(relations.explicitCompare||periodCompare)put('COMPARE_REQUEST');
   if(f.TREND)put('TREND_REQUEST',f.TREND);
   if(f.PEAK)put('PEAK_REQUEST',f.PEAK);
+  // A separate report: max/min of MONTHLY percentage change per group, not
+  // the sum across months and not maximum closing RWA. Keep other evidence.
+  if(f.HISTORICAL_HIGH||f.HISTORICAL_LOW||rankGroup&&f.PEAK&&f.PERCENT||f.HISTORICAL_GROUP_REQUEST){
+    put('HISTORICAL_GROUP_REQUEST');delete f.RANK_GROUP;delete f.PEAK_REQUEST;
+  }
   if(f.OFFSETS)put('OFFSETS_REQUEST',f.OFFSETS);
   if(f.RECONCILE)put('RECONCILE_REQUEST',f.RECONCILE);
   if(f.CONCENTRATION)put('CONCENTRATION_REQUEST',f.CONCENTRATION);

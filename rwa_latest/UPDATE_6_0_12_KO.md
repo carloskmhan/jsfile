@@ -1,16 +1,18 @@
 # 6.0.12 업데이트 변경 내역 및 사용 안내
 
-## 업로드 상태 — 프로그램 소스 반영 대기
+## 소스 반영 상태
 
-이 커밋은 **이 안내서만 추가합니다. 최신 프로그램 소스 전체를 반영한 커밋이 아닙니다.**
+이 디렉터리에는 채팅 UX와 과거 월별 RWA 증감률 최고/최저 보고서의 개별 소스가 포함되어 있습니다. 이전 안내서만 추가한 상태를 대체합니다.
 
-- 적용 대상: `carloskmhan/jsfile`, `main`, `rwa_latest/`
-- 패치 기준 소스: `bfd51962a6a760c0bafd161b0bdbc2c478a8bb00`
-- 준비된 패치: `rwa_chat_ux_peak_percent_patch.zip`
-- 패치 버전: `6.0.12-history-percent-review / 6.0.11-chat-ux`
-- 이전 작업에서 보관된 변경 목록, 설명서, 검증 요약은 확인했지만 이번 업로드 세션에서 ZIP 원본 전체를 가져오지 못했습니다. 일부 코드만 덮어써 의존성이 깨지는 일을 피하기 위해 실행 파일과 기존 설정은 변경하지 않았습니다.
+- 대상: `carloskmhan/jsfile`, `rwa_latest/`
+- 런타임 기준: `bfd51962a6a760c0bafd161b0bdbc2c478a8bb00`
+- 이번 적용 전 기준: `c48bb72b6cafd24c8f5f069feeefc72112a38f33`
+- 버전: `6.0.12-history-percent-review / 6.0.11-chat-ux`
+- 실행 파일과 새 보고서 정의를 함께 반영하고 `command_patterns.txt`를 재생성했습니다. ZIP이나 압축 해제 프로그램만 올린 구성이 아닙니다.
 
-**아래 설치 명령은 전체 패치 소스를 확보하여 적용한 다음에만 실행하십시오. 이 안내서만 받은 상태에서는 실행하지 마십시오.**
+새로 전체 폴더를 내려받은 경우 새 보고서는 이미 설치되어 있습니다. 기존 로컬 사용자 규칙을 보존하며 업데이트하는 경우에는 수정 소스를 반영한 뒤 `python install_historical_peak.py`를 실행하십시오. GitHub의 샘플 규칙으로 기존 사용자 규칙 폴더를 덮어쓰지 마십시오.
+
+실제 변경 목록은 `PUBLICATION_6_0_12_FILES.json`, 이번 게시 검증은 `reports/publication_6_0_12.json`을 확인하십시오. 기존 `reports/chat_ux/`는 전달 패치의 과거 개발 검증입니다. 실제 은행 Tableau/SSO 검증이나 자동 사내 배포를 뜻하지 않습니다.
 
 ## 1. 패치에 포함된 기능
 
@@ -49,7 +51,7 @@ simple_manager_tests/test_capabilities.py
 simple_manager_tests/browser_workflow.py
 ```
 
-위 목록은 **패치의 수정 대상**이며 이 안내서 커밋에서 실제 수정한 프로그램 파일 목록이 아닙니다.
+위 목록은 전달 패치의 변경 소스입니다. 실제 Git 변경에는 생성 규칙, 단일 데모, 게시 문서와 검증 목록도 포함됩니다.
 
 ## 3. 새로 추가되는 18개 파일
 

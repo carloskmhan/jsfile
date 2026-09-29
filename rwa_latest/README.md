@@ -46,3 +46,8 @@ Data shipped here are the synthetic development fixtures from the supplied v6 pa
 UPLOAD_MANIFEST.json records source archive fingerprints and individual file hashes. SHA256SUMS.txt verifies the expanded files. Reports under reports/, simple_manager_reports/ and validation_history/ are historical development evidence, not a new claim of bank UAT or production approval. PUBLICATION_NOTES.md records known limits. No safety threshold or financial aggregation rule was changed for upload.
 
 See SIMPLE_RULE_MANAGER.md for management, README_V6_BASE.md for the base design, and PUBLICATION_NOTES.md before running the legacy aggregate test runner.
+
+
+## 6.0.12 chat UX and historical monthly percentage peaks
+
+The current source includes aligned confirmation buttons, immediate scrolling, progressive display of completed answers, 20 clickable examples, folded routine calculation notes, and the historical highest/lowest monthly percentage report. The checked-in CSVs and generated rules are upgraded together. Existing local customised projects should merge the changed sources and run `python install_historical_peak.py`, rather than replace their own rule CSVs. Read [UPDATE_6_0_12_KO.md](UPDATE_6_0_12_KO.md) and [PATCH_CHAT_UX_AND_HISTORICAL_PERCENT.md](PATCH_CHAT_UX_AND_HISTORICAL_PERCENT.md). Actual changes are listed in `PUBLICATION_6_0_12_FILES.json`. Live configuration and data are not included.

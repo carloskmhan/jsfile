@@ -1,3 +1,4 @@
+import {createChatPresentation} from './chat_ui.js';
 import {planDataRequest} from './semantic/routing.js';
 import {RuleClient} from './rule_client.js';
 import {createProvider,formatRuntimeError,runtimeErrorDetails} from './tableau_adapter.js';
@@ -39,7 +40,10 @@ export async function main(config){
  };
  const offerReconnect=()=>{if($('reconnect-tableau')&&config.mode==='tableau'){$('reconnect-tableau').hidden=false;if($('settings'))$('settings').open=true;}};
  let loadingArticle=null,loadingStarted=0;
- const controls=()=>{for(const e of document.querySelectorAll('#ask,#question,#newchat,#group,#entity,#month,#group-search,#refresh-catalog,[data-question],.choices button,.confirm-report,.cancel-report'))if(!e.dataset.finished)e.disabled=busy||!ready;};
+ const presentation=createChatPresentation({history:$('history'),question:$('question'),config,
+   canEdit:()=>ready&&!busy,
+   getContext:()=>({groupId:$('group').value||client.state.groupId||'',month:$('month').value||client.state.anchorMonth||config.defaultReportingMonth||''})});
+ const controls=()=>{for(const e of document.querySelectorAll('#ask,#question,#newchat,#group,#entity,#month,#group-search,#refresh-catalog,[data-question],.choices button,.confirm-report,.cancel-report'))if(!e.dataset.finished)e.disabled=busy||!ready;presentation.refreshControls();};
  const options=(id,items)=>$(id).replaceChildren(...items.map(([name,value])=>new Option(name,value)));
  const byId=id=>config.semanticCatalog?catalogLookup(config.semanticCatalog).byId.get(id):null;
  function groupOptions(){
@@ -64,6 +68,7 @@ export async function main(config){
  // Only presentation changes here: no data, permissions, parser or timing changes.
  function setMessage(a,text,{loading=false}={}){
    const b=a.querySelector('.message');
+   presentation.cancel(b);
    b.removeAttribute('aria-busy');
    if(loading){
      const existing=b.querySelector('.rwa-query-loading');
@@ -97,13 +102,31 @@ export async function main(config){
    $('history').append(a);return a;
  }
  function results(a,r){
-   // Success, preview, clarification and error all remove the pending animation.
-   setMessage(a,r.answer);
-   if(r.table?.rows?.length){const t=document.createElement('table');t.className='message-table';const head=document.createElement('tr');for(const v of r.table.columns){const th=document.createElement('th');th.textContent=v;head.append(th);}t.append(head);for(const values of r.table.rows){const tr=document.createElement('tr');for(const v of values){const td=document.createElement('td');td.textContent=String(v);tr.append(td);}t.append(tr);}a.append(t);}
+   const b=a.querySelector('.message');
+   presentation.cancel(b);
+   // Only the already-computed, successful answer is animated. Errors and the
+   // fixed confirmation preview stay immediate. No report is executed here.
+   function finishPresentation(){
+     if(!a.isConnected)return;
+   if(r.table?.rows?.length){const t=document.createElement('table');t.className='message-table';const head=document.createElement('tr');for(const v of r.table.columns){const th=document.createElement('th');th.textContent=v;head.append(th);}t.append(head);for(const values of r.table.rows){const tr=document.createElement('tr');for(const v of values){const td=document.createElement('td');td.textContent=String(v);tr.append(td);}t.append(tr);}const wrap=document.createElement('div');wrap.className='rwa-table-scroll';wrap.tabIndex=0;wrap.setAttribute('role','region');wrap.setAttribute('aria-label','Report results table');wrap.append(t);a.append(wrap);}
    if(r.choices?.length){const div=document.createElement('div');div.className='choices';for(const choice of r.choices){const b=document.createElement('button');b.type='button';b.textContent=choice;b.onclick=()=>{$('question').value=choice;send();};div.append(b);}a.append(div);}
    if(config.debug===true){const d=document.createElement('details'),s=document.createElement('summary'),pre=document.createElement('pre');s.textContent=r.ok?'Executed command & calculation evidence':r.status==='preview'?'Semantic features, candidates & context':'Why no calculation ran';pre.className='debug';pre.textContent=JSON.stringify(r,null,2);d.append(s,pre);a.append(d);}
+     const notes=[...(r.methodologyNotes||[]),...(r.detailNotes||[])];
+     if(notes.length){
+       const details=document.createElement('details'),summary=document.createElement('summary');
+       details.className='rwa-calculation-notes';summary.textContent='Calculation notes ('+new Set(notes).size+')';details.append(summary);
+       for(const text of new Set(notes)){const note=document.createElement('p');note.textContent=text;details.append(note);}
+       a.append(details);
+     }
+     presentation.followLatest();
+   }
+   if(r.ok===true&&r.status==='answered'){
+     b.removeAttribute('aria-busy');
+     presentation.reveal(b,r.answer,finishPresentation);
+   }else{setMessage(a,r.answer);finishPresentation();}
  }
  function reset({history=false}={}){
+   if(history)presentation.cancelAll();else presentation.finishAll();
    client.reset();lastGroupId=null;pendingQuestion=null;
    if(history){$('history').replaceChildren();$('welcome').hidden=false;}
    context({clientGroup:byId($('group').value)?.client_group_name,clientGroupId:$('group').value,entity:$('entity').selectedOptions[0]?.value?$('entity').selectedOptions[0].text:null,month:$('month').value});
@@ -148,10 +171,10 @@ export async function main(config){
    results(a,r);if(r.status!=='preview')return;
    const requestEpoch=epoch,sourceVersion=provider.version,fields=document.createElement('div');fields.className='plan-preview';
    const p=r.plan,period=p.period.mode==='month'?p.period.month:p.period.mode==='comparison'?p.period.months.join(' versus '):p.period.mode==='window'?p.period.start+' to '+p.period.end:'Available history through '+p.period.end;
-   const labels={MOVEMENT_CHECK:'Check recorded RWA direction',TOP_ENTITY:'Rank contributors',TOP_CLIENTS:'Rank client groups',GROUP_ROOT_CAUSE:'RWA movement breakdown',ENTITY_DRIVER:'Entity driver breakdown',MAIN_DRIVER:'Largest attributed driver',DRIVER_CONTRIBUTION:'Driver contribution',DRIVER_CHECK:'Check reported driver',ENTITY_CONTRIBUTION:'Entity contribution',CONCENTRATION:'Entity concentration share',DATA_QUALITY:'Attribution / bridge check',OFFSETS:'Offsetting contributions',COMPARE:'Comparison',TREND:'Monthly movement report',PEAK_MONTH:'Largest month / balance'};
+   const labels={HISTORICAL_GROUP_PEAK:'Historical monthly percentage peaks by group',MOVEMENT_CHECK:'Check recorded RWA direction',TOP_ENTITY:'Rank contributors',TOP_CLIENTS:'Rank client groups',GROUP_ROOT_CAUSE:'RWA movement breakdown',ENTITY_DRIVER:'Entity driver breakdown',MAIN_DRIVER:'Largest attributed driver',DRIVER_CONTRIBUTION:'Driver contribution',DRIVER_CHECK:'Check reported driver',ENTITY_CONTRIBUTION:'Entity contribution',CONCENTRATION:'Entity concentration share',DATA_QUALITY:'Attribution / bridge check',OFFSETS:'Offsetting contributions',COMPARE:'Comparison',TREND:'Monthly movement report',PEAK_MONTH:'Largest month / balance'};
    const pair=(names,ids)=>names.map((name,i)=>name+(ids?.[i]?' ['+ids[i]+']':'')).join(' versus ');
    const f={Report:labels[p.action]||p.action,Group:p.groups?.length?pair(p.groups,p.comparisonIds):p.group?`${p.group} [${p.groupId}]`:'Authorised loaded portfolio',Entity:p.entities?.length?pair(p.entities,p.comparisonIds):p.entity?`${p.entity} [${p.entityId}]`:'All in selected group(s)',Period:period};
-   if(p.dimension)f.Breakdown=p.dimension.toLowerCase();if(['TOP_ENTITY','TOP_CLIENTS'].includes(p.action))f.Limit='Top '+p.topN;
+   if(p.dimension)f.Breakdown=p.dimension.toLowerCase();if(['TOP_ENTITY','TOP_CLIENTS','HISTORICAL_GROUP_PEAK'].includes(p.action))f.Limit='Top '+p.topN;
    f.Metric=p.metric==='PERCENT'?'Percentage change / comparison basis':p.metric==='BALANCE'?'Closing RWA balance':'RWA movement';if(p.direction!=='AUTO')f.Direction=p.direction;
    f.Driver=p.driver||'All reported detail drivers';
    f.Exclusions=[...p.excludedDrivers,...p.excludedEntities,...(p.excludedGroups||[])].join(', ')||'None';
@@ -162,6 +185,12 @@ export async function main(config){
    if(p.candidateGroupIds?.length||p.candidateEntityIds?.length)f['Candidate set']='Prior displayed IDs only; values recalculated';
    if(p.contextNotes?.length)f['Context notes']=p.contextNotes.join(' ');
    if(metadata.rows.some(row=>row.attributes?.rwa_prev_source?.startsWith('derived_')))f['Comparison basis']='Builder-derived previous RWA, not independently observed prior-month balance';
+   if(p.action==='HISTORICAL_GROUP_PEAK'){
+     f.Metric='Monthly RWA percentage change (signed)';f.Driver='Not applicable: balance-history calculation';
+     f.Selection=p.direction==='DOWN'?'Lowest month per group, ascending':'Highest month per group, descending';
+     f['Amount shown']='RWA change in the selected month, not cumulative';
+     f['Comparison basis']='Observed previous-month closing RWA, or explicitly reported previous RWA. Derived previous RWA excluded.';
+   }
    for(const [k,v]of Object.entries(f)){const row=document.createElement('div');row.textContent=k+': '+v;fields.append(row);}
    const run=document.createElement('button'),cancel=document.createElement('button');run.textContent='Run report';cancel.textContent='Cancel';run.type=cancel.type='button';run.className='confirm-report';cancel.className='cancel-report';
    // Presentation patch: keep one-shot confirmation and scope checks unchanged.
@@ -171,6 +200,7 @@ export async function main(config){
    run.onclick=async()=>{
      if(busy||!ready||run.dataset.finished)return;
      busy=true;controls();run.disabled=cancel.disabled=true;
+     presentation.finishAll();presentation.followLatest();
      setReportButtonRunning(run,true);runStatus.hidden=false;
      runStatus.textContent='Checking authorised Tableau scope...';
      let completed=false;
@@ -187,7 +217,7 @@ export async function main(config){
        const out=client.confirm(r.previewToken);
        a.replaceChildren(a.firstChild,a.querySelector('.message'));results(a,out);accepted(out);
        completed=out.ok===true;
-     }catch(e){client.invalidate();offerReconnect();a.querySelector('.message').textContent='No report produced: '+formatRuntimeError(e,{stage:'CONFIRM_REPORT'});}
+     }catch(e){client.invalidate();offerReconnect();setMessage(a,'No report produced: '+formatRuntimeError(e,{stage:'CONFIRM_REPORT'}));presentation.followLatest();}
      finally{
        // Clear motion on success AND failure. Failed/consumed previews stay inert.
        setReportButtonRunning(run,false,completed?'Completed':'Not run');
@@ -197,7 +227,9 @@ export async function main(config){
      }
    };
    cancel.onclick=()=>{client.cancel();run.dataset.finished=cancel.dataset.finished='true';run.disabled=cancel.disabled=true;a.querySelector('.message').textContent='Cancelled. No report calculation ran.';};
-   fields.append(run,cancel,runStatus);a.insertBefore(fields,a.querySelector('details'));
+   const actions=document.createElement('div');actions.className='rwa-report-actions';
+   actions.append(run,cancel,runStatus);fields.append(actions);a.insertBefore(fields,a.querySelector('details'));
+   presentation.followLatest();
  }
  function updateQueryProgress(p){
    if(!loadingArticle||!busy||!p||p.phase!=='active')return;
@@ -213,8 +245,10 @@ export async function main(config){
      if(p.batchNumber!==undefined)text+=' - batch '+p.batchNumber+'/'+p.batchCount;
    }else text='Reading authorised Tableau index and selected group data';
    setMessage(loadingArticle,text+' - '+time,{loading:true});
+   presentation.followLatest();
  }
  function sourceChanged(e){
+   presentation.finishAll();
    epoch++;client.invalidate();client.reset();lastGroupId=null;pendingQuestion=null;metadata={rows:[]};
    groups=[];config.semanticCatalog={identitySource:'runtime_catalog',groups:[],entities:[]};options('group',[['Refresh available groups','']]);groupChanged();context();
    $('status').textContent=(e?.reason||'Tableau scope changed')+'. Cached detail/context discarded. The next request refreshes the index.';
@@ -228,6 +262,8 @@ export async function main(config){
    const q=$('question').value.trim();if(!q||busy||!ready)return;
    busy=true;controls();$('question').value='';message('user',q);const a=message('assistant','Reading authorised Tableau index and selected group data…',{loading:true});const thisEpoch=epoch;
    loadingArticle=a;loadingStarted=Date.now();
+   // Force the freshly submitted user message into view BEFORE any async read.
+   presentation.beginTurn();
    let failureStage='REFRESH_GROUP_INDEX',requestedGroupCount;
    try{
      await readCatalog();if(epoch!==thisEpoch)throw new Error('Available groups changed. Review the new scope and submit the request again.');
@@ -257,7 +293,7 @@ export async function main(config){
      results(a,{ok:false,status:'error',answer:'No answer produced: '+formatRuntimeError(e,details),
        ...(config.debug===true?{errorDiagnostic:runtimeErrorDetails(e,details)}:{})});
    }
-   finally{loadingArticle=null;busy=false;controls();$('question').focus();a.scrollIntoView({block:'center',behavior:'smooth'});}
+   finally{loadingArticle=null;busy=false;controls();$('question').focus({preventScroll:true});presentation.followLatest();}
  }
  $('form').onsubmit=e=>{e.preventDefault();send();};$('question').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();send();}};
  for(const b of document.querySelectorAll('[data-question]'))b.onclick=()=>{$('question').value=b.dataset.question;send();};
@@ -280,7 +316,7 @@ export async function main(config){
    provider.onProgress?.(updateQueryProgress);
    config.semanticCatalog=provider.catalog;groups=validateCatalog(provider.catalog);groupOptions();groupChanged();
    ready=true;busy=false;$('progress').hidden=true;$('status').textContent=config.mode==='sample'?'Ready · Synthetic CSV data · Runtime ID catalog · Preview required':`Ready · ${groups.length.toLocaleString()} available groups from ${config.catalogWorksheetName} · Details loaded on demand`;
-   controls();window.addEventListener('pagehide',()=>{client.reset();client.invalidate();provider.close();metadata={rows:[]};config.semanticCatalog=null;groups=[];},{once:true});
+   controls();window.addEventListener('pagehide',()=>{presentation.dispose();client.reset();client.invalidate();provider.close();metadata={rows:[]};config.semanticCatalog=null;groups=[];},{once:true});
    startupReady();return {ok:true};
  }catch(e){
    provider?.close();ready=false;client.invalidate();

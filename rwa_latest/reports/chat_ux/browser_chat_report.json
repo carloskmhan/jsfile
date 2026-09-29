@@ -1,0 +1,187 @@
+{
+  "scope": "Chromium DOM with real bundled application, rules and engine, synthetic sample and delay/failure hooks. No bank Tableau/SSO.",
+  "checks": [
+    {
+      "name": "Application ready with existing startup splash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exactly 20 sidebar examples",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Desktop sidebar is visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Example fills composer without submitting",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Submitted question visible before data response",
+      "passed": true,
+      "detail": {
+        "user": {
+          "x": 1111.984375,
+          "y": 579.875,
+          "width": 194.015625,
+          "height": 77.1875
+        },
+        "footer": {
+          "x": 280,
+          "y": 748.171875,
+          "width": 1160,
+          "height": 251.828125
+        }
+      }
+    },
+    {
+      "name": "Run and Cancel share exact top and height",
+      "passed": true,
+      "detail": {
+        "run": {
+          "x": 433,
+          "y": 645.765625,
+          "width": 133,
+          "height": 42
+        },
+        "cancel": {
+          "x": 576,
+          "y": 645.765625,
+          "width": 81.59375,
+          "height": 42
+        }
+      }
+    },
+    {
+      "name": "Run spinner and label present during validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cancel disabled while report is executing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Alignment preserved when spinner is present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Successful answer is progressively revealed",
+      "passed": true,
+      "detail": {
+        "firstLength": 7,
+        "nextLength": 31
+      }
+    },
+    {
+      "name": "Show full answer control is available",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Skip displays complete report",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Group-ID table remains present after typing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Only one confirmation occurred",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Manual scroll up is respected during typing",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Jump to latest appears after scrolling up",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Jump to latest resumes following",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Errors show immediately, never typed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No spinner stuck after failure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "History preview explains selection and source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Historical report executes via normal confirmation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "New chat cancels old typing and content callbacks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Mobile sidebar initially closed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Mobile Examples opens drawer",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Mobile example fills question and closes drawer",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Mobile page does not overflow horizontally",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Mobile Run and Cancel remain aligned",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cancel does not leave a spinner",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No JavaScript exceptions",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "Reduced-motion preference gets full answer immediately",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "passed": 30,
+  "failed": 0,
+  "errors": []
+}

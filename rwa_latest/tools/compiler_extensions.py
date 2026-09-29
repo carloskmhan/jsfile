@@ -8,7 +8,7 @@ def validate_extensions(root, read_rows, boolean, number, normal, fail, commands
       'MAIN_DRIVER':'MAIN_DRIVER','DRIVER_CONTRIBUTION':'DRIVER_AMOUNT','DRIVER_CHECK':'DRIVER_CHECK',
       'ENTITY_CONTRIBUTION':'ENTITY_AMOUNT','TOP_CLIENTS':'RANKING','TOP_ENTITY':'RANKING',
       'COMPARE':'COMPARISON','TREND':'HISTORY','PEAK_MONTH':'HISTORY','OFFSETS':'OFFSETS',
-      'DATA_QUALITY':'RECONCILIATION','CONCENTRATION':'CONCENTRATION'}
+      'DATA_QUALITY':'RECONCILIATION','CONCENTRATION':'CONCENTRATION','HISTORICAL_GROUP_PEAK':'HISTORICAL_RANKING'}
     for c in commands:
         if c.get('grammar') not in GRAMMARS or c['grammar'] != grammar_action.get(c['action']):
             fail('commands.csv',c['source']['line'],'invalid command grammar/action pair')

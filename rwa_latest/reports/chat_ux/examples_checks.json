@@ -1,0 +1,126 @@
+{
+  "passed": 20,
+  "total": 20,
+  "checks": [
+    {
+      "label": "Top 10 RWA increases",
+      "query": "Show top 10 groups by RWA increase in 2026-07",
+      "passed": true,
+      "action": "TOP_CLIENTS"
+    },
+    {
+      "label": "Top 10 RWA decreases",
+      "query": "Show top 10 groups by RWA decrease in 2026-07",
+      "passed": true,
+      "action": "TOP_CLIENTS"
+    },
+    {
+      "label": "Highest RWA balances",
+      "query": "Show top 10 groups by higher RWA balance in 2026-07",
+      "passed": true,
+      "action": "TOP_CLIENTS"
+    },
+    {
+      "label": "Groups above $25m RWA",
+      "query": "Show top 10 groups with RWA above 25 million in 2026-07",
+      "passed": true,
+      "action": "TOP_CLIENTS"
+    },
+    {
+      "label": "Historical highest monthly %",
+      "query": "Show top 10 groups by highest monthly percentage change over all history",
+      "passed": true,
+      "action": "HISTORICAL_GROUP_PEAK"
+    },
+    {
+      "label": "Historical lowest monthly %",
+      "query": "Show top 10 groups by lowest monthly percentage change over all history",
+      "passed": true,
+      "action": "HISTORICAL_GROUP_PEAK"
+    },
+    {
+      "label": "Explain the RWA increase",
+      "query": "Why did RWA increase for CG0001 in 2026-07?",
+      "passed": true,
+      "action": "GROUP_ROOT_CAUSE"
+    },
+    {
+      "label": "Explain the RWA decrease",
+      "query": "Why did RWA decrease for CG0001 in 2026-07?",
+      "passed": true,
+      "action": "GROUP_ROOT_CAUSE"
+    },
+    {
+      "label": "Main contributing drivers",
+      "query": "Main driver for CG0001 in 2026-07",
+      "passed": true,
+      "action": "MAIN_DRIVER"
+    },
+    {
+      "label": "Offsetting drivers",
+      "query": "Show offsets for CG0001 in 2026-07",
+      "passed": true,
+      "action": "OFFSETS"
+    },
+    {
+      "label": "Amount of RWA movement",
+      "query": "How much did RWA change for CG0001 in 2026-07?",
+      "passed": true,
+      "action": "GROUP_ROOT_CAUSE"
+    },
+    {
+      "label": "Top 10 entities",
+      "query": "Top 10 entities for CG0001 in 2026-07",
+      "passed": true,
+      "action": "TOP_ENTITY"
+    },
+    {
+      "label": "Largest entity increases",
+      "query": "Top 5 entities by RWA increase for CG0001 in 2026-07",
+      "passed": true,
+      "action": "TOP_ENTITY"
+    },
+    {
+      "label": "Largest entity decreases",
+      "query": "Top 5 entities by RWA decrease for CG0001 in 2026-07",
+      "passed": true,
+      "action": "TOP_ENTITY"
+    },
+    {
+      "label": "Highest entity RWA balances",
+      "query": "Top 10 entities by higher RWA balance for CG0001 in 2026-07",
+      "passed": true,
+      "action": "TOP_ENTITY"
+    },
+    {
+      "label": "Closing RWA balance",
+      "query": "What is the RWA balance for CG0001 in 2026-07?",
+      "passed": true,
+      "action": "GROUP_ROOT_CAUSE"
+    },
+    {
+      "label": "Three-month trend",
+      "query": "Show trend for CG0001 over the last 3 months",
+      "passed": true,
+      "action": "TREND"
+    },
+    {
+      "label": "Month with the largest increase",
+      "query": "Which month had the biggest RWA increase for CG0001?",
+      "passed": true,
+      "action": "PEAK_MONTH"
+    },
+    {
+      "label": "Did RWA increase?",
+      "query": "Did RWA increase for CG0001 in 2026-07?",
+      "passed": true,
+      "action": "MOVEMENT_CHECK"
+    },
+    {
+      "label": "Check driver reconciliation",
+      "query": "Do the drivers reconcile for CG0001 in 2026-07?",
+      "passed": true,
+      "action": "DATA_QUALITY"
+    }
+  ]
+}

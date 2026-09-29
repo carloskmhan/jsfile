@@ -17,11 +17,11 @@ class CapabilityTests(unittest.TestCase):
  def add(self,**kw):d=self.w.capabilities.prepare(self.payload(**kw));self.commit(d);return d
  def source(self):return self.w.read_bytes_map()
  def test_existing_capabilities_derived_from_actual_commands(self):
-  x=self.w.capabilities.list();self.assertEqual(19,len(x['cards']));self.assertEqual(14,len([c for c in x['cards'] if c['group']!='Follow-up']))
+  x=self.w.capabilities.list();self.assertEqual(20,len(x['cards']));self.assertEqual(15,len([c for c in x['cards'] if c['group']!='Follow-up']))
  def test_add_writes_nothing_before_save(self):
   before=self.source();d=self.w.capabilities.prepare(self.payload());self.assertEqual(before,self.source());self.assertIn('take me through',d['generatedText'])
  def test_add_csv_and_generated_file(self):
-  d=self.add();self.assertTrue((self.root/'rules/capabilities.csv').exists());self.assertTrue((self.root/'rules/capability_examples.csv').exists());self.assertTrue(self.w.read_snapshot()['artifactConsistent']);self.assertEqual(20,len(self.w.capabilities.list()['cards']))
+  d=self.add();self.assertTrue((self.root/'rules/capabilities.csv').exists());self.assertTrue((self.root/'rules/capability_examples.csv').exists());self.assertTrue(self.w.read_snapshot()['artifactConsistent']);self.assertEqual(21,len(self.w.capabilities.list()['cards']))
  def test_unchanged_parser_compiler_weights(self):
   names=['commands.csv','settings.csv','fuzzy_config.csv','units.csv','temporal.csv'];before={n:(self.root/'rules'/n).read_bytes() for n in names};self.add();self.assertEqual(before,{n:(self.root/'rules'/n).read_bytes() for n in names})
  def test_direct_commit_cannot_skip_wizard_checks(self):
@@ -37,7 +37,7 @@ class CapabilityTests(unittest.TestCase):
  def test_edit_owned_mapping(self):
   old=self.add();self.add(id=old['id'],kind='main_drivers',title='Main drivers in plain English');r=next(r for r in self.w.read_snapshot()['tables']['synonyms.csv']['rows'] if r['phrase']=='take me through');self.assertEqual('MAIN',r['concept'])
  def test_delete_removes_only_unused_owned_expression(self):
-  d=self.add();rows=len(self.w.read_snapshot()['tables']['synonyms.csv']['rows']);deleted=self.w.capabilities.prepare({'revision':self.w.read_snapshot()['revision'],'operation':'delete','id':d['id']});self.commit(deleted);self.assertEqual(rows-1,len(self.w.read_snapshot()['tables']['synonyms.csv']['rows']));self.assertEqual(19,len(self.w.capabilities.list()['cards']))
+  d=self.add();rows=len(self.w.read_snapshot()['tables']['synonyms.csv']['rows']);deleted=self.w.capabilities.prepare({'revision':self.w.read_snapshot()['revision'],'operation':'delete','id':d['id']});self.commit(deleted);self.assertEqual(rows-1,len(self.w.read_snapshot()['tables']['synonyms.csv']['rows']));self.assertEqual(20,len(self.w.capabilities.list()['cards']))
  def test_shared_expression_preserved_on_delete(self):
   a=self.add();b=self.add(title='Toyota movement',examples=[{'question':'Take me through Toyota RWA movement in July','phrase':'take me through'}]);d=self.w.capabilities.prepare({'revision':self.w.read_snapshot()['revision'],'operation':'delete','id':a['id']});self.commit(d);self.assertIn('take me through',(self.root/'command_patterns.txt').read_text());self.assertEqual(1,len([r for r in self.w.read_snapshot()['tables']['synonyms.csv']['rows'] if r['phrase']=='take me through']))
  def test_shared_expression_cannot_be_reassigned(self):

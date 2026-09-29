@@ -1,0 +1,308 @@
+{
+  "edition": "6.0.12-publication",
+  "base_commit": "c48bb72b6cafd24c8f5f069feeefc72112a38f33",
+  "delivered_zip_sha256": "dac5ffc730abf5a0583e01a77832366751c9d37b9382cd9f7014c09b545c09c3",
+  "delivered_payload_files": 55,
+  "exact_delivered_bytes_verified_before_publication_docs": true,
+  "syntax_files": 29,
+  "historical_peak_checks": {
+    "passed": 42,
+    "failed": 0
+  },
+  "regression": {
+    "questions": {
+      "total": 626,
+      "passed": 626,
+      "failed": 0
+    },
+    "robustness": {
+      "total": 225,
+      "passed": 225,
+      "failed": 0
+    }
+  },
+  "mocked_provider": {
+    "total": 84,
+    "passed": 84,
+    "failed": 0
+  },
+  "commands": [
+    {
+      "name": "Install into existing canonical CSVs",
+      "command": [
+        "/usr/bin/python",
+        "install_historical_peak.py"
+      ],
+      "exit_code": 0,
+      "output_tail": "Historical percentage report enabled. Existing rules preserved; compiler validation passed.\nBackup: 20260929T231652Z-0fe9db487f27\nDeploy the updated runtime files AND this project's command_patterns.txt together.\n\n"
+    },
+    {
+      "name": "Existing compiler validation",
+      "command": [
+        "/usr/bin/python",
+        "build_command_patterns.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output_tail": "VALIDATED: 15 commands, 596 synonyms, 0 aliases, 115 follow-ups.\n\n"
+    },
+    {
+      "name": "Syntax app.js",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/app.js"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Syntax chat_examples.js",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/chat_examples.js"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Syntax chat_ui.js",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/chat_ui.js"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Syntax historical_peaks.js",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/historical_peaks.js"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Syntax local_manager/simple.js",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/local_manager/simple.js"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Syntax local_manager/simple_logic.js",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/local_manager/simple_logic.js"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Syntax rwa_engine.js",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/rwa_engine.js"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Syntax semantic/engine.js",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/semantic/engine.js"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Syntax semantic/features.js",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/semantic/features.js"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Syntax semantic/followups.js",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/semantic/followups.js"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Syntax semantic/grammar.js",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/semantic/grammar.js"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Syntax semantic/registry.js",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/semantic/registry.js"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Syntax semantic/routing.js",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/semantic/routing.js"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Syntax semantic/slots.js",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/semantic/slots.js"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Syntax semantic/validation.js",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/semantic/validation.js"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Syntax tests/peak_chat_checks.mjs",
+      "command": [
+        "node",
+        "--check",
+        "<checkout>/rwa_latest/tests/peak_chat_checks.mjs"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n"
+    },
+    {
+      "name": "Historical peak and display checks",
+      "command": [
+        "node",
+        "tests/peak_chat_checks.mjs"
+      ],
+      "exit_code": 0,
+      "output_tail": "42/42\n\n"
+    },
+    {
+      "name": "Migration, preservation and rollback tests",
+      "command": [
+        "/usr/bin/python",
+        "tests/test_peak_installation.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n----------------------------------------------------------------------\nRan 9 tests in 2.234s\n\nOK\n"
+    },
+    {
+      "name": "Existing questions regression",
+      "command": [
+        "node",
+        "tools/evaluate.mjs",
+        "tests/questions.csv",
+        "<temporary-test-path>"
+      ],
+      "exit_code": 0,
+      "output_tail": " 1\n    },\n    \"supportedFullPlanAccuracy\": {\n      \"correct\": 543,\n      \"total\": 543,\n      \"rate\": 1\n    },\n    \"followupContextAccuracy\": {\n      \"correct\": 13,\n      \"total\": 13,\n      \"rate\": 1\n    },\n    \"unsupportedRejectionAccuracy\": {\n      \"correct\": 79,\n      \"total\": 79,\n      \"rate\": 1\n    },\n    \"falsePositiveRate\": {\n      \"numerator\": 0,\n      \"denominator\": 79,\n      \"rate\": 0\n    },\n    \"ambiguityHandlingAccuracy\": {\n      \"correct\": 4,\n      \"total\": 4,\n      \"rate\": 1\n    },\n    \"numberUnitAccuracy\": {\n      \"correct\": 91,\n      \"total\": 91,\n      \"rate\": 1\n    },\n    \"relationAccuracy\": {\n      \"correct\": 65,\n      \"total\": 65,\n      \"rate\": 1\n    },\n    \"negationModifierAccuracy\": {\n      \"correct\": 20,\n      \"total\": 20,\n      \"rate\": 1\n    },\n    \"typoRecoveryAccuracy\": {\n      \"correct\": 0,\n      \"total\": 0,\n      \"rate\": null\n    },\n    \"entityFuzzyAccuracy\": {\n      \"correct\": 0,\n      \"total\": 0,\n      \"rate\": null\n    },\n    \"fuzzyFalsePositiveRate\": {\n      \"numerator\": 0,\n      \"denominator\": 0,\n      \"rate\": null\n    },\n    \"overallFalsePositiveCommandRate\": {\n      \"numerator\": 0,\n      \"denominator\": 83,\n      \"rate\": 0\n    },\n    \"endToEndExactMatch\": {\n      \"correct\": 0,\n      \"total\": 0,\n      \"rate\": null\n    },\n    \"wrongExecutableCommandRate\": {\n      \"numerator\": 0,\n      \"denominator\": 543,\n      \"rate\": 0\n    },\n    \"parsingLatencyMs\": {\n      \"samples\": 626,\n      \"p50\": 0.803403000000003,\n      \"p95\": 1.749157999999852,\n      \"max\": 70.33964100000001\n    }\n  },\n  \"memory\": {\n    \"measurement\": \"process.memoryUsage after evaluation; includes fixtures and reporting, not isolated engine memory\",\n    \"rss\": 135016448,\n    \"heapTotal\": 52785152,\n    \"heapUsed\": 31990136,\n    \"external\": 2644587,\n    \"arrayBuffers\": 551379\n  }\n}\n\n"
+    },
+    {
+      "name": "Existing robustness regression",
+      "command": [
+        "node",
+        "tools/evaluate.mjs",
+        "tests/robustness.csv",
+        "<temporary-test-path>"
+      ],
+      "exit_code": 0,
+      "output_tail": "1\n    },\n    \"supportedFullPlanAccuracy\": {\n      \"correct\": 159,\n      \"total\": 159,\n      \"rate\": 1\n    },\n    \"followupContextAccuracy\": {\n      \"correct\": 7,\n      \"total\": 7,\n      \"rate\": 1\n    },\n    \"unsupportedRejectionAccuracy\": {\n      \"correct\": 64,\n      \"total\": 64,\n      \"rate\": 1\n    },\n    \"falsePositiveRate\": {\n      \"numerator\": 0,\n      \"denominator\": 64,\n      \"rate\": 0\n    },\n    \"ambiguityHandlingAccuracy\": {\n      \"correct\": 2,\n      \"total\": 2,\n      \"rate\": 1\n    },\n    \"numberUnitAccuracy\": {\n      \"correct\": 636,\n      \"total\": 636,\n      \"rate\": 1\n    },\n    \"relationAccuracy\": {\n      \"correct\": 477,\n      \"total\": 477,\n      \"rate\": 1\n    },\n    \"negationModifierAccuracy\": {\n      \"correct\": 636,\n      \"total\": 636,\n      \"rate\": 1\n    },\n    \"typoRecoveryAccuracy\": {\n      \"correct\": 17,\n      \"total\": 17,\n      \"rate\": 1\n    },\n    \"entityFuzzyAccuracy\": {\n      \"correct\": 3,\n      \"total\": 3,\n      \"rate\": 1\n    },\n    \"fuzzyFalsePositiveRate\": {\n      \"numerator\": 0,\n      \"denominator\": 20,\n      \"rate\": 0\n    },\n    \"overallFalsePositiveCommandRate\": {\n      \"numerator\": 0,\n      \"denominator\": 66,\n      \"rate\": 0\n    },\n    \"endToEndExactMatch\": {\n      \"correct\": 159,\n      \"total\": 159,\n      \"rate\": 1\n    },\n    \"wrongExecutableCommandRate\": {\n      \"numerator\": 0,\n      \"denominator\": 159,\n      \"rate\": 0\n    },\n    \"parsingLatencyMs\": {\n      \"samples\": 225,\n      \"p50\": 1.4827190000000883,\n      \"p95\": 2.1829510000000028,\n      \"max\": 65.32940799999999\n    }\n  },\n  \"memory\": {\n    \"measurement\": \"process.memoryUsage after evaluation; includes fixtures and reporting, not isolated engine memory\",\n    \"rss\": 126136320,\n    \"heapTotal\": 51748864,\n    \"heapUsed\": 30458616,\n    \"external\": 2644587,\n    \"arrayBuffers\": 551379\n  }\n}\n\n"
+    },
+    {
+      "name": "Existing mocked Tableau provider tests",
+      "command": [
+        "node",
+        "tests/connected_tableau.mjs"
+      ],
+      "exit_code": 0,
+      "output_tail": "{\n  \"passed\": 84,\n  \"failed\": 0,\n  \"total\": 84,\n  \"scale\": {\n    \"indexBuildMs\": 303.03576799999996,\n    \"firstRouteMs\": 2149.1955550000002,\n    \"cachedRouteMs\": 0.2725510000000213\n  }\n}\n\n"
+    },
+    {
+      "name": "Existing manager regression",
+      "command": [
+        "/usr/bin/python",
+        "-m",
+        "unittest",
+        "local_manager_tests.test_manager",
+        "simple_manager_tests.test_capabilities",
+        "-q"
+      ],
+      "exit_code": 0,
+      "output_tail": "\n----------------------------------------------------------------------\nRan 76 tests in 15.672s\n\nOK\n"
+    },
+    {
+      "name": "Rebuild synthetic standalone demo",
+      "command": [
+        "/usr/bin/python",
+        "tools/build_standalone.py",
+        "--web",
+        "<checkout>/rwa_latest"
+      ],
+      "exit_code": 0,
+      "output_tail": "<checkout>/rwa_latest/standalone_demo.html 1886993\n\n"
+    }
+  ],
+  "browser_rerun": false,
+  "bank_tableau_sso_tested": false,
+  "full_legacy_aggregate_runner_rerun": false,
+  "known_limit": "Legacy aggregate runner has a previously documented stale comparison-note display assertion; no test threshold was relaxed.",
+  "preserved_files": [
+    "tableau_adapter.js",
+    "group_catalog.js",
+    "semantic/dictionary.js",
+    "rule_client.js",
+    "csv_adapter.js",
+    "driver_catalog.js",
+    "bootstrap.js",
+    "loading_screen.js",
+    "styles.css",
+    "tableau_config.txt",
+    "rules_config.txt",
+    "build_command_patterns.py",
+    "rules/settings.csv",
+    "rules/followups.csv",
+    "rules/temporal.csv",
+    "rules/units.csv",
+    "rules/fuzzy_config.csv"
+  ],
+  "historical_reports_not_relabelled_as_current": true
+}

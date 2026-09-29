@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "steps": [
+    "Fresh original full project",
+    "Add pre-existing take me through custom CSV phrase",
+    "Overlay exact deliverable ZIP without touching root rule tables",
+    "Run install_historical_peak.py successfully",
+    "Custom phrase preserved",
+    "Compiler check succeeds",
+    "42 historical and semantic/display tests pass"
+  ],
+  "scope": "Disposable local project, no network, bank data, or remote deployment"
+}

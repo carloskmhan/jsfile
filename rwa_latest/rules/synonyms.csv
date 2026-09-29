@@ -1,4 +1,4 @@
-﻿concept,phrase,weight,enabled,notes
+concept,phrase,weight,enabled,notes
 ROOT,why,1,true,
 ROOT,reason,1,true,
 ROOT,reasons,1,true,
@@ -562,3 +562,36 @@ RANK_GROUP,which group,1,true,Reviewed v5 reporting grammar.
 RANK_GROUP,which groups,1,true,Reviewed v5 reporting grammar.
 RANK_ENTITY,which entity,1,true,Reviewed v5 reporting grammar.
 RANK_ENTITY,which entities,1,true,Reviewed v5 reporting grammar.
+HISTORICAL_HIGH,highest monthly percentage change,1,true,Reviewed historical percentage report vocabulary.
+HISTORICAL_HIGH,highest monthly percentage increase,1,true,Reviewed historical percentage report vocabulary.
+HISTORICAL_HIGH,maximum monthly percentage change,1,true,Reviewed historical percentage report vocabulary.
+HISTORICAL_HIGH,peak monthly percentage change,1,true,Reviewed historical percentage report vocabulary.
+HISTORICAL_HIGH,peak monthly percentage increase,1,true,Reviewed historical percentage report vocabulary.
+HISTORICAL_HIGH,highest month on month percentage change,1,true,Reviewed historical percentage report vocabulary.
+HISTORICAL_HIGH,highest month-on-month percentage change,1,true,Reviewed historical percentage report vocabulary.
+HISTORICAL_HIGH,highest mom percentage change,1,true,Reviewed historical percentage report vocabulary.
+HISTORICAL_HIGH,peak rwa increase,1,true,Reviewed historical percentage report vocabulary.
+HISTORICAL_LOW,lowest monthly percentage change,1,true,Reviewed historical percentage report vocabulary.
+HISTORICAL_LOW,lowest monthly percentage increase,1,true,Reviewed historical percentage report vocabulary.
+HISTORICAL_LOW,minimum monthly percentage change,1,true,Reviewed historical percentage report vocabulary.
+HISTORICAL_LOW,lowest month on month percentage change,1,true,Reviewed historical percentage report vocabulary.
+HISTORICAL_LOW,lowest month-on-month percentage change,1,true,Reviewed historical percentage report vocabulary.
+HISTORICAL_LOW,lowest mom percentage change,1,true,Reviewed historical percentage report vocabulary.
+HISTORICAL_LOW,trough monthly percentage change,1,true,Reviewed historical percentage report vocabulary.
+HISTORY_SCOPE,all history,1,true,Reviewed historical percentage report vocabulary.
+HISTORY_SCOPE,all available history,1,true,Reviewed historical percentage report vocabulary.
+HISTORY_SCOPE,entire history,1,true,Reviewed historical percentage report vocabulary.
+HISTORY_SCOPE,full history,1,true,Reviewed historical percentage report vocabulary.
+HISTORY_SCOPE,whole history,1,true,Reviewed historical percentage report vocabulary.
+HISTORY_SCOPE,the entire period,1,true,Reviewed historical percentage report vocabulary.
+HISTORY_SCOPE,over all history,1,true,Reviewed historical percentage report vocabulary.
+HISTORY_SCOPE,over all available history,1,true,Reviewed historical percentage report vocabulary.
+HISTORY_SCOPE,across all history,1,true,Reviewed historical percentage report vocabulary.
+HISTORY_SCOPE,over the entire period,1,true,Reviewed historical percentage report vocabulary.
+HISTORY_SCOPE,over full history,1,true,Reviewed historical percentage report vocabulary.
+HISTORY_SCOPE,over entire history,1,true,Reviewed historical percentage report vocabulary.
+HISTORY_SCOPE,across the entire period,1,true,Reviewed historical percentage report vocabulary.
+PERCENT,monthly percentage change,1,true,Reviewed historical percentage report vocabulary.
+PERCENT,monthly percentage increase,1,true,Reviewed historical percentage report vocabulary.
+PERCENT,mom percentage change,1,true,Reviewed historical percentage report vocabulary.
+PERCENT,month on month percentage change,1,true,Reviewed historical percentage report vocabulary.

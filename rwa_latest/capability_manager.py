@@ -21,6 +21,7 @@ OWNER = 'Simple manager owned; '
 # Presentation recipes select only EXISTING executor concepts/patch types. The
 # availability of a recipe is checked against the selected project's CSVs.
 RECIPES = [
+ dict(key='historical_peak_groups',title='Rank groups by historical monthly percentage peaks',command='HISTORICAL_GROUP_PEAK',concept='HISTORICAL_GROUP_REQUEST',example='Show top 10 groups by highest monthly percentage change over all history',group='Ranking',detail='historical_ranking'),
  dict(key='rank_groups',title='Rank client groups',command='TOP_CLIENTS',concept='RANK_GROUP',example='Show the top 10 groups by RWA increase',group='Ranking',detail='ranking'),
  dict(key='rank_entities',title='Rank entities within a group',command='TOP_ENTITY',concept='RANK_ENTITY',example='Show the top 10 entities by RWA increase',group='Ranking',detail='ranking'),
  dict(key='movement',title='Explain RWA movement',command='GROUP_ROOT_CAUSE',concept='ROOT',example='Why did Samsung RWA increase in July?',group='Analysis',detail='movement'),
@@ -43,10 +44,10 @@ RECIPES = [
  dict(key='follow_repeat',title='Repeat the previous report',patch='REPEAT',slot='',target='intent',example='Again',group='Follow-up',detail='followup'),
 ]
 RECIPES_BY_KEY={r['key']:r for r in RECIPES}
-MEASURES={'increase':('CHANGE','UP','Biggest RWA increase'),'decrease':('CHANGE','DOWN','Biggest RWA decrease'),
+MEASURES={'peak_high':('PERCENT','UP','Highest monthly percentage change'),'peak_low':('PERCENT','DOWN','Lowest monthly percentage change'),'increase':('CHANGE','UP','Biggest RWA increase'),'decrease':('CHANGE','DOWN','Biggest RWA decrease'),
           'highest':('BALANCE','UP','Highest total RWA'),'lowest':('BALANCE','DOWN','Lowest total RWA'),
           'percentage':('PERCENT','UP','Biggest percentage increase'),'question':(None,None,'As stated in the question')}
-ALLOWED_PERIODS={'question','context','previous','current','last3'}
+ALLOWED_PERIODS={'question','context','previous','current','last3','history'}
 
 
 def normal(value):

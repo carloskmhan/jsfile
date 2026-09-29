@@ -1,0 +1,174 @@
+{
+  "passed": 42,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "High selects max monthly %, not cumulative amount",
+      "passed": true
+    },
+    {
+      "name": "Low includes negative percentage, ascending",
+      "passed": true
+    },
+    {
+      "name": "High has each group only once with month, amount, percentage",
+      "passed": true
+    },
+    {
+      "name": "Lowest is signed, not absolute magnitude",
+      "passed": true
+    },
+    {
+      "name": "Observed adjacent month takes precedence over derived prev",
+      "passed": true
+    },
+    {
+      "name": "All derived and no observed preceding month => no invented percentage",
+      "passed": true
+    },
+    {
+      "name": "Zero denominator is excluded, not infinite",
+      "passed": true
+    },
+    {
+      "name": "Explicitly supplied positive reported previous is accepted",
+      "passed": true
+    },
+    {
+      "name": "Missing current month is unknown, not zero",
+      "passed": true
+    },
+    {
+      "name": "One month with no valid basis does not silently become zero",
+      "passed": true
+    },
+    {
+      "name": "Explicit window still uses preceding month outside window",
+      "passed": true
+    },
+    {
+      "name": "Ratio based on aggregate group, not mean of entity ratios",
+      "passed": true
+    },
+    {
+      "name": "Duplicate group names do not collapse IDs",
+      "passed": true
+    },
+    {
+      "name": "Equal peak percentage selects latest month and retains ties",
+      "passed": true
+    },
+    {
+      "name": "Cross-group ties have stable ID order/rank",
+      "passed": true
+    },
+    {
+      "name": "Input order does not change extrema",
+      "passed": true
+    },
+    {
+      "name": "Does not include data after context end",
+      "passed": true
+    },
+    {
+      "name": "Unauthorised / incomplete portfolio cannot run",
+      "passed": true
+    },
+    {
+      "name": "Output ID remains a string preserving zeros",
+      "passed": true
+    },
+    {
+      "name": "Group exclusion removes only named ID",
+      "passed": true
+    },
+    {
+      "name": "Balance discrepancy is visible, no silent source switch",
+      "passed": true
+    },
+    {
+      "name": "Reject incompatible request: Show top 10 groups by highest monthly percentage change over all history excluding FX",
+      "passed": true
+    },
+    {
+      "name": "Reject incompatible request: Show top 10 groups by highest monthly percentage change over all history above 25 million",
+      "passed": true
+    },
+    {
+      "name": "Reject incompatible request: Show top 10 groups by highest monthly percentage change over all history by EAD",
+      "passed": true
+    },
+    {
+      "name": "Reject incompatible request: Show top 10 groups by highest monthly percentage change over all history excluding an imaginary entity",
+      "passed": true
+    },
+    {
+      "name": "Reject incompatible request: Show top 10 groups by highest monthly percentage change over all history in July",
+      "passed": true
+    },
+    {
+      "name": "Reject incompatible request: Show top 10 groups by highest monthly percentage change over all history by absolute value",
+      "passed": true
+    },
+    {
+      "name": "Reject incompatible request: Show top 10 groups by highest monthly percentage change over all history by total RWA balance",
+      "passed": true
+    },
+    {
+      "name": "Reject incompatible request: Show top 10 entities by highest monthly percentage change over all history",
+      "passed": true
+    },
+    {
+      "name": "Reject incompatible request: Show top 10 groups by highest monthly percentage change over all history and lowest monthly percentage change",
+      "passed": true
+    },
+    {
+      "name": "Reject incompatible request: Predict groups by highest monthly percentage change next year",
+      "passed": true
+    },
+    {
+      "name": "Reject incompatible request: Compare groups by highest monthly percentage change in June and July",
+      "passed": true
+    },
+    {
+      "name": "Parser/routing: Show top 10 groups by highest monthly percentage change over all history",
+      "passed": true
+    },
+    {
+      "name": "Parser/routing: Show top 10 groups by lowest monthly percentage change over all history",
+      "passed": true
+    },
+    {
+      "name": "Parser/routing: Top 5 groups by peak RWA increase over all history",
+      "passed": true
+    },
+    {
+      "name": "Parser/routing: Top 5 groups by peak percentage increase",
+      "passed": true
+    },
+    {
+      "name": "Parser/routing: Top 5 groups by lowest monthly percentage increase from May to July",
+      "passed": true
+    },
+    {
+      "name": "Successful repeat retains extrema action",
+      "passed": true
+    },
+    {
+      "name": "Unsupported reference does not turn into a different financial report",
+      "passed": true
+    },
+    {
+      "name": "Ordinary ranking keeps monetary amounts unchanged",
+      "passed": true
+    },
+    {
+      "name": "Ordinary negative basis moves to notes; diagnostics retained",
+      "passed": true
+    },
+    {
+      "name": "Existing percentage report keeps basis warning visible",
+      "passed": true
+    }
+  ]
+}
