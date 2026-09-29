@@ -1,0 +1,52 @@
+name: Validate and assemble RWA chat UX and historical peaks
+on:
+  push:
+    branches: [rwa-peak-publish-20260930-dac5ffc7]
+    paths:
+      - '.rwa_peak_publish/**'
+      - '.github/workflows/rwa-peak-publish-dac5ffc7.yml'
+permissions:
+  contents: write
+jobs:
+  publish_staging:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+      PYTHONUTF8: '1'
+    steps:
+      - name: Fetch exact staging revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = 'carloskmhan/jsfile'
+          test "$GITHUB_REF_NAME" = 'rwa-peak-publish-20260930-dac5ffc7'
+          git init .
+          git config core.autocrlf false
+          git remote add origin "https://github.com/$GITHUB_REPOSITORY.git"
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -c http.extraheader="AUTHORIZATION: basic $auth" fetch --no-tags origin "$GITHUB_SHA"
+          git checkout -B "$GITHUB_REF_NAME" FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+      - name: Validate exact patch, preserve rules, compile and test
+        shell: bash
+        run: |
+          set -euo pipefail
+          python .rwa_peak_publish/apply_publication.py
+      - name: Commit expanded sources to staging only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- rwa_latest
+          python - <<'PY'
+          import subprocess
+          paths = subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')
+          assert all(p.startswith('rwa_latest/') for p in paths if p)
+          assert not any('/.rule_manager/' in p or '__pycache__' in p or p.endswith(('.png','.jpg','.jpeg','.zip')) for p in paths if p)
+          PY
+          git commit -m 'Assemble verified chat UX and historical percentage source update'
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -c http.extraheader="AUTHORIZATION: basic $auth" push origin "HEAD:refs/heads/$GITHUB_REF_NAME"
