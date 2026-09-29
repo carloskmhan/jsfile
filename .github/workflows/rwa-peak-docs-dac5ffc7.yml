@@ -1,0 +1,67 @@
+name: Finalize RWA publication documentation
+on:
+  push:
+    branches: [rwa-peak-publish-20260930-dac5ffc7]
+    paths: ['.github/workflows/rwa-peak-docs-dac5ffc7.yml']
+permissions:
+  contents: write
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Fetch exact staging revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = 'carloskmhan/jsfile'
+          test "$GITHUB_REF_NAME" = 'rwa-peak-publish-20260930-dac5ffc7'
+          git init .
+          git config core.autocrlf false
+          git remote add origin "https://github.com/$GITHUB_REPOSITORY.git"
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -c http.extraheader="AUTHORIZATION: basic $auth" fetch --no-tags origin "$GITHUB_SHA"
+          git checkout -B "$GITHUB_REF_NAME" FETCH_HEAD
+      - name: Separate historical notes from current checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,subprocess
+          root=Path('rwa_latest')
+          sha=lambda b:hashlib.sha256(b).hexdigest()
+          before={p.relative_to(root).as_posix():sha(p.read_bytes()) for p in root.rglob('*') if p.is_file()}
+          report=json.loads((root/'reports/publication_6_0_12.json').read_text())
+          assert report['regression']['questions']['failed']==0
+          assert report['regression']['robustness']['failed']==0
+          assert all(c['exit_code']==0 for c in report['commands'])
+          p=root/'UPDATE_6_0_12_KO.md';s=p.read_text()
+          old='이전 패치 검증 요약에는 기존 질문 파싱 626/626, robustness 파싱 225/225, 새 역사적 계산/파싱 검사 42/42, CSV migration 9/9 등이 기록되어 있습니다. **이번 안내서 업로드 세션에서 이 테스트를 재실행한 것은 아닙니다.**'
+          assert old in s
+          s=s.replace(old,'이전 안내서만 추가한 커밋에서는 테스트를 재실행하지 않았습니다. 이번 소스 게시에서는 기존 질문 파싱 626/626, robustness 파싱 225/225, 새 Peak 계산·해석 검사 42/42, CSV 설치·보존·롤백 9개, 모의 Tableau 84개, 관리자 76개 검사를 다시 실행하여 통과했습니다. 실제 로그와 범위는 `reports/publication_6_0_12.json`에 기록했습니다. 브라우저 및 은행 Tableau/SSO 시험을 이번 게시에서 새로 수행한 것은 아닙니다.')
+          s=s.replace('## 4. 전체 패치를 확보한 뒤 적용하는 순서','## 4. 적용 및 실행 순서')
+          s=s.replace('ZIP의 소스와 하위 폴더를 기존 `rwa_latest/`에 반영하되','GitHub 변경 목록의 소스와 하위 폴더를 기존 작업 폴더에 반영하되')
+          p.write_text(s,encoding='utf-8')
+          m=json.loads((root/'UPLOAD_MANIFEST.json').read_text())
+          m['files']={p.relative_to(root).as_posix():sha(p.read_bytes()) for p in sorted(root.rglob('*')) if p.is_file() and p.name not in {'UPLOAD_MANIFEST.json','SHA256SUMS.txt'}}
+          (root/'UPLOAD_MANIFEST.json').write_text(json.dumps(m,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          sums=''.join(sha(p.read_bytes())+'  '+p.relative_to(root).as_posix()+'\n' for p in sorted(root.rglob('*')) if p.is_file() and p.name!='SHA256SUMS.txt')
+          (root/'SHA256SUMS.txt').write_text(sums,encoding='utf-8')
+          changed={p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file() and before.get(p.relative_to(root).as_posix())!=sha(p.read_bytes())}
+          assert changed=={'UPDATE_6_0_12_KO.md','UPLOAD_MANIFEST.json','SHA256SUMS.txt'}
+          paths=subprocess.check_output(['git','diff','--name-only']).decode().splitlines()
+          assert set(paths)=={'rwa_latest/'+p for p in changed}
+          PY
+      - name: Commit documentation only to staging
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- rwa_latest/UPDATE_6_0_12_KO.md rwa_latest/UPLOAD_MANIFEST.json rwa_latest/SHA256SUMS.txt
+          git commit -m 'Clarify fresh publication verification versus historical browser evidence'
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -c http.extraheader="AUTHORIZATION: basic $auth" push origin "HEAD:refs/heads/$GITHUB_REF_NAME"
