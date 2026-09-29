@@ -66,6 +66,17 @@ export class Dictionary {
   }
   resolve(text){
     let hits=this.nameIndex.match(text);
+    // Patch 6.0.9-phrase-ownership: an enabled, exact multi-word rule owns
+    // its span before a weak name fragment does. For example, registered
+    // "take me through" must not turn "take" into TAKE HOME ELECTRONICS.
+    // Keep IDs (100), full names (80), base names (60) and multi-word aliases
+    // (40) protected. Only contained low-priority fragments (20) are shadowed;
+    // the same fragment outside this phrase is still resolved normally.
+    // No stop-word blacklist, guessed phrase, threshold change or token skip.
+    const isFragment=h=>h.entries.every(e=>e.priority===20);
+    const rulePhrases=this.conceptIndex.match(text,hits.filter(h=>!isFragment(h)))
+      .filter(h=>tokenize(h.text).length>1);
+    hits=hits.filter(h=>!isFragment(h)||!rulePhrases.some(p=>p.start<=h.start&&h.end<=p.end));
     // Whole detailed driver labels are protected before words such as increase,
     // lower, product, exclude, or dates inside a label acquire command meaning.
     const conceptHits=this.conceptIndex.match(text,hits);

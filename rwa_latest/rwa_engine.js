@@ -187,7 +187,10 @@ export class RwaQaEngine {
   if(p.metric==='BALANCE'&&p.excludedDrivers.length)throw new Error('Driver attribution cannot be subtracted from an RWA balance as a substitute for recalculation. Ask for the movement excluding those drivers.');
   const who=p.entity?this.subjectLabel(p.entity,p.entityId,'ENTITY'):p.group?this.subjectLabel(p.group,p.groupId,'GROUP'):'Loaded portfolio',when=this.labelPeriod(p.period),parts=[],warnings=[];let result,table=null;
   const unit=p.metric==='PERCENT'?'%':'USDm';
-  const rankText=(r)=>r.items.map(x=>`${x.rank}. ${x.displayName||x.name}: ${p.metric==='PERCENT'?x.value.toFixed(1)+'%':this.amt(x.value)}${p.driver?' attributed to '+p.driver:''}`).join('\n');
+  // 6.0.10-report-ui: show the existing system ID, never infer one from a name.
+  const groupIdText=x=>x.id===undefined||x.id===null||x.id===''?'Not provided':String(x.id);
+  const rankLabel=(r,x)=>r.dimension==='GROUP'?`${x.name} [Group ID: ${groupIdText(x)}]`:(x.displayName||x.name);
+  const rankText=(r)=>r.items.map(x=>`${x.rank}. ${rankLabel(r,x)}: ${p.metric==='PERCENT'?x.value.toFixed(1)+'%':this.amt(x.value)}${p.driver?' attributed to '+p.driver:''}`).join('\n');
   if(p.action==='TOP_CLIENTS'||p.action==='TOP_ENTITY'){
    if(p.action==='TOP_CLIENTS'&&!this.options.portfolioComplete)throw new Error('Portfolio ranking requires a fresh authorised portfolio response. A single-group response cannot be presented as a portfolio ranking.');
    result=this.ranking({...p,group:p.action==='TOP_CLIENTS'?null:p.group,groupId:p.action==='TOP_CLIENTS'?null:p.groupId,entity:p.action==='TOP_CLIENTS'?null:p.entity,entityId:p.action==='TOP_CLIENTS'?null:p.entityId},p.action==='TOP_CLIENTS'?'GROUP':p.dimension||'ENTITY');
@@ -196,7 +199,10 @@ export class RwaQaEngine {
    warnings.push(...result.all.flatMap(x=>x.warnings||[]));
    if(result.partial)warnings.push(`${result.missing} of ${result.loaded} loaded ${result.dimension.toLowerCase()} members lack complete data for the requested period. Ranking covers the available subset only.`);
    if(result.items.some(x=>x.rowResiduals))warnings.push('One or more displayed contributors have unreconciled attribution; movement ranking still uses recorded balances.');
-   table={columns:['Rank','Name',p.driver?p.driver+' ('+unit+')':p.metric+' ('+unit+')'],rows:result.items.map(x=>[x.rank,x.displayName||x.name,Number(x.value.toFixed(3))])};
+   const valueColumn=p.driver?p.driver+' ('+unit+')':p.metric+' ('+unit+')';
+   table=result.dimension==='GROUP'
+     ?{columns:['Rank','Group ID','Group name',valueColumn],rows:result.items.map(x=>[x.rank,groupIdText(x),x.name,Number(x.value.toFixed(3))])}
+     :{columns:['Rank','Name',valueColumn],rows:result.items.map(x=>[x.rank,x.displayName||x.name,Number(x.value.toFixed(3))])};
   }else if(p.action==='COMPARE'){
    const panels=[];
    if(p.period.mode==='comparison')for(const month of p.period.months){const pp={...p,period:{mode:'month',month}};panels.push({name:month,...this.aggregateRows(this.select(pp).rows,pp)});}
