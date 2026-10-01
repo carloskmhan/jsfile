@@ -32,7 +32,7 @@ export function validateCompositionGrammar({text,lex,slots,relations,plan,patch,
   // First release does not invent patches or reinterpret historical/comparison operations.
   if(patch&&!patch.compositionRule)return fail('UNSUPPORTED_COMPOSITION','New lexical composition of registered context patches is not enabled.');
   if(!patch&&!lex.concepts.RWA)return fail('MISSING_REQUIRED_SLOT','Use explicit RWA wording with a new compositional expression.');
-  const rules=registry.composition.rules.filter(r=>r.enabled&&!['RANKING_ROLES','COMPOUND_CONTEXT','ACCEPTED_AUDIT'].includes(r.shape)&&r.actions.includes(plan.action)&&(patch?r.shape==='CONTEXT_MODIFIER':r.shape!=='CONTEXT_MODIFIER'));
+  const rules=registry.composition.rules.filter(r=>r.enabled&&!['RANKING_ROLES','COMPOUND_CONTEXT','REFERENCE_CONTEXT','ACCEPTED_AUDIT','CONSISTENCY_GATE'].includes(r.shape)&&r.actions.includes(plan.action)&&(patch?r.shape==='CONTEXT_MODIFIER':r.shape!=='CONTEXT_MODIFIER'));
   if(rules.length!==1)return fail('UNSUPPORTED_COMPOSITION','No single reviewed composition shape supports this report.');
   if(rules.length>registry.composition.maxCandidates)return fail('COMPOSITION_LIMIT','Composition candidate limit exceeded.');
   const rule=rules[0],roles=new Set(composition.additions.map(m=>m.role));

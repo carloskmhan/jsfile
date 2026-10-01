@@ -2,17 +2,19 @@
 import {normalizedInput,clone,removeSpans,overlaps} from './text.js';
 import {parseRelations} from './relations.js';
 import {composeLexical} from './composition_lexicon.js';
-import {parseRoleRanking,parseCompoundContext,MeaningError} from './planning_syntax.js';
+import {parseRoleRanking,parseCompoundContext,parseReferenceContext,MeaningError} from './planning_syntax.js';
 import {COMPOSITION_VERSION} from './composition_schema.js';
+import {buildCandidateGraph,materialFinding,predicateTree,relationTree} from './candidate_graph.js';
 
 export const planningRule=(registry,shape)=>registry.composition?.rules.find(r=>r.enabled&&r.shape===shape)||null;
 export function compoundPrefix(text){return /^(?:please )?(?:do the )?same (?:analysis|report)\b/.test(text);}
+export function referencePrefix(text){return /^(?:please )?(?:what|how) about (?:the )?(?:first|second|third|largest|next|that)(?: one)?\b/.test(text);}
 function rolePrefix(text){return /^(?:please )?(?:(?:show|rank|list) )?(?:the )?(?:top|bottom)\b/.test(text)&&/\bby\b/.test(text)&&/\b(?:with rwa|contribution to|attribution to|after excluding)\b/.test(text);}
 export function prepareSemanticPlanning(question,dictionary,registry){
   const input=normalizedInput(question,registry.settings.max_query_chars);if(input.error)return null;
   const exact=dictionary.resolve(input.text);if(exact.collisions.length)return null;
   const structural=removeSpans(input.text,[...exact.names,...exact.matches.filter(m=>m.driver)]);
-  const shape=compoundPrefix(structural)?'COMPOUND_CONTEXT':rolePrefix(structural)?'RANKING_ROLES':null;
+  const shape=compoundPrefix(structural)?'COMPOUND_CONTEXT':referencePrefix(structural)?'REFERENCE_CONTEXT':rolePrefix(structural)?'RANKING_ROLES':null;
   const rule=shape&&planningRule(registry,shape);if(!rule)return null;
   const expanded=composeLexical(question,dictionary,registry);if(expanded?.error)return null;
   return {text:input.text,lex:expanded?.lex||exact,fuzzy:{attempts:[],corrections:[]},
@@ -22,29 +24,36 @@ export function prepareSemanticPlanning(question,dictionary,registry){
 export function interpretMeaning(text,lex,original,registry,state,request){
   const shape=request.shape,rule=planningRule(registry,shape);
   if(!rule)throw new MeaningError('UNSUPPORTED_SEMANTIC_STRUCTURE','This semantic structure is disabled.');
-  const syntax=shape==='RANKING_ROLES'?parseRoleRanking(text,lex,original,4):parseCompoundContext(text,lex,original,4);
+  const syntax=shape==='RANKING_ROLES'?parseRoleRanking(text,lex,original,4):shape==='REFERENCE_CONTEXT'?parseReferenceContext(text,lex,original,2):parseCompoundContext(text,lex,original,4);
   if(!syntax)throw new MeaningError('UNSUPPORTED_SEMANTIC_STRUCTURE','No complete reviewed semantic structure was found.');
-  if(shape==='COMPOUND_CONTEXT'&&!state.action)throw new MeaningError('MISSING_CONTEXT','Run a compatible report first; a preview or failed request is not conversation context.','context');
+  if(['COMPOUND_CONTEXT','REFERENCE_CONTEXT'].includes(shape)&&!state.action)throw new MeaningError('MISSING_CONTEXT','Run a compatible report first; a preview or failed request is not conversation context.','context');
   if(shape==='COMPOUND_CONTEXT'&&!rule.actions.includes(state.action))throw new MeaningError('UNSUPPORTED_CONTEXT','This compound request supports a recorded group/entity movement report or entity ranking, not historical peaks or comparisons.','context');
-  const slots={...clone(original),period:syntax.period,metric:syntax.metric||original.metric,
+  if(shape==='REFERENCE_CONTEXT'){
+    if(!rule.actions.includes(state.action))throw new MeaningError('UNSUPPORTED_CONTEXT','A ranked-result reference requires the last successful report to be a group or entity ranking.','reference');
+    const n=syntax.reference==='next'?(state.focusRankIndex??0)+1:syntax.reference==='focus'?(state.focusRankIndex??0):syntax.reference;
+    if(!state.references?.[n])throw new MeaningError('AMBIGUOUS_CONTEXT','The requested ranked result is not available in the last successful result set.','reference');
+  }
+  const slots={...clone(original),period:syntax.period||original.period,metric:syntax.metric||original.metric,
     direction:syntax.direction||original.direction,dimension:syntax.dimension||null,
     topN:syntax.topN||null,threshold:syntax.condition||null,
     metricExplicit:shape==='RANKING_ROLES',concise:false};
   const relations=parseRelations('',{matches:[],concepts:{}},{...slots,names:[],drivers:[]});
   const subject=syntax.subject;
   Object.assign(relations,{subjects:subject?[subject]:[],groups:subject?[subject.id]:[],entities:[],
-    driver:syntax.driver||null,excludedDrivers:syntax.excludedDrivers,includedDrivers:syntax.includedDrivers,
-    sameBasis:shape==='COMPOUND_CONTEXT',hasThreshold:!!syntax.condition});
+    driver:syntax.driver||null,excludedDrivers:syntax.excludedDrivers||[],includedDrivers:syntax.includedDrivers||[],
+    sameBasis:['COMPOUND_CONTEXT','REFERENCE_CONTEXT'].includes(shape),hasThreshold:!!syntax.condition});
   let patch=null;
   if(shape==='COMPOUND_CONTEXT'){
     const captures={};if(subject)captures.scope={value:subject};if(syntax.period)captures.period={value:syntax.period};
     const type=subject?'REPLACE_SCOPE':syntax.period?'REPLACE_PERIOD':syntax.includedDrivers.length?'INCLUDE':'EXCLUDE';
     patch={rule:{rule_id:rule.rule_id,patch_type:type,target_slot:'scope',command_id:'',pattern:'<typed-compound>'},captures,matchedText:text,compositionRule:rule.rule_id};
+  }else if(shape==='REFERENCE_CONTEXT'){
+    patch={rule:{rule_id:rule.rule_id,patch_type:'FOCUS_REFERENCE',target_slot:'rankReference',command_id:'',pattern:'<typed-reference-context>'},
+      captures:{rankref:{value:syntax.reference}},matchedText:text,compositionRule:rule.rule_id};
   }
   const concepts=shape==='RANKING_ROLES'?{RWA:1,RANK:1,[syntax.dimension]:1,
     ...(syntax.metric==='PERCENT'?{PERCENT:1}:syntax.metric==='BALANCE'?{BALANCE:1}:{}),
     ...(syntax.direction==='UP'?{INCREASE:1}:syntax.direction==='DOWN'?{DECREASE:1}:{})}:{RWA:1,SAME:1};
-  // Every additional grammar token has actually been consumed. Never blanket-cover an unknown suffix.
   const known=[...lex.names,...lex.matches];
   const grammarWords=syntax.tokens.filter(t=>t.type==='WORD'&&!known.some(s=>overlaps(s,t))).map(t=>({...t,concept:'TECHNICAL',weight:1,source:rule.source}));
   const scopedLex={...lex,concepts,matches:[...lex.matches,...grammarWords].sort((a,b)=>a.start-b.start)};
@@ -62,14 +71,15 @@ export function bindMeaningContract(meaning,projection,anchor){
   else if(action==='TOP_ENTITY'){p.entity=null;p.entityId=null;}
   const bound=Object.fromEntries(boundFields.filter(k=>p[k]!==undefined).map(k=>[k,clone(p[k])]));
   const provenance={};
-  for(const role of ['TARGET','MEASURE','DIRECTION','PERIOD','RANK','FILTER','EXCLUSION'])provenance[role]={origin:s.shape==='COMPOUND_CONTEXT'?'INHERITED_UNLESS_EXPLICIT':'EXPLICIT_OR_EXISTING_DEFAULT'};
+  for(const role of ['TARGET','MEASURE','DIRECTION','PERIOD','RANK','FILTER','EXCLUSION'])provenance[role]={origin:['COMPOUND_CONTEXT','REFERENCE_CONTEXT'].includes(s.shape)?'INHERITED_UNLESS_EXPLICIT':'EXPLICIT_OR_EXISTING_DEFAULT'};
   return {version:COMPOSITION_VERSION,stage:'BEFORE_COMMAND_SELECTION',shape:s.shape,ruleId:meaning.rule.rule_id,source:clone(meaning.rule.source),
     ACTION:action,TARGET:{level:p.dimension||(p.entityId?'ENTITY':p.groupId?'GROUP':null),groupId:p.groupId,entityId:p.entityId},
     MEASURE:{metric:p.metric,driver:p.driver,basis:p.metric==='BALANCE'?'CLOSING_BALANCE':p.metric==='PERCENT'?'EXISTING_PERCENT_CHANGE_POLICY':'EXISTING_MOVEMENT_POLICY'},
     DIRECTION:p.direction,PERIOD:clone(p.period),RANK:['TOP_CLIENTS','TOP_ENTITY'].includes(action)?{limit:p.topN,order:p.direction}:null,
     FILTER:p.condition?{...clone(p.condition),targetLevel:p.dimension,application:'BEFORE_TOP_N',period:clone(p.period)}:null,
+    PREDICATES:predicateTree(p),
     EXCLUSION:{drivers:clone(p.excludedDrivers),groupIds:clone(p.excludedGroupIds),entityIds:clone(p.excludedEntityIds)},
-    RELATION:{driverRole:p.driver?'RANK_MEASURE':p.excludedDrivers.length?'ATTRIBUTION_EXCLUSION':null,operations:clone(s.operations),contextChangesAtomic:s.shape==='COMPOUND_CONTEXT'},
+    RELATION:{driverRole:p.driver?'RANK_MEASURE':p.excludedDrivers.length?'ATTRIBUTION_EXCLUSION':null,operations:clone(s.operations),contextChangesAtomic:['COMPOUND_CONTEXT','REFERENCE_CONTEXT'].includes(s.shape),tree:relationTree(p)},
     provenance,evidence:clone(s.ledger),unresolved:[],contradictions:[],candidates:[{action,bound}],temporalAnchor:anchor};
 }
 export function validateMeaningContract(frame,plan){
@@ -81,24 +91,42 @@ export function validateMeaningContract(frame,plan){
   return {valid:!mismatches.length,mismatches,errors:mismatches.length?[{code:'SEMANTIC_PLAN_MISMATCH',message:'The selected command would change these interpreted conditions: '+mismatches.join(', ')+'. No weaker command was substituted.'}]:[]};
 }
 
-/** Audit is read-only and in-memory. Existing accepted output is not retroactively relabelled. */
+/** Accepted legacy output is audited against any complete structured interpretation. */
 export function auditAcceptedMeaning(text,lex,accepted,planned,registry){
   if(!planningRule(registry,'ACCEPTED_AUDIT'))return null;
   const structural=removeSpans(text,[...lex.names,...lex.matches.filter(m=>m.driver)]),findings=[];
   for(const m of structural.matchAll(/\b(net|gross)\b/g))findings.push({code:'UNDEFINED_AGGREGATION_BASIS',field:'measureBasis',word:m[0],start:m.index,end:m.index+m[0].length,
-    message:'Legacy TOTAL recognition does not define '+m[0]+'. Specify the subtraction/aggregation basis before changing this meaning.'});
+    message:'Legacy TOTAL recognition does not define '+m[0]+'. State the intended aggregation/subtraction basis explicitly.'});
   if(planned?.ok){
     for(const field of ['metric','driver','condition','excludedDrivers','groupId','entityId','period','dimension'])if(!equal(accepted.plan[field],planned.plan[field]))findings.push({code:'ROLE_BINDING_DISAGREEMENT',field,legacy:clone(accepted.plan[field]??null),structured:clone(planned.plan[field]??null)});
   }else if(planned?.explain?.clarification)findings.push({code:'STRUCTURE_REQUIRES_REVIEW',...clone(planned.explain.clarification)});
-  return {version:COMPOSITION_VERSION,policy:'OBSERVE_ONLY',action:accepted.plan.action,findings,changesExecution:false};
+  const graph=buildCandidateGraph(accepted.plan,planned?.ok?planned.plan:null,registry.composition.maxCandidates);
+  return {version:COMPOSITION_VERSION,policy:'OBSERVE_OR_CLARIFY',action:accepted.plan.action,findings,candidateGraph:graph,changesExecution:false};
+}
+export function consistencyGate(legacy,audit,registry){
+  if(!audit||!planningRule(registry,'CONSISTENCY_GATE'))return null;
+  const finding=materialFinding(audit.findings);if(!finding)return null;
+  const message=finding.code==='UNDEFINED_AGGREGATION_BASIS'?
+    `“${finding.word}” does not have one reviewed aggregation basis in this engine. State exactly what should be netted or aggregated.`:
+    `Two reviewed interpretations disagree on ${finding.field}. Rephrase the ranking measure, filter, scope or period explicitly before execution.`;
+  return {ok:false,status:'ambiguous',code:'AMBIGUOUS_SEMANTIC_BINDING',message,choices:[],trace:[...(legacy.trace||[]),'semantic-consistency-gate'],
+    explain:{...clone(legacy.explain),decision:'AMBIGUOUS_SEMANTIC_BINDING',failureCategory:'semantic-ambiguity',clarification:{field:finding.field,prompt:message,preservesSuccessfulContext:true},semanticCandidateGraph:clone(audit.candidateGraph)}};
 }
 
-/** Scope-only half of the compound grammar. It never authorises a report or widens to portfolio. */
+/** Scope-only half of compound/reference grammar. Never authorises a report or widens to portfolio. */
 export function routeMeaningScope(text,lex,registry,state,context){
   if(context.compositionMode!=='guarded')return null;
-  const rule=planningRule(registry,'COMPOUND_CONTEXT');if(!rule)return null;
   const structural=removeSpans(text,[...lex.names,...lex.matches.filter(m=>m.driver)]);
-  if(!compoundPrefix(structural))return null;
+  if(referencePrefix(structural)){
+    const rule=planningRule(registry,'REFERENCE_CONTEXT');if(!rule)return null;
+    if(!rule.actions.includes(state.action))return {ok:false,code:'UNSUPPORTED_CONTEXT',message:'A ranked-result reference requires the last successful report to be a group or entity ranking.'};
+    const m=structural.match(/\b(first|second|third|largest|next|that)(?: one)?\b/);if(!m)return {ok:false,code:'AMBIGUOUS_CONTEXT',message:'Specify which ranked result to use.'};
+    const index=m[1]==='second'?1:m[1]==='third'?2:m[1]==='next'?(state.focusRankIndex??0)+1:m[1]==='that'?(state.focusRankIndex??0):0;
+    const ref=state.references?.[index];if(!ref)return {ok:false,code:'AMBIGUOUS_CONTEXT',message:'The requested ranked result is not available.'};
+    const id=ref.kind==='GROUP'?ref.id:ref.parentId;if(!id)return {ok:false,code:'AMBIGUOUS_CONTEXT',message:'The referenced result has no authorised group scope.'};
+    return {ok:true,portfolio:false,groupIds:[id]};
+  }
+  const rule=planningRule(registry,'COMPOUND_CONTEXT');if(!rule||!compoundPrefix(structural))return null;
   if(lex.collisions.length)return {ok:false,code:'AMBIGUOUS_ENTITY',message:'Specify a unique group ID for the compound request.'};
   if(!state.action)return {ok:false,code:'MISSING_CONTEXT',message:'Run a compatible report before changing its group, month or driver conditions.'};
   if(!rule.actions.includes(state.action))return {ok:false,code:'UNSUPPORTED_CONTEXT',message:'Compound replacements require a group/entity movement report or entity ranking.'};

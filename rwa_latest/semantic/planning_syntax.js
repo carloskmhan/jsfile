@@ -12,6 +12,7 @@ export function meaningTokens(text,slots){
   const atoms=[...slots.names.map(s=>({...s,type:'NAME',value:s.item})),
     ...slots.drivers.map(s=>({...s,type:'DRIVER',value:s.driver})),
     ...slots.periodSpans.map(s=>({...s,type:'PERIOD',value:slots.period})),
+    ...slots.references.map(s=>({...s,type:'REF',value:s.index})),
     ...(slots.topSpan?[{...slots.topSpan,type:'COUNT',value:slots.topN}]:[]),
     ...(slots.threshold?[{...slots.threshold,type:'BOUND',value:slots.threshold}]:[])].sort((a,b)=>a.start-b.start||b.end-a.end);
   for(let i=1;i<atoms.length;i++)if(overlaps(atoms[i-1],atoms[i]))stop('Overlapping typed parameters need an explicit reformulation.');
@@ -151,5 +152,28 @@ export function parseCompoundContext(text,lex,slots,maxClauses){
   }
   c.end();if(!result.operations.length)stop('Specify which group, month, or driver condition should change.','context','AMBIGUOUS_CONTEXT');
   if(slots.topN||slots.threshold||slots.references.length)stop('Ranking limits, numeric filters and result references are not compound replacements.','context');
+  result.ledger=c.ledger;result.tokens=c.tokens;return result;
+}
+
+/** Ranked-result reference plus optional month replacement. Uses the existing
+ * FOCUS_REFERENCE handler; it never copies result amounts or widens scope. */
+export function parseReferenceContext(text,lex,slots,maxClauses){
+  const c=new Cursor(meaningTokens(text,slots),text);c.eat('please');
+  if(!c.eat('what','how'))return null;
+  c.require('about','reference');c.eat('the');
+  const ref=c.atom('REF','ranked result reference');
+  const result={shape:'REFERENCE_CONTEXT',reference:ref.value,period:null,operations:['FOCUS_REFERENCE'],ledger:[]};
+  c.mark(0,'RESULT_REFERENCE',ref.value);let clauses=0;
+  while(c.peek()&&!c.word('.','?','!')){
+    c.eat(',');c.eat('but');const before=c.i;
+    if(++clauses>maxClauses)stop('Too many reference modifiers; split the request.','clause','SEMANTIC_PLAN_LIMIT');
+    if(c.eat('in','during','for')){
+      if(result.period)stop('Specify one replacement month.','period','AMBIGUOUS_PERIOD');
+      result.period=clone(month(c,slots).value);result.operations.push('REPLACE_PERIOD');c.mark(before,'REPLACE_PERIOD',result.period);continue;
+    }
+    stop('After a ranked-result reference, only one explicit reporting month is supported in this compound form.','context');
+  }
+  c.end();
+  if(slots.topN||slots.threshold||slots.names.length||slots.drivers.length)stop('Do not mix a ranked-result reference with a new named scope, driver, ranking limit or threshold in this form.','context');
   result.ledger=c.ledger;result.tokens=c.tokens;return result;
 }

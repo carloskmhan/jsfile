@@ -1,4 +1,4 @@
-import {prepareSemanticPlanning,interpretMeaning,bindMeaningContract,validateMeaningContract,auditAcceptedMeaning} from './semantic_planner.js';
+import {prepareSemanticPlanning,interpretMeaning,bindMeaningContract,validateMeaningContract,auditAcceptedMeaning,consistencyGate} from './semantic_planner.js';
 import {compositionMode} from './composition_schema.js';
 import {composeLexical} from './composition_lexicon.js';
 import {semanticFrame} from './composition_frame.js';
@@ -40,6 +40,8 @@ export class SemanticEngine {
         const prepared=prepareSemanticPlanning(question,this.dictionary,this.registry);
         const planned=prepared?this.parseLegacy(question,rows,context,state,prepared):null;
         this.lastSemanticAudit=auditAcceptedMeaning(norm(question),this.dictionary.resolve(norm(question)),legacy,planned,this.registry);
+        const gate=this.compositionMode==='guarded'?consistencyGate(legacy,this.lastSemanticAudit,this.registry):null;
+        if(gate)return gate;
       }catch(error){this.lastSemanticAudit={policy:'OBSERVE_ONLY',code:'AUDIT_ERROR',message:String(error.message),changesExecution:false};}
       return legacy;
     }

@@ -964,15 +964,15 @@
       "id": "C0138",
       "question": "Why has Samsung RWA risen in July 2026 net?",
       "canonical": null,
-      "expected": "LEGACY_ACCEPT",
-      "category": "legacy_qualifier_review"
+      "expected": "REJECT",
+      "category": "hard_negative"
     },
     {
       "id": "C0139",
       "question": "Why has Samsung RWA risen in July 2026 gross?",
       "canonical": null,
-      "expected": "LEGACY_ACCEPT",
-      "category": "legacy_qualifier_review"
+      "expected": "REJECT",
+      "category": "hard_negative"
     },
     {
       "id": "C0140",
@@ -1301,12 +1301,12 @@
     {
       "id": "C0138",
       "question": "Why has Samsung RWA risen in July 2026 net?",
-      "finding": "Legacy fuzzy recovers risen as rises; both net and gross are registered as TOTAL. Preserved for compatibility, not evidence of gross/net semantic correctness."
+      "finding": "v6.3 guarded consistency gate now blocks the legacy TOTAL acceptance because net/gross has no reviewed aggregation basis; off/shadow preserve legacy behavior."
     },
     {
       "id": "C0139",
       "question": "Why has Samsung RWA risen in July 2026 gross?",
-      "finding": "Legacy fuzzy recovers risen as rises; both net and gross are registered as TOTAL. Preserved for compatibility, not evidence of gross/net semantic correctness."
+      "finding": "v6.3 guarded consistency gate now blocks the legacy TOTAL acceptance because net/gross has no reviewed aggregation basis; off/shadow preserve legacy behavior."
     }
   ]
 }
