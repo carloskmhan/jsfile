@@ -1,0 +1,104 @@
+name: Verify and stage clickable RWA identities
+on:
+  push:
+    branches: [rwa-clickable-identities-20261001]
+    paths: ['.github/workflows/rwa-identity-stage.yml', '.rwa-identity-transfer/**']
+permissions:
+  contents: write
+jobs:
+  verified-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+      - name: Verify pinned transfer and unchanged baseline
+        run: |
+          python - <<'PY'
+          import gzip, hashlib, json, subprocess
+          from pathlib import Path
+          raw = b''.join(Path(f'.rwa-identity-transfer/part{i}.gzpart').read_bytes() for i in range(5))
+          assert hashlib.sha256(raw).hexdigest() == '3638fec4268b38705fea54c3fd9586ee8d6322e628022135e708ced09538f83f'
+          p = json.loads(gzip.decompress(raw))
+          assert p['base'] == 'bd8daab772a90b0d2e490c2a54ce7b2c5d24e456'
+          subprocess.run(['git', 'merge-base', '--is-ancestor', p['base'], 'HEAD'], check=True)
+          def safe(name):
+              path = Path(name)
+              assert name.startswith('rwa_latest/') and not path.is_absolute() and '..' not in path.parts
+              assert not any(x.is_symlink() for x in [path, *path.parents])
+              return path
+          for name, digest in p['protected'].items():
+              assert hashlib.sha256(safe(name).read_bytes()).hexdigest() == digest, name
+          patches = []
+          for name, spec in p['files'].items():
+              path = safe(name)
+              if spec['before'] is None:
+                  assert not path.exists() and 'content' in spec and 'patch' not in spec, name
+              else:
+                  assert hashlib.sha256(path.read_bytes()).hexdigest() == spec['before'], name
+                  assert 'patch' in spec and 'content' not in spec, name
+                  patches.append(spec['patch'])
+          patch = ''.join(patches)
+          subprocess.run(['git', 'apply', '--check', '-'], input=patch, text=True, check=True)
+          subprocess.run(['git', 'apply', '-'], input=patch, text=True, check=True)
+          for name, spec in p['files'].items():
+              if 'content' in spec:
+                  path = safe(name)
+                  path.parent.mkdir(parents=True, exist_ok=True)
+                  path.write_text(spec['content'], encoding='utf-8', newline='\n')
+          Path('/tmp/rwa-identity-payload.json').write_text(json.dumps(p), encoding='utf-8')
+          PY
+      - name: Rebuild standalone from the same application sources
+        working-directory: rwa_latest
+        run: python tools/build_standalone.py
+      - name: Match locally tested source and protected files
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          p = json.loads(Path('/tmp/rwa-identity-payload.json').read_text())
+          for name, digest in {**p['expected'], **p['protected']}.items():
+              assert hashlib.sha256(Path(name).read_bytes()).hexdigest() == digest, name
+          print('All 12 release files and protected baseline files match.')
+          PY
+      - name: Full existing and identity-selection regression gate
+        working-directory: rwa_latest
+        run: npm test
+      - name: Publish only verified files to isolated feature branch
+        run: |
+          python - <<'PY'
+          import hashlib, json, subprocess
+          from pathlib import Path
+          p = json.loads(Path('/tmp/rwa-identity-payload.json').read_text())
+          for name, digest in {**p['expected'], **p['protected']}.items():
+              assert hashlib.sha256(Path(name).read_bytes()).hexdigest() == digest, name
+          subprocess.run(['git', 'diff', '--check'], check=True)
+          subprocess.run(['git', 'add', '--', *sorted(p['expected'])], check=True)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'feat(rwa): add verified clickable identity disambiguation'
+          git push origin HEAD:refs/heads/rwa-clickable-identities-20261001
+      - name: Archive exact source and synthetic test evidence
+        if: always()
+        run: |
+          mkdir -p evidence
+          git rev-parse HEAD > evidence/commit.txt
+          git archive --format=zip HEAD:rwa_latest > evidence/rwa-source.zip
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rwa-identity-source-and-evidence
+          path: |
+            evidence/
+            rwa_latest/reports/test_runs.json
+            rwa_latest/reports/identity_selection_tests.json
+            rwa_latest/reports/composition_regression.json
+          retention-days: 7
