@@ -1,3 +1,4 @@
+import {validateComposition} from './composition_schema.js';
 /** Runtime artifact loader. Only an initial # header is stripped; no eval or dynamic code. */
 export function parseRuleText(text) {
   const clean=String(text).replace(/^\uFEFF/,'').replace(/^(?:#[^\n]*\n)+/,'');
@@ -27,5 +28,6 @@ export function validateRegistry(r) {
   }
   if(!r.settings||r.settings['inherit.result']!=='never'||r.settings.unknown_token_limit!==0)throw new Error('Unsafe or missing state/unknown-token policy.');
   for(const s of r.synonyms)if(typeof s.phrase!=='string'||!r.knownConcepts.includes(s.concept)||!(s.weight>0&&s.weight<=1))throw new Error('Invalid synonym.');
+  validateComposition(r.composition,r);
   const freeze=x=>{if(x&&typeof x==='object'&&!Object.isFrozen(x)){for(const v of Object.values(x))freeze(v);Object.freeze(x);}};freeze(r);checked.add(r);return r;
 }

@@ -1,0 +1,49 @@
+name: RWA composition regression
+on:
+  push:
+    branches: [main, rwa-composition-v6]
+    paths: ['rwa_latest/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+      - name: Check reproducible generated rules and standalone
+        working-directory: rwa_latest
+        run: |
+          python build_command_patterns.py
+          python tools/build_standalone.py
+          git diff --exit-code -- command_patterns.txt standalone_demo.html
+      - name: All known and composition regression gates
+        working-directory: rwa_latest
+        run: npm test
+      - name: Archive exact source and synthetic test evidence
+        if: always()
+        run: |
+          mkdir -p evidence
+          git rev-parse HEAD > evidence/commit.txt
+          git archive --format=zip HEAD:rwa_latest > evidence/rwa-source.zip
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rwa-source-and-evidence
+          path: |
+            evidence/
+            rwa_latest/reports/test_runs.json
+            rwa_latest/reports/v6_existing_questions.json
+            rwa_latest/reports/v6_existing_robustness.json
+            rwa_latest/reports/composition*.json
+          retention-days: 7

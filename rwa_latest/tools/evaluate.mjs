@@ -40,7 +40,7 @@ export function loadFixtures(){
 }
 export function evaluate(corpusFile,reportFile,options={}){
  const source=fs.readFileSync(corpusFile,'utf8'),cases=validateCases(parseCsv(source)),reg=parseRuleText(fs.readFileSync(path.join(ROOT,'command_patterns.txt'),'utf8')),data=loadFixtures(),cat=JSON.parse(fs.readFileSync(path.join(ROOT,'rwa_sample_data.txt'),'utf8'));
- const start=performance.now(),engine=new RwaQaEngine(data.rows,{...data,commandPatterns:reg,semanticCatalog:cat,portfolioComplete:true,disableFuzzy:!!options.disableFuzzy}),initMs=performance.now()-start;
+ const start=performance.now(),engine=new RwaQaEngine(data.rows,{...data,commandPatterns:reg,semanticCatalog:cat,portfolioComplete:true,disableFuzzy:!!options.disableFuzzy,compositionMode:options.compositionMode}),initMs=performance.now()-start;
  let conv=null;const results=[];
  for(const test of cases){
   if(test.conversation_id!==conv){engine.reset();conv=test.conversation_id;}
@@ -61,5 +61,5 @@ export function evaluate(corpusFile,reportFile,options={}){
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  if(process.argv.includes('--require-holdout')){const i=process.argv.indexOf('--holdout-manifest'),manifest=process.argv[i+1];if(i<0||!manifest)throw new Error('--require-holdout requires --holdout-manifest');const r=spawnSync(process.env.PYTHON||'python',['tools/holdout_guard.py','verify','--corpus',process.argv[2],'--manifest',manifest],{cwd:ROOT,encoding:'utf8'});if(r.status!==0)throw new Error(r.stderr||r.stdout||'Holdout verification failed');}
- const report=evaluate(path.resolve(process.argv[2]||path.join(ROOT,'tests/questions.csv')),path.resolve(process.argv[3]||path.join(ROOT,'reports/semantic_regression.json')),{disableFuzzy:process.argv.includes('--disable-fuzzy')});process.exitCode=report.failed?1:0;
+ const report=evaluate(path.resolve(process.argv[2]||path.join(ROOT,'tests/questions.csv')),path.resolve(process.argv[3]||path.join(ROOT,'reports/semantic_regression.json')),{disableFuzzy:process.argv.includes('--disable-fuzzy'),compositionMode:process.argv.includes('--composition-mode')?process.argv[process.argv.indexOf('--composition-mode')+1]:'off'});process.exitCode=report.failed?1:0;
 }

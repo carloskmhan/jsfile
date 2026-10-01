@@ -9,6 +9,7 @@
     "test": "node tests/run_all.mjs",
     "evaluate": "node tools/evaluate.mjs",
     "build:rules": "python build_command_patterns.py",
-    "build:standalone": "python tools/build_standalone.py"
+    "build:standalone": "python tools/build_standalone.py",
+    "test:composition": "node tests/test_composition.mjs && python tests/test_composition_compiler.py && node tools/composition_regression.mjs"
   }
 }

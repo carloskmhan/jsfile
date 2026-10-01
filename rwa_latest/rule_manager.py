@@ -124,7 +124,8 @@ class Workbench:
             raise ManagerError('This workbench supports the seven model-free v6 rule CSVs. Customer names come from Tableau, not the editor.')
         if not str(self.schema.ENGINE_VERSION).startswith('6.'):
             raise ManagerError('Use this full v6 source project, not the web-only subset.')
-        self.managed = [f'rules/{name}' for name in self.headers] + list(META_HEADERS) + ['command_patterns.txt']
+        self.composition_sources = ['rules/lexical_families.csv','rules/composition_rules.csv']
+        self.managed = [f'rules/{name}' for name in self.headers] + list(META_HEADERS) + self.composition_sources + ['command_patterns.txt']
         self.lock = threading.RLock()
         self.token = secrets.token_urlsafe(32)
         self.drafts = OrderedDict()
@@ -165,6 +166,7 @@ class Workbench:
 
     def code_hash(self):
         paths = ['build_command_patterns.py','tools/rule_schema.py','tools/compiler_extensions.py']
+        if (self.root/'tools/composition_rules.py').is_file(): paths.append('tools/composition_rules.py')
         paths += [p.relative_to(self.root).as_posix() for p in (self.root/'semantic').glob('*.js')]
         paths += list(RUNTIME_ROOT)
         return digest(encoded_json({x:digest(self.safe_path(x,True).read_bytes()) for x in sorted(set(paths))}))
@@ -180,7 +182,7 @@ class Workbench:
             if p.exists():
                 if p.stat().st_size>MAX_FILE: raise ManagerError('File exceeds limit: '+rel)
                 out[rel]=p.read_bytes()
-            elif rel=='command_patterns.txt' or rel in META_HEADERS: out[rel]=None
+            elif rel=='command_patterns.txt' or rel in META_HEADERS or rel in self.composition_sources: out[rel]=None
             else: raise ManagerError('Missing rule CSV: '+rel)
         return out
 
@@ -216,6 +218,7 @@ class Workbench:
         try:
             parsed=json.loads('\n'.join(line for line in artifact.decode('utf-8-sig').splitlines() if not line.startswith('#')))
             consistent=all(parsed['sourceSha256'].get(n)==digest(blobs['rules/'+n]) for n in self.headers)
+            consistent=consistent and all(parsed['sourceSha256'].get(Path(rel).name)==(digest(blobs[rel]) if blobs[rel] is not None else None) for rel in self.composition_sources)
         except (AttributeError,KeyError,ValueError,TypeError): pass
         return {'revision':self.revision_of(blobs),'tables':tables,'artifactHash':digest(artifact) if artifact else None,
                 'artifactConsistent':consistent,'generatedText':artifact.decode('utf-8') if artifact else '',
@@ -258,6 +261,7 @@ class Workbench:
                 w.writeheader();w.writerows(t['rows']);raw=s.getvalue().encode('utf-8')
                 if len(raw)>MAX_FILE: raise ManagerError(f'{name}: exceeds file size limit.')
                 blobs['rules/'+name]=raw
+        for rel in self.composition_sources: blobs[rel]=self.read_bytes_map()[rel]
         return blobs
 
     def compile_blobs(self, blobs):
@@ -265,6 +269,8 @@ class Workbench:
         with tempfile.TemporaryDirectory(prefix='rwa-rule-check-') as temp:
             tmp=Path(temp);rules=tmp/'rules';rules.mkdir()
             for name in self.headers: (rules/name).write_bytes(blobs['rules/'+name])
+            for rel in self.composition_sources:
+                if blobs.get(rel) is not None: (rules/Path(rel).name).write_bytes(blobs[rel])
             out=tmp/'command_patterns.txt'
             proc=subprocess.run([sys.executable,str(self.root/'build_command_patterns.py'),
                  '--rules-dir',str(rules),'--out',str(out)],cwd=self.root,capture_output=True,text=True,
@@ -286,7 +292,7 @@ class Workbench:
                 raise ManagerError('Files changed on disk or in another tab. Reload before merging your draft.',409,'REVISION_CONFLICT')
             blobs=self.encode_tables(payload.get('tables'),snap)
             current_blobs=self.read_bytes_map()
-            for rel in META_HEADERS: blobs[rel]=current_blobs[rel]
+            for rel in [*META_HEADERS,*self.composition_sources]: blobs[rel]=current_blobs[rel]
             generated,log,data=self.compile_blobs(blobs)
             if self.revision_of(self.read_bytes_map())!=snap['revision']:
                 raise ManagerError('Files changed during validation. Reload and retry.',409,'REVISION_CONFLICT')
@@ -322,7 +328,7 @@ class Workbench:
         manifest=json.loads(p.read_text('utf-8'))
         # Old pre-wizard backups legitimately have no optional card CSV entries.
         for section in ['beforeHashes','afterHashes']:
-            for rel in META_HEADERS: manifest[section].setdefault(rel,None)
+            for rel in [*META_HEADERS,*self.composition_sources]: manifest[section].setdefault(rel,None)
         if set(manifest['beforeHashes'])!=set(self.managed) or set(manifest['afterHashes'])!=set(self.managed): raise ManagerError('Invalid backup manifest.')
         before={}
         for rel,h in manifest['beforeHashes'].items():

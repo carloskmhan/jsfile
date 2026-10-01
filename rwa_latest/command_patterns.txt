@@ -15,7 +15,9 @@
     "settings.csv": "1db72a4325b03f8241eab104fb85bc463a4f78b28c56dc71f0a06be17adb4d4c",
     "fuzzy_config.csv": "30542439faebdbae9864fe5bb5cae031e6b6bbb81078b3a591d50697f15ca791",
     "units.csv": "02817e4cfa9fe033d21d1fa9e5e769ac35622196a91133f39db96cfbcf279018",
-    "temporal.csv": "b164491c6e44b0a0fb911966c54c93ea4eb67cadef3e09ebfb9612fd18c6c2a2"
+    "temporal.csv": "b164491c6e44b0a0fb911966c54c93ea4eb67cadef3e09ebfb9612fd18c6c2a2",
+    "lexical_families.csv": "8b5c8ce40027afc1b667177d6485d02e20c5cbeb80b29de974cc319e3f80fde1",
+    "composition_rules.csv": "eb1504a1e9ed7911bdddd3f90e85415db0d822c98d0a4e8ce0060d6b6435678a"
   },
   "knownConcepts": [
     "ABSOLUTE",
@@ -11453,5 +11455,411 @@
       "b": "across the entire period",
       "resolution": "leftmost-longest; names before concepts; equal-span conflicts rejected"
     }
-  ]
+  ],
+  "composition": {
+    "schemaVersion": 1,
+    "maxMatches": 16,
+    "maxCandidates": 4,
+    "lexicalFamilies": [
+      {
+        "family_id": "RISE",
+        "phrase": "risen",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 2
+        },
+        "concept": "INCREASE",
+        "role": "MOTION_UP"
+      },
+      {
+        "family_id": "RISE",
+        "phrase": "grown",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 3
+        },
+        "concept": "INCREASE",
+        "role": "MOTION_UP"
+      },
+      {
+        "family_id": "RISE",
+        "phrase": "growing",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 4
+        },
+        "concept": "INCREASE",
+        "role": "MOTION_UP"
+      },
+      {
+        "family_id": "RISE",
+        "phrase": "climb",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 5
+        },
+        "concept": "INCREASE",
+        "role": "MOTION_UP"
+      },
+      {
+        "family_id": "RISE",
+        "phrase": "climbed",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 6
+        },
+        "concept": "INCREASE",
+        "role": "MOTION_UP"
+      },
+      {
+        "family_id": "RISE",
+        "phrase": "climbing",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 7
+        },
+        "concept": "INCREASE",
+        "role": "MOTION_UP"
+      },
+      {
+        "family_id": "RISE",
+        "phrase": "expand",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 8
+        },
+        "concept": "INCREASE",
+        "role": "MOTION_UP"
+      },
+      {
+        "family_id": "RISE",
+        "phrase": "expanded",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 9
+        },
+        "concept": "INCREASE",
+        "role": "MOTION_UP"
+      },
+      {
+        "family_id": "RISE",
+        "phrase": "expanding",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 10
+        },
+        "concept": "INCREASE",
+        "role": "MOTION_UP"
+      },
+      {
+        "family_id": "FALL",
+        "phrase": "fallen",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 11
+        },
+        "concept": "DECREASE",
+        "role": "MOTION_DOWN"
+      },
+      {
+        "family_id": "FALL",
+        "phrase": "falling",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 12
+        },
+        "concept": "DECREASE",
+        "role": "MOTION_DOWN"
+      },
+      {
+        "family_id": "FALL",
+        "phrase": "contract",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 13
+        },
+        "concept": "DECREASE",
+        "role": "MOTION_DOWN"
+      },
+      {
+        "family_id": "FALL",
+        "phrase": "contracted",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 14
+        },
+        "concept": "DECREASE",
+        "role": "MOTION_DOWN"
+      },
+      {
+        "family_id": "FALL",
+        "phrase": "contracting",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 15
+        },
+        "concept": "DECREASE",
+        "role": "MOTION_DOWN"
+      },
+      {
+        "family_id": "FALL",
+        "phrase": "shrank",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 16
+        },
+        "concept": "DECREASE",
+        "role": "MOTION_DOWN"
+      },
+      {
+        "family_id": "FALL",
+        "phrase": "shrunk",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 17
+        },
+        "concept": "DECREASE",
+        "role": "MOTION_DOWN"
+      },
+      {
+        "family_id": "FALL",
+        "phrase": "shrinking",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 18
+        },
+        "concept": "DECREASE",
+        "role": "MOTION_DOWN"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "trigger",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 19
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "triggered",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 20
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "triggering",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 21
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "caused",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 22
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "causing",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 23
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "precipitated",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 24
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CONTRIBUTION",
+        "phrase": "contributed",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 25
+        },
+        "concept": "AMOUNT",
+        "role": "CONTRIBUTION"
+      },
+      {
+        "family_id": "POLITE",
+        "phrase": "kindly",
+        "enabled": true,
+        "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 26
+        },
+        "concept": "COURTESY",
+        "role": "COURTESY"
+      },
+      {
+        "family_id": "SUBJECT_LINK",
+        "phrase": "whose",
+        "enabled": true,
+        "notes": "Typed ranking subject link; requires groups or entities followed by RWA.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 27
+        },
+        "concept": "TECHNICAL",
+        "role": "SUBJECT_LINK"
+      },
+      {
+        "family_id": "PATCH_LINK",
+        "phrase": "but",
+        "enabled": true,
+        "notes": "Typed same-but modifier link; never ignored outside that grammar.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 28
+        },
+        "concept": "TECHNICAL",
+        "role": "PATCH_LINK"
+      }
+    ],
+    "rules": [
+      {
+        "rule_id": "COMPOSE_ATTRIBUTION",
+        "shape": "ATTRIBUTION",
+        "enabled": true,
+        "notes": "Existing executor and all legacy constraints remain mandatory.",
+        "source": {
+          "file": "composition_rules.csv",
+          "line": 2
+        },
+        "actions": [
+          "GROUP_ROOT_CAUSE",
+          "ENTITY_DRIVER",
+          "MAIN_DRIVER"
+        ]
+      },
+      {
+        "rule_id": "COMPOSE_MOVEMENT_CHECK",
+        "shape": "MOVEMENT_CHECK",
+        "enabled": true,
+        "notes": "Existing executor and all legacy constraints remain mandatory.",
+        "source": {
+          "file": "composition_rules.csv",
+          "line": 3
+        },
+        "actions": [
+          "MOVEMENT_CHECK",
+          "DRIVER_CHECK"
+        ]
+      },
+      {
+        "rule_id": "COMPOSE_CONTRIBUTION",
+        "shape": "CONTRIBUTION",
+        "enabled": true,
+        "notes": "Existing executor and all legacy constraints remain mandatory.",
+        "source": {
+          "file": "composition_rules.csv",
+          "line": 4
+        },
+        "actions": [
+          "DRIVER_CONTRIBUTION",
+          "ENTITY_CONTRIBUTION"
+        ]
+      },
+      {
+        "rule_id": "COMPOSE_RANKING",
+        "shape": "RANKING",
+        "enabled": true,
+        "notes": "Existing executor and all legacy constraints remain mandatory.",
+        "source": {
+          "file": "composition_rules.csv",
+          "line": 5
+        },
+        "actions": [
+          "TOP_CLIENTS",
+          "TOP_ENTITY"
+        ]
+      },
+      {
+        "rule_id": "COMPOSE_CONTEXT_MODIFIER",
+        "shape": "CONTEXT_MODIFIER",
+        "enabled": true,
+        "notes": "Same but exclude/include uses existing state patch handlers.",
+        "source": {
+          "file": "composition_rules.csv",
+          "line": 6
+        },
+        "actions": [
+          "GROUP_ROOT_CAUSE",
+          "ENTITY_DRIVER",
+          "TOP_CLIENTS",
+          "TOP_ENTITY"
+        ]
+      }
+    ]
+  }
 }

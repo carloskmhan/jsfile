@@ -1,0 +1,28 @@
+family_id,phrase,enabled,notes
+RISE,risen,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+RISE,grown,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+RISE,growing,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+RISE,climb,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+RISE,climbed,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+RISE,climbing,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+RISE,expand,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+RISE,expanded,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+RISE,expanding,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+FALL,fallen,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+FALL,falling,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+FALL,contract,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+FALL,contracted,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+FALL,contracting,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+FALL,shrank,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+FALL,shrunk,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+FALL,shrinking,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+CAUSE,trigger,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+CAUSE,triggered,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+CAUSE,triggering,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+CAUSE,caused,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+CAUSE,causing,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+CAUSE,precipitated,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+CONTRIBUTION,contributed,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+POLITE,kindly,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+SUBJECT_LINK,whose,true,Typed ranking subject link; requires groups or entities followed by RWA.
+PATCH_LINK,but,true,Typed same-but modifier link; never ignored outside that grammar.

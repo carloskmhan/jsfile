@@ -12,7 +12,7 @@ c('Current balance counted once per LEID',()=>assert.equal(a.result.rwa_curr,300
 c('Driver pairs de-duplicated upstream, distinct amounts summed',()=>assert.equal(a.result.change,60));
 c('Derived comparison previous balance preserved',()=>assert.equal(a.result.rwa_prev,240));
 c('Derived provenance not dropped',()=>assert.equal(a.result.derivedPreviousRows,2));
-c('Derived basis explicitly labelled, not observed prior month',()=>assert.match(a.answer,/NOT an independently observed/));
+c('Derived basis explicitly labelled, not observed prior month',()=>{assert.match(a.answer,/derived comparison-basis/);assert.match(JSON.stringify(a.warnings),/NOT an independently observed/);assert.match(JSON.stringify(a.methodologyNotes),/NOT an independently observed/);assert.doesNotMatch(a.answer,/NOT an independently observed/);});
 c('Repeated client names retain two LEID contributions',()=>assert.deepEqual(new Set(a.result.entityRanking.items.map(i=>i.entityId)),new Set(['001','002'])));
 c('No unique-name rejection on duplicate groups',()=>assert.equal(e.parseQuestion('Explain ACME GROUP in July 2026').code,'AMBIGUOUS_ENTITY'));
 const b=e.answer('How about 00002?');c('Follow-up selects second ID fresh data',()=>{assert.equal(b.ok,true,b.answer);assert.equal(b.plan.groupId,'00002');assert.equal(b.result.rwa_curr,400);assert.equal(b.result.change,50);});

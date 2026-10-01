@@ -1,3 +1,7 @@
+import {compositionMode} from './composition_schema.js';
+import {composeLexical} from './composition_lexicon.js';
+import {semanticFrame} from './composition_frame.js';
+import {compositionEligible,validateCompositionGrammar,composedContextPatch} from './composition_bridge.js';
 import {driverCatalog} from '../driver_catalog.js';
 import {normalizedInput,norm,clone,uniq} from './text.js';
 import {validateRegistry} from './registry.js';
@@ -17,19 +21,46 @@ const patchPrimary={HISTORICAL_GROUP_PEAK:'HISTORICAL_GROUP_REQUEST',GROUP_ROOT_
 export class SemanticEngine {
   constructor(options={}){
     if(!options.commandPatterns)throw new Error('Compiled CSV rules are required. Load command_patterns.txt before constructing the engine.');
-    this.registry=validateRegistry(options.commandPatterns);this.options=options;this.identities=[];this.dictionary=null;this.boundRows=null;
+    this.registry=validateRegistry(options.commandPatterns);this.options=options;this.compositionMode=compositionMode(options.compositionMode);this.lastComposition=null;this.identities=[];this.dictionary=null;this.boundRows=null;
   }
   bind(rows){
     if(this.boundRows===rows&&this.dictionary)return;
     this.boundRows=rows;this.identities=identityCatalog(rows,this.options.semanticCatalog,{...this.options,registry:this.registry});this.dictionary=new Dictionary(this.registry,this.identities,driverCatalog(rows).labels);
   }
   parse(question,rows,context={},state={}){
+    this.lastComposition=null;
+    const legacy=this.parseLegacy(question,rows,context,state);
+    if(this.compositionMode==='off'||!this.registry.composition)return legacy;
+    // Diagnostics never become state, previews, authorisation or an execution plan.
+    const observed=legacy.ok?semanticFrame(legacy.plan,legacy.explain):null;
+    if(!compositionEligible(legacy)){
+      this.lastComposition={mode:this.compositionMode,decision:'LEGACY_AUTHORITATIVE',frame:observed};
+      return legacy;
+    }
+    try{
+      const prepared=composeLexical(question,this.dictionary,this.registry);
+      if(!prepared||prepared.error){
+        this.lastComposition={mode:this.compositionMode,decision:prepared?.error||'NO_NEW_PRIMITIVE',frame:observed};
+        return legacy;
+      }
+      // The original text and existing gate sequence are retained; only uncovered lexical spans are supplied.
+      const candidate=this.parseLegacy(question,rows,context,state,prepared);
+      this.lastComposition={mode:this.compositionMode,decision:candidate.ok?'COMPOSED_CANDIDATE':candidate.code,
+        legacyCode:legacy.code,frame:candidate.explain?.composition?.frame||null,
+        additions:clone(prepared.composition.additions)};
+      if(this.compositionMode==='guarded'&&candidate.ok)return candidate;
+    }catch(error){
+      this.lastComposition={mode:this.compositionMode,decision:'COMPOSITION_INTERNAL_ERROR',message:String(error.message)};
+    }
+    return legacy;
+  }
+  parseLegacy(question,rows,context={},state={},composedPrepared=null){
     const started=performance.now();this.bind(rows);
     const explain={pipelineVersion:RULE_VERSION,input:String(question),normalization:null,matches:[],semanticFeatures:{},candidates:[],constraints:[],contextPatch:null};
     const fail=(code,message,extra={})=>({ok:false,status:code.startsWith('AMBIGUOUS')?'ambiguous':code.startsWith('UNSUPPORTED')?'unsupported':'clarify',code,message,choices:[],trace:['semantic-'+RULE_VERSION,code],explain:{...explain,decision:code,failureCategory:failureCategory(code),latencyMs:performance.now()-started,...extra}});
     let input=normalizedInput(question,this.registry.settings.max_query_chars);explain.normalization=input.text;
     if(input.error)return fail(input.code,input.error);
-    const prepared=prepareLexical(input.text,this.dictionary,{disabled:this.options.disableFuzzy===true});
+    const prepared=composedPrepared||prepareLexical(input.text,this.dictionary,{disabled:this.options.disableFuzzy===true});
     explain.phraseResolution=prepared.phraseResolution;explain.fuzzy=prepared.fuzzy;explain.correctedText=prepared.text;
     if(prepared.error)return fail(prepared.error.code,prepared.error.message);
     input={...input,text:prepared.text};const lex=prepared.lex;explain.matches=[...lex.names.map(n=>({phrase:n.text,concept:n.item.kind,id:n.item.id,name:n.item.name,start:n.start,end:n.end})),...lex.matches.map(m=>({phrase:m.text,concept:m.concept,weight:m.weight,source:m.source,start:m.start,end:m.end}))];
@@ -46,7 +77,9 @@ export class SemanticEngine {
     explain.numbers=slots.numbers||[];explain.temporal=slots.temporalDebug;
     if(slots.error)return fail(slots.code,slots.error);
     const relations=parseRelations(input.text,lex,slots);
-    let patch=findFollowup(input.text,slots,relations,this.registry,lex);if(patch?.error)return fail(patch.code,patch.error);
+    let patch=findFollowup(input.text,slots,relations,this.registry,lex);
+    if(!patch&&prepared.composition)patch=composedContextPatch(input.text,lex,slots,relations,this.registry,prepared.composition);
+    if(patch?.error)return fail(patch.code,patch.error);
     if(!state.action&&patch?.rule.pattern==='{scope}')patch=null;
     const features=semanticFeatures(lex,slots,relations,patch);
     if(!patch&&lex.names.length===1&&norm(lex.names[0].text)===input.text.replace(/[?.!]$/,''))features.RWA_DRIVER=1;
@@ -87,7 +120,7 @@ export class SemanticEngine {
     }
     const summaries=candidates.slice(0,this.registry.settings.top_k).map(({definition,plan,...c})=>c);
     explain.candidates=summaries;explain.constraints=summaries.map(c=>({commandId:c.commandId,...c.validation}));
-    const unknown=unknownContent(input.text,lex,slots,patch);explain.unknownTokens=unknown;
+    const unknown=unknownContent(input.text,lex,slots,prepared.composition?null:patch);explain.unknownTokens=unknown;
     if(prepared.fuzzy.corrections.length){
       const exactEvidence=prepared.phraseResolution.matches.filter(m=>!prepared.fuzzy.corrections.some(c=>c.start<m.end&&c.end>m.start));
       const supporting=exactEvidence.some(m=>['RWA','GROUP','ENTITY','INCREASE','DECREASE','COMPARE','ROOT','RANK'].includes(m.concept))||prepared.lex.names.some(n=>!prepared.fuzzy.corrections.some(c=>c.start<n.end&&c.end>n.start))||!!(patch&&state.action);
@@ -96,6 +129,13 @@ export class SemanticEngine {
     const decision=decide(candidates,unknown,relations);
     if(decision)return fail(decision.code,decision.message);
     const top=candidates[0],plan=top.plan;
+    if(prepared.composition){
+      const grammar=validateCompositionGrammar({text:input.text,lex,slots,relations,plan,patch,registry:this.registry,composition:prepared.composition});
+      const frame=semanticFrame(plan,explain,{...prepared.composition,periodExplicit:!!slots.period,periodSpans:slots.periodSpans,
+        contradictions:relations.errors});
+      explain.composition={version:prepared.composition.version,grammar,frame};
+      if(!grammar.valid)return fail(grammar.code,grammar.message);
+    }
     plan.trace=['semantic-'+RULE_VERSION,...(patch?['context-patch:'+patch.rule.rule_id]:[]),'command:'+plan.commandId];
     plan.ruleConfidence=top.score;plan.margin=top.score-(candidates[1]?.score||0);plan.scoreMeaning='manual rule-fit; not probability';
     plan.contextNotes=projection.notes;plan.semantic=publicSlots(plan);

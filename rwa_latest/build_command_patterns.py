@@ -142,7 +142,14 @@ def compile_rules(root: Path) -> dict:
         if len(items)>limit: raise BuildError(f'{name}: exceeds {limit} entries.')
     from tools.compiler_extensions import validate_extensions
     extension=validate_extensions(root,read_rows,boolean,number,normal,fail,commands,synonyms)
+    from tools.composition_rules import compile_composition
+    try:
+        composition, extra_hashes = compile_composition(root, synonyms)
+    except (ValueError, csv.Error, UnicodeError) as e:
+        raise BuildError(str(e)) from e
+    extension.update(composition)
     hashes={name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in HEADERS}
+    hashes.update(extra_hashes)
     return {'identitySource':'runtime_catalog','schemaVersion':5,'version':ENGINE_VERSION,'generated':True,'scoreMeaning':'manually weighted rule-fit, not a probability',
             'sourceSha256':hashes,'knownConcepts':sorted(CONCEPTS),'knownSlots':sorted(SLOTS),
             'commands':commands,'synonyms':synonyms,'aliases':aliases,'followups':followups,'settings':settings,**extension}
