@@ -122,7 +122,9 @@ export async function main(config){
    }
    if(r.ok===true&&r.status==='answered'){
      b.removeAttribute('aria-busy');
-     presentation.reveal(b,r.answer,finishPresentation);
+     // Presentation only: keep warnings/evidence in the result contract, but do not append the engine's Checks block to ordinary chat text.
+     const visibleAnswer=(r.displayWarnings?.length&&typeof r.answer==='string')?r.answer.replace(/\n\nChecks: [\s\S]*$/,''):r.answer;
+     presentation.reveal(b,visibleAnswer,finishPresentation);
    }else{setMessage(a,r.answer);finishPresentation();}
  }
  function reset({history=false}={}){
