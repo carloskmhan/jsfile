@@ -1,0 +1,47 @@
+name: Apply RWA chat Checks presentation fix once
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/rwa-hide-checks-once.yml']
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+      - name: Hide Checks only in ordinary chat presentation
+        working-directory: rwa_latest
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('app.js')
+          s=p.read_text()
+          old="     presentation.reveal(b,r.answer,finishPresentation);"
+          new="""     // Presentation only: keep warnings/evidence in the result contract, but do not append the engine's Checks block to ordinary chat text.
+     const visibleAnswer=(r.displayWarnings?.length&&typeof r.answer==='string')?r.answer.replace(/\\n\\nChecks: [\\s\\S]*$/,''):r.answer;
+     presentation.reveal(b,visibleAnswer,finishPresentation);"""
+          assert s.count(old)==1, f'expected one presentation target, got {s.count(old)}'
+          p.write_text(s.replace(old,new),encoding='utf-8',newline='\n')
+          PY
+          python tools/build_standalone.py
+      - name: Full regression
+        working-directory: rwa_latest
+        run: npm test
+      - name: Commit verified presentation-only change
+        run: |
+          git diff --check
+          git add rwa_latest/app.js rwa_latest/standalone_demo.html
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(rwa): hide Checks block from ordinary chat output'
+          git push origin HEAD:main
