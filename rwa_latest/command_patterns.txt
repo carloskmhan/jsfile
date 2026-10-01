@@ -16,8 +16,8 @@
     "fuzzy_config.csv": "30542439faebdbae9864fe5bb5cae031e6b6bbb81078b3a591d50697f15ca791",
     "units.csv": "02817e4cfa9fe033d21d1fa9e5e769ac35622196a91133f39db96cfbcf279018",
     "temporal.csv": "b164491c6e44b0a0fb911966c54c93ea4eb67cadef3e09ebfb9612fd18c6c2a2",
-    "lexical_families.csv": "8b5c8ce40027afc1b667177d6485d02e20c5cbeb80b29de974cc319e3f80fde1",
-    "composition_rules.csv": "c26ba30aede0c73705eb4943f1a3a2bfc7caa0a2bfeb49bf4af5da05bec93d9a"
+    "lexical_families.csv": "f3dda45724c1940565edc2bc330f779a9c95133177a91d917ce5f2f678b32ac9",
+    "composition_rules.csv": "f0a08d5d1c4da163e89de1dff7a13f2deef9cf0590b8571ebb4f0218bafef4b6"
   },
   "knownConcepts": [
     "ABSOLUTE",
@@ -11498,7 +11498,7 @@
         "role": "MOTION_UP"
       },
       {
-        "family_id": "RISE",
+        "family_id": "RISE_LEMMA",
         "phrase": "climb",
         "enabled": true,
         "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
@@ -11534,7 +11534,7 @@
         "role": "MOTION_UP"
       },
       {
-        "family_id": "RISE",
+        "family_id": "RISE_LEMMA",
         "phrase": "expand",
         "enabled": true,
         "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
@@ -11594,7 +11594,7 @@
         "role": "MOTION_DOWN"
       },
       {
-        "family_id": "FALL",
+        "family_id": "FALL_LEMMA",
         "phrase": "contract",
         "enabled": true,
         "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
@@ -11666,7 +11666,7 @@
         "role": "MOTION_DOWN"
       },
       {
-        "family_id": "CAUSE",
+        "family_id": "CAUSE_LEMMA",
         "phrase": "trigger",
         "enabled": true,
         "notes": "Reviewed primitive; protected names and financial qualifiers retain ownership.",
@@ -11784,6 +11784,306 @@
         },
         "concept": "TECHNICAL",
         "role": "PATCH_LINK"
+      },
+      {
+        "family_id": "RISE_LEMMA",
+        "phrase": "surge",
+        "enabled": true,
+        "notes": "Productive reviewed lemma; morphology is deterministic and bounded.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 29
+        },
+        "concept": "INCREASE",
+        "role": "MOTION_UP"
+      },
+      {
+        "family_id": "RISE_LEMMA",
+        "phrase": "soar",
+        "enabled": true,
+        "notes": "Productive reviewed lemma; morphology is deterministic and bounded.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 30
+        },
+        "concept": "INCREASE",
+        "role": "MOTION_UP"
+      },
+      {
+        "family_id": "RISE_LEMMA",
+        "phrase": "accelerate",
+        "enabled": true,
+        "notes": "Productive reviewed lemma; morphology is deterministic and bounded.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 31
+        },
+        "concept": "INCREASE",
+        "role": "MOTION_UP"
+      },
+      {
+        "family_id": "FALL_LEMMA",
+        "phrase": "dip",
+        "enabled": true,
+        "notes": "Productive reviewed lemma; morphology is deterministic and bounded.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 32
+        },
+        "concept": "DECREASE",
+        "role": "MOTION_DOWN"
+      },
+      {
+        "family_id": "FALL_LEMMA",
+        "phrase": "plunge",
+        "enabled": true,
+        "notes": "Productive reviewed lemma; morphology is deterministic and bounded.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 33
+        },
+        "concept": "DECREASE",
+        "role": "MOTION_DOWN"
+      },
+      {
+        "family_id": "FALL_LEMMA",
+        "phrase": "tumble",
+        "enabled": true,
+        "notes": "Productive reviewed lemma; morphology is deterministic and bounded.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 34
+        },
+        "concept": "DECREASE",
+        "role": "MOTION_DOWN"
+      },
+      {
+        "family_id": "CAUSE_LEMMA",
+        "phrase": "fuel",
+        "enabled": true,
+        "notes": "Productive reviewed lemma; supports fueled/fuelled/fueling/fuelling without whole-sentence registration.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 35
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "lie behind",
+        "enabled": true,
+        "notes": "Reviewed causal phrase family.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 36
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "lies behind",
+        "enabled": true,
+        "notes": "Reviewed causal phrase family.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 37
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "lay behind",
+        "enabled": true,
+        "notes": "Reviewed causal phrase family.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 38
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "lying behind",
+        "enabled": true,
+        "notes": "Reviewed causal phrase family.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 39
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "stem from",
+        "enabled": true,
+        "notes": "Reviewed causal phrase family.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 40
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "stems from",
+        "enabled": true,
+        "notes": "Reviewed causal phrase family.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 41
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "stemmed from",
+        "enabled": true,
+        "notes": "Reviewed causal phrase family.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 42
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "stemming from",
+        "enabled": true,
+        "notes": "Reviewed causal phrase family.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 43
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "result from",
+        "enabled": true,
+        "notes": "Reviewed causal phrase family.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 44
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "results from",
+        "enabled": true,
+        "notes": "Reviewed causal phrase family.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 45
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "resulted from",
+        "enabled": true,
+        "notes": "Reviewed causal phrase family.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 46
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE",
+        "phrase": "resulting from",
+        "enabled": true,
+        "notes": "Reviewed causal phrase family.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 47
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE_UP",
+        "phrase": "pushed higher",
+        "enabled": true,
+        "notes": "Reviewed combined causal-plus-direction abstraction.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 48
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE_UP",
+        "phrase": "pushed up",
+        "enabled": true,
+        "notes": "Reviewed combined causal-plus-direction abstraction.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 49
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE_DOWN",
+        "phrase": "pushed lower",
+        "enabled": true,
+        "notes": "Reviewed combined causal-plus-direction abstraction.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 50
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE_DOWN",
+        "phrase": "pushed down",
+        "enabled": true,
+        "notes": "Reviewed combined causal-plus-direction abstraction.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 51
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE_LEMMA",
+        "phrase": "drive",
+        "enabled": true,
+        "notes": "Productive reviewed lemma; supports drove/driven/driving when exact longer phrases do not own the span.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 52
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
+      },
+      {
+        "family_id": "CAUSE_LEMMA",
+        "phrase": "push",
+        "enabled": true,
+        "notes": "Productive reviewed lemma; combines safely with separately recognised higher/lower direction words.",
+        "source": {
+          "file": "lexical_families.csv",
+          "line": 53
+        },
+        "concept": "ROOT",
+        "role": "ATTRIBUTION"
       }
     ],
     "rules": [
@@ -11897,6 +12197,31 @@
         "source": {
           "file": "composition_rules.csv",
           "line": 9
+        },
+        "actions": []
+      },
+      {
+        "rule_id": "PLAN_REFERENCE_CONTEXT",
+        "shape": "REFERENCE_CONTEXT",
+        "enabled": true,
+        "notes": "Resolve ranked-result references with a simultaneous reporting-month replacement.",
+        "source": {
+          "file": "composition_rules.csv",
+          "line": 10
+        },
+        "actions": [
+          "TOP_CLIENTS",
+          "TOP_ENTITY"
+        ]
+      },
+      {
+        "rule_id": "PLAN_CONSISTENCY_GATE",
+        "shape": "CONSISTENCY_GATE",
+        "enabled": true,
+        "notes": "Clarify material disagreements between legacy and structured interpretations before execution in guarded mode.",
+        "source": {
+          "file": "composition_rules.csv",
+          "line": 11
         },
         "actions": []
       }

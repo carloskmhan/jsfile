@@ -58,7 +58,6 @@ for word in ['grown','risen','expanded','fallen','contracted','shrunk']:
 legacy_findings=[]
 for case in cases:
  if case['question'] in ['Why has Samsung RWA risen in July 2026 net?','Why has Samsung RWA risen in July 2026 gross?']:
-  case['expected']='LEGACY_ACCEPT';case['category']='legacy_qualifier_review'
-  legacy_findings.append({'id':case['id'],'question':case['question'],'finding':'Legacy fuzzy recovers risen as rises; both net and gross are registered as TOTAL. Preserved for compatibility, not evidence of gross/net semantic correctness.'})
+  legacy_findings.append({'id':case['id'],'question':case['question'],'finding':'v6.3 guarded consistency gate now blocks the legacy TOTAL acceptance because net/gross has no reviewed aggregation basis; off/shadow preserve legacy behavior.'})
 (Path(__file__).resolve().parents[1]/'tests/composition_cases.json').write_text(json.dumps({'scope':'Developer-authored deterministic composition tests. Not blind; no MiniLM benchmark claim.','cases':cases,'legacyFindings':legacy_findings},indent=2)+'\n')
 print(len(cases))

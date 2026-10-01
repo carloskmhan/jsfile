@@ -1,3 +1,7 @@
+## 6.3 semantic generalization review
+
+See [SEMANTIC_GENERALIZATION.md](SEMANTIC_GENERALIZATION.md) for bounded candidate graphs, guarded legacy/frame consistency checks, typed predicate/relation trees, ranked-result reference composition, and expanded deterministic lexical abstraction/morphology. See [SEMANTIC_GENERALIZATION_RELEASE.md](SEMANTIC_GENERALIZATION_RELEASE.md) for the release boundary and verification record.
+
 # Semantic planning — 6.2.0 review
 
 This extends `6.1.0-composition-review` at GitHub commit

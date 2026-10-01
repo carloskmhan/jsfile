@@ -1,3 +1,7 @@
+## 6.3 semantic generalization review
+
+See [SEMANTIC_GENERALIZATION.md](SEMANTIC_GENERALIZATION.md) for bounded candidate graphs, guarded legacy/frame consistency checks, typed predicate/relation trees, ranked-result reference composition, and expanded deterministic lexical abstraction/morphology. See [SEMANTIC_GENERALIZATION_RELEASE.md](SEMANTIC_GENERALIZATION_RELEASE.md) for the release boundary and verification record.
+
 ## 6.2 extension
 
 The 6.1 behavior described below remains the compatibility baseline. [SEMANTIC_PLANNING.md](SEMANTIC_PLANNING.md) describes the additional frame-first path, atomic compound context and read-only accepted-result audit. [SEMANTIC_PLANNING_RELEASE.md](SEMANTIC_PLANNING_RELEASE.md) separates implemented features from remaining limitations.

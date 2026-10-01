@@ -1,8 +1,9 @@
 /** Optional artifact validation mirrors tools/composition_rules.py. No executable CSV code. */
-export const COMPOSITION_VERSION='6.2.0-semantic-planning-review';
+export const COMPOSITION_VERSION='6.3.0-semantic-generalization-review';
 export const COMPOSITION_FAMILIES=Object.freeze({
-  RISE:['INCREASE','MOTION_UP'], FALL:['DECREASE','MOTION_DOWN'],
-  CAUSE:['ROOT','ATTRIBUTION'], CONTRIBUTION:['AMOUNT','CONTRIBUTION'], POLITE:['COURTESY','COURTESY'],
+  RISE:['INCREASE','MOTION_UP'], RISE_LEMMA:['INCREASE','MOTION_UP'], CAUSE_UP:['ROOT','ATTRIBUTION'],
+  FALL:['DECREASE','MOTION_DOWN'], FALL_LEMMA:['DECREASE','MOTION_DOWN'], CAUSE_DOWN:['ROOT','ATTRIBUTION'],
+  CAUSE:['ROOT','ATTRIBUTION'], CAUSE_LEMMA:['ROOT','ATTRIBUTION'], CONTRIBUTION:['AMOUNT','CONTRIBUTION'], CONTRIBUTION_LEMMA:['AMOUNT','CONTRIBUTION'], POLITE:['COURTESY','COURTESY'],
   SUBJECT_LINK:['TECHNICAL','SUBJECT_LINK'], PATCH_LINK:['TECHNICAL','PATCH_LINK']
 });
 export const COMPOSITION_SHAPES=Object.freeze({
@@ -12,7 +13,8 @@ export const COMPOSITION_SHAPES=Object.freeze({
   CONTEXT_MODIFIER:['GROUP_ROOT_CAUSE','ENTITY_DRIVER','TOP_CLIENTS','TOP_ENTITY'],
   RANKING_ROLES:['TOP_CLIENTS','TOP_ENTITY'],
   COMPOUND_CONTEXT:['GROUP_ROOT_CAUSE','ENTITY_DRIVER','TOP_ENTITY'],
-  ACCEPTED_AUDIT:[]
+  REFERENCE_CONTEXT:['TOP_CLIENTS','TOP_ENTITY'],
+  ACCEPTED_AUDIT:[], CONSISTENCY_GATE:[]
 });
 const protectedWords=new Set(('not no never without except excluding exclude include only net gross '+
   'cumulative forecast predict future if unless assuming balance percentage percent absolute '+

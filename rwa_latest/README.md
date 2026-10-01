@@ -1,3 +1,7 @@
+## 6.3 semantic generalization review
+
+See [SEMANTIC_GENERALIZATION.md](SEMANTIC_GENERALIZATION.md) for bounded candidate graphs, guarded legacy/frame consistency checks, typed predicate/relation trees, ranked-result reference composition, and expanded deterministic lexical abstraction/morphology. See [SEMANTIC_GENERALIZATION_RELEASE.md](SEMANTIC_GENERALIZATION_RELEASE.md) for the release boundary and verification record.
+
 ## 6.2 semantic planning review
 
 The 6.2 extension adds frame-first role binding, compound context changes and read-only legacy audits. Default remains off. See [SEMANTIC_PLANNING.md](SEMANTIC_PLANNING.md) for activation, supported grammar, limitations and the additive custom-CSV upgrade, and [SEMANTIC_PLANNING_RELEASE.md](SEMANTIC_PLANNING_RELEASE.md) for verification.

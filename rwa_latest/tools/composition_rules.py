@@ -8,9 +8,15 @@ OPTIONAL_HEADERS = {
 }
 FAMILIES = {
     'RISE': ('INCREASE', 'MOTION_UP'),
+    'RISE_LEMMA': ('INCREASE', 'MOTION_UP'),
+    'CAUSE_UP': ('ROOT', 'ATTRIBUTION'),
     'FALL': ('DECREASE', 'MOTION_DOWN'),
+    'FALL_LEMMA': ('DECREASE', 'MOTION_DOWN'),
+    'CAUSE_DOWN': ('ROOT', 'ATTRIBUTION'),
     'CAUSE': ('ROOT', 'ATTRIBUTION'),
+    'CAUSE_LEMMA': ('ROOT', 'ATTRIBUTION'),
     'CONTRIBUTION': ('AMOUNT', 'CONTRIBUTION'),
+    'CONTRIBUTION_LEMMA': ('AMOUNT', 'CONTRIBUTION'),
     'POLITE': ('COURTESY', 'COURTESY'),
     'SUBJECT_LINK': ('TECHNICAL', 'SUBJECT_LINK'),
     'PATCH_LINK': ('TECHNICAL', 'PATCH_LINK'),
@@ -23,7 +29,9 @@ SHAPES = {
     'CONTEXT_MODIFIER': ['GROUP_ROOT_CAUSE', 'ENTITY_DRIVER', 'TOP_CLIENTS', 'TOP_ENTITY'],
     'RANKING_ROLES': ['TOP_CLIENTS', 'TOP_ENTITY'],
     'COMPOUND_CONTEXT': ['GROUP_ROOT_CAUSE', 'ENTITY_DRIVER', 'TOP_ENTITY'],
+    'REFERENCE_CONTEXT': ['TOP_CLIENTS', 'TOP_ENTITY'],
     'ACCEPTED_AUDIT': [],
+    'CONSISTENCY_GATE': [],
 }
 # An extension must not hide a financial qualifier, identifier, date or negation.
 PROTECTED_WORDS = set(('not no never without except excluding exclude include only net gross '

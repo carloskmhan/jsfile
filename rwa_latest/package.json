@@ -1,7 +1,7 @@
 {
   "name": "rwa-tableau-connected",
   "private": true,
-  "version": "6.2.0-review",
+  "version": "6.3.0-review",
   "type": "module",
   "description": "Two authenticated Tableau worksheets; runtime ID catalog; deterministic rule reporting; no ML runtime.",
   "scripts": {
@@ -12,6 +12,7 @@
     "build:standalone": "python tools/build_standalone.py",
     "test:composition": "node tests/test_composition.mjs && python tests/test_composition_compiler.py && node tools/composition_regression.mjs",
     "inspect:semantics": "node tools/inspect_semantics.mjs",
-    "test:planning": "node tests/test_semantic_planning.mjs && node tests/planning_properties.mjs"
+    "test:planning": "node tests/test_semantic_planning.mjs && node tests/test_semantic_generalization.mjs && node tests/planning_properties.mjs",
+    "test:generalization": "node tests/test_semantic_generalization.mjs"
   }
 }

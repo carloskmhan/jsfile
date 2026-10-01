@@ -2,21 +2,21 @@ family_id,phrase,enabled,notes
 RISE,risen,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 RISE,grown,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 RISE,growing,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
-RISE,climb,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+RISE_LEMMA,climb,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 RISE,climbed,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 RISE,climbing,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
-RISE,expand,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+RISE_LEMMA,expand,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 RISE,expanded,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 RISE,expanding,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 FALL,fallen,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 FALL,falling,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
-FALL,contract,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+FALL_LEMMA,contract,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 FALL,contracted,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 FALL,contracting,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 FALL,shrank,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 FALL,shrunk,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 FALL,shrinking,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
-CAUSE,trigger,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
+CAUSE_LEMMA,trigger,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 CAUSE,triggered,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 CAUSE,triggering,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 CAUSE,caused,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
@@ -26,3 +26,28 @@ CONTRIBUTION,contributed,true,Reviewed primitive; protected names and financial 
 POLITE,kindly,true,Reviewed primitive; protected names and financial qualifiers retain ownership.
 SUBJECT_LINK,whose,true,Typed ranking subject link; requires groups or entities followed by RWA.
 PATCH_LINK,but,true,Typed same-but modifier link; never ignored outside that grammar.
+RISE_LEMMA,surge,true,Productive reviewed lemma; morphology is deterministic and bounded.
+RISE_LEMMA,soar,true,Productive reviewed lemma; morphology is deterministic and bounded.
+RISE_LEMMA,accelerate,true,Productive reviewed lemma; morphology is deterministic and bounded.
+FALL_LEMMA,dip,true,Productive reviewed lemma; morphology is deterministic and bounded.
+FALL_LEMMA,plunge,true,Productive reviewed lemma; morphology is deterministic and bounded.
+FALL_LEMMA,tumble,true,Productive reviewed lemma; morphology is deterministic and bounded.
+CAUSE_LEMMA,fuel,true,Productive reviewed lemma; supports fueled/fuelled/fueling/fuelling without whole-sentence registration.
+CAUSE,lie behind,true,Reviewed causal phrase family.
+CAUSE,lies behind,true,Reviewed causal phrase family.
+CAUSE,lay behind,true,Reviewed causal phrase family.
+CAUSE,lying behind,true,Reviewed causal phrase family.
+CAUSE,stem from,true,Reviewed causal phrase family.
+CAUSE,stems from,true,Reviewed causal phrase family.
+CAUSE,stemmed from,true,Reviewed causal phrase family.
+CAUSE,stemming from,true,Reviewed causal phrase family.
+CAUSE,result from,true,Reviewed causal phrase family.
+CAUSE,results from,true,Reviewed causal phrase family.
+CAUSE,resulted from,true,Reviewed causal phrase family.
+CAUSE,resulting from,true,Reviewed causal phrase family.
+CAUSE_UP,pushed higher,true,Reviewed combined causal-plus-direction abstraction.
+CAUSE_UP,pushed up,true,Reviewed combined causal-plus-direction abstraction.
+CAUSE_DOWN,pushed lower,true,Reviewed combined causal-plus-direction abstraction.
+CAUSE_DOWN,pushed down,true,Reviewed combined causal-plus-direction abstraction.
+CAUSE_LEMMA,drive,true,Productive reviewed lemma; supports drove/driven/driving when exact longer phrases do not own the span.
+CAUSE_LEMMA,push,true,Productive reviewed lemma; combines safely with separately recognised higher/lower direction words.

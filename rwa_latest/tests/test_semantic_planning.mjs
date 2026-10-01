@@ -121,8 +121,8 @@ test('Preview cancellation, mode changes, execution errors and repeat confirmati
  p=c.prepare('Same analysis for Toyota in January 2026 but include EAD');assert.equal(p.status,'preview');assert.equal(c.confirm(p.previewToken).ok,false);assert.equal(JSON.stringify(c.state),before);
  p=c.prepare('Same analysis for Toyota in June 2026 but include EAD');assert.equal(c.confirm(p.previewToken).ok,true);assert.throws(()=>c.confirm(p.previewToken));
 });
-test('Accepted rank/filter mismatch is observed without changing the legacy answer',()=>{const q='Show top 5 groups by RWA increase with RWA balance above 25m in July 2026',e=make(),off=make('off'),a=e.answer(q),b=off.answer(q);assert.equal(a.ok,true);assert.equal(a.answer,b.answer);assert.deepEqual(a.result,b.result);assert.ok(e.parser.lastSemanticAudit.findings.some(f=>f.code==='ROLE_BINDING_DISAGREEMENT'&&f.field==='metric'));assert.equal(e.parser.lastSemanticAudit.changesExecution,false);});
-test('Undefined net/gross semantics are not represented as solved',()=>{for(const word of ['net','gross']){const e=normal();const a=e.answer('Why has Samsung RWA risen in July 2026 '+word);assert.equal(a.ok,true);assert.ok(e.parser.lastSemanticAudit.findings.some(x=>x.code==='UNDEFINED_AGGREGATION_BASIS'));}});
+test('Material legacy/structured disagreement is clarified in guarded mode',()=>{const q='Show top 5 groups by RWA increase with RWA balance above 25m in July 2026',e=make(),off=make('off'),shadow=make('shadow');const a=e.answer(q),b=off.answer(q),c=shadow.answer(q);assert.equal(b.ok,true);assert.equal(c.ok,true);assert.equal(a.ok,false);assert.equal(a.code,'AMBIGUOUS_SEMANTIC_BINDING');assert.ok(e.parser.lastSemanticAudit.findings.some(f=>f.code==='ROLE_BINDING_DISAGREEMENT'&&f.field==='metric'));assert.ok(e.parser.lastSemanticAudit.candidateGraph.candidates.length>=2);assert.equal(e.parser.lastSemanticAudit.candidateGraph.ambiguous,true);});
+test('Undefined net/gross semantics are clarified only in guarded mode',()=>{for(const word of ['net','gross']){const e=normal(),off=normal('off'),shadow=normal('shadow');const q='Why has Samsung RWA risen in July 2026 '+word,a=e.answer(q);assert.equal(off.answer(q).ok,true);assert.equal(shadow.answer(q).ok,true);assert.equal(a.ok,false);assert.equal(a.code,'AMBIGUOUS_SEMANTIC_BINDING');assert.ok(e.parser.lastSemanticAudit.findings.some(x=>x.code==='UNDEFINED_AGGREGATION_BASIS'));}});
 test('Protected customer and driver labels do not generate gross/net warnings',()=>{
  const cat=indexRowsToCatalog([{client_group_id:'001',client_group_name:'Gross Holdings'}]);const rr=[{...rows[0],client_group:'Gross Holdings',drivers:{'Net FX adjustment':20}}];const e=new RwaQaEngine(rr,{commandPatterns:registry,semanticCatalog:cat,compositionMode:'guarded'});
  const a=e.parseQuestion('Explain Gross Holdings RWA in June 2026');assert.equal(a.ok,true,a.message);assert.equal(e.parser.lastSemanticAudit.findings.length,0);
@@ -157,5 +157,25 @@ test('Protected driver qualifiers do not count as undefined aggregation',()=>{
  const a=e.parseQuestion('Show top 5 groups by Gross adjustment contribution to RWA increase in July 2026');assert.equal(a.ok,true,a.message);
  assert.equal(e.parser.lastSemanticAudit?.findings.some(x=>x.code==='UNDEFINED_AGGREGATION_BASIS'),false);
 });
+
+test('Productive morphology and abstraction hierarchy generalize reviewed language',()=>{
+ const cases=[
+  ['What fuelled Samsung RWA increase in July 2026?','GROUP_ROOT_CAUSE','CAUSE_LEMMA'],
+  ['What lay behind Samsung RWA increase in July 2026?','GROUP_ROOT_CAUSE','CAUSE'],
+  ['What pushed Samsung RWA higher in July 2026?','GROUP_ROOT_CAUSE','CAUSE_LEMMA'],
+  ['Did Samsung RWA tumble in July 2026?','MOVEMENT_CHECK','FALL_LEMMA']
+ ];
+ for(const [q,action,family] of cases){const e=normal(),off=normal('off'),a=e.parseQuestion(q);assert.equal(a.ok,true,q);assert.equal(a.plan.action,action);if(!off.parseQuestion(q).ok)newPaths++;const ev=a.explain.composition?.frame?.lexicalEvidence||[];assert.ok(ev.some(x=>x.family===family),q);assert.ok(ev.some(x=>Array.isArray(x.abstractionPath)&&x.abstractionPath.length>=2),q);}
+});
+test('Ranked-result reference and period change are atomic',()=>{
+ const e=normal();assert.equal(e.answer('Show top 5 groups by RWA increase in July 2026').ok,true);const expected=e.state.references[1];const before=JSON.stringify(e.state);
+ const q='What about the second one, but in June 2026?',p=e.parseQuestion(q);assert.equal(p.ok,true,p.message);assert.equal(JSON.stringify(e.state),before);assert.equal(p.plan.groupId,expected.kind==='GROUP'?expected.id:expected.parentId);assert.equal(p.plan.period.month,'2026-06');assert.equal(p.explain.semanticPlanning.shape,'REFERENCE_CONTEXT');
+ const route=planDataRequest(q,liveCatalog,registry,e.state,{compositionMode:'guarded'});assert.equal(route.ok,true,route.message);assert.deepEqual(route.groupIds,[expected.kind==='GROUP'?expected.id:expected.parentId]);
+ const a=e.answer(q);assert.equal(a.ok,true,a.answer);assert.equal(a.plan.period.month,'2026-06');newPaths++;
+});
+test('Meaning frame exposes typed predicate and relation trees',()=>{
+ const e=make(),p=e.parseQuestion('Show top 5 groups by percentage increase after excluding EAD contribution with RWA balance above 25m in July 2026');assert.equal(p.ok,true,p.message);const f=p.explain.semanticPlanning;assert.equal(f.PREDICATES.type,'AND');assert.ok(f.PREDICATES.children.some(x=>x.type==='PREDICATE'&&x.metric==='BALANCE'));assert.ok(f.PREDICATES.children.some(x=>x.type==='EXCLUSION'&&x.target==='DRIVER_ATTRIBUTION'&&x.value==='EAD'));assert.equal(f.RELATION.tree.type,'RELATIONS');
+});
+
 const report={scope:'Synthetic developer-authored independent numeric expectations, structural composition, mutation negatives, atomic context, authorisation routing and read-only legacy audit. Not blind or MiniLM A/B evidence.',newPaths,passed:checks.filter(x=>x.passed).length,failed:checks.filter(x=>!x.passed).length,checks};
 fs.mkdirSync(new URL('../reports/',import.meta.url),{recursive:true});fs.writeFileSync(new URL('../reports/semantic_planning_tests.json',import.meta.url),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({...report,checks:undefined},null,2));if(report.failed)process.exitCode=1;
