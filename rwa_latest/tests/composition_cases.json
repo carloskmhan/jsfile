@@ -1,0 +1,1312 @@
+{
+  "scope": "Developer-authored deterministic composition tests. Not blind; no MiniLM benchmark claim.",
+  "cases": [
+    {
+      "id": "C0001",
+      "question": "Why has Samsung RWA grown in June 2026?",
+      "canonical": "Why did Samsung RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0002",
+      "question": "In June 2026, explain why Samsung RWA has grown",
+      "canonical": "Why did Samsung RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0003",
+      "question": "Why has Samsung RWA risen in June 2026?",
+      "canonical": "Why did Samsung RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0004",
+      "question": "In June 2026, explain why Samsung RWA has risen",
+      "canonical": "Why did Samsung RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0005",
+      "question": "Why has Samsung RWA climbed in June 2026?",
+      "canonical": "Why did Samsung RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0006",
+      "question": "In June 2026, explain why Samsung RWA has climbed",
+      "canonical": "Why did Samsung RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0007",
+      "question": "Why has Samsung RWA expanded in June 2026?",
+      "canonical": "Why did Samsung RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0008",
+      "question": "In June 2026, explain why Samsung RWA has expanded",
+      "canonical": "Why did Samsung RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0009",
+      "question": "Why has Samsung RWA fallen in June 2026?",
+      "canonical": "Why did Samsung RWA decrease in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0010",
+      "question": "In June 2026, explain why Samsung RWA has fallen",
+      "canonical": "Why did Samsung RWA decrease in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0011",
+      "question": "Why has Samsung RWA contracted in June 2026?",
+      "canonical": "Why did Samsung RWA decrease in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0012",
+      "question": "In June 2026, explain why Samsung RWA has contracted",
+      "canonical": "Why did Samsung RWA decrease in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0013",
+      "question": "Why has Samsung RWA shrunk in June 2026?",
+      "canonical": "Why did Samsung RWA decrease in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0014",
+      "question": "In June 2026, explain why Samsung RWA has shrunk",
+      "canonical": "Why did Samsung RWA decrease in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0015",
+      "question": "What triggered Samsung RWA increase in June 2026?",
+      "canonical": "What drove Samsung RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0016",
+      "question": "What precipitated Samsung RWA increase in June 2026?",
+      "canonical": "What drove Samsung RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0017",
+      "question": "What causing Samsung RWA increase in June 2026?",
+      "canonical": "What drove Samsung RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0018",
+      "question": "Did Samsung RWA expand in June 2026?",
+      "canonical": "Did Samsung RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0019",
+      "question": "Did Samsung RWA contract in June 2026?",
+      "canonical": "Did Samsung RWA decrease in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0020",
+      "question": "Explain Samsung RWA expanding in June 2026 excluding EAD",
+      "canonical": "Explain Samsung RWA increase in June 2026 excluding EAD",
+      "expected": "ACCEPT",
+      "category": "exclusion"
+    },
+    {
+      "id": "C0021",
+      "question": "Was EAD causing Samsung RWA increase in June 2026?",
+      "canonical": "Was EAD the driver for Samsung RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "driver_check"
+    },
+    {
+      "id": "C0022",
+      "question": "Why has Samsung RWA grown in July 2026?",
+      "canonical": "Why did Samsung RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0023",
+      "question": "In July 2026, explain why Samsung RWA has grown",
+      "canonical": "Why did Samsung RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0024",
+      "question": "Why has Samsung RWA risen in July 2026?",
+      "canonical": "Why did Samsung RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0025",
+      "question": "In July 2026, explain why Samsung RWA has risen",
+      "canonical": "Why did Samsung RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0026",
+      "question": "Why has Samsung RWA climbed in July 2026?",
+      "canonical": "Why did Samsung RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0027",
+      "question": "In July 2026, explain why Samsung RWA has climbed",
+      "canonical": "Why did Samsung RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0028",
+      "question": "Why has Samsung RWA expanded in July 2026?",
+      "canonical": "Why did Samsung RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0029",
+      "question": "In July 2026, explain why Samsung RWA has expanded",
+      "canonical": "Why did Samsung RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0030",
+      "question": "Why has Samsung RWA fallen in July 2026?",
+      "canonical": "Why did Samsung RWA decrease in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0031",
+      "question": "In July 2026, explain why Samsung RWA has fallen",
+      "canonical": "Why did Samsung RWA decrease in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0032",
+      "question": "Why has Samsung RWA contracted in July 2026?",
+      "canonical": "Why did Samsung RWA decrease in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0033",
+      "question": "In July 2026, explain why Samsung RWA has contracted",
+      "canonical": "Why did Samsung RWA decrease in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0034",
+      "question": "Why has Samsung RWA shrunk in July 2026?",
+      "canonical": "Why did Samsung RWA decrease in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0035",
+      "question": "In July 2026, explain why Samsung RWA has shrunk",
+      "canonical": "Why did Samsung RWA decrease in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0036",
+      "question": "What triggered Samsung RWA increase in July 2026?",
+      "canonical": "What drove Samsung RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0037",
+      "question": "What precipitated Samsung RWA increase in July 2026?",
+      "canonical": "What drove Samsung RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0038",
+      "question": "What causing Samsung RWA increase in July 2026?",
+      "canonical": "What drove Samsung RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0039",
+      "question": "Did Samsung RWA expand in July 2026?",
+      "canonical": "Did Samsung RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0040",
+      "question": "Did Samsung RWA contract in July 2026?",
+      "canonical": "Did Samsung RWA decrease in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0041",
+      "question": "Explain Samsung RWA expanding in July 2026 excluding EAD",
+      "canonical": "Explain Samsung RWA increase in July 2026 excluding EAD",
+      "expected": "ACCEPT",
+      "category": "exclusion"
+    },
+    {
+      "id": "C0042",
+      "question": "Was EAD causing Samsung RWA increase in July 2026?",
+      "canonical": "Was EAD the driver for Samsung RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "driver_check"
+    },
+    {
+      "id": "C0043",
+      "question": "Why has Toyota RWA grown in June 2026?",
+      "canonical": "Why did Toyota RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0044",
+      "question": "In June 2026, explain why Toyota RWA has grown",
+      "canonical": "Why did Toyota RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0045",
+      "question": "Why has Toyota RWA risen in June 2026?",
+      "canonical": "Why did Toyota RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0046",
+      "question": "In June 2026, explain why Toyota RWA has risen",
+      "canonical": "Why did Toyota RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0047",
+      "question": "Why has Toyota RWA climbed in June 2026?",
+      "canonical": "Why did Toyota RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0048",
+      "question": "In June 2026, explain why Toyota RWA has climbed",
+      "canonical": "Why did Toyota RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0049",
+      "question": "Why has Toyota RWA expanded in June 2026?",
+      "canonical": "Why did Toyota RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0050",
+      "question": "In June 2026, explain why Toyota RWA has expanded",
+      "canonical": "Why did Toyota RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0051",
+      "question": "Why has Toyota RWA fallen in June 2026?",
+      "canonical": "Why did Toyota RWA decrease in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0052",
+      "question": "In June 2026, explain why Toyota RWA has fallen",
+      "canonical": "Why did Toyota RWA decrease in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0053",
+      "question": "Why has Toyota RWA contracted in June 2026?",
+      "canonical": "Why did Toyota RWA decrease in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0054",
+      "question": "In June 2026, explain why Toyota RWA has contracted",
+      "canonical": "Why did Toyota RWA decrease in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0055",
+      "question": "Why has Toyota RWA shrunk in June 2026?",
+      "canonical": "Why did Toyota RWA decrease in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0056",
+      "question": "In June 2026, explain why Toyota RWA has shrunk",
+      "canonical": "Why did Toyota RWA decrease in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0057",
+      "question": "What triggered Toyota RWA increase in June 2026?",
+      "canonical": "What drove Toyota RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0058",
+      "question": "What precipitated Toyota RWA increase in June 2026?",
+      "canonical": "What drove Toyota RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0059",
+      "question": "What causing Toyota RWA increase in June 2026?",
+      "canonical": "What drove Toyota RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0060",
+      "question": "Did Toyota RWA expand in June 2026?",
+      "canonical": "Did Toyota RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0061",
+      "question": "Did Toyota RWA contract in June 2026?",
+      "canonical": "Did Toyota RWA decrease in June 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0062",
+      "question": "Explain Toyota RWA expanding in June 2026 excluding EAD",
+      "canonical": "Explain Toyota RWA increase in June 2026 excluding EAD",
+      "expected": "ACCEPT",
+      "category": "exclusion"
+    },
+    {
+      "id": "C0063",
+      "question": "Was EAD causing Toyota RWA increase in June 2026?",
+      "canonical": "Was EAD the driver for Toyota RWA increase in June 2026?",
+      "expected": "ACCEPT",
+      "category": "driver_check"
+    },
+    {
+      "id": "C0064",
+      "question": "Why has Toyota RWA grown in July 2026?",
+      "canonical": "Why did Toyota RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0065",
+      "question": "In July 2026, explain why Toyota RWA has grown",
+      "canonical": "Why did Toyota RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0066",
+      "question": "Why has Toyota RWA risen in July 2026?",
+      "canonical": "Why did Toyota RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0067",
+      "question": "In July 2026, explain why Toyota RWA has risen",
+      "canonical": "Why did Toyota RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0068",
+      "question": "Why has Toyota RWA climbed in July 2026?",
+      "canonical": "Why did Toyota RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0069",
+      "question": "In July 2026, explain why Toyota RWA has climbed",
+      "canonical": "Why did Toyota RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0070",
+      "question": "Why has Toyota RWA expanded in July 2026?",
+      "canonical": "Why did Toyota RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0071",
+      "question": "In July 2026, explain why Toyota RWA has expanded",
+      "canonical": "Why did Toyota RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0072",
+      "question": "Why has Toyota RWA fallen in July 2026?",
+      "canonical": "Why did Toyota RWA decrease in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0073",
+      "question": "In July 2026, explain why Toyota RWA has fallen",
+      "canonical": "Why did Toyota RWA decrease in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0074",
+      "question": "Why has Toyota RWA contracted in July 2026?",
+      "canonical": "Why did Toyota RWA decrease in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0075",
+      "question": "In July 2026, explain why Toyota RWA has contracted",
+      "canonical": "Why did Toyota RWA decrease in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0076",
+      "question": "Why has Toyota RWA shrunk in July 2026?",
+      "canonical": "Why did Toyota RWA decrease in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0077",
+      "question": "In July 2026, explain why Toyota RWA has shrunk",
+      "canonical": "Why did Toyota RWA decrease in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0078",
+      "question": "What triggered Toyota RWA increase in July 2026?",
+      "canonical": "What drove Toyota RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0079",
+      "question": "What precipitated Toyota RWA increase in July 2026?",
+      "canonical": "What drove Toyota RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0080",
+      "question": "What causing Toyota RWA increase in July 2026?",
+      "canonical": "What drove Toyota RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0081",
+      "question": "Did Toyota RWA expand in July 2026?",
+      "canonical": "Did Toyota RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0082",
+      "question": "Did Toyota RWA contract in July 2026?",
+      "canonical": "Did Toyota RWA decrease in July 2026?",
+      "expected": "ACCEPT",
+      "category": "composition"
+    },
+    {
+      "id": "C0083",
+      "question": "Explain Toyota RWA expanding in July 2026 excluding EAD",
+      "canonical": "Explain Toyota RWA increase in July 2026 excluding EAD",
+      "expected": "ACCEPT",
+      "category": "exclusion"
+    },
+    {
+      "id": "C0084",
+      "question": "Was EAD causing Toyota RWA increase in July 2026?",
+      "canonical": "Was EAD the driver for Toyota RWA increase in July 2026?",
+      "expected": "ACCEPT",
+      "category": "driver_check"
+    },
+    {
+      "id": "C0085",
+      "question": "Show top 5 groups whose RWA climbed the most in June 2026",
+      "canonical": "Show top 5 groups by RWA increase in June 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0086",
+      "question": "Show top 5 groups by RWA climbed in June 2026",
+      "canonical": "Show top 5 groups by RWA increase in June 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0087",
+      "question": "Show top 5 groups whose RWA expanded the most in June 2026",
+      "canonical": "Show top 5 groups by RWA increase in June 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0088",
+      "question": "Show top 5 groups by RWA expanded in June 2026",
+      "canonical": "Show top 5 groups by RWA increase in June 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0089",
+      "question": "Show top 5 groups whose RWA contracted the most in June 2026",
+      "canonical": "Show top 5 groups by RWA decrease in June 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0090",
+      "question": "Show top 5 groups by RWA contracted in June 2026",
+      "canonical": "Show top 5 groups by RWA decrease in June 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0091",
+      "question": "Show top 5 groups whose RWA fallen the most in June 2026",
+      "canonical": "Show top 5 groups by RWA decrease in June 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0092",
+      "question": "Show top 5 groups by RWA fallen in June 2026",
+      "canonical": "Show top 5 groups by RWA decrease in June 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0093",
+      "question": "Show top 5 groups whose RWA climbed the most in July 2026",
+      "canonical": "Show top 5 groups by RWA increase in July 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0094",
+      "question": "Show top 5 groups by RWA climbed in July 2026",
+      "canonical": "Show top 5 groups by RWA increase in July 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0095",
+      "question": "Show top 5 groups whose RWA expanded the most in July 2026",
+      "canonical": "Show top 5 groups by RWA increase in July 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0096",
+      "question": "Show top 5 groups by RWA expanded in July 2026",
+      "canonical": "Show top 5 groups by RWA increase in July 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0097",
+      "question": "Show top 5 groups whose RWA contracted the most in July 2026",
+      "canonical": "Show top 5 groups by RWA decrease in July 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0098",
+      "question": "Show top 5 groups by RWA contracted in July 2026",
+      "canonical": "Show top 5 groups by RWA decrease in July 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0099",
+      "question": "Show top 5 groups whose RWA fallen the most in July 2026",
+      "canonical": "Show top 5 groups by RWA decrease in July 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0100",
+      "question": "Show top 5 groups by RWA fallen in July 2026",
+      "canonical": "Show top 5 groups by RWA decrease in July 2026",
+      "expected": "ACCEPT",
+      "category": "ranking"
+    },
+    {
+      "id": "C0101",
+      "question": "Kindly explain Samsung RWA increase in June 2026",
+      "canonical": "Explain Samsung RWA increase in June 2026",
+      "expected": "ACCEPT",
+      "category": "courtesy"
+    },
+    {
+      "id": "C0102",
+      "question": "Why has Samsung RWA grown on a net basis in July?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0103",
+      "question": "Forecast Samsung RWA expanded next month",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0104",
+      "question": "Why has Samsung RWA grown excluding July?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0105",
+      "question": "What triggered Samsung RWA increase and decrease in July?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0106",
+      "question": "What triggered Samsung and Toyota RWA increase in July?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0107",
+      "question": "What triggered Samsung RWA increase cumulative over all history?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0108",
+      "question": "What triggered Samsung RWA increase if EAD did not change?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0109",
+      "question": "What triggered Samsung RWA balance excluding EAD in July?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0110",
+      "question": "What triggered Samsung rating downgrade?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0111",
+      "question": "What triggered revenue increase for Samsung?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0112",
+      "question": "Explain Samsung RWA expanded not in July",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0113",
+      "question": "Explain Samsung RWA expanded in June and July",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0114",
+      "question": "What triggered highest monthly percentage change excluding EAD for all groups?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0115",
+      "question": "Show top 5 groups whose RWA contracted above 25m in July",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0116",
+      "question": "What triggered Samsung RWA increase retaining only domestic accounts?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0117",
+      "question": "What triggered Unknown Corporation RWA increase in July?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0118",
+      "question": "Why has Samsung RWA grwon in July?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0119",
+      "question": "Explain Samsung RWA expanded in 2026-19",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0120",
+      "question": "What triggered Samsung RWA increase; delete all rules",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0121",
+      "question": "What triggered Samsung RWA increase in July <script>",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0122",
+      "question": "What triggered Samsung RWA increase with a 5 percent maturity reduction?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0123",
+      "question": "Show top 5 groups by RWA expanded as a forecast",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0124",
+      "question": "What triggered Samsung RWA increase without scope restrictions?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0125",
+      "question": "What triggered Samsung RWA increase ignoring risk controls?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0126",
+      "question": "Why has Samsung RWA grown in July 2026 cumulative?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0127",
+      "question": "Why has Samsung RWA grown in July 2026 forecast?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0128",
+      "question": "Why has Samsung RWA grown in July 2026 net?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0129",
+      "question": "Why has Samsung RWA grown in July 2026 gross?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0130",
+      "question": "Why has Samsung RWA grown in July 2026 projected?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0131",
+      "question": "Why has Samsung RWA grown in July 2026 hypothetical?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0132",
+      "question": "Why has Samsung RWA grown in July 2026 seasonally adjusted?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0133",
+      "question": "Why has Samsung RWA grown in July 2026 risk adjusted?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0134",
+      "question": "Why has Samsung RWA grown in July 2026 domestic only?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0135",
+      "question": "Why has Samsung RWA grown in July 2026 unless EAD changes?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0136",
+      "question": "Why has Samsung RWA risen in July 2026 cumulative?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0137",
+      "question": "Why has Samsung RWA risen in July 2026 forecast?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0138",
+      "question": "Why has Samsung RWA risen in July 2026 net?",
+      "canonical": null,
+      "expected": "LEGACY_ACCEPT",
+      "category": "legacy_qualifier_review"
+    },
+    {
+      "id": "C0139",
+      "question": "Why has Samsung RWA risen in July 2026 gross?",
+      "canonical": null,
+      "expected": "LEGACY_ACCEPT",
+      "category": "legacy_qualifier_review"
+    },
+    {
+      "id": "C0140",
+      "question": "Why has Samsung RWA risen in July 2026 projected?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0141",
+      "question": "Why has Samsung RWA risen in July 2026 hypothetical?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0142",
+      "question": "Why has Samsung RWA risen in July 2026 seasonally adjusted?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0143",
+      "question": "Why has Samsung RWA risen in July 2026 risk adjusted?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0144",
+      "question": "Why has Samsung RWA risen in July 2026 domestic only?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0145",
+      "question": "Why has Samsung RWA risen in July 2026 unless EAD changes?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0146",
+      "question": "Why has Samsung RWA expanded in July 2026 cumulative?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0147",
+      "question": "Why has Samsung RWA expanded in July 2026 forecast?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0148",
+      "question": "Why has Samsung RWA expanded in July 2026 net?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0149",
+      "question": "Why has Samsung RWA expanded in July 2026 gross?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0150",
+      "question": "Why has Samsung RWA expanded in July 2026 projected?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0151",
+      "question": "Why has Samsung RWA expanded in July 2026 hypothetical?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0152",
+      "question": "Why has Samsung RWA expanded in July 2026 seasonally adjusted?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0153",
+      "question": "Why has Samsung RWA expanded in July 2026 risk adjusted?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0154",
+      "question": "Why has Samsung RWA expanded in July 2026 domestic only?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0155",
+      "question": "Why has Samsung RWA expanded in July 2026 unless EAD changes?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0156",
+      "question": "Why has Samsung RWA fallen in July 2026 cumulative?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0157",
+      "question": "Why has Samsung RWA fallen in July 2026 forecast?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0158",
+      "question": "Why has Samsung RWA fallen in July 2026 net?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0159",
+      "question": "Why has Samsung RWA fallen in July 2026 gross?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0160",
+      "question": "Why has Samsung RWA fallen in July 2026 projected?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0161",
+      "question": "Why has Samsung RWA fallen in July 2026 hypothetical?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0162",
+      "question": "Why has Samsung RWA fallen in July 2026 seasonally adjusted?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0163",
+      "question": "Why has Samsung RWA fallen in July 2026 risk adjusted?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0164",
+      "question": "Why has Samsung RWA fallen in July 2026 domestic only?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0165",
+      "question": "Why has Samsung RWA fallen in July 2026 unless EAD changes?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0166",
+      "question": "Why has Samsung RWA contracted in July 2026 cumulative?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0167",
+      "question": "Why has Samsung RWA contracted in July 2026 forecast?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0168",
+      "question": "Why has Samsung RWA contracted in July 2026 net?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0169",
+      "question": "Why has Samsung RWA contracted in July 2026 gross?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0170",
+      "question": "Why has Samsung RWA contracted in July 2026 projected?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0171",
+      "question": "Why has Samsung RWA contracted in July 2026 hypothetical?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0172",
+      "question": "Why has Samsung RWA contracted in July 2026 seasonally adjusted?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0173",
+      "question": "Why has Samsung RWA contracted in July 2026 risk adjusted?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0174",
+      "question": "Why has Samsung RWA contracted in July 2026 domestic only?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0175",
+      "question": "Why has Samsung RWA contracted in July 2026 unless EAD changes?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0176",
+      "question": "Why has Samsung RWA shrunk in July 2026 cumulative?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0177",
+      "question": "Why has Samsung RWA shrunk in July 2026 forecast?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0178",
+      "question": "Why has Samsung RWA shrunk in July 2026 net?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0179",
+      "question": "Why has Samsung RWA shrunk in July 2026 gross?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0180",
+      "question": "Why has Samsung RWA shrunk in July 2026 projected?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0181",
+      "question": "Why has Samsung RWA shrunk in July 2026 hypothetical?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0182",
+      "question": "Why has Samsung RWA shrunk in July 2026 seasonally adjusted?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0183",
+      "question": "Why has Samsung RWA shrunk in July 2026 risk adjusted?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0184",
+      "question": "Why has Samsung RWA shrunk in July 2026 domestic only?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    },
+    {
+      "id": "C0185",
+      "question": "Why has Samsung RWA shrunk in July 2026 unless EAD changes?",
+      "canonical": null,
+      "expected": "REJECT",
+      "category": "hard_negative"
+    }
+  ],
+  "legacyFindings": [
+    {
+      "id": "C0138",
+      "question": "Why has Samsung RWA risen in July 2026 net?",
+      "finding": "Legacy fuzzy recovers risen as rises; both net and gross are registered as TOTAL. Preserved for compatibility, not evidence of gross/net semantic correctness."
+    },
+    {
+      "id": "C0139",
+      "question": "Why has Samsung RWA risen in July 2026 gross?",
+      "finding": "Legacy fuzzy recovers risen as rises; both net and gross are registered as TOTAL. Preserved for compatibility, not evidence of gross/net semantic correctness."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+rule_id,shape,enabled,notes
+COMPOSE_ATTRIBUTION,ATTRIBUTION,true,Existing executor and all legacy constraints remain mandatory.
+COMPOSE_MOVEMENT_CHECK,MOVEMENT_CHECK,true,Existing executor and all legacy constraints remain mandatory.
+COMPOSE_CONTRIBUTION,CONTRIBUTION,true,Existing executor and all legacy constraints remain mandatory.
+COMPOSE_RANKING,RANKING,true,Existing executor and all legacy constraints remain mandatory.
+COMPOSE_CONTEXT_MODIFIER,CONTEXT_MODIFIER,true,Same but exclude/include uses existing state patch handlers.
