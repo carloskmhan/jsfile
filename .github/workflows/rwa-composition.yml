@@ -1,0 +1,40 @@
+name: RWA composition regression
+on:
+  push:
+    branches: [rwa-composition-v6]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Preserve exact source snapshot
+        run: |
+          mkdir -p evidence
+          git rev-parse HEAD > evidence/commit.txt
+          git archive --format=zip HEAD:rwa_latest > evidence/rwa-source.zip
+      - name: Known v6 regressions
+        working-directory: rwa_latest
+        run: npm test
+      - name: Composition tests when present
+        working-directory: rwa_latest
+        run: |
+          if test -f tests/test_composition.mjs; then node tests/test_composition.mjs; fi
+          if test -f tests/test_composition_compiler.py; then python3 tests/test_composition_compiler.py; fi
+      - name: Archive synthetic test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rwa-source-and-evidence
+          path: |
+            evidence/
+            rwa_latest/reports/test_runs.json
+            rwa_latest/reports/v6_existing_questions.json
+            rwa_latest/reports/v6_existing_robustness.json
+            rwa_latest/reports/composition*.json
+          retention-days: 7
