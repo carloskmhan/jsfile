@@ -1,3 +1,4 @@
+import {bindIdentitySelection} from './identity_selection.js';
 import {prepareSemanticPlanning,interpretMeaning,bindMeaningContract,validateMeaningContract,auditAcceptedMeaning,consistencyGate} from './semantic_planner.js';
 import {compositionMode} from './composition_schema.js';
 import {composeLexical} from './composition_lexicon.js';
@@ -29,6 +30,18 @@ export class SemanticEngine {
     this.boundRows=rows;this.identities=identityCatalog(rows,this.options.semanticCatalog,{...this.options,registry:this.registry});this.dictionary=new Dictionary(this.registry,this.identities,driverCatalog(rows).labels);
   }
   parse(question,rows,context={},state={}){
+    if(!context.identitySelection)return this.parseResolved(question,rows,context,state);
+    this.bind(rows);const original=this.dictionary;
+    try{
+      this.dictionary=bindIdentitySelection(original,question,context.identitySelection);
+      return this.parseResolved(question,rows,context,state);
+    }catch(error){
+      if(error.code!=='STALE_IDENTITY_SELECTION')throw error;
+      this.lastComposition=null;this.lastSemanticPlan=null;this.lastSemanticAudit=null;
+      return {ok:false,status:'clarify',code:error.code,message:error.message,choices:[],trace:[error.code]};
+    }finally{this.dictionary=original;}
+  }
+  parseResolved(question,rows,context={},state={}){
     this.lastComposition=null;this.lastSemanticPlan=null;this.lastSemanticAudit=null;
     const legacy=this.parseLegacy(question,rows,context,state);
     if(this.compositionMode==='off'||!this.registry.composition)return legacy;
