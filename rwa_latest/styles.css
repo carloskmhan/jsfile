@@ -7,3 +7,19 @@
 #json{width:100%;font-family:monospace;min-height:360px}#template-list{max-height:500px;overflow:auto;border-top:1px solid #ddd}main label{display:block;margin:8px 0}main input[type=text],#pattern,#canonical{width:min(600px,95%);font:inherit;padding:8px}
 
 @media(max-width:550px){main{padding-bottom:310px}.plan-preview{font-size:13px}}
+
+/* Request-local identity choices. Keep customised loading_screen.css untouched. */
+.rwa-identity-picker{margin-top:14px;max-width:850px}
+.rwa-identity-heading{font-weight:650;margin:0 0 6px}
+.rwa-identity-help{font-size:.88rem;line-height:1.5;opacity:.8;margin:6px 0 12px}
+.rwa-identity-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.rwa-identity-list li{margin:0;min-width:0}
+.rwa-identity-choice{display:flex;flex-direction:column;gap:5px;text-align:left;width:100%;min-height:56px;padding:12px 16px;border:1px solid currentColor;border-radius:10px;background:transparent;color:inherit;cursor:pointer;white-space:normal;overflow-wrap:anywhere}
+.rwa-identity-choice:hover:not(:disabled){background:rgba(127,127,127,.09)}
+.rwa-identity-choice:focus-visible,.rwa-identity-actions button:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+.rwa-identity-name{font-weight:650;line-height:1.4}
+.rwa-identity-meta{font-size:.85rem;line-height:1.5;opacity:.8}
+.rwa-identity-actions{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.rwa-identity-actions button{min-height:44px}
+.rwa-identity-picker button:disabled{cursor:default;opacity:.5}
+.rwa-identity-picker [hidden]{display:none!important}

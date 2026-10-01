@@ -1,3 +1,5 @@
+import {identityChoiceRequest,chooseIdentity,appendSelectedSubject} from './semantic/identity_selection.js';
+import {renderIdentityChoices} from './identity_choice_ui.js';
 import {createChatPresentation} from './chat_ui.js';
 import {planDataRequest} from './semantic/routing.js';
 import {RuleClient} from './rule_client.js';
@@ -39,11 +41,11 @@ export async function main(config){
    client.reset();client.invalidate();provider?.close();window.location.reload();
  };
  const offerReconnect=()=>{if($('reconnect-tableau')&&config.mode==='tableau'){$('reconnect-tableau').hidden=false;if($('settings'))$('settings').open=true;}};
- let loadingArticle=null,loadingStarted=0;
+ let loadingArticle=null,loadingStarted=0,identitySession=null;
  const presentation=createChatPresentation({history:$('history'),question:$('question'),config,
    canEdit:()=>ready&&!busy,
    getContext:()=>({groupId:$('group').value||client.state.groupId||'',month:$('month').value||client.state.anchorMonth||config.defaultReportingMonth||''})});
- const controls=()=>{for(const e of document.querySelectorAll('#ask,#question,#newchat,#group,#entity,#month,#group-search,#refresh-catalog,[data-question],.choices button,.confirm-report,.cancel-report'))if(!e.dataset.finished)e.disabled=busy||!ready;presentation.refreshControls();};
+ const controls=()=>{for(const e of document.querySelectorAll('#ask,#question,#newchat,#group,#entity,#month,#group-search,#refresh-catalog,[data-question],.choices button,.rwa-identity-picker button,.confirm-report,.cancel-report'))if(!e.dataset.finished)e.disabled=busy||!ready;presentation.refreshControls();};
  const options=(id,items)=>$(id).replaceChildren(...items.map(([name,value])=>new Option(name,value)));
  const byId=id=>config.semanticCatalog?catalogLookup(config.semanticCatalog).byId.get(id):null;
  function groupOptions(){
@@ -127,7 +129,41 @@ export async function main(config){
      presentation.reveal(b,visibleAnswer,finishPresentation);
    }else{setMessage(a,r.answer);finishPresentation();}
  }
+ function identityUIContext(){return {group:$('group').value,entity:$('entity').value,month:$('month').value};}
+ function discardIdentityChoices(){identitySession?.view?.disable();identitySession=null;}
+ function offerIdentityChoices(a,question,selection,ui){
+   if(config.identityChoices===false)return false;
+   const request=identityChoiceRequest(question,config.semanticCatalog,config.commandPatterns,selection);
+   if(!request)return false;
+   discardIdentityChoices();client.cancel();
+   setMessage(a,request.reason==='PARTIAL_NAME'?'Please select the intended name below.':'More than one group or client matches this name. Please choose below.');
+   const session={epoch,version:provider.version,state:JSON.stringify(client.state),registry:config.commandPatterns,
+     mode:config.compositionMode,ui:JSON.stringify(ui),created:Date.now(),question,request,view:null};
+   identitySession=session;
+   session.view=renderIdentityChoices(a,request,{
+     onSelect:(target,disable)=>{
+       if(busy||!ready)return;
+       if(identitySession!==session||epoch!==session.epoch||provider.version!==session.version||
+          session.registry!==config.commandPatterns||session.mode!==config.compositionMode||
+          session.state!==JSON.stringify(client.state)||session.ui!==JSON.stringify(identityUIContext())||Date.now()-session.created>120000){
+         disable();identitySession=null;setMessage(a,'This name selection expired or the data/context changed. Submit the question again.');return;
+       }
+       const next=chooseIdentity(request,target.key);disable();identitySession=null;
+       // A bare name after a single-month portfolio ranking is an explicit
+       // drill-down, not a request to replace the scope of a portfolio ranking.
+       // Name-bearing analytical questions are otherwise kept verbatim.
+       const drilldown=client.state.action==='TOP_CLIENTS'&&client.state.period?.mode==='month'&&
+         request.span.start===0&&request.span.end===request.question.length;
+       const resumed=drilldown?appendSelectedSubject('Explain RWA in '+client.state.period.month,question,next):{question,selection:next};
+       send({question:resumed.question,identitySelection:resumed.selection,ui,
+         display:(drilldown?'Analyse ':'')+(target.kind==='GROUP'?'Group: ':'Client: ')+target.name+' ['+target.id+']'+(drilldown?' · '+client.state.period.month:'')});
+     },
+     onCancel:()=>{if(identitySession!==session)return;identitySession=null;$('question').value=question;$('question').focus();$('question').select();}
+   });
+   presentation.followLatest();return true;
+ }
  function reset({history=false}={}){
+   discardIdentityChoices();
    if(history)presentation.cancelAll();else presentation.finishAll();
    client.reset();lastGroupId=null;pendingQuestion=null;
    if(history){$('history').replaceChildren();$('welcome').hidden=false;}
@@ -250,6 +286,7 @@ export async function main(config){
    presentation.followLatest();
  }
  function sourceChanged(e){
+   discardIdentityChoices();
    presentation.finishAll();
    epoch++;client.invalidate();client.reset();lastGroupId=null;pendingQuestion=null;metadata={rows:[]};
    groups=[];config.semanticCatalog={identitySource:'runtime_catalog',groups:[],entities:[]};options('group',[['Refresh available groups','']]);groupChanged();context();
@@ -260,9 +297,11 @@ export async function main(config){
    config.semanticCatalog={...c,entities:config.semanticCatalog?.entities?.filter(e=>groups.some(g=>g.client_group_id===e.client_group_id))||[],driverLabels:config.semanticCatalog?.driverLabels||[]};
    groupOptions();return c;
  }
- async function send(){
-   const q=$('question').value.trim();if(!q||busy||!ready)return;
-   busy=true;controls();$('question').value='';message('user',q);const a=message('assistant','Reading authorised Tableau index and selected group data…',{loading:true});const thisEpoch=epoch;
+ async function send(continuation=null){
+   const q=continuation?.question||$('question').value.trim();if(!q||busy||!ready)return;
+   const ui=continuation?.ui||identityUIContext();let selection=continuation?.identitySelection||null;
+   discardIdentityChoices();client.cancel();
+   busy=true;controls();$('question').value='';message('user',continuation?.display||q);const a=message('assistant','Reading authorised Tableau index and selected group data…',{loading:true});const thisEpoch=epoch;
    loadingArticle=a;loadingStarted=Date.now();
    // Force the freshly submitted user message into view BEFORE any async read.
    presentation.beginTurn();
@@ -271,10 +310,15 @@ export async function main(config){
      await readCatalog();if(epoch!==thisEpoch)throw new Error('Available groups changed. Review the new scope and submit the request again.');
      if(!groups.length)throw new Error('No groups are available in the index for this session. No static catalog fallback is used.');
      failureStage='PLAN_DATA_REQUEST';
-     const request=planDataRequest(q,config.semanticCatalog,config.commandPatterns,client.state,{selectedClientGroupId:$('group').value,compositionMode:config.compositionMode});
+     if(offerIdentityChoices(a,q,selection,ui))return;
+     const request=planDataRequest(q,config.semanticCatalog,config.commandPatterns,client.state,{selectedClientGroupId:ui.group,compositionMode:config.compositionMode,...(selection?{identitySelection:selection}:{})});
      if(!request.ok){if(request.code==='MISSING_REQUIRED_SLOT')pendingQuestion=q;results(a,{ok:false,status:'clarify',code:request.code,answer:request.message});return;}
-     const chosen=request.groups,bare=chosen.length===1&&[chosen[0].client_group_id,chosen[0].client_group_name,...chosen[0].aliases].some(x=>norm(x)===norm(q));
-     const question=pendingQuestion&&bare?pendingQuestion+' for '+chosen[0].client_group_id:q;
+     const chosen=request.groups,bare=chosen.length===1&&([chosen[0].client_group_id,chosen[0].client_group_name,...chosen[0].aliases].some(x=>norm(x)===norm(q))||selection?.bindings.some(b=>b.start===0&&b.end===norm(q).length));
+     let question=q;
+     if(pendingQuestion&&bare){
+       if(selection){const resumed=appendSelectedSubject(pendingQuestion,q,selection);question=resumed.question;selection=resumed.selection;}
+       else question=pendingQuestion+' for '+chosen[0].client_group_id;
+     }
      client.invalidate();
      failureStage=request.portfolio?'LOAD_PORTFOLIO_DATA':'LOAD_GROUP_DATA';
      requestedGroupCount=request.portfolio?groups.length:request.groupIds.length;
@@ -285,9 +329,13 @@ export async function main(config){
      metadata=client.setData(rows,{portfolioComplete:request.portfolio,source:config.mode==='sample'?'synthetic sample CSV':'authenticated Tableau '+config.worksheetName});
      config.semanticCatalog.driverLabels=driverCatalog(metadata.rows).labels;
      const ctx={};if(chosen[0])ctx.selectedClientGroupId=chosen[0].client_group_id;
-     if($('entity').value&&(!lastGroupId||chosen[0]?.client_group_id===lastGroupId))ctx.selectedEntityId=$('entity').value;
-     if($('month').value)ctx.selectedMonth=$('month').value;else if(config.defaultReportingMonth)ctx.selectedMonth=config.defaultReportingMonth;
+     if(ui.entity&&(!lastGroupId||chosen[0]?.client_group_id===lastGroupId))ctx.selectedEntityId=ui.entity;
+     if(ui.month)ctx.selectedMonth=ui.month;else if(config.defaultReportingMonth)ctx.selectedMonth=config.defaultReportingMonth;
+     if(selection)ctx.identitySelection=selection;
      failureStage='INTERPRET_QUERY_AND_PREVIEW';
+     // A group-index match can become ambiguous once that group's legal clients
+     // have loaded. Offer the same typed list at this second boundary as well.
+     if(offerIdentityChoices(a,question,selection,ui))return;
      preview(a,client.prepare(question,ctx));
    }catch(e){
      client.invalidate();offerReconnect();
@@ -295,8 +343,9 @@ export async function main(config){
      results(a,{ok:false,status:'error',answer:'No answer produced: '+formatRuntimeError(e,details),
        ...(config.debug===true?{errorDiagnostic:runtimeErrorDetails(e,details)}:{})});
    }
-   finally{loadingArticle=null;busy=false;controls();$('question').focus({preventScroll:true});presentation.followLatest();}
+   finally{loadingArticle=null;busy=false;controls();if(identitySession)identitySession.view.focus();else $('question').focus({preventScroll:true});presentation.followLatest();}
  }
+ $('question').addEventListener('input',()=>discardIdentityChoices());
  $('form').onsubmit=e=>{e.preventDefault();send();};$('question').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();send();}};
  for(const b of document.querySelectorAll('[data-question]'))b.onclick=()=>{$('question').value=b.dataset.question;send();};
  $('newchat').onclick=()=>{$('group').value='';groupChanged();reset({history:true});};
@@ -318,7 +367,7 @@ export async function main(config){
    provider.onProgress?.(updateQueryProgress);
    config.semanticCatalog=provider.catalog;groups=validateCatalog(provider.catalog);groupOptions();groupChanged();
    ready=true;busy=false;$('progress').hidden=true;$('status').textContent=config.mode==='sample'?'Ready · Synthetic CSV data · Runtime ID catalog · Preview required':`Ready · ${groups.length.toLocaleString()} available groups from ${config.catalogWorksheetName} · Details loaded on demand`;
-   controls();window.addEventListener('pagehide',()=>{presentation.dispose();client.reset();client.invalidate();provider.close();metadata={rows:[]};config.semanticCatalog=null;groups=[];},{once:true});
+   controls();window.addEventListener('pagehide',()=>{discardIdentityChoices();presentation.dispose();client.reset();client.invalidate();provider.close();metadata={rows:[]};config.semanticCatalog=null;groups=[];},{once:true});
    startupReady();return {ok:true};
  }catch(e){
    provider?.close();ready=false;client.invalidate();

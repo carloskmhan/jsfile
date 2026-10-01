@@ -1,3 +1,4 @@
+import {bindIdentitySelection} from './identity_selection.js';
 import {routeMeaningScope} from './semantic_planner.js';
 import {catalogLookup,resolveCatalogGroup} from '../group_catalog.js';
 import {driverCatalog} from '../driver_catalog.js';
@@ -11,7 +12,9 @@ export function planDataRequest(question,catalog,registry,state={},context={}){
   const input=normalizedInput(question,registry.settings.max_query_chars);if(input.error)return {ok:false,code:input.code,message:input.error};
   let cached=routingCache.get(catalog);
   if(!cached||cached.registry!==registry){const identities=identityCatalog([],catalog,{registry});cached={registry,identities,dict:new Dictionary(registry,identities,catalog.driverLabels||[])};routingCache.set(catalog,cached);}
-  const {identities,dict}=cached;
+  const {identities}=cached;let dict=cached.dict;
+  try{dict=bindIdentitySelection(dict,question,context.identitySelection);}
+  catch(error){if(error.code!=='STALE_IDENTITY_SELECTION')throw error;return {ok:false,code:error.code,message:error.message};}
   const scoped=routeMeaningScope(input.text,dict.resolve(input.text),registry,state,context);
   if(scoped){
     if(!scoped.ok)return scoped;
