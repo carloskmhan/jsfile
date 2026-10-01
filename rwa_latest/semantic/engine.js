@@ -1,3 +1,4 @@
+import {prepareSemanticPlanning,interpretMeaning,bindMeaningContract,validateMeaningContract,auditAcceptedMeaning} from './semantic_planner.js';
 import {compositionMode} from './composition_schema.js';
 import {composeLexical} from './composition_lexicon.js';
 import {semanticFrame} from './composition_frame.js';
@@ -21,37 +22,49 @@ const patchPrimary={HISTORICAL_GROUP_PEAK:'HISTORICAL_GROUP_REQUEST',GROUP_ROOT_
 export class SemanticEngine {
   constructor(options={}){
     if(!options.commandPatterns)throw new Error('Compiled CSV rules are required. Load command_patterns.txt before constructing the engine.');
-    this.registry=validateRegistry(options.commandPatterns);this.options=options;this.compositionMode=compositionMode(options.compositionMode);this.lastComposition=null;this.identities=[];this.dictionary=null;this.boundRows=null;
+    this.registry=validateRegistry(options.commandPatterns);this.options=options;this.compositionMode=compositionMode(options.compositionMode);this.lastComposition=null;this.lastSemanticPlan=null;this.lastSemanticAudit=null;this.identities=[];this.dictionary=null;this.boundRows=null;
   }
   bind(rows){
     if(this.boundRows===rows&&this.dictionary)return;
     this.boundRows=rows;this.identities=identityCatalog(rows,this.options.semanticCatalog,{...this.options,registry:this.registry});this.dictionary=new Dictionary(this.registry,this.identities,driverCatalog(rows).labels);
   }
   parse(question,rows,context={},state={}){
-    this.lastComposition=null;
+    this.lastComposition=null;this.lastSemanticPlan=null;this.lastSemanticAudit=null;
     const legacy=this.parseLegacy(question,rows,context,state);
     if(this.compositionMode==='off'||!this.registry.composition)return legacy;
-    // Diagnostics never become state, previews, authorisation or an execution plan.
     const observed=legacy.ok?semanticFrame(legacy.plan,legacy.explain):null;
-    if(!compositionEligible(legacy)){
+    // Legacy successes remain authoritative. Audits neither execute nor patch state.
+    if(legacy.ok){
       this.lastComposition={mode:this.compositionMode,decision:'LEGACY_AUTHORITATIVE',frame:observed};
+      try{
+        const prepared=prepareSemanticPlanning(question,this.dictionary,this.registry);
+        const planned=prepared?this.parseLegacy(question,rows,context,state,prepared):null;
+        this.lastSemanticAudit=auditAcceptedMeaning(norm(question),this.dictionary.resolve(norm(question)),legacy,planned,this.registry);
+      }catch(error){this.lastSemanticAudit={policy:'OBSERVE_ONLY',code:'AUDIT_ERROR',message:String(error.message),changesExecution:false};}
       return legacy;
     }
+    // Preserve the 6.1 lexical recovery path, including its rejection boundaries.
+    if(compositionEligible(legacy)){
+      try{
+        const prepared=composeLexical(question,this.dictionary,this.registry);
+        if(prepared&&!prepared.error){
+          const candidate=this.parseLegacy(question,rows,context,state,prepared);
+          this.lastComposition={mode:this.compositionMode,decision:candidate.ok?'COMPOSED_CANDIDATE':candidate.code,
+            legacyCode:legacy.code,frame:candidate.explain?.composition?.frame||null,additions:clone(prepared.composition.additions)};
+          if(candidate.ok)return this.compositionMode==='guarded'?candidate:legacy;
+        }else this.lastComposition={mode:this.compositionMode,decision:prepared?.error||'NO_NEW_PRIMITIVE',frame:observed};
+      }catch(error){this.lastComposition={mode:this.compositionMode,decision:'COMPOSITION_INTERNAL_ERROR',message:String(error.message)};return legacy;}
+    }else this.lastComposition={mode:this.compositionMode,decision:'LEGACY_AUTHORITATIVE',frame:observed};
+    // A complete scoped grammar may separate rank/filter roles that the old global
+    // metric flag could not represent. It may not rescue identity, fuzzy, score or intent conflicts.
+    if(!['UNSUPPORTED_EXPRESSION','UNSUPPORTED_INTENT','UNSUPPORTED_MODIFIER','AMBIGUOUS_METRIC'].includes(legacy.code)||legacy.explain?.fuzzy?.corrections?.length)return legacy;
     try{
-      const prepared=composeLexical(question,this.dictionary,this.registry);
-      if(!prepared||prepared.error){
-        this.lastComposition={mode:this.compositionMode,decision:prepared?.error||'NO_NEW_PRIMITIVE',frame:observed};
-        return legacy;
-      }
-      // The original text and existing gate sequence are retained; only uncovered lexical spans are supplied.
+      const prepared=prepareSemanticPlanning(question,this.dictionary,this.registry);if(!prepared)return legacy;
       const candidate=this.parseLegacy(question,rows,context,state,prepared);
-      this.lastComposition={mode:this.compositionMode,decision:candidate.ok?'COMPOSED_CANDIDATE':candidate.code,
-        legacyCode:legacy.code,frame:candidate.explain?.composition?.frame||null,
-        additions:clone(prepared.composition.additions)};
-      if(this.compositionMode==='guarded'&&candidate.ok)return candidate;
-    }catch(error){
-      this.lastComposition={mode:this.compositionMode,decision:'COMPOSITION_INTERNAL_ERROR',message:String(error.message)};
-    }
+      this.lastSemanticPlan={mode:this.compositionMode,legacyCode:legacy.code,decision:candidate.ok?'MEANING_PLAN_ACCEPT':candidate.code,
+        frame:clone(candidate.explain?.semanticPlanning||null),clarification:clone(candidate.explain?.clarification||null)};
+      if(this.compositionMode==='guarded'&&(candidate.ok||candidate.explain?.clarification))return candidate;
+    }catch(error){this.lastSemanticPlan={decision:'MEANING_PLAN_INTERNAL_ERROR',message:String(error.message)};}
     return legacy;
   }
   parseLegacy(question,rows,context={},state={},composedPrepared=null){
@@ -63,7 +76,7 @@ export class SemanticEngine {
     const prepared=composedPrepared||prepareLexical(input.text,this.dictionary,{disabled:this.options.disableFuzzy===true});
     explain.phraseResolution=prepared.phraseResolution;explain.fuzzy=prepared.fuzzy;explain.correctedText=prepared.text;
     if(prepared.error)return fail(prepared.error.code,prepared.error.message);
-    input={...input,text:prepared.text};const lex=prepared.lex;explain.matches=[...lex.names.map(n=>({phrase:n.text,concept:n.item.kind,id:n.item.id,name:n.item.name,start:n.start,end:n.end})),...lex.matches.map(m=>({phrase:m.text,concept:m.concept,weight:m.weight,source:m.source,start:m.start,end:m.end}))];
+    input={...input,text:prepared.text};let lex=prepared.lex;explain.matches=[...lex.names.map(n=>({phrase:n.text,concept:n.item.kind,id:n.item.id,name:n.item.name,start:n.start,end:n.end})),...lex.matches.map(m=>({phrase:m.text,concept:m.concept,weight:m.weight,source:m.source,start:m.start,end:m.end}))];
     if(lex.collisions.length)return fail('AMBIGUOUS_ENTITY','This display name matches multiple IDs. Specify one of: '+lex.collisions.flatMap(c=>c.targets).slice(0,8).map(t=>t.kind+' '+t.id+' ('+t.name+')').join('; '),{aliasCollisions:lex.collisions});
     const unsupported=detectUnsupported(lex,input.text);if(unsupported)return fail(unsupported.code,unsupported.message);
     if(lex.concepts.HELP&&lex.names.length===0)return fail('HELP','Ask about recorded RWA drivers, top groups/entities, thresholds, comparisons, trends, offsets or reconciliation.');
@@ -72,12 +85,16 @@ export class SemanticEngine {
     const scopedRows=rows.filter(r=>!namedGroup||r.client_group_id===namedGroup);
     const latest=scopedRows.map(r=>r.month).sort().at(-1)||rows.map(r=>r.month).sort().at(-1);
     const anchor=(looksFollow&&state.action?(state.period?.month||state.anchorMonth):null)||context.selectedMonth||context.month||latest;
-    const slots=extractSlots(input.text,lex,anchor,this.registry.settings,this.registry);
+    let slots=extractSlots(input.text,lex,anchor,this.registry.settings,this.registry);
     explain.temporalAnchor={month:anchor,source:looksFollow&&state.action&&(state.period?.month||state.anchorMonth)?'LAST_EXECUTED_ANALYSIS':context.selectedMonth||context.month?'TABLEAU_CONTEXT':'LATEST_LOADED_REPORT'};
     explain.numbers=slots.numbers||[];explain.temporal=slots.temporalDebug;
     if(slots.error)return fail(slots.code,slots.error);
-    const relations=parseRelations(input.text,lex,slots);
-    let patch=findFollowup(input.text,slots,relations,this.registry,lex);
+    let meaning=null,relations;
+    if(prepared.planning){
+      try{meaning=interpretMeaning(input.text,lex,slots,this.registry,state,prepared.planning);slots=meaning.slots;lex=meaning.lex;relations=meaning.relations;}
+      catch(error){return fail(error.code||'UNSUPPORTED_SEMANTIC_STRUCTURE',error.message,{clarification:{field:error.field||'structure',prompt:error.message,preservesSuccessfulContext:true}});}
+    }else relations=parseRelations(input.text,lex,slots);
+    let patch=meaning?meaning.patch:findFollowup(input.text,slots,relations,this.registry,lex);
     if(!patch&&prepared.composition)patch=composedContextPatch(input.text,lex,slots,relations,this.registry,prepared.composition);
     if(patch?.error)return fail(patch.code,patch.error);
     if(!state.action&&patch?.rule.pattern==='{scope}')patch=null;
@@ -86,11 +103,12 @@ export class SemanticEngine {
     // A balance query with a named subject is still a recorded RWA report.
     if(!patch&&!features.RWA_DRIVER&&!relations.driver&&lex.concepts.RWA&&lex.concepts.CHECK&&!features.COMPARE_REQUEST&&!features.RANK_GROUP&&!features.RANK_ENTITY&&!features.PEAK_REQUEST&&!features.MOVEMENT_CHECK_REQUEST)features.RWA_DRIVER=1;
     const projection=projectContext({patch,state,context,slots,relations,identities:this.identities,registry:this.registry,anchor,text:input.text});
-    if(projection.error)return fail(projection.code,projection.error);
+    if(projection.error)return fail(projection.code,projection.error,meaning?{clarification:{field:'context',prompt:projection.error,preservesSuccessfulContext:true}}:{});
     explain.contextPatch=projection.patch;
     if(patch){for(const k of Object.values(patchPrimary))delete features[k];const key=projection.plan.action==='MOVEMENT_CHECK'?'MOVEMENT_CHECK_REQUEST':patchPrimary[projection.plan.action];if(key)features[key]=1;}
     explain.semanticFeatures=features;explain.normalizedSemantics=explain.matches.map(x=>x.id||x.concept).join(' ');
     const p0=projection.plan;
+    if(meaning)explain.semanticPlanning=bindMeaningContract(meaning,projection,anchor);
     const candidates=scoreCommands(features,this.registry,{subject:!!p0.group||!!p0.entity,entity:!!p0.entity,period:!!p0.period,portfolio:!!(features.RANK_GROUP||features.HISTORICAL_GROUP_REQUEST),modifier:!!features.HAS_MODIFIER});
     for(const candidate of candidates){
       const p=clone(p0),cmd=candidate.definition;p.action=cmd.action;p.commandId=cmd.command_id;p.semanticIntent=cmd.intent;
@@ -116,18 +134,22 @@ export class SemanticEngine {
       candidate.grammar=validateCommandGrammar(p,cmd,slots,relations,features);
       candidate.validation=validateConstraints(p,cmd,slots,relations,this.registry.settings);
       if(!candidate.grammar.valid){candidate.validation.valid=false;candidate.validation.errors.unshift(...candidate.grammar.errors);}
+      if(meaning){
+        candidate.meaningValidation=validateMeaningContract(explain.semanticPlanning,p);
+        if(!candidate.meaningValidation.valid){candidate.validation.valid=false;candidate.validation.errors.push(...candidate.meaningValidation.errors);}
+      }
       candidate.plan=p;
     }
     const summaries=candidates.slice(0,this.registry.settings.top_k).map(({definition,plan,...c})=>c);
     explain.candidates=summaries;explain.constraints=summaries.map(c=>({commandId:c.commandId,...c.validation}));
-    const unknown=unknownContent(input.text,lex,slots,prepared.composition?null:patch);explain.unknownTokens=unknown;
+    const unknown=unknownContent(input.text,lex,slots,(prepared.composition||prepared.planning)?null:patch);explain.unknownTokens=unknown;
     if(prepared.fuzzy.corrections.length){
       const exactEvidence=prepared.phraseResolution.matches.filter(m=>!prepared.fuzzy.corrections.some(c=>c.start<m.end&&c.end>m.start));
       const supporting=exactEvidence.some(m=>['RWA','GROUP','ENTITY','INCREASE','DECREASE','COMPARE','ROOT','RANK'].includes(m.concept))||prepared.lex.names.some(n=>!prepared.fuzzy.corrections.some(c=>c.start<n.end&&c.end>n.start))||!!(patch&&state.action);
       if(!supporting)return fail('LOW_CONFIDENCE','A fuzzy correction alone is not enough evidence to execute a command.');
     }
     const decision=decide(candidates,unknown,relations);
-    if(decision)return fail(decision.code,decision.message);
+    if(decision)return fail(decision.code,decision.message,meaning?{clarification:{field:'constraints',prompt:decision.message,preservesSuccessfulContext:true}}:{});
     const top=candidates[0],plan=top.plan;
     if(prepared.composition){
       const grammar=validateCompositionGrammar({text:input.text,lex,slots,relations,plan,patch,registry:this.registry,composition:prepared.composition});

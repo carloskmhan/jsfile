@@ -17,7 +17,7 @@
     "units.csv": "02817e4cfa9fe033d21d1fa9e5e769ac35622196a91133f39db96cfbcf279018",
     "temporal.csv": "b164491c6e44b0a0fb911966c54c93ea4eb67cadef3e09ebfb9612fd18c6c2a2",
     "lexical_families.csv": "8b5c8ce40027afc1b667177d6485d02e20c5cbeb80b29de974cc319e3f80fde1",
-    "composition_rules.csv": "eb1504a1e9ed7911bdddd3f90e85415db0d822c98d0a4e8ce0060d6b6435678a"
+    "composition_rules.csv": "c26ba30aede0c73705eb4943f1a3a2bfc7caa0a2bfeb49bf4af5da05bec93d9a"
   },
   "knownConcepts": [
     "ABSOLUTE",
@@ -11859,6 +11859,46 @@
           "TOP_CLIENTS",
           "TOP_ENTITY"
         ]
+      },
+      {
+        "rule_id": "PLAN_RANKING_ROLES",
+        "shape": "RANKING_ROLES",
+        "enabled": true,
+        "notes": "Bind ranking metric and balance predicate before command selection.",
+        "source": {
+          "file": "composition_rules.csv",
+          "line": 7
+        },
+        "actions": [
+          "TOP_CLIENTS",
+          "TOP_ENTITY"
+        ]
+      },
+      {
+        "rule_id": "PLAN_COMPOUND_CONTEXT",
+        "shape": "COMPOUND_CONTEXT",
+        "enabled": true,
+        "notes": "Atomically validate scope period and driver changes through existing context handlers.",
+        "source": {
+          "file": "composition_rules.csv",
+          "line": 8
+        },
+        "actions": [
+          "GROUP_ROOT_CAUSE",
+          "ENTITY_DRIVER",
+          "TOP_ENTITY"
+        ]
+      },
+      {
+        "rule_id": "PLAN_ACCEPTED_AUDIT",
+        "shape": "ACCEPTED_AUDIT",
+        "enabled": true,
+        "notes": "Observe undefined net/gross and role disagreements without changing accepted legacy output.",
+        "source": {
+          "file": "composition_rules.csv",
+          "line": 9
+        },
+        "actions": []
       }
     ]
   }

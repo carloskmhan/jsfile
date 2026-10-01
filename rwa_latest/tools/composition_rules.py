@@ -21,6 +21,9 @@ SHAPES = {
     'CONTRIBUTION': ['DRIVER_CONTRIBUTION', 'ENTITY_CONTRIBUTION'],
     'RANKING': ['TOP_CLIENTS', 'TOP_ENTITY'],
     'CONTEXT_MODIFIER': ['GROUP_ROOT_CAUSE', 'ENTITY_DRIVER', 'TOP_CLIENTS', 'TOP_ENTITY'],
+    'RANKING_ROLES': ['TOP_CLIENTS', 'TOP_ENTITY'],
+    'COMPOUND_CONTEXT': ['GROUP_ROOT_CAUSE', 'ENTITY_DRIVER', 'TOP_ENTITY'],
+    'ACCEPTED_AUDIT': [],
 }
 # An extension must not hide a financial qualifier, identifier, date or negation.
 PROTECTED_WORDS = set(('not no never without except excluding exclude include only net gross '

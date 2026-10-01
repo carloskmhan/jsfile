@@ -1,3 +1,7 @@
+## 6.2 extension
+
+The 6.1 behavior described below remains the compatibility baseline. [SEMANTIC_PLANNING.md](SEMANTIC_PLANNING.md) describes the additional frame-first path, atomic compound context and read-only accepted-result audit. [SEMANTIC_PLANNING_RELEASE.md](SEMANTIC_PLANNING_RELEASE.md) separates implemented features from remaining limitations.
+
 # Compositional Semantic Generalization — guarded v6 extension
 
 Version: `6.1.0-composition-review`. Legacy parser trace version deliberately remains

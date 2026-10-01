@@ -1,7 +1,7 @@
 name: RWA composition regression
 on:
   push:
-    branches: [main, rwa-composition-v6]
+    branches: [main, rwa-composition-v6, rwa-semantic-planning-v6-2]
     paths: ['rwa_latest/**']
   workflow_dispatch:
 permissions:
@@ -46,4 +46,6 @@ jobs:
             rwa_latest/reports/v6_existing_questions.json
             rwa_latest/reports/v6_existing_robustness.json
             rwa_latest/reports/composition*.json
+            rwa_latest/reports/semantic_planning_tests.json
+            rwa_latest/reports/planning_properties.json
           retention-days: 7

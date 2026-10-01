@@ -4,7 +4,7 @@ import {expandCsvRows} from './csv_adapter.js';
 /** In-memory facade replacing MiniLMClient. No Worker, Python, model or training endpoint. */
 export class RuleClient {
  constructor(config={}){this.config=config;this.engine=null;this.state={};this.ready=false;this.pending=null;this.generation=0;this.previewSerial=0;}
- setCompositionMode(mode){const value=compositionMode(mode);this.pending=null;this.config.compositionMode=value;if(this.engine){this.engine.parser.compositionMode=value;this.engine.parser.lastComposition=null;}}
+ setCompositionMode(mode){const value=compositionMode(mode);this.pending=null;this.config.compositionMode=value;if(this.engine){this.engine.parser.compositionMode=value;this.engine.parser.lastComposition=null;this.engine.parser.lastSemanticPlan=null;this.engine.parser.lastSemanticAudit=null;}}
  reset(){this.state={};this.pending=null;this.engine?.reset();}
  invalidate(){this.ready=false;this.engine=null;this.pending=null;this.generation++;}
  setData(clients,{portfolioComplete=false,source='provided rows'}={}){

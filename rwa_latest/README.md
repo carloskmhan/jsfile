@@ -1,3 +1,7 @@
+## 6.2 semantic planning review
+
+The 6.2 extension adds frame-first role binding, compound context changes and read-only legacy audits. Default remains off. See [SEMANTIC_PLANNING.md](SEMANTIC_PLANNING.md) for activation, supported grammar, limitations and the additive custom-CSV upgrade, and [SEMANTIC_PLANNING_RELEASE.md](SEMANTIC_PLANNING_RELEASE.md) for verification.
+
 # RWA deterministic engine - current consolidated sources
 
 This directory contains the complete expanded source project, not an archive or an unpack-only bundle. Existing files at the repository root are unchanged. Start here rather than mixing historical root-level JavaScript files with this folder.

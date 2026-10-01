@@ -1,3 +1,4 @@
+import {routeMeaningScope} from './semantic_planner.js';
 import {catalogLookup,resolveCatalogGroup} from '../group_catalog.js';
 import {driverCatalog} from '../driver_catalog.js';
 import {Dictionary,identityCatalog} from './dictionary.js';
@@ -10,7 +11,14 @@ export function planDataRequest(question,catalog,registry,state={},context={}){
   const input=normalizedInput(question,registry.settings.max_query_chars);if(input.error)return {ok:false,code:input.code,message:input.error};
   let cached=routingCache.get(catalog);
   if(!cached||cached.registry!==registry){const identities=identityCatalog([],catalog,{registry});cached={registry,identities,dict:new Dictionary(registry,identities,catalog.driverLabels||[])};routingCache.set(catalog,cached);}
-  const {identities,dict}=cached;let prepared=prepareLexical(norm(question),dict);
+  const {identities,dict}=cached;
+  const scoped=routeMeaningScope(input.text,dict.resolve(input.text),registry,state,context);
+  if(scoped){
+    if(!scoped.ok)return scoped;
+    if(scoped.groupIds.some(id=>!catalogLookup(catalog).byId.has(id)))return {ok:false,code:'UNKNOWN_ENTITY',message:'The previous or replacement group is no longer in the authorised index.'};
+    return {...scoped,groups:scoped.groupIds.map(id=>catalogLookup(catalog).byId.get(id))};
+  }
+  let prepared=prepareLexical(norm(question),dict);
   if(prepared.error?.code==='UNSUPPORTED_EXPRESSION'){const exact=dict.resolve(input.text);if(exact.names.length)prepared={text:input.text,lex:exact};} // Final interpretation still consumes and validates every word after detail load.
   if(prepared.error)return {ok:false,...prepared.error};
   const text=prepared.text,lex=prepared.lex;

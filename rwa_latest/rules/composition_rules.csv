@@ -4,3 +4,6 @@ COMPOSE_MOVEMENT_CHECK,MOVEMENT_CHECK,true,Existing executor and all legacy cons
 COMPOSE_CONTRIBUTION,CONTRIBUTION,true,Existing executor and all legacy constraints remain mandatory.
 COMPOSE_RANKING,RANKING,true,Existing executor and all legacy constraints remain mandatory.
 COMPOSE_CONTEXT_MODIFIER,CONTEXT_MODIFIER,true,Same but exclude/include uses existing state patch handlers.
+PLAN_RANKING_ROLES,RANKING_ROLES,true,Bind ranking metric and balance predicate before command selection.
+PLAN_COMPOUND_CONTEXT,COMPOUND_CONTEXT,true,Atomically validate scope period and driver changes through existing context handlers.
+PLAN_ACCEPTED_AUDIT,ACCEPTED_AUDIT,true,Observe undefined net/gross and role disagreements without changing accepted legacy output.

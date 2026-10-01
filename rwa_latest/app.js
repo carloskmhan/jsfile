@@ -269,7 +269,7 @@ export async function main(config){
      await readCatalog();if(epoch!==thisEpoch)throw new Error('Available groups changed. Review the new scope and submit the request again.');
      if(!groups.length)throw new Error('No groups are available in the index for this session. No static catalog fallback is used.');
      failureStage='PLAN_DATA_REQUEST';
-     const request=planDataRequest(q,config.semanticCatalog,config.commandPatterns,client.state,{selectedClientGroupId:$('group').value});
+     const request=planDataRequest(q,config.semanticCatalog,config.commandPatterns,client.state,{selectedClientGroupId:$('group').value,compositionMode:config.compositionMode});
      if(!request.ok){if(request.code==='MISSING_REQUIRED_SLOT')pendingQuestion=q;results(a,{ok:false,status:'clarify',code:request.code,answer:request.message});return;}
      const chosen=request.groups,bare=chosen.length===1&&[chosen[0].client_group_id,chosen[0].client_group_name,...chosen[0].aliases].some(x=>norm(x)===norm(q));
      const question=pendingQuestion&&bare?pendingQuestion+' for '+chosen[0].client_group_id:q;

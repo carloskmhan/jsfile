@@ -1,5 +1,5 @@
 /** Optional artifact validation mirrors tools/composition_rules.py. No executable CSV code. */
-export const COMPOSITION_VERSION='6.1.0-composition-review';
+export const COMPOSITION_VERSION='6.2.0-semantic-planning-review';
 export const COMPOSITION_FAMILIES=Object.freeze({
   RISE:['INCREASE','MOTION_UP'], FALL:['DECREASE','MOTION_DOWN'],
   CAUSE:['ROOT','ATTRIBUTION'], CONTRIBUTION:['AMOUNT','CONTRIBUTION'], POLITE:['COURTESY','COURTESY'],
@@ -9,7 +9,10 @@ export const COMPOSITION_SHAPES=Object.freeze({
   ATTRIBUTION:['GROUP_ROOT_CAUSE','ENTITY_DRIVER','MAIN_DRIVER'],
   MOVEMENT_CHECK:['MOVEMENT_CHECK','DRIVER_CHECK'],
   CONTRIBUTION:['DRIVER_CONTRIBUTION','ENTITY_CONTRIBUTION'], RANKING:['TOP_CLIENTS','TOP_ENTITY'],
-  CONTEXT_MODIFIER:['GROUP_ROOT_CAUSE','ENTITY_DRIVER','TOP_CLIENTS','TOP_ENTITY']
+  CONTEXT_MODIFIER:['GROUP_ROOT_CAUSE','ENTITY_DRIVER','TOP_CLIENTS','TOP_ENTITY'],
+  RANKING_ROLES:['TOP_CLIENTS','TOP_ENTITY'],
+  COMPOUND_CONTEXT:['GROUP_ROOT_CAUSE','ENTITY_DRIVER','TOP_ENTITY'],
+  ACCEPTED_AUDIT:[]
 });
 const protectedWords=new Set(('not no never without except excluding exclude include only net gross '+
   'cumulative forecast predict future if unless assuming balance percentage percent absolute '+
